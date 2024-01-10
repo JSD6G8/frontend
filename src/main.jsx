@@ -5,6 +5,7 @@ import './index.css'
 
 import Layout from './Layout.jsx'
 import ActivityList from './ActivityList.jsx'
+import CreateActivity from './CreateActivity.jsx'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/activities/create',
-    element: <Layout>Mock Create Activity</Layout>,
+    element: <CreateActivity />,
   },
   {
     path: '/activities/edit',
