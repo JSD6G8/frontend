@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import Layout from "./Layout";
 
 function App() {
 
   return (
-    <>
-      <h1>Hello Bang Kaew</h1>
-    </>
+    <Layout>
+      <h1>Landing Page in App.jsx</h1>
+    </Layout>
   )
 }
 
