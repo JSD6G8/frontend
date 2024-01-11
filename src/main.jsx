@@ -6,6 +6,7 @@ import './index.css'
 import Layout from './Layout.jsx'
 import ActivityList from './ActivityList.jsx'
 import CreateActivity from './CreateActivity.jsx'
+import Nav from './components/Nav.jsx'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
   {
     path: '/dashboard',
     element: <Layout>Mock Dashboard</Layout>,
+  },
+  {
+    path: '/nav',
+    element: <Nav/>,
   },
 ]);
 
