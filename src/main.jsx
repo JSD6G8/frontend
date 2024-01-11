@@ -3,9 +3,10 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 
+import Layout from "./Layout.jsx";
 import ActivityList from "./ActivityList.jsx";
 import CreateActivity from "./CreateActivity.jsx";
-import Layout from "./Layout.jsx";
+import Nav from "./components/Nav.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ListedCard from "./components/ListedCard.jsx";
@@ -44,8 +45,8 @@ const router = createBrowserRouter([
     element: <Layout>Mock Dashboard</Layout>,
   },
   {
-    path: "/listedcard",
-    element: <ListedCard />,
+    path: '/nav',
+    element: <Nav/>,
   },
 ]);
 
