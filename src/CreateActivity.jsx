@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Layout from "./Layout";
 import "./CreateActivity.css";
+
+// TODO: Validate against startTime = endTime
+// TODO: ER Diagrom: add duration
 
 function CreateActivity() {
   const [title, setTitle] = useState("");
@@ -11,37 +14,67 @@ function CreateActivity() {
   const [endTime, setEndTime] = useState("");
   const [date, setDate] = useState("");
   const [barometer, setBarometer] = useState("3"); // "1", "2", "3", "4", "5"
-  const [formErrors, setFormErrors] = useState({
-    startTime: "",
-    endTime: "",
-    date: "",
+  const [duration, setDuration] = useState({
+    hour: null,
+    minute: null,
   });
 
-  const validateForm = () => {
-    let errors = {};
-    let isValid = true;
+  // const [formErrors, setFormErrors] = useState({
+  //   startTime: "",
+  //   endTime: "",
+  //   date: "",
+  // });
 
-    if (!startTime) {
-      errors.startTime = "Start time is required."
-      isValid = false;
-    }
-    if (!endTime) {
-      errors.endTime = "End time is required."
-      isValid = false;
-    }
-    if (!date) {
-      errors.date = "Date is required."
-      isValid = false;
-    }
-  };
+  // const validateForm = () => {
+  //   let errors = {};
+  //   let isValid = true;
 
-  const handleSave = () => {
+  //   if (!startTime) {
+  //     errors.startTime = "Start time is required."
+  //     isValid = false;
+  //   }
+  //   if (!endTime) {
+  //     errors.endTime = "End time is required."
+  //     isValid = false;
+  //   }
+  //   if (!date) {
+  //     errors.date = "Date is required."
+  //     isValid = false;
+  //   }
+  // };
+
+  useEffect(() => {
+    if (startTime && endTime && date) {
+      const start = new Date(date + 'T' + startTime).getTime();
+      let end = new Date(date + 'T' + endTime).getTime();
+            
+      if (start > end) {
+        end += 86400000; // add 1 day (in millisecond)
+      }
+      
+      console.log(start, end);
+      
+      const time = (end - start) / 1000 / 60;
+      const hour = Math.floor(time / 60);
+      const minute = time % 60;
+      
+      console.log(hour + ' hr ' + minute + ' min');
+      
+      setDuration({
+        hour: hour,
+        minute: minute,
+      });
+    }
+  }, [startTime, endTime, date]);
+
+  const handleCreate = () => {
     alert(
         `Title: ${title || activityType}\n` +
         `Description: ${description}\n` +
         `Activity Type: ${activityType}\n` +
         `Start Time: ${startTime}\n` +
         `End Time: ${endTime}\n` +
+        `Duration: ${duration}` +
         `Date: ${date}\n` +
         `Barometer: ${barometer}\n`
     );
@@ -49,7 +82,7 @@ function CreateActivity() {
 
   return (
     <Layout>
-      <div className="container px-2 lg:px-4 h-[100svh] flex flex-col justify-between mx-auto">
+      <div className="container px-2 lg:px-4 h-[80svh] flex flex-col justify-between mx-auto">
         <header>
           <div className="navbar bg-base-100 border-b-2 border-black lg:w-[30vw]">
             <div className="flex-1">
@@ -59,9 +92,12 @@ function CreateActivity() {
         </header>
 
         <main className="h-full">
-          <form className="flex flex-col justify-between h-full">
+          <form 
+            className="flex flex-col justify-between h-full"
+            onSubmit={handleCreate}
+          >
             <div>
-              <h2 className="bg-power text-base lg:text-xl my-1">Activity Title</h2>
+              <h2 className="text-base lg:text-xl my-1">Activity Title</h2>
               <input
                 className="input input-bordered text-sm w-full lg:w-[30vw]"
                 type="text"
@@ -184,7 +220,9 @@ function CreateActivity() {
                     type="time"
                     required
                     aria-label="Start time"
-                    onChange={(e) => setStartTime(e.target.value)}
+                    onChange={(e) => {
+                      setStartTime(e.target.value);
+                    }}
                   />
                 </div>
 
@@ -197,7 +235,9 @@ function CreateActivity() {
                     type="time"
                     required
                     aria-label="End time"
-                    onChange={(e) => setEndTime(e.target.value)}
+                    onChange={(e) => {
+                      setEndTime(e.target.value);
+                    }}
                   />
                 </div>
               </div>
@@ -210,8 +250,22 @@ function CreateActivity() {
                 type="date"
                 required
                 aria-label="Date"
-                onChange={(e) => setDate(e.target.value)}
+                onChange={(e) => {
+                  setDate(e.target.value);
+                }}
               />
+            </div>
+            <div className="flex gap-2 items-end">
+              <h2 className="text-base lg:text-xl">Duration:</h2>
+              <span className="">
+                {duration.hour || ''} 
+                {!duration.hour ? 
+                  '' : duration.hour === 1 ?
+                    " hour " : " hours "} 
+                {duration.minute || ''}
+                {!duration.minute ?
+                  '' : duration.minute === 1 ?
+                    " minute" : " minutes"}</span>
             </div>
 
             <div>
@@ -305,9 +359,8 @@ function CreateActivity() {
               <button
                 className="btn flex-auto btn-primary"
                 type="submit"
-                onClick={() => handleSave()}
               >
-                Save
+                Create
               </button>
             </div>
           </form>
