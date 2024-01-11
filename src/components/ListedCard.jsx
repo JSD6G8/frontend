@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../Layout";
 
+// TODO Add another card styling for lg or md screen size
+// TODO Add possible props and variable for use in main page
+// TODO baro-bg as variable + conditional
+// TODO activity symbol as variable + conditional (text inside <span>)
+// TODO How to use daisyUI accordion/collapse to show main card??
+
 function ListedCard() {
   return (
     <>
       {/* base card */}
       <div className="flex flex-row h-1/4 m-3 shadow-xl rounded-l-xl rounded-r-xl">
-        {/* TODO bg as a variable? */}
-        {/* TODO emoji as a variable */}
-        <div id="activities-baro" className="bg-power w-32 rounded-l-xl">
-          <div className="text-7xl">🏊🏼</div>
+        {/* barometer color */}
+        <div
+          id="activities-baro"
+          className="bg-power w-32 rounded-l-xl flex flex-col justify-evenly"
+        >
+          {/* TODO Resize logo with CSS */}
+          <span className="material-symbols-outlined self-center">sprint</span>
         </div>
-        {/* activity info small */}
+        {/* brief activity info */}
         <div className=" bg-base-100 flex-grow flex flex-col justify-evenly rounded-r-xl">
           <div id="summary-description" className="mt-4 mb-2 mx-4">
             <div>
