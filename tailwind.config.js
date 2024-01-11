@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "power": "#48B86E",
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
@@ -21,7 +25,7 @@ export default {
           "success": "#FFA143",
           "warning": "#FDCE52",
           "error": "#68C5B3",
-          "power" : "#48B86E",
+          "power": "#48B86E",
         },
       },
     ],
