@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import Layout from "./Layout";
+import ListedCard from "./components/ListedCard";
 
 function ActivityList() {
   const [activities, setActivities] = useState([]);
@@ -20,6 +21,13 @@ function ActivityList() {
 
   return (
     <Layout>
+      <ListedCard />
+      <ListedCard />
+      <ListedCard />
+      <ListedCard />
+      <ListedCard />
+      <ListedCard />
+
       <table>
         <thead>
           <tr>
