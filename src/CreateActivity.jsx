@@ -6,46 +6,38 @@ import "./CreateActivity.css";
 function CreateActivity() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [activityType, setActivityType] = useState("running"); // "running", "cycling", "swimming", "walking", "hiking", "other"
+  const [activityType, setActivityType] = useState("Running"); // "Running", "Cycling", "Swimming", "Walking", "Hiking", "Other"
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [date, setDate] = useState("");
   const [barometer, setBarometer] = useState("3"); // "1", "2", "3", "4", "5"
-  // const [formErrors, setFormErrors] = useState({
-  //   title: "",
-  //   startTime: "",
-  //   endTime: "",
-  //   date: "",
-  // });
+  const [formErrors, setFormErrors] = useState({
+    startTime: "",
+    endTime: "",
+    date: "",
+  });
 
-  // const validateForm = () => {
-  //   let errors = {};
-  //   let isValid = true;
+  const validateForm = () => {
+    let errors = {};
+    let isValid = true;
 
-  //   if (!title.trim()) {
-  //     errors.title = "Activity Title is required."
-  //     isValid = false;
-  //   }
-
-  //   if (!startTime) {
-  //     errors.startTime = "Activity Title is required."
-  //     isValid = false;
-  //   }
-
-  //   if (!title.trim()) {
-  //     errors.title = "Activity Title is required."
-  //     isValid = false;
-  //   }
-
-  //   if (!title.trim()) {
-  //     errors.title = "Activity Title is required."
-  //     isValid = false;
-  //   }
-  // };
+    if (!startTime) {
+      errors.startTime = "Start time is required."
+      isValid = false;
+    }
+    if (!endTime) {
+      errors.endTime = "End time is required."
+      isValid = false;
+    }
+    if (!date) {
+      errors.date = "Date is required."
+      isValid = false;
+    }
+  };
 
   const handleSave = () => {
     alert(
-      `Title: ${title}\n` +
+        `Title: ${title || activityType}\n` +
         `Description: ${description}\n` +
         `Activity Type: ${activityType}\n` +
         `Start Time: ${startTime}\n` +
@@ -69,12 +61,11 @@ function CreateActivity() {
         <main className="h-full">
           <form className="flex flex-col justify-between h-full">
             <div>
-              <h2 className="text-base lg:text-xl my-1">Activity Title</h2>
+              <h2 className="bg-power text-base lg:text-xl my-1">Activity Title</h2>
               <input
                 className="input input-bordered text-sm w-full lg:w-[30vw]"
-                required
                 type="text"
-                placeholder="Exercise"
+                placeholder={activityType + " (default title)"}
                 aria-label="Activity Title"
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -84,7 +75,6 @@ function CreateActivity() {
               <h2 className="text-base lg:text-xl my-1">Description</h2>
               <textarea
                 className="textarea textarea-bordered text-sn resize-none w-full lg:w-[30vw]"
-                required
                 placeholder="Notes for anything"
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
@@ -100,9 +90,9 @@ function CreateActivity() {
                     required
                     type="radio"
                     name="activityType"
-                    value="running"
+                    value="Running"
                     aria-label="Running"
-                    checked={activityType === "running"}
+                    checked={activityType === "Running"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
                   <span className="material-symbols-outlined icon">sprint</span>
@@ -114,9 +104,9 @@ function CreateActivity() {
                     className="radio hidden"
                     type="radio"
                     name="activityType"
-                    value="cycling"
+                    value="Cycling"
                     aria-label="Cycling"
-                    checked={activityType === "cycling"}
+                    checked={activityType === "Cycling"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
                   <span className="material-symbols-outlined icon">
@@ -130,9 +120,9 @@ function CreateActivity() {
                     className="radio hidden"
                     type="radio"
                     name="activityType"
-                    value="swimming"
+                    value="Swimming"
                     aria-label="Swimming"
-                    checked={activityType === "swimming"}
+                    checked={activityType === "Swimming"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
                   <span className="material-symbols-outlined icon">pool</span>
@@ -144,9 +134,9 @@ function CreateActivity() {
                     className="radio hidden"
                     type="radio"
                     name="activityType"
-                    value="walking"
+                    value="Walking"
                     aria-label="Walking"
-                    checked={activityType === "walking"}
+                    checked={activityType === "Walking"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
                   <span className="material-symbols-outlined icon">
@@ -160,9 +150,9 @@ function CreateActivity() {
                     className="radio hidden"
                     type="radio"
                     name="activityType"
-                    value="hiking"
+                    value="Hiking"
                     aria-label="Hiking"
-                    checked={activityType === "hiking"}
+                    checked={activityType === "Hiking"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
                   <span className="material-symbols-outlined icon">hiking</span>
@@ -174,9 +164,9 @@ function CreateActivity() {
                     className="radio hidden"
                     type="radio"
                     name="activityType"
-                    value="other"
+                    value="Other"
                     aria-label="Other "
-                    checked={activityType === "other"}
+                    checked={activityType === "Other"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
                   <span className="material-symbols-outlined icon">timer</span>
@@ -190,7 +180,8 @@ function CreateActivity() {
                 <div className="flex flex-col items-center">
                   <h2 className="text-base lg:text-xl my-1">Start time</h2>
                   <input
-                    type="date"
+                    className="rounded border-2"
+                    type="time"
                     required
                     aria-label="Start time"
                     onChange={(e) => setStartTime(e.target.value)}
@@ -202,6 +193,7 @@ function CreateActivity() {
                 <div className="flex flex-col items-center">
                   <h2 className="text-base lg:text-xl my-1">End time</h2>
                   <input
+                    className="rounded border-2"
                     type="time"
                     required
                     aria-label="End time"
@@ -214,6 +206,7 @@ function CreateActivity() {
             <div className="flex gap-2">
               <h2 className="text-base lg:text-xl my-1">Date:</h2>
               <input
+                className="rounded border-2"
                 type="date"
                 required
                 aria-label="Date"
@@ -226,7 +219,7 @@ function CreateActivity() {
               <div className="flex flex-wrap justify-around max-w-full lg:max-w-[30vw]">
                 <label className="flex flex-col items-center">
                   <input
-                    className="radio"
+                    className="radio hidden"
                     type="radio"
                     required
                     name="barometer"
@@ -243,7 +236,7 @@ function CreateActivity() {
 
                 <label className="flex flex-col items-center">
                   <input
-                    className="radio"
+                    className="radio hidden"
                     type="radio"
                     name="barometer"
                     aria-label="Tired"
@@ -259,7 +252,7 @@ function CreateActivity() {
 
                 <label className="flex flex-col items-center">
                   <input
-                    className="radio"
+                    className="radio hidden"
                     type="radio"
                     name="barometer"
                     aria-label="Okay"
@@ -275,7 +268,7 @@ function CreateActivity() {
 
                 <label className="flex flex-col items-center">
                   <input
-                    className="radio"
+                    className="radio hidden"
                     type="radio"
                     name="barometer"
                     aria-label="Fresh"
@@ -291,7 +284,7 @@ function CreateActivity() {
 
                 <label className="flex flex-col items-center">
                   <input
-                    className="radio"
+                    className="radio hidden"
                     type="radio"
                     name="barometer"
                     aria-label="Energized"

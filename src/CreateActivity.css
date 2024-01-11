@@ -8,6 +8,7 @@
     'opsz' 24;
     
     color: oklch(var(--b3));
+    user-select: none;
 }
 
 .icon:hover,
