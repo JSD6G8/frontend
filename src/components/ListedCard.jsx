@@ -2,19 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./ListedCard.css";
 
 // TODO Add another card styling for lg or md screen size
-// TODO baro-bg as variable + conditional
-// TODO How to use daisyUI accordion/collapse to show main card??
+
 // --------------------------------------------------//
 
 // ?? recieve props from activity database
 // function ListedCard({ activities }) {
-function ListedCard({ activities }) {
-  const [moodColor, setMoodColor] = useState("3");
-  const [activitySymbol, setActivitySymbol] = useState("Swimming");
+function ListedCard() {
+  const [moodColor, setMoodColor] = useState("2");
+  const [activitySymbol, setActivitySymbol] = useState("Walking");
 
   // ?? render card once with conditional for color and symbol
   useEffect(() => {
-    // function expression
     const eachColor = () => {
       // switch (activities.barometer) {
       switch (moodColor) {
@@ -66,20 +64,23 @@ function ListedCard({ activities }) {
   return (
     <>
       {/* base card */}
-      <div className="flex flex-row h-1/4 m-3 shadow-xl rounded-l-xl rounded-r-xl">
+      <div className="flex flex-row h-1/4 m-3 shadow-xl rounded-l-xl rounded-r-xl lg:h-60 lg:flex-col lg:w-60">
         {/* barometer color */}
         <div
           id="activities-baro"
-          className={`${moodColor} w-32 rounded-l-xl flex flex-col justify-evenly`}
+          className={`${moodColor} w-32 rounded-l-xl flex flex-col justify-evenly lg:w-full lg:h-60 lg:rounded-t-xl lg:rounded-b-none`}
         >
           <span className="material-symbols-outlined self-center">
             {activitySymbol}
           </span>
         </div>
         {/* brief activity info */}
-        {/* TODO Change into props variable */}
-        <div className=" bg-base-100 flex-grow flex flex-col justify-evenly rounded-r-xl">
-          <div id="summary-description" className="mt-4 mb-2 mx-4">
+        {/* TODO when finish: change into props variable */}
+        <div className=" bg-base-100 flex-grow flex flex-col justify-evenly rounded-r-xl lg:h-64 lg:rounded-b-xl">
+          <div
+            id="summary-description"
+            className="mt-4 mb-2 mx-4 lg:mt-1 lg:mb-0"
+          >
             <div>
               <h1 className="font-extrabold text-xl">Morning Run</h1>
             </div>
@@ -89,7 +90,7 @@ function ListedCard({ activities }) {
           </div>
           <div
             id="brief-dateAndTime"
-            className="flex justify-evenly w-32 mb-1 self-end"
+            className="flex justify-evenly w-32 mb-1 self-end lg:self-start lg:mx-2"
           >
             <p className="font-thin text-xs">25/1/2024</p>
             <p className="font-extralight text-slate-400 text-xs italic">at</p>
