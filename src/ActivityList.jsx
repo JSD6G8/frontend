@@ -30,19 +30,25 @@ function ActivityList() {
 
   return (
     <Layout>
-      <SelectorButton
-        choicesData={choicesData}
-        selected={filterType}
-        setResult={filterTypeUpdate}
-      />
-      <h1>{filterType}</h1>
-      <MainCard />
-      <ListedCard />
-      <ListedCard />
-      <ListedCard />
-      <ListedCard />
-      <ListedCard />
-      <ListedCard />
+      <div className="lg:flex lg:flex-wrap">
+        <SelectorButton
+          choicesData={choicesData}
+          selected={filterType}
+          setResult={filterTypeUpdate}
+        />
+        <h1>{filterType}</h1>
+        <MainCard />
+        <ListedCard />
+        <ListedCard />
+        <ListedCard />
+        <ListedCard />
+        <ListedCard />
+        <ListedCard />
+        <ListedCard />
+        <ListedCard />
+        <ListedCard />
+      </div>
+      {/* <ListedCard activities={activities} /> */}
 
       {/* <table>
         <thead>
