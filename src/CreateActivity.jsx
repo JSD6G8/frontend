@@ -306,7 +306,7 @@ function CreateActivity() {
                     checked={barometer === "1"}
                     onChange={(e) => setBarometer(e.target.value)}
                   />
-                  <span className="material-symbols-outlined baro baro-one">
+                  <span className="material-symbols-outlined icon">
                     sentiment_very_dissatisfied
                   </span>
                   <span className="radio-label text-xs">Exhausted</span>
@@ -322,7 +322,7 @@ function CreateActivity() {
                     checked={barometer === "2"}
                     onChange={(e) => setBarometer(e.target.value)}
                   />
-                  <span className="material-symbols-outlined baro baro-two">
+                  <span className="material-symbols-outlined icon">
                     sentiment_stressed
                   </span>
                   <span className="radio-label text-xs">Tired</span>
@@ -338,7 +338,7 @@ function CreateActivity() {
                     checked={barometer === "3"}
                     onChange={(e) => setBarometer(e.target.value)}
                   />
-                  <span className="material-symbols-outlined baro baro-three">
+                  <span className="material-symbols-outlined icon">
                     sentiment_neutral
                   </span>
                   <span className="radio-label text-xs">Okay</span>
@@ -354,7 +354,7 @@ function CreateActivity() {
                     checked={barometer === "4"}
                     onChange={(e) => setBarometer(e.target.value)}
                   />
-                  <span className="material-symbols-outlined baro baro-four">
+                  <span className="material-symbols-outlined icon">
                     sentiment_content
                   </span>
                   <span className="radio-label text-xs">Fresh</span>
@@ -370,7 +370,7 @@ function CreateActivity() {
                     checked={barometer === "5"}
                     onChange={(e) => setBarometer(e.target.value)}
                   />
-                  <span className="material-symbols-outlined baro baro-five">
+                  <span className="material-symbols-outlined icon">
                     sentiment_very_satisfied
                   </span>
                   <span className="radio-label text-xs">Energized</span>
