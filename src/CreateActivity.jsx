@@ -6,6 +6,8 @@ import "./CreateActivity.css";
 // TODO: Push data to mockapi.io
 // TODO: Split components
 // TODO: add 10m increment/decrement buttons for start time and end time
+// TODO: Baro colour
+// TODO: Add warning if duration > 5 hours
 
 
 function CreateActivity() {
@@ -42,8 +44,8 @@ function CreateActivity() {
     const currentDate = new Date(); // string: "Fri Jan 12 2024 12:00:19 GMT+0700 (Indochina Time)"
     
     const year = currentDate.getFullYear(); // 1900
-    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // 00
-    const day = currentDate.getDate().toString().padStart(2, '0'); // 00
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // 01
+    const day = currentDate.getDate().toString().padStart(2, '0'); // 01
     const hours = currentDate.getHours().toString().padStart(2, '0'); // 00
     const minutes = currentDate.getMinutes().toString().padStart(2, '0'); // 00
     // const rawMinutes = currentDate.getMinutes(); // 0 to 59
