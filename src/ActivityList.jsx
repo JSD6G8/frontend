@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Layout from "./Layout";
 import ListedCard from "./components/ListedCard";
-import MainCard from "./components/mainCard";
+import MainCard from "./components/MainCard";
 import SelectorButton from "./components/SelectorButton";
 
 function ActivityList() {
