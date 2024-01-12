@@ -147,7 +147,7 @@ function CreateActivity() {
                     checked={activityType === "Running"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">sprint</span>
+                  <span className="material-symbols-outlined form-icon">sprint</span>
                   <span className="radio-label text-xs">Running</span>
                 </label>
 
@@ -161,7 +161,7 @@ function CreateActivity() {
                     checked={activityType === "Cycling"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">
+                  <span className="material-symbols-outlined form-icon">
                     directions_bike
                   </span>
                   <span className="radio-label text-xs">Cycling</span>
@@ -177,7 +177,7 @@ function CreateActivity() {
                     checked={activityType === "Swimming"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">pool</span>
+                  <span className="material-symbols-outlined form-icon">pool</span>
                   <span className="radio-label text-xs">Swimming</span>
                 </label>
 
@@ -191,7 +191,7 @@ function CreateActivity() {
                     checked={activityType === "Walking"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">
+                  <span className="material-symbols-outlined form-icon">
                     directions_walk
                   </span>
                   <span className="radio-label text-xs">Walking</span>
@@ -207,7 +207,7 @@ function CreateActivity() {
                     checked={activityType === "Hiking"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">hiking</span>
+                  <span className="material-symbols-outlined form-icon">hiking</span>
                   <span className="radio-label text-xs">Hiking</span>
                 </label>
 
@@ -221,7 +221,7 @@ function CreateActivity() {
                     checked={activityType === "Other"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">timer</span>
+                  <span className="material-symbols-outlined form-icon">timer</span>
                   <span className="radio-label text-xs">Other</span>
                 </label>
               </div>
