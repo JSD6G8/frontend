@@ -3,8 +3,12 @@ import { useState, useEffect } from "react";
 import Layout from "./Layout";
 import "./CreateActivity.css";
 
-// TODO: Validate against startTime = endTime
-// TODO: ER Diagrom: add duration
+// TODO: Push data to mockapi.io
+// TODO: Split components
+// TODO: add 10m increment/decrement buttons for start time and end time
+// TODO: Baro colour
+// TODO: Add warning if duration > 5 hours
+
 
 function CreateActivity() {
   const [title, setTitle] = useState("");
@@ -15,33 +19,50 @@ function CreateActivity() {
   const [date, setDate] = useState("");
   const [barometer, setBarometer] = useState("3"); // "1", "2", "3", "4", "5"
   const [duration, setDuration] = useState({
-    hour: null,
-    minute: null,
+    hour: 0,
+    minute: 0,
   });
 
-  // const [formErrors, setFormErrors] = useState({
-  //   startTime: "",
-  //   endTime: "",
-  //   date: "",
-  // });
+  const [formErrors, setFormErrors] = useState({
+    time: "",
+  });
 
-  // const validateForm = () => {
-  //   let errors = {};
-  //   let isValid = true;
+  const validateForm = () => {
+    let errors = {};
+    let isValid = true;
 
-  //   if (!startTime) {
-  //     errors.startTime = "Start time is required."
-  //     isValid = false;
-  //   }
-  //   if (!endTime) {
-  //     errors.endTime = "End time is required."
-  //     isValid = false;
-  //   }
-  //   if (!date) {
-  //     errors.date = "Date is required."
-  //     isValid = false;
-  //   }
-  // };
+    if (startTime === endTime) {
+      errors.time = "Start and End can't be equal."
+      isValid = false;
+    }
+
+    setFormErrors(errors);
+    return isValid;
+  };
+
+  useEffect(() => {
+    const currentDate = new Date(); // string: "Fri Jan 12 2024 12:00:19 GMT+0700 (Indochina Time)"
+    
+    const year = currentDate.getFullYear(); // 1900
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // 01
+    const day = currentDate.getDate().toString().padStart(2, '0'); // 01
+    const hours = currentDate.getHours().toString().padStart(2, '0'); // 00
+    const minutes = currentDate.getMinutes().toString().padStart(2, '0'); // 00
+    // const rawMinutes = currentDate.getMinutes(); // 0 to 59
+    // const minutes = rawMinutes.toString().padStart(2, '0'); // 00
+    // let minutesOffset;
+    // if (rawMinutes === 59) {
+    //   minutesOffset = "00";
+    // } else {
+    //   minutesOffset = (rawMinutes + 1).toString().padStart(2, '0');
+    // }
+
+    console.log(currentDate, year, month, day, hours, minutes);
+
+    setStartTime(`${hours}:${minutes}`);
+    setEndTime(`${hours}:${minutes}`);
+    setDate(`${year}-${month}-${day}`);
+  }, []);
 
   useEffect(() => {
     if (startTime && endTime && date) {
@@ -52,13 +73,9 @@ function CreateActivity() {
         end += 86400000; // add 1 day (in millisecond)
       }
       
-      console.log(start, end);
-      
       const time = (end - start) / 1000 / 60;
       const hour = Math.floor(time / 60);
       const minute = time % 60;
-      
-      console.log(hour + ' hr ' + minute + ' min');
       
       setDuration({
         hour: hour,
@@ -67,28 +84,27 @@ function CreateActivity() {
     }
   }, [startTime, endTime, date]);
 
-  const handleCreate = () => {
-    alert(
-        `Title: ${title || activityType}\n` +
-        `Description: ${description}\n` +
-        `Activity Type: ${activityType}\n` +
-        `Start Time: ${startTime}\n` +
-        `End Time: ${endTime}\n` +
-        `Duration: ${duration}` +
-        `Date: ${date}\n` +
-        `Barometer: ${barometer}\n`
-    );
+  const handleCreate = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      alert(
+          `Title: ${title || activityType}\n` +
+          `Description: ${description}\n` +
+          `Activity Type: ${activityType}\n` +
+          `Start Time: ${startTime}\n` +
+          `End Time: ${endTime}\n` +
+          `Duration: ${duration.hour} hr ${duration.minute} min\n` +
+          `Date: ${date}\n` +
+          `Barometer: ${barometer}\n`
+      );
+    }
   };
 
   return (
     <Layout>
       <div className="container px-2 lg:px-4 h-[80svh] flex flex-col justify-between mx-auto">
         <header>
-          <div className="navbar bg-base-100 border-b-2 border-black lg:w-[30vw]">
-            <div className="flex-1">
-              <h1 className="text-lg lg:text-3xl">Create Activity</h1>
-            </div>
-          </div>
+          <h1 className="text-lg lg:text-3xl">Create Activity</h1>
         </header>
 
         <main className="h-full">
@@ -101,7 +117,7 @@ function CreateActivity() {
               <input
                 className="input input-bordered text-sm w-full lg:w-[30vw]"
                 type="text"
-                placeholder={activityType + " (default title)"}
+                placeholder={activityType + " (default)"}
                 aria-label="Activity Title"
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -111,7 +127,7 @@ function CreateActivity() {
               <h2 className="text-base lg:text-xl my-1">Description</h2>
               <textarea
                 className="textarea textarea-bordered text-sn resize-none w-full lg:w-[30vw]"
-                placeholder="Notes for anything"
+                placeholder="Notes for anything (optional)"
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
             </div>
@@ -218,6 +234,7 @@ function CreateActivity() {
                   <input
                     className="rounded border-2"
                     type="time"
+                    value={startTime}
                     required
                     aria-label="Start time"
                     onChange={(e) => {
@@ -226,13 +243,17 @@ function CreateActivity() {
                   />
                 </div>
 
-                <span>to</span>
+                <div className="flex flex-col items-center">
+                  <span>to</span>
+                  <span className="text-red-500">{formErrors.time}</span>
+                </div>
 
                 <div className="flex flex-col items-center">
                   <h2 className="text-base lg:text-xl my-1">End time</h2>
                   <input
                     className="rounded border-2"
                     type="time"
+                    value={endTime}
                     required
                     aria-label="End time"
                     onChange={(e) => {
@@ -248,6 +269,7 @@ function CreateActivity() {
               <input
                 className="rounded border-2"
                 type="date"
+                value={date}
                 required
                 aria-label="Date"
                 onChange={(e) => {
@@ -265,7 +287,8 @@ function CreateActivity() {
                 {duration.minute || ''}
                 {!duration.minute ?
                   '' : duration.minute === 1 ?
-                    " minute" : " minutes"}</span>
+                    " minute" : " minutes"}                
+              </span>
             </div>
 
             <div>
@@ -282,7 +305,7 @@ function CreateActivity() {
                     checked={barometer === "1"}
                     onChange={(e) => setBarometer(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">
+                  <span className="material-symbols-outlined baro baro-one">
                     sentiment_very_dissatisfied
                   </span>
                   <span className="radio-label text-xs">Exhausted</span>
@@ -298,7 +321,7 @@ function CreateActivity() {
                     checked={barometer === "2"}
                     onChange={(e) => setBarometer(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">
+                  <span className="material-symbols-outlined baro baro-two">
                     sentiment_stressed
                   </span>
                   <span className="radio-label text-xs">Tired</span>
@@ -314,7 +337,7 @@ function CreateActivity() {
                     checked={barometer === "3"}
                     onChange={(e) => setBarometer(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">
+                  <span className="material-symbols-outlined baro baro-three">
                     sentiment_neutral
                   </span>
                   <span className="radio-label text-xs">Okay</span>
@@ -330,7 +353,7 @@ function CreateActivity() {
                     checked={barometer === "4"}
                     onChange={(e) => setBarometer(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">
+                  <span className="material-symbols-outlined baro baro-four">
                     sentiment_content
                   </span>
                   <span className="radio-label text-xs">Fresh</span>
@@ -346,7 +369,7 @@ function CreateActivity() {
                     checked={barometer === "5"}
                     onChange={(e) => setBarometer(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">
+                  <span className="material-symbols-outlined baro baro-five">
                     sentiment_very_satisfied
                   </span>
                   <span className="radio-label text-xs">Energized</span>
