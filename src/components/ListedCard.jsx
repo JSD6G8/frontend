@@ -3,15 +3,14 @@ import "./ListedCard.css";
 
 // TODO Add another card styling for lg or md screen size
 // TODO baro-bg as variable + conditional
-// TODO activity symbol as variable + conditional (text inside <span>)
 // TODO How to use daisyUI accordion/collapse to show main card??
 // --------------------------------------------------//
 
 // ?? recieve props from activity database
 // function ListedCard({ activities }) {
 function ListedCard({ activities }) {
-  const [moodColor, setMoodColor] = useState("2");
-  const [activitySymbol, setActivitySymbol] = useState("Hiking");
+  const [moodColor, setMoodColor] = useState("3");
+  const [activitySymbol, setActivitySymbol] = useState("Swimming");
 
   // ?? render card once with conditional for color and symbol
   useEffect(() => {
@@ -71,13 +70,14 @@ function ListedCard({ activities }) {
         {/* barometer color */}
         <div
           id="activities-baro"
-          className="bg-power w-32 rounded-l-xl flex flex-col justify-evenly"
+          className={`${moodColor} w-32 rounded-l-xl flex flex-col justify-evenly`}
         >
           <span className="material-symbols-outlined self-center">
             {activitySymbol}
           </span>
         </div>
         {/* brief activity info */}
+        {/* TODO Change into props variable */}
         <div className=" bg-base-100 flex-grow flex flex-col justify-evenly rounded-r-xl">
           <div id="summary-description" className="mt-4 mb-2 mx-4">
             <div>
