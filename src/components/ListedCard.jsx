@@ -2,16 +2,67 @@ import React, { useEffect, useState } from "react";
 import "./ListedCard.css";
 
 // TODO Add another card styling for lg or md screen size
-// TODO Add possible props and variable for use in main page
 // TODO baro-bg as variable + conditional
 // TODO activity symbol as variable + conditional (text inside <span>)
 // TODO How to use daisyUI accordion/collapse to show main card??
 // --------------------------------------------------//
 
 // ?? recieve props from activity database
-function ListedCard() {
-  const [moodColor, setMoodColor] = useState();
-  const [activitySymbol, setActivitySymbol] = useState();
+// function ListedCard({ activities }) {
+function ListedCard({ activities }) {
+  const [moodColor, setMoodColor] = useState("2");
+  const [activitySymbol, setActivitySymbol] = useState("Hiking");
+
+  // ?? render card once with conditional for color and symbol
+  useEffect(() => {
+    // function expression
+    const eachColor = () => {
+      // switch (activities.barometer) {
+      switch (moodColor) {
+        case "1":
+          setMoodColor("bg-info");
+          break;
+        case "2":
+          setMoodColor("bg-success");
+          break;
+        case "3":
+          setMoodColor("bg-warning");
+          break;
+        case "4":
+          setMoodColor("bg-error");
+          break;
+        case "5":
+          setMoodColor("bg-power");
+          break;
+      }
+    };
+    const eachSymbol = () => {
+      // switch (activities.type) {
+      switch (activitySymbol) {
+        case "Running":
+          setActivitySymbol("sprint");
+          break;
+        case "Cycling":
+          setActivitySymbol("directions_bike");
+          break;
+        case "Swimming":
+          setActivitySymbol("pool");
+          break;
+        case "Walking":
+          setActivitySymbol("directions_walk");
+          break;
+        case "Hiking":
+          setActivitySymbol("hiking");
+          break;
+        case "Other":
+          setActivitySymbol("timer");
+          break;
+      }
+    };
+    // call function
+    eachColor();
+    eachSymbol();
+  }, []);
 
   return (
     <>
@@ -22,8 +73,9 @@ function ListedCard() {
           id="activities-baro"
           className="bg-power w-32 rounded-l-xl flex flex-col justify-evenly"
         >
-          {/* TODO Resize logo with CSS */}
-          <span className="material-symbols-outlined self-center">sprint</span>
+          <span className="material-symbols-outlined self-center">
+            {activitySymbol}
+          </span>
         </div>
         {/* brief activity info */}
         <div className=" bg-base-100 flex-grow flex flex-col justify-evenly rounded-r-xl">
