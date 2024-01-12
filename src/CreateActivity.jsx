@@ -4,7 +4,9 @@ import Layout from "./Layout";
 import "./CreateActivity.css";
 
 // TODO: Validate against startTime = endTime
-// TODO: ER Diagrom: add duration
+// TODO: Add barometer colours
+// TODO: add 10m increment/decrement buttons for start time and end time
+
 
 function CreateActivity() {
   const [title, setTitle] = useState("");
@@ -15,33 +17,56 @@ function CreateActivity() {
   const [date, setDate] = useState("");
   const [barometer, setBarometer] = useState("3"); // "1", "2", "3", "4", "5"
   const [duration, setDuration] = useState({
-    hour: null,
-    minute: null,
+    hour: 0,
+    minute: 0,
   });
 
-  // const [formErrors, setFormErrors] = useState({
-  //   startTime: "",
-  //   endTime: "",
-  //   date: "",
-  // });
+  const [formErrors, setFormErrors] = useState({
+    startTime: "",
+    endTime: "",
+    date: "",
+  });
 
-  // const validateForm = () => {
-  //   let errors = {};
-  //   let isValid = true;
+  const validateForm = () => {
+    let errors = {};
+    let isValid = true;
 
-  //   if (!startTime) {
-  //     errors.startTime = "Start time is required."
-  //     isValid = false;
-  //   }
-  //   if (!endTime) {
-  //     errors.endTime = "End time is required."
-  //     isValid = false;
-  //   }
-  //   if (!date) {
-  //     errors.date = "Date is required."
-  //     isValid = false;
-  //   }
-  // };
+    if (!startTime) {
+      errors.startTime = "Start time is required."
+      isValid = false;
+    }
+    if (!endTime) {
+      errors.endTime = "End time is required."
+      isValid = false;
+    }
+    if (!date) {
+      errors.date = "Date is required."
+      isValid = false;
+    }
+  };
+
+  useEffect(() => {
+    const currentDate = new Date();
+    
+    const year = currentDate.getFullYear(); // 1900
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // 00
+    const day = currentDate.getDate().toString().padStart(2, '0'); // 00
+    const hours = currentDate.getHours().toString().padStart(2, '0'); // 00
+    const rawMinutes = currentDate.getMinutes(); // 0 to 59
+    const minutes = rawMinutes.toString().padStart(2, '0'); // 00
+    let minutesOffset;
+    if (rawMinutes === 59) {
+      minutesOffset = "00";
+    } else {
+      minutesOffset = (rawMinutes + 1).toString().padStart(2, '0');
+    }
+
+    console.log(currentDate, year, month, day, hours, minutes);
+
+    setStartTime(`${hours}:${minutes}`);
+    setEndTime(`${hours}:${minutesOffset}`);
+    setDate(`${year}-${month}-${day}`);
+  }, []);
 
   useEffect(() => {
     if (startTime && endTime && date) {
@@ -52,13 +77,9 @@ function CreateActivity() {
         end += 86400000; // add 1 day (in millisecond)
       }
       
-      console.log(start, end);
-      
       const time = (end - start) / 1000 / 60;
       const hour = Math.floor(time / 60);
       const minute = time % 60;
-      
-      console.log(hour + ' hr ' + minute + ' min');
       
       setDuration({
         hour: hour,
@@ -74,7 +95,7 @@ function CreateActivity() {
         `Activity Type: ${activityType}\n` +
         `Start Time: ${startTime}\n` +
         `End Time: ${endTime}\n` +
-        `Duration: ${duration}` +
+        `Duration: ${duration.hour} hr ${duration.minute} min\n` +
         `Date: ${date}\n` +
         `Barometer: ${barometer}\n`
     );
@@ -218,6 +239,7 @@ function CreateActivity() {
                   <input
                     className="rounded border-2"
                     type="time"
+                    value={startTime}
                     required
                     aria-label="Start time"
                     onChange={(e) => {
@@ -233,6 +255,7 @@ function CreateActivity() {
                   <input
                     className="rounded border-2"
                     type="time"
+                    value={endTime}
                     required
                     aria-label="End time"
                     onChange={(e) => {
@@ -248,6 +271,7 @@ function CreateActivity() {
               <input
                 className="rounded border-2"
                 type="date"
+                value={date}
                 required
                 aria-label="Date"
                 onChange={(e) => {
@@ -282,7 +306,7 @@ function CreateActivity() {
                     checked={barometer === "1"}
                     onChange={(e) => setBarometer(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">
+                  <span className="material-symbols-outlined baro baro-one">
                     sentiment_very_dissatisfied
                   </span>
                   <span className="radio-label text-xs">Exhausted</span>
@@ -298,7 +322,7 @@ function CreateActivity() {
                     checked={barometer === "2"}
                     onChange={(e) => setBarometer(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">
+                  <span className="material-symbols-outlined baro baro-two">
                     sentiment_stressed
                   </span>
                   <span className="radio-label text-xs">Tired</span>
@@ -314,7 +338,7 @@ function CreateActivity() {
                     checked={barometer === "3"}
                     onChange={(e) => setBarometer(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">
+                  <span className="material-symbols-outlined baro baro-three">
                     sentiment_neutral
                   </span>
                   <span className="radio-label text-xs">Okay</span>
@@ -330,7 +354,7 @@ function CreateActivity() {
                     checked={barometer === "4"}
                     onChange={(e) => setBarometer(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">
+                  <span className="material-symbols-outlined baro baro-four">
                     sentiment_content
                   </span>
                   <span className="radio-label text-xs">Fresh</span>
@@ -346,7 +370,7 @@ function CreateActivity() {
                     checked={barometer === "5"}
                     onChange={(e) => setBarometer(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">
+                  <span className="material-symbols-outlined baro baro-five">
                     sentiment_very_satisfied
                   </span>
                   <span className="radio-label text-xs">Energized</span>
