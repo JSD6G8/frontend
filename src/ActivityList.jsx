@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Layout from "./Layout";
 import ListedCard from "./components/ListedCard";
+import MainCard from "./components/mainCard";
 
 function ActivityList() {
   const [activities, setActivities] = useState([]);
@@ -21,6 +22,7 @@ function ActivityList() {
 
   return (
     <Layout>
+      <MainCard />
       <ListedCard />
       <ListedCard />
       <ListedCard />
@@ -28,7 +30,7 @@ function ActivityList() {
       <ListedCard />
       <ListedCard />
 
-      <table>
+      {/* <table>
         <thead>
           <tr>
             <td>activityId</td>
@@ -58,7 +60,7 @@ function ActivityList() {
           })}
         </tbody>
         
-      </table>
+      </table> */}
       <AddActivityBtn />
     </Layout>
   );
