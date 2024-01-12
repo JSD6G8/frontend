@@ -20,22 +20,51 @@ input:checked ~ .icon {
     color: oklch(var(--bc));
 }
 
-input:checked ~ .baro-one {
+input:checked ~ .baro {
+    color: oklch(var(--bc));
+}
+
+/* input:checked ~ .baro-one {
     color: oklch(var(--in));
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 200,
+    'opsz' 24;
 }
 
 input:checked ~ .baro-two {
     color: oklch(var(--su));
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 200,
+    'opsz' 24;
 }
 
 input:checked ~ .baro-three {
     color: oklch(var(--wa));
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 200,
+    'opsz' 24;
 }
 
 input:checked ~ .baro-four {
     color: oklch(var(--er));
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 200,
+    'opsz' 24;
 }
 
 input:checked ~ .baro-five {
     @apply text-power;
-}
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 200,
+    'opsz' 24;
+} */
