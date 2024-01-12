@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../Layout";
+import "./ListedCard.css";
 
 // TODO Add another card styling for lg or md screen size
 // TODO Add possible props and variable for use in main page
 // TODO baro-bg as variable + conditional
 // TODO activity symbol as variable + conditional (text inside <span>)
 // TODO How to use daisyUI accordion/collapse to show main card??
+// --------------------------------------------------//
 
+// ?? recieve props from activity database
 function ListedCard() {
+  const [moodColor, setMoodColor] = useState();
+  const [activitySymbol, setActivitySymbol] = useState();
+
   return (
     <>
       {/* base card */}
