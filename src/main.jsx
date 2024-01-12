@@ -7,6 +7,7 @@ import Layout from './Layout.jsx'
 import ActivityList from './ActivityList.jsx'
 import CreateActivity from './CreateActivity.jsx'
 import Nav from './components/Nav.jsx'
+import Login from './Login.jsx'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <Layout>Mock Login</Layout>,
+    element: <Login/>,
   },
   {
     path: '/signup',
