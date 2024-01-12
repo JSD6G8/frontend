@@ -21,13 +21,18 @@ function ActivityList() {
 
   return (
     <Layout>
+      <div className="lg:flex lg:flex-wrap">
+        <ListedCard />
+        <ListedCard />
+        <ListedCard />
+        <ListedCard />
+        <ListedCard />
+        <ListedCard />
+        <ListedCard />
+        <ListedCard />
+        <ListedCard />
+      </div>
       {/* <ListedCard activities={activities} /> */}
-      <ListedCard />
-      <ListedCard />
-      <ListedCard />
-      <ListedCard />
-      <ListedCard />
-      <ListedCard />
 
       <table>
         <thead>
