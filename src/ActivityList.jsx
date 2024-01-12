@@ -2,9 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Layout from "./Layout";
 import ListedCard from "./components/ListedCard";
+import SelectorButton from "./components/SelectorButton";
 
 function ActivityList() {
   const [activities, setActivities] = useState([]);
+
+  const choicesData = ["All", "Running", "Swimming", "Hiking", "Walking"];
+  const [filterType, setFilterType] = useState(choicesData[0]);
 
   useEffect(() => {
     const getData = async () => {
@@ -19,8 +23,18 @@ function ActivityList() {
     getData();
   }, []);
 
+  function filterTypeUpdate(value) {
+    setFilterType(value);
+  }
+
   return (
     <Layout>
+      <SelectorButton
+        choicesData={choicesData}
+        selected={filterType}
+        setResult={filterTypeUpdate}
+      />
+      <h1>{filterType}</h1>
       <ListedCard />
       <ListedCard />
       <ListedCard />
@@ -57,21 +71,25 @@ function ActivityList() {
             );
           })}
         </tbody>
-        
       </table>
       <AddActivityBtn />
     </Layout>
   );
 }
 
-function AddActivityBtn () {
-  return(
+function AddActivityBtn() {
+  return (
     <>
       <div className="w-[5rem] h-[5rem] fixed right-2 bottom-2">
-        <a href="/activities/create"><img src="https://cdn-icons-png.flaticon.com/512/4601/4601618.png" alt="Add activity button"></img></a>
+        <a href="/activities/create">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/4601/4601618.png"
+            alt="Add activity button"
+          ></img>
+        </a>
       </div>
     </>
   );
-};
+}
 
 export default ActivityList;
