@@ -7,7 +7,7 @@ export default {
         power: "#48B86E",
       },
       fontFamily: {
-        sans: ["Geist", "Helvetica", "Arial", "sans-serif"],
+        sans: ["Geist", "sans-serif"],
       },
     },
   },
