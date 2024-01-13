@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import Layout from "./Layout";
 import "./CreateActivity.css";
@@ -22,6 +24,8 @@ function CreateActivity() {
     hour: 0,
     minute: 0,
   });
+
+  const navigate = useNavigate();
 
   const [formErrors, setFormErrors] = useState({
     time: "",
@@ -97,6 +101,27 @@ function CreateActivity() {
           `Date: ${date}\n` +
           `Barometer: ${barometer}\n`
       );
+
+      const postData = async (obj) => {
+        const postData = {
+          title: title,
+          description: description,
+          type: activityType,
+          startTime: startTime,
+          endTime: endTime,
+          date: date,
+          duration: duration,
+          barometer: barometer,
+        };
+
+        const response = await axios.post("https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities", postData);
+        
+        if (response.status === 201) {
+          navigate("/activities");
+        }
+      }
+
+      postData();
     }
   };
 
