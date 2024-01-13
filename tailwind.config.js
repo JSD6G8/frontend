@@ -6,10 +6,6 @@ export default {
       colors: {
         power: "#48B86E",
       },
-      fontFamily: {
-        sans: ["Geist Sans"],
-        serif: ["Geist Sans"],
-      },
     },
   },
   plugins: [require("daisyui"), "prettier-plugin-tailwindcss"],
