@@ -1,0 +1,29 @@
+{
+  "name": "LogLife: Your Companion for an Active Life",
+  "short_name": "LogLife",
+  "display": "fullscreen",
+  "icon": [
+    {
+      "src": "/icons/icon-120.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-167.png",
+      "sizes": "167x167",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#6587E8",
+  "background_color": "#EAEFFF"
+}
