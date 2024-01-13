@@ -14,7 +14,7 @@ function ActivityList() {
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get(
-        "https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activity"
+        "https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities"
       );
 
       if (response.status === 200 && response.data) {

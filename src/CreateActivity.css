@@ -1,4 +1,4 @@
-.icon,
+.form-icon,
 .baro {
     font-variation-settings:
     'FILL' 0,
@@ -10,13 +10,13 @@
     user-select: none;
 }
 
-.icon:hover,
+.form-icon:hover,
 .radio-label:hover,
 .baro:hover {
     cursor: pointer;
 }
 
-input:checked ~ .icon {
+input:checked ~ .form-icon {
     color: oklch(var(--bc));
 }
 

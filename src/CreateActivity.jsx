@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import Layout from "./Layout";
 import "./CreateActivity.css";
@@ -22,6 +24,8 @@ function CreateActivity() {
     hour: 0,
     minute: 0,
   });
+
+  const navigate = useNavigate();
 
   const [formErrors, setFormErrors] = useState({
     time: "",
@@ -97,6 +101,27 @@ function CreateActivity() {
           `Date: ${date}\n` +
           `Barometer: ${barometer}\n`
       );
+
+      const postData = async (obj) => {
+        const postData = {
+          title: title,
+          description: description,
+          type: activityType,
+          startTime: startTime,
+          endTime: endTime,
+          date: date,
+          duration: duration,
+          barometer: barometer,
+        };
+
+        const response = await axios.post("https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities", postData);
+        
+        if (response.status === 201) {
+          navigate("/activities");
+        }
+      }
+
+      postData();
     }
   };
 
@@ -147,7 +172,7 @@ function CreateActivity() {
                     checked={activityType === "Running"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">sprint</span>
+                  <span className="material-symbols-outlined form-icon">sprint</span>
                   <span className="radio-label text-xs">Running</span>
                 </label>
 
@@ -161,7 +186,7 @@ function CreateActivity() {
                     checked={activityType === "Cycling"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">
+                  <span className="material-symbols-outlined form-icon">
                     directions_bike
                   </span>
                   <span className="radio-label text-xs">Cycling</span>
@@ -177,7 +202,7 @@ function CreateActivity() {
                     checked={activityType === "Swimming"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">pool</span>
+                  <span className="material-symbols-outlined form-icon">pool</span>
                   <span className="radio-label text-xs">Swimming</span>
                 </label>
 
@@ -191,7 +216,7 @@ function CreateActivity() {
                     checked={activityType === "Walking"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">
+                  <span className="material-symbols-outlined form-icon">
                     directions_walk
                   </span>
                   <span className="radio-label text-xs">Walking</span>
@@ -207,7 +232,7 @@ function CreateActivity() {
                     checked={activityType === "Hiking"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">hiking</span>
+                  <span className="material-symbols-outlined form-icon">hiking</span>
                   <span className="radio-label text-xs">Hiking</span>
                 </label>
 
@@ -221,7 +246,7 @@ function CreateActivity() {
                     checked={activityType === "Other"}
                     onChange={(e) => setActivityType(e.target.value)}
                   />
-                  <span className="material-symbols-outlined icon">timer</span>
+                  <span className="material-symbols-outlined form-icon">timer</span>
                   <span className="radio-label text-xs">Other</span>
                 </label>
               </div>
