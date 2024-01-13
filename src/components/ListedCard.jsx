@@ -7,15 +7,14 @@ import "./ListedCard.css";
 
 // ?? recieve props from activity database
 // function ListedCard({ activities }) {
-function ListedCard() {
-  const [moodColor, setMoodColor] = useState("2");
-  const [activitySymbol, setActivitySymbol] = useState("Walking");
+function ListedCard({ activities }) {
+  const [moodColor, setMoodColor] = useState();
+  const [activitySymbol, setActivitySymbol] = useState();
 
   // ?? render card once with conditional for color and symbol
   useEffect(() => {
     const eachColor = () => {
-      // switch (activities.barometer) {
-      switch (moodColor) {
+      switch (activities.barometer) {
         case "1":
           setMoodColor("bg-info");
           break;
@@ -34,8 +33,7 @@ function ListedCard() {
       }
     };
     const eachSymbol = () => {
-      // switch (activities.type) {
-      switch (activitySymbol) {
+      switch (activities.type) {
         case "Running":
           setActivitySymbol("sprint");
           break;
@@ -85,19 +83,22 @@ function ListedCard() {
             className="mt-4 mb-2 mx-4 lg:mt-1 lg:mb-0"
           >
             <div>
-              <h1 className="font-extrabold text-xl">Morning Run</h1>
+              <h1 className="font-extrabold text-xl">{activities.title}</h1>
             </div>
             <div>
-              <p className="font-light text-sm">1 Hour 15 mins</p>
+              <p className="font-light text-sm">
+                {activities.duration.hour} Hour {activities.duration.minute}{" "}
+                Minute
+              </p>
             </div>
           </div>
           <div
             id="brief-dateAndTime"
             className="flex justify-evenly w-32 mb-1 self-end lg:self-start lg:mx-2"
           >
-            <p className="font-normal text-xs">25/1/2024</p>
+            <p className="font-normal text-xs">{activities.date}</p>
             <p className="font-thin text-slate-600 text-xs italic">at</p>
-            <p className="font-normal text-xs">11:25</p>
+            <p className="font-normal text-xs">{activities.startTime}</p>
           </div>
         </div>
       </div>

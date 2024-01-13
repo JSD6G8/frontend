@@ -38,15 +38,9 @@ function ActivityList() {
         />
         <h1>{filterType}</h1>
         <MainCard />
-        <ListedCard />
-        <ListedCard />
-        <ListedCard />
-        <ListedCard />
-        <ListedCard />
-        <ListedCard />
-        <ListedCard />
-        <ListedCard />
-        <ListedCard />
+        {activities.map((a) => {
+          return <ListedCard activities={a} />;
+        })}
       </div>
       {/* <ListedCard activities={activities} /> */}
 
