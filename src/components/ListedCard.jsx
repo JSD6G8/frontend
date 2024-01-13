@@ -70,7 +70,10 @@ function ListedCard() {
           id="activities-baro"
           className={`${moodColor} w-32 rounded-l-xl flex flex-col justify-evenly lg:w-full lg:h-60 lg:rounded-t-xl lg:rounded-b-none`}
         >
-          <span className="material-symbols-outlined self-center">
+          <span
+            className="material-symbols-outlined self-center"
+            style={{ fontSize: "65px" }}
+          >
             {activitySymbol}
           </span>
         </div>
