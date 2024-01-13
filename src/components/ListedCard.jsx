@@ -95,9 +95,9 @@ function ListedCard() {
             id="brief-dateAndTime"
             className="flex justify-evenly w-32 mb-1 self-end lg:self-start lg:mx-2"
           >
-            <p className="font-thin text-xs">25/1/2024</p>
-            <p className="font-extralight text-slate-400 text-xs italic">at</p>
-            <p className="font-thin text-xs">11:25</p>
+            <p className="font-normal text-xs">25/1/2024</p>
+            <p className="font-thin text-slate-600 text-xs italic">at</p>
+            <p className="font-normal text-xs">11:25</p>
           </div>
         </div>
       </div>

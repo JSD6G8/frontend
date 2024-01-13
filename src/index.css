@@ -2,6 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  @font-face {
+    font-family: Geist;
+    font-weight: 100;
+    src: url(/public/fonts/Geist-Thin.otf) format("otf");
+  }
+  @font-face {
+    font-family: Geist;
+    font-weight: 200;
+    src: url(/public/fonts/Geist-ExtraLight.otf) format("otf");
+  }
+  @font-face {
+    font-family: Geist;
+    font-weight: 300;
+    src: url(/public/fonts/Geist-Light.otf) format("otf");
+  }
+  @font-face {
+    font-family: Geist;
+    font-weight: 400;
+    src: url(/public/fonts/Geist-Normal.otf) format("otf");
+  }
+  @font-face {
+    font-family: Geist;
+    font-weight: 500;
+    src: url(/public/fonts/Geist-Medium.otf) format("otf");
+  }
+  @font-face {
+    font-family: Geist;
+    font-weight: 600;
+    src: url(/public/fonts/Geist-SemiBold.otf) format("otf");
+  }
+  @font-face {
+    font-family: Geist;
+    font-weight: 700;
+    src: url(/public/fonts/Geist-Bold.otf) format("otf");
+  }
+  @font-face {
+    font-family: Geist;
+    font-weight: 800;
+    src: url(/public/fonts/Geist-ExtraBold.otf) format("otf");
+  }
+  @font-face {
+    font-family: Geist;
+    font-weight: 900;
+    src: url(/public/fonts/Geist-Black.otf) format("otf");
+  }
+}
+
 .bgbg {
-    background-image: linear-gradient(to right top, #48b86e, #49b667, #49b45f, #4bb158, #4caf50);
+  background-image: linear-gradient(
+    to right top,
+    #48b86e,
+    #49b667,
+    #49b45f,
+    #4bb158,
+    #4caf50
+  );
 }
