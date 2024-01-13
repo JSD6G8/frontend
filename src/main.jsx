@@ -3,10 +3,10 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 
-import Layout from "./Layout.jsx";
 import ActivityList from "./ActivityList.jsx";
-import CreateActivity from "./CreateActivity.jsx";
 import Nav from "./components/Nav.jsx";
+import CreateActivity from "./CreateActivity.jsx";
+import Layout from "./Layout.jsx";
 import Login from "./Login.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login/>,
+    element: <Login />,
   },
   {
     path: "/signup",
@@ -46,8 +46,8 @@ const router = createBrowserRouter([
     element: <Layout>Mock Dashboard</Layout>,
   },
   {
-    path: '/nav',
-    element: <Nav/>,
+    path: "/nav",
+    element: <Nav />,
   },
 ]);
 
