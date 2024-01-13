@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import Layout from "./Layout";
 import "./CreateActivity.css";
 
-// TODO: Push data to mockapi.io
 // TODO: Split components
 // TODO: add 10m increment/decrement buttons for start time and end time
 // TODO: Baro colour
