@@ -102,7 +102,7 @@ function CreateActivity() {
           `Barometer: ${barometer}\n`
       );
 
-      const postData = async (obj) => {
+      const postData = async () => {
         const postData = {
           title: title,
           description: description,
