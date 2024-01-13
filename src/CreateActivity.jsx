@@ -103,8 +103,9 @@ function CreateActivity() {
       );
 
       const postData = async () => {
+        const titleToAdd = title || activityType;
         const postData = {
-          title: title,
+          title: titleToAdd,
           description: description,
           type: activityType,
           startTime: startTime,
