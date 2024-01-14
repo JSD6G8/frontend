@@ -5,6 +5,11 @@ import ListedCard from "./components/ListedCard";
 import MainCard from "./components/MainCard";
 import SelectorButton from "./components/SelectorButton";
 
+// TODO Link SelectorButton to be able to filtering by activity type
+// TODO hidden MainCard and show onClick
+
+// -----------------------------------//
+
 function ActivityList() {
   const [activities, setActivities] = useState([]);
 
@@ -37,44 +42,13 @@ function ActivityList() {
           setResult={filterTypeUpdate}
         />
         <h1>{filterType}</h1>
+
         <MainCard />
+
         {activities.map((a) => {
           return <ListedCard activities={a} />;
         })}
       </div>
-      {/* <ListedCard activities={activities} /> */}
-
-      {/* <table>
-        <thead>
-          <tr>
-            <td>activityId</td>
-            <td>title</td>
-            <td>description</td>
-            <td>type</td>
-            <td>startTime</td>
-            <td>endTime</td>
-            <td>date</td>
-            <td>barometer</td>
-          </tr>
-        </thead>
-        <tbody>
-          {activities.map((a) => {
-            return (
-              <tr key={a.activityId}>
-                <td>{a.activityId}</td>
-                <td>{a.title}</td>
-                <td>{a.description}</td>
-                <td>{a.type}</td>
-                <td>{a.startTime}</td>
-                <td>{a.endTime}</td>
-                <td>{a.date}</td>
-                <td>{a.barometer}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-        
-      </table> */}
       <AddActivityBtn />
     </Layout>
   );

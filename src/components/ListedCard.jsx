@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./ListedCard.css";
 
 // TODO Add another card styling for lg or md screen size
+// TODO Use conditional to display or hidden hour and minute (with 's' when value > 1)
 
 // --------------------------------------------------//
 
 // ?? recieve props from activity database
-// function ListedCard({ activities }) {
 function ListedCard({ activities }) {
   const [moodColor, setMoodColor] = useState();
   const [activitySymbol, setActivitySymbol] = useState();
@@ -76,7 +76,6 @@ function ListedCard({ activities }) {
           </span>
         </div>
         {/* brief activity info */}
-        {/* TODO when finish: change into props variable */}
         <div className=" bg-base-100 flex-grow flex flex-col justify-evenly rounded-r-xl lg:h-64 lg:rounded-b-xl">
           <div
             id="summary-description"
