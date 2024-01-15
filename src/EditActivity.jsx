@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -6,14 +7,12 @@ import validateForm from "./form-validation";
 import ActivityForm from "./components/ActivityForm";
 import Layout from "./Layout";
 
-// TODO: add 10m increment/decrement buttons for start time and end time
-// TODO: Baro colour
-// TODO: Add warning if duration > 5 hours
+// TODO: remove default activityId after integration
 
-function CreateActivity() {
+function EditActivity({ activityId = 0 }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [activityType, setActivityType] = useState("Running"); // "Running", "Cycling", "Swimming", "Walking", "Hiking", "Other"
+  const [activityType, setActivityType] = useState(""); // "Running", "Cycling", "Swimming", "Walking", "Hiking", "Other"
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [date, setDate] = useState("");
@@ -28,39 +27,33 @@ function CreateActivity() {
 
   const navigate = useNavigate();
 
-  // Set initial date and time
   useEffect(() => {
-    const currentDate = new Date(); // string: "Fri Jan 12 2024 12:00:19 GMT+0700 (Indochina Time)"
-    
-    const year = currentDate.getFullYear(); // 1900
-    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // 01
-    const day = currentDate.getDate().toString().padStart(2, '0'); // 01
-    const hours = currentDate.getHours().toString().padStart(2, '0'); // 00
-    const minutes = currentDate.getMinutes().toString().padStart(2, '0'); // 00
+    const getDataById = async (id) => {
+      const response = await axios.get(`https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities/${id}`);
 
+      if (response.status === 200) {
+        const data = {...response.data};
+        setTitle(data.title);
+        setDescription(data.description);
+        setActivityType(data.type);
+        setStartTime(data.startTime);
+        setEndTime(data.endTime);
+        setDate(data.date);
+        setBarometer(data.barometer);
+      } else {
+        navigate("/activities");
+      }
+    }
 
-    setStartTime(`${hours}:${minutes}`);
-    setEndTime(`${hours}:${minutes}`);
-    setDate(`${year}-${month}-${day}`);
-  }, []);
+    getDataById(activityId);
+  }, [activityId, navigate]);
 
-  const handleCreate = (e) => {
+  const handleEdit = (e) => {
     e.preventDefault();
     if (validateForm(startTime, endTime, setFormErrors)) {
-      alert(
-          `Title: ${title || activityType}\n` +
-          `Description: ${description}\n` +
-          `Activity Type: ${activityType}\n` +
-          `Start Time: ${startTime}\n` +
-          `End Time: ${endTime}\n` +
-          `Duration: ${duration.hour} hr ${duration.minute} min\n` +
-          `Date: ${date}\n` +
-          `Barometer: ${barometer}\n`
-      );
-
-      const postData = async () => {
+      const putData = async () => {
         const titleToAdd = title || activityType;
-        const postData = {
+        const putData = {
           title: titleToAdd,
           description: description,
           type: activityType,
@@ -71,14 +64,16 @@ function CreateActivity() {
           barometer: barometer,
         };
 
-        const response = await axios.post("https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities", postData);
+        const response = await axios.put(`https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities/${activityId}`, putData);
         
-        if (response.status === 201) {
+        console.log(response);
+
+        if (response.status === 200) {
           navigate("/activities");
         }
       }
 
-      postData();
+      putData();
     }
   };
 
@@ -86,12 +81,12 @@ function CreateActivity() {
     <Layout>
       <div className="container px-2 lg:px-4 h-[80svh] flex flex-col justify-between mx-auto">
         <header>
-          <h1 className="text-lg lg:text-3xl">Create Activity</h1>
+          <h1 className="text-lg lg:text-3xl">Edit Activity</h1>
         </header>
 
         <main className="h-full">
           <ActivityForm 
-            handleSubmit={handleCreate}
+            handleSubmit={handleEdit}
             title={title} setTitle={setTitle}
             description={description} setDescription={setDescription}
             activityType={activityType} setActivityType={setActivityType}
@@ -101,7 +96,7 @@ function CreateActivity() {
             duration={duration} setDuration={setDuration}
             barometer={barometer} setBarometer={setBarometer}
             formErrors={formErrors}
-            submitButtonText="Create"
+            submitButtonText="Edit"
           />
         </main>
       </div>
@@ -109,4 +104,4 @@ function CreateActivity() {
   );
 }
 
-export default CreateActivity;
+export default EditActivity;
