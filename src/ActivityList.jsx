@@ -6,23 +6,24 @@ import MainCard from "./components/MainCard";
 import SelectorButton from "./components/SelectorButton";
 import SortButton from "./components/SortButton";
 
-// TODO Link SelectorButton to be able to filtering by activity type
-// TODO hidden MainCard and show onClick
-
-// -----------------------------------//
-
 function ActivityList() {
   const [activities, setActivities] = useState([]);
+  const [reload, setReload] = useState(false);
 
   const choicesData = [
     "All",
     "Running",
+    "Cycling",
     "Swimming",
     "Hiking",
     "Walking",
     "Other",
   ];
   const [filterType, setFilterType] = useState(choicesData[0]);
+
+  function filterTypeUpdate(value) {
+    setFilterType(value);
+  }
 
   useEffect(() => {
     const getData = async () => {
@@ -35,16 +36,18 @@ function ActivityList() {
       }
     };
     getData();
-  }, [filterType]);
+  }, [filterType, reload]);
 
-  function filterTypeUpdate(value) {
-    setFilterType(value);
-  }
+  const sortedActivities = activities.sort(
+    (a, b) => b.activityId - a.activityId,
+  );
+
+  console.log(sortedActivities);
 
   return (
     <Layout>
       <div className="mt-3 justify-around lg:flex lg:flex-wrap">
-        <div className="">
+        <div className="mx-3 mb-5 flex overflow-scroll">
           <SelectorButton
             choicesData={choicesData}
             selected={filterType}
@@ -52,16 +55,56 @@ function ActivityList() {
           />
         </div>
 
-        <div>{filterType}</div>
-
         <div className="pb-2 pl-4 pr-4">
-          <MainCard />
+          {activities.map((a) => {
+            return (
+              <MainCard
+                key={a.activityId}
+                activity={a}
+                reload={reload}
+                setReload={setReload}
+              />
+            );
+          })}
         </div>
 
         <SortButton />
 
-        {activities.map((a) => {
-          return <ListedCard activities={a} />;
+        {sortedActivities.map((activity) => {
+          switch (filterType) {
+            case "All":
+              return <ListedCard key={activity.id} activities={activity} />;
+            case "Running":
+              if (activity.type === "Running") {
+                return <ListedCard key={activity.id} activities={activity} />;
+              }
+              break;
+            case "Cycling":
+              if (activity.type === "Cycling") {
+                return <ListedCard key={activity.id} activities={activity} />;
+              }
+              break;
+            case "Swimming":
+              if (activity.type === "Swimming") {
+                return <ListedCard key={activity.id} activities={activity} />;
+              }
+              break;
+            case "Hiking":
+              if (activity.type === "Hiking") {
+                return <ListedCard key={activity.id} activities={activity} />;
+              }
+              break;
+            case "Walking":
+              if (activity.type === "Walking") {
+                return <ListedCard key={activity.id} activities={activity} />;
+              }
+              break;
+            case "Other":
+              if (activity.type === "Other") {
+                return <ListedCard key={activity.id} activities={activity} />;
+              }
+              break;
+          }
         })}
       </div>
       <AddActivityBtn />

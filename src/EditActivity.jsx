@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import validateForm from "./form-validation";
 import ActivityForm from "./components/ActivityForm";
@@ -9,7 +9,7 @@ import Layout from "./Layout";
 
 // TODO: remove default activityId after integration
 
-function EditActivity({ activityId = 0 }) {
+function EditActivity() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [activityType, setActivityType] = useState(""); // "Running", "Cycling", "Swimming", "Walking", "Hiking", "Other"
@@ -25,7 +25,14 @@ function EditActivity({ activityId = 0 }) {
     time: "",
   });
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activityId = searchParams.get("id");
+
+  // console.log(activityId);
+
   const navigate = useNavigate();
+
+  // console.log(searchParams);
 
   useEffect(() => {
     const getDataById = async (id) => {
@@ -66,7 +73,7 @@ function EditActivity({ activityId = 0 }) {
 
         const response = await axios.put(`https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities/${activityId}`, putData);
         
-        console.log(response);
+        // console.log(response);
 
         if (response.status === 200) {
           navigate("/activities");
