@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ListedCard.css";
 
-// TODO Add another card styling for lg or md screen size
-
-// --------------------------------------------------//
-
 // ?? recieve props from activity database
 function ListedCard({ activities }) {
   const [moodColor, setMoodColor] = useState();
@@ -75,13 +71,13 @@ function ListedCard({ activities }) {
           </span>
         </div>
         {/* brief activity info */}
-        <div className=" flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100 lg:h-64 lg:rounded-b-xl">
+        <div className=" flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100 lg:mt-2 lg:h-64 lg:rounded-b-xl">
           <div
             id="summary-description"
-            className="mx-4 mb-2 mt-4 lg:mb-0 lg:mt-1"
+            className="mx-4 mb-2 mt-4 lg:mx-3 lg:mb-0 lg:mt-1"
           >
             <div>
-              <h1 className="text-xl font-extrabold">{activities.title}</h1>
+              <h1 className={`text-xl font-extrabold`}>{activities.title}</h1>
             </div>
             <div className="text-sm font-light">
               <div className="inline">
@@ -102,13 +98,23 @@ function ListedCard({ activities }) {
               </div>
             </div>
           </div>
-          <div
-            id="brief-dateAndTime"
-            className="mb-1 flex w-32 justify-evenly self-end lg:mx-2 lg:self-start"
-          >
-            <p className="text-xs font-normal">{activities.date}</p>
-            <p className="text-xs font-thin italic text-slate-600">at</p>
-            <p className="text-xs font-normal">{activities.startTime}</p>
+          <div className="flex flex-col justify-between">
+            <div
+              id="brief-dateAndTime"
+              className="mb-1 flex w-32 justify-evenly self-end lg:mx-2 lg:mt-2 lg:self-start"
+            >
+              <p className="text-xs font-normal">{activities.date}</p>
+              <p className="text-xs font-thin italic text-slate-600">at</p>
+              <p className="text-xs font-normal">{activities.startTime}</p>
+            </div>
+            <div className="mx-3 mb-3 mt-1 flex self-end max-lg:hidden">
+              <button className="material-symbols-outlined btn btn-sm mx-1 bg-yellow-500 text-white">
+                edit
+              </button>
+              <button className="material-symbols-outlined btn btn-sm bg-red-700 text-white">
+                delete
+              </button>
+            </div>
           </div>
         </div>
       </div>
