@@ -22,7 +22,7 @@ function ActivityList() {
 
   return (
     <Layout>
-      <MainCard />
+      <MainCard startTime="19.05" endTime="19.45"/>
       <ListedCard />
       <ListedCard />
       <ListedCard />
