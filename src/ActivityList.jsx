@@ -12,6 +12,7 @@ import SelectorButton from "./components/SelectorButton";
 
 function ActivityList() {
   const [activities, setActivities] = useState([]);
+  const [reload, setReload] = useState(false);
 
   const choicesData = [
     "All",
@@ -34,7 +35,7 @@ function ActivityList() {
       }
     };
     getData();
-  }, [filterType]);
+  }, [filterType, reload]);
 
   function filterTypeUpdate(value) {
     setFilterType(value);
@@ -54,11 +55,18 @@ function ActivityList() {
         <div>{filterType}</div>
 
         <div className="pb-2 pl-4 pr-4">
-          <MainCard activity={activities[1]}/>
+          {activities.map((a) => {
+            return <MainCard 
+              key={a.activityId} 
+              activity={a} 
+              reload={reload} 
+              setReload={setReload} 
+            />
+          })}
         </div>
 
         {activities.map((a) => {
-          return <ListedCard activities={a} />;
+          return <ListedCard key={a.activityId} activities={a} />;
         })}
       </div>
       <AddActivityBtn />

@@ -1,8 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
 import Layout from "../Layout";
+import axios from "axios";
 
-function MainCard({ activity }) {
+// TODO: Edit functionality
+
+function MainCard({ activity, reload, setReload }) {
   const [moodColor, setMoodColor] = useState("");
   const [activitySymbol, setActivitySymbol] = useState("");
   
@@ -28,7 +31,6 @@ function MainCard({ activity }) {
       }
     };
     const eachSymbol = () => {
-      // switch (activities.type) {
       switch (activity.type) {
         case "Running":
           setActivitySymbol("sprint");
@@ -54,6 +56,14 @@ function MainCard({ activity }) {
     eachColor();
     eachSymbol();
   }, []);
+
+  const handleDelete = async (id) => {
+    const response = await axios.delete(`https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities/${id}`);
+
+    if (response.status === 200) {
+      setReload(!reload);
+    }
+  }
 
   return (
     <main
@@ -97,8 +107,14 @@ function MainCard({ activity }) {
       <section className="flex justify-between items-center border-t-2 border-slate-300 p-2 pb-0">
         <span className="text-[#ffffff] font-mono text-sm drop-shadow-2xl">{activity.date}  |  {activity.startTime} - {activity.endTime}</span>
         <article className="flex gap-2">
-          <span className="material-symbols-outlined text-neutral">edit</span>
-          <span className="material-symbols-outlined text-base-100">delete</span>
+          <a 
+            className="material-symbols-outlined text-neutral"
+            href={`/activities/edit?id=${activity.activityId}`}
+          >edit</a>
+          <button 
+            className="material-symbols-outlined text-base-100"
+            onClick={() => handleDelete(activity.activityId)}
+          >delete</button>
         </article>
       </section>
     </main>
