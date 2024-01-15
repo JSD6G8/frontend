@@ -41,8 +41,6 @@ function ActivityList() {
     (a, b) => b.activityId - a.activityId,
   );
 
-  console.log(sortedActivities);
-
   return (
     <Layout>
       <div className="mt-3 justify-around lg:flex lg:flex-wrap">
@@ -56,12 +54,14 @@ function ActivityList() {
 
         <div className="pb-2 pl-4 pr-4">
           {activities.map((a) => {
-            return <MainCard 
-              key={a.activityId} 
-              activity={a} 
-              reload={reload} 
-              setReload={setReload} 
-            />
+            return (
+              <MainCard
+                key={a.activityId}
+                activity={a}
+                reload={reload}
+                setReload={setReload}
+              />
+            );
           })}
         </div>
 

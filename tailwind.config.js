@@ -7,7 +7,7 @@ export default {
         power: "#48B86E",
       },
       fontFamily: {
-        sans: ["Geist", "sans-serif"],
+        sans: ["Geist", "IBM Plex Sans Thai Looped", "sans-serif"],
       },
     },
   },

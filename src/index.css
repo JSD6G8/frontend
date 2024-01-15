@@ -6,32 +6,32 @@
   @font-face {
     font-family: Geist;
     font-weight: 100;
-    src: url(/public/fonts/Geist-Thin.woff2) format("woff2");
+    src: url(/fonts/Geist-Thin.woff2) format("woff2");
   }
   @font-face {
     font-family: Geist;
     font-weight: 200;
-    src: url(/public/fonts/Geist-ExtraLight.woff2) format("woff2");
+    src: url(/fonts/Geist-ExtraLight.woff2) format("woff2");
   }
   @font-face {
     font-family: Geist;
     font-weight: 300;
-    src: url(/public/fonts/Geist-Light.woff2) format("woff2");
+    src: url(/fonts/Geist-Light.woff2) format("woff2");
   }
   @font-face {
     font-family: Geist;
     font-weight: 400;
-    src: url(/public/fonts/Geist-Normal.woff2) format("woff2");
+    src: url(/fonts/Geist-Normal.woff2) format("woff2");
   }
   @font-face {
     font-family: Geist;
     font-weight: 500;
-    src: url(/public/fonts/Geist-Medium.woff2) format("woff2");
+    src: url(/fonts/Geist-Medium.woff2) format("woff2");
   }
   @font-face {
     font-family: Geist;
     font-weight: 600;
-    src: url(/public/fonts/Geist-SemiBold.woff2) format("woff2");
+    src: url(/fonts/Geist-SemiBold.woff2) format("woff2");
   }
   @font-face {
     font-family: Geist;
@@ -41,12 +41,47 @@
   @font-face {
     font-family: Geist;
     font-weight: 800;
-    src: url(/public/fonts/Geist-ExtraBold.woff2) format("woff2");
+    src: url(/fonts/Geist-ExtraBold.woff2) format("woff2");
   }
   @font-face {
     font-family: Geist;
     font-weight: 900;
-    src: url(/public/fonts/Geist-Black.woff2) format("woff2");
+    src: url(/fonts/Geist-Black.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: IBM Plex Sans Thai Looped;
+    font-weight: 100;
+    src: url(/fonts/IBMPlexSansThaiLooped-Thin.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: IBM Plex Sans Thai Looped;
+    font-weight: 200;
+    src: url(/fonts/IBMPlexSansThaiLooped-ExtraLight.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: IBM Plex Sans Thai Looped;
+    font-weight: 300;
+    src: url(/fonts/IBMPlexSansThaiLooped-Light.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: IBM Plex Sans Thai Looped;
+    font-weight: 400;
+    src: url(/fonts/IBMPlexSansThaiLooped-Regular.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: IBM Plex Sans Thai Looped;
+    font-weight: 500;
+    src: url(/fonts/IBMPlexSansThaiLooped-Medium.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: IBM Plex Sans Thai Looped;
+    font-weight: 600;
+    src: url(/fonts/IBMPlexSansThaiLooped-SemiBold.woff2) format("woff2");
+  }
+  @font-face {
+    font-family: IBM Plex Sans Thai Looped;
+    font-weight: 700;
+    src: url(/fonts/IBMPlexSansThaiLooped-Bold.woff2) format("woff2");
   }
 }
 
