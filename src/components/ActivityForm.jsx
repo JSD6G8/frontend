@@ -1,8 +1,57 @@
-export default function ActivityForm({ handleCreate, }) {
+/* eslint-disable react/prop-types */
+import { useEffect } from "react";
+
+export default function ActivityForm({ 
+  handleSubmit, 
+  setTitle,
+  setDescription,
+  activityType, setActivityType,
+  startTime, setStartTime,
+  endTime, setEndTime,
+  date, setDate,
+  duration, setDuration,
+  barometer, setBarometer,
+  formErrors,
+}) {
+  
+  useEffect(() => {
+    const currentDate = new Date(); // string: "Fri Jan 12 2024 12:00:19 GMT+0700 (Indochina Time)"
+    
+    const year = currentDate.getFullYear(); // 1900
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // 01
+    const day = currentDate.getDate().toString().padStart(2, '0'); // 01
+    const hours = currentDate.getHours().toString().padStart(2, '0'); // 00
+    const minutes = currentDate.getMinutes().toString().padStart(2, '0'); // 00
+
+    setStartTime(`${hours}:${minutes}`);
+    setEndTime(`${hours}:${minutes}`);
+    setDate(`${year}-${month}-${day}`);
+  }, [setStartTime, setEndTime, setDate]);
+
+  useEffect(() => {
+    if (startTime && endTime && date) {
+      const start = new Date(date + 'T' + startTime).getTime();
+      let end = new Date(date + 'T' + endTime).getTime();
+            
+      if (start > end) {
+        end += 86400000; // add 1 day (in millisecond)
+      }
+      
+      const time = (end - start) / 1000 / 60;
+      const hour = Math.floor(time / 60);
+      const minute = time % 60;
+      
+      setDuration({
+        hour: hour,
+        minute: minute,
+      });
+    }
+  }, [startTime, endTime, date, setDuration]);
+
   return (
     <form
       className="flex flex-col justify-between h-full"
-      onSubmit={handleCreate}
+      onSubmit={handleSubmit}
     >
       <div>
         <h2 className="text-base lg:text-xl my-1">Activity Title</h2>
