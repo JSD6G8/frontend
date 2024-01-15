@@ -74,10 +74,10 @@ function ListedCard({ activities }) {
         <div className=" flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100 lg:mt-2 lg:h-64 lg:rounded-b-xl">
           <div
             id="summary-description"
-            className="mx-4 mb-2 mt-4 lg:mb-0 lg:mt-1"
+            className="mx-4 mb-2 mt-4 lg:mx-3 lg:mb-0 lg:mt-1"
           >
             <div>
-              <h1 className="text-xl font-extrabold">{activities.title}</h1>
+              <h1 className={`text-xl font-extrabold`}>{activities.title}</h1>
             </div>
             <div className="text-sm font-light">
               <div className="inline">
