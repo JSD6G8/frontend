@@ -1,19 +1,18 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+import validateForm from "./form-validation";
 import ActivityForm from "./components/ActivityForm";
 import Layout from "./Layout";
 
-// TODO: add 10m increment/decrement buttons for start time and end time
-// TODO: Baro colour
-// TODO: Add warning if duration > 5 hours
+// TODO: remove default activityId after integration
 
-
-function EditActivity() {
+function EditActivity({ activityId = 0 }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [activityType, setActivityType] = useState("Running"); // "Running", "Cycling", "Swimming", "Walking", "Hiking", "Other"
+  const [activityType, setActivityType] = useState(""); // "Running", "Cycling", "Swimming", "Walking", "Hiking", "Other"
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [date, setDate] = useState("");
@@ -27,38 +26,34 @@ function EditActivity() {
   });
 
   const navigate = useNavigate();
-  
 
-  const validateForm = () => {
-    let errors = {};
-    let isValid = true;
+  useEffect(() => {
+    const getDataById = async (id) => {
+      const response = await axios.get(`https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities/${id}`);
 
-    if (startTime === endTime) {
-      errors.time = "Start and End can't be equal."
-      isValid = false;
+      if (response.status === 200) {
+        const data = {...response.data};
+        setTitle(data.title);
+        setDescription(data.description);
+        setActivityType(data.type);
+        setStartTime(data.startTime);
+        setEndTime(data.endTime);
+        setDate(data.date);
+        setBarometer(data.barometer);
+      } else {
+        navigate("/activities");
+      }
     }
 
-    setFormErrors(errors);
-    return isValid;
-  };
+    getDataById(activityId);
+  }, [activityId, navigate]);
 
-  const handleCreate = (e) => {
+  const handleEdit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      alert(
-          `Title: ${title || activityType}\n` +
-          `Description: ${description}\n` +
-          `Activity Type: ${activityType}\n` +
-          `Start Time: ${startTime}\n` +
-          `End Time: ${endTime}\n` +
-          `Duration: ${duration.hour} hr ${duration.minute} min\n` +
-          `Date: ${date}\n` +
-          `Barometer: ${barometer}\n`
-      );
-
-      const postData = async () => {
+    if (validateForm(startTime, endTime, setFormErrors)) {
+      const putData = async () => {
         const titleToAdd = title || activityType;
-        const postData = {
+        const putData = {
           title: titleToAdd,
           description: description,
           type: activityType,
@@ -69,14 +64,16 @@ function EditActivity() {
           barometer: barometer,
         };
 
-        const response = await axios.post("https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities", postData);
+        const response = await axios.put(`https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities/${activityId}`, putData);
         
-        if (response.status === 201) {
+        console.log(response);
+
+        if (response.status === 200) {
           navigate("/activities");
         }
       }
 
-      postData();
+      putData();
     }
   };
 
@@ -84,14 +81,14 @@ function EditActivity() {
     <Layout>
       <div className="container px-2 lg:px-4 h-[80svh] flex flex-col justify-between mx-auto">
         <header>
-          <h1 className="text-lg lg:text-3xl">Create Activity</h1>
+          <h1 className="text-lg lg:text-3xl">Edit Activity</h1>
         </header>
 
         <main className="h-full">
           <ActivityForm 
-            handleSubmit={handleCreate}
-            setTitle={setTitle}
-            setDescription={setDescription}
+            handleSubmit={handleEdit}
+            title={title} setTitle={setTitle}
+            description={description} setDescription={setDescription}
             activityType={activityType} setActivityType={setActivityType}
             startTime={startTime} setStartTime={setStartTime}
             endTime={endTime} setEndTime={setEndTime}
@@ -99,6 +96,7 @@ function EditActivity() {
             duration={duration} setDuration={setDuration}
             barometer={barometer} setBarometer={setBarometer}
             formErrors={formErrors}
+            submitButtonText="Edit"
           />
         </main>
       </div>

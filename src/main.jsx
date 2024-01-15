@@ -6,6 +6,7 @@ import "./index.css";
 import Layout from "./Layout.jsx";
 import ActivityList from "./ActivityList.jsx";
 import CreateActivity from "./CreateActivity.jsx";
+import EditActivity from "./EditActivity.jsx";
 import Nav from "./components/Nav.jsx";
 import Login from "./Login.jsx";
 
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/activities/edit",
-    element: <Layout>Mock Edit Activity</Layout>,
+    element: <EditActivity />,
   },
   {
     path: "/dashboard",
