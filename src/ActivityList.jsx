@@ -39,7 +39,7 @@ function ActivityList() {
   return (
     <Layout>
       <div className="mt-3 justify-around lg:flex lg:flex-wrap">
-        <div className="">
+        <div className="mx-3 mb-5 flex overflow-scroll">
           <SelectorButton
             choicesData={choicesData}
             selected={filterType}
