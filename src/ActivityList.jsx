@@ -4,6 +4,7 @@ import Layout from "./Layout";
 import ListedCard from "./components/ListedCard";
 import MainCard from "./components/MainCard";
 import SelectorButton from "./components/SelectorButton";
+import SortButton from "./components/SortButton";
 
 // TODO Link SelectorButton to be able to filtering by activity type
 // TODO hidden MainCard and show onClick
@@ -56,6 +57,8 @@ function ActivityList() {
         <div className="pb-2 pl-4 pr-4">
           <MainCard />
         </div>
+
+        <SortButton />
 
         {activities.map((a) => {
           return <ListedCard activities={a} />;
