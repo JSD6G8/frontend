@@ -16,6 +16,7 @@ const SelectorButton = ({ selected, choicesData, setResult }) => {
       onClick={() => {
         handleClick(data);
         console.log(`${data} Clicked`);
+        // Test for commit
       }}
       key={data}
     >
