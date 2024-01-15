@@ -5,16 +5,28 @@ import ListedCard from "./components/ListedCard";
 import MainCard from "./components/MainCard";
 import SelectorButton from "./components/SelectorButton";
 
+// TODO Link SelectorButton to be able to filtering by activity type
+// TODO hidden MainCard and show onClick
+
+// -----------------------------------//
+
 function ActivityList() {
   const [activities, setActivities] = useState([]);
 
-  const choicesData = ["All", "Running", "Swimming", "Hiking", "Walking"];
+  const choicesData = [
+    "All",
+    "Running",
+    "Swimming",
+    "Hiking",
+    "Walking",
+    "Other",
+  ];
   const [filterType, setFilterType] = useState(choicesData[0]);
 
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get(
-        "https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities"
+        "https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities",
       );
 
       if (response.status === 200 && response.data) {
@@ -22,7 +34,7 @@ function ActivityList() {
       }
     };
     getData();
-  }, []);
+  }, [filterType]);
 
   function filterTypeUpdate(value) {
     setFilterType(value);
@@ -30,57 +42,25 @@ function ActivityList() {
 
   return (
     <Layout>
-      <div className="lg:flex lg:flex-wrap">
-        <SelectorButton
-          choicesData={choicesData}
-          selected={filterType}
-          setResult={filterTypeUpdate}
-        />
-        <h1>{filterType}</h1>
-        <MainCard />
-        <ListedCard />
-        <ListedCard />
-        <ListedCard />
-        <ListedCard />
-        <ListedCard />
-        <ListedCard />
-        <ListedCard />
-        <ListedCard />
-        <ListedCard />
-      </div>
-      {/* <ListedCard activities={activities} /> */}
+      <div className="mt-3 justify-around lg:flex lg:flex-wrap">
+        <div className="">
+          <SelectorButton
+            choicesData={choicesData}
+            selected={filterType}
+            setResult={filterTypeUpdate}
+          />
+        </div>
 
-      {/* <table>
-        <thead>
-          <tr>
-            <td>activityId</td>
-            <td>title</td>
-            <td>description</td>
-            <td>type</td>
-            <td>startTime</td>
-            <td>endTime</td>
-            <td>date</td>
-            <td>barometer</td>
-          </tr>
-        </thead>
-        <tbody>
-          {activities.map((a) => {
-            return (
-              <tr key={a.activityId}>
-                <td>{a.activityId}</td>
-                <td>{a.title}</td>
-                <td>{a.description}</td>
-                <td>{a.type}</td>
-                <td>{a.startTime}</td>
-                <td>{a.endTime}</td>
-                <td>{a.date}</td>
-                <td>{a.barometer}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-        
-      </table> */}
+        <div>{filterType}</div>
+
+        <div className="pb-2 pl-4 pr-4">
+          <MainCard />
+        </div>
+
+        {activities.map((a) => {
+          return <ListedCard activities={a} />;
+        })}
+      </div>
       <AddActivityBtn />
     </Layout>
   );
@@ -89,7 +69,7 @@ function ActivityList() {
 function AddActivityBtn() {
   return (
     <>
-      <div className="w-[5rem] h-[5rem] fixed right-2 bottom-2">
+      <div className="fixed bottom-2 right-2 h-[5rem] w-[5rem]">
         <a href="/activities/create">
           <img
             src="https://cdn-icons-png.flaticon.com/512/4601/4601618.png"

@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./ListedCard.css";
 
-// TODO Add another card styling for lg or md screen size
-
-// --------------------------------------------------//
-
 // ?? recieve props from activity database
-// function ListedCard({ activities }) {
-function ListedCard() {
-  const [moodColor, setMoodColor] = useState("2");
-  const [activitySymbol, setActivitySymbol] = useState("Walking");
+function ListedCard({ activities }) {
+  const [moodColor, setMoodColor] = useState();
+  const [activitySymbol, setActivitySymbol] = useState();
 
   // ?? render card once with conditional for color and symbol
   useEffect(() => {
     const eachColor = () => {
-      // switch (activities.barometer) {
-      switch (moodColor) {
+      switch (activities.barometer) {
         case "1":
           setMoodColor("bg-info");
           break;
@@ -34,8 +28,7 @@ function ListedCard() {
       }
     };
     const eachSymbol = () => {
-      // switch (activities.type) {
-      switch (activitySymbol) {
+      switch (activities.type) {
         case "Running":
           setActivitySymbol("sprint");
           break;
@@ -64,11 +57,11 @@ function ListedCard() {
   return (
     <>
       {/* base card */}
-      <div className="flex flex-row h-1/4 m-3 shadow-xl rounded-l-xl rounded-r-xl lg:h-60 lg:flex-col lg:w-60">
+      <div className="m-3 flex h-1/4 flex-row rounded-l-xl rounded-r-xl shadow-xl lg:h-60 lg:w-60 lg:flex-col">
         {/* barometer color */}
         <div
           id="activities-baro"
-          className={`${moodColor} w-32 rounded-l-xl flex flex-col justify-evenly lg:w-full lg:h-60 lg:rounded-t-xl lg:rounded-b-none`}
+          className={`${moodColor} flex w-32 flex-col justify-evenly rounded-l-xl lg:h-60 lg:w-full lg:rounded-b-none lg:rounded-t-xl`}
         >
           <span
             className="material-symbols-outlined self-center"
@@ -78,26 +71,50 @@ function ListedCard() {
           </span>
         </div>
         {/* brief activity info */}
-        {/* TODO when finish: change into props variable */}
-        <div className=" bg-base-100 flex-grow flex flex-col justify-evenly rounded-r-xl lg:h-64 lg:rounded-b-xl">
+        <div className=" flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100 lg:mt-2 lg:h-64 lg:rounded-b-xl">
           <div
             id="summary-description"
-            className="mt-4 mb-2 mx-4 lg:mt-1 lg:mb-0"
+            className="mx-4 mb-2 mt-4 lg:mx-3 lg:mb-0 lg:mt-1"
           >
             <div>
-              <h1 className="font-extrabold text-xl">Morning Run</h1>
+              <h1 className={`text-xl font-extrabold`}>{activities.title}</h1>
             </div>
-            <div>
-              <p className="font-light text-sm">1 Hour 15 mins</p>
+            <div className="text-sm font-light">
+              <div className="inline">
+                {activities.duration.hour || ""}{" "}
+                {!activities.duration.hour
+                  ? ""
+                  : activities.duration.hour === 1
+                    ? "hour "
+                    : "hours "}
+              </div>
+              <div className=" inline">
+                {activities.duration.minute || ""}{" "}
+                {!activities.duration.minute
+                  ? ""
+                  : activities.duration.minute === 1
+                    ? "min"
+                    : "mins"}
+              </div>
             </div>
           </div>
-          <div
-            id="brief-dateAndTime"
-            className="flex justify-evenly w-32 mb-1 self-end lg:self-start lg:mx-2"
-          >
-            <p className="font-normal text-xs">25/1/2024</p>
-            <p className="font-thin text-slate-600 text-xs italic">at</p>
-            <p className="font-normal text-xs">11:25</p>
+          <div className="flex flex-col justify-between">
+            <div
+              id="brief-dateAndTime"
+              className="mb-1 flex w-32 justify-evenly self-end lg:mx-2 lg:mt-2 lg:self-start"
+            >
+              <p className="text-xs font-normal">{activities.date}</p>
+              <p className="text-xs font-thin italic text-slate-600">at</p>
+              <p className="text-xs font-normal">{activities.startTime}</p>
+            </div>
+            <div className="mx-3 mb-3 mt-1 flex self-end max-lg:hidden">
+              <button className="material-symbols-outlined btn btn-sm mx-1 bg-yellow-500 text-white">
+                edit
+              </button>
+              <button className="material-symbols-outlined btn btn-sm bg-red-700 text-white">
+                delete
+              </button>
+            </div>
           </div>
         </div>
       </div>
