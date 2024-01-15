@@ -4,8 +4,8 @@ import "./ActivityForm.css";
 
 export default function ActivityForm({ 
   handleSubmit, 
-  setTitle,
-  setDescription,
+  title, setTitle,
+  description, setDescription,
   activityType, setActivityType,
   startTime, setStartTime,
   endTime, setEndTime,
@@ -13,22 +13,8 @@ export default function ActivityForm({
   duration, setDuration,
   barometer, setBarometer,
   formErrors,
+  submitButtonText = "Create"
 }) {
-  
-  useEffect(() => {
-    const currentDate = new Date(); // string: "Fri Jan 12 2024 12:00:19 GMT+0700 (Indochina Time)"
-    
-    const year = currentDate.getFullYear(); // 1900
-    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // 01
-    const day = currentDate.getDate().toString().padStart(2, '0'); // 01
-    const hours = currentDate.getHours().toString().padStart(2, '0'); // 00
-    const minutes = currentDate.getMinutes().toString().padStart(2, '0'); // 00
-
-
-    setStartTime(`${hours}:${minutes}`);
-    setEndTime(`${hours}:${minutes}`);
-    setDate(`${year}-${month}-${day}`);
-  }, [setStartTime, setEndTime, setDate]);
 
   useEffect(() => {
     if (startTime && endTime && date) {
@@ -61,6 +47,7 @@ export default function ActivityForm({
           className="input input-bordered text-sm w-full lg:w-[30vw]"
           type="text"
           placeholder={activityType + " (default)"}
+          value={title}
           aria-label="Activity Title"
           onChange={(e) => setTitle(e.target.value)}
         />
@@ -71,6 +58,7 @@ export default function ActivityForm({
         <textarea
           className="textarea textarea-bordered text-sn resize-none w-full lg:w-[30vw]"
           placeholder="Notes for anything (optional)"
+          value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
       </div>
@@ -323,7 +311,7 @@ export default function ActivityForm({
       <div className="flex justify-stretch gap-2 py-2 w-full lg:max-w-[30vw]">
         <button className="btn flex-auto">Cancel</button>
         <button className="btn flex-auto btn-primary" type="submit">
-          Create
+          {submitButtonText}
         </button>
       </div>
     </form>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -27,6 +27,22 @@ function CreateActivity() {
   });
 
   const navigate = useNavigate();
+
+  // Set initial date and time
+  useEffect(() => {
+    const currentDate = new Date(); // string: "Fri Jan 12 2024 12:00:19 GMT+0700 (Indochina Time)"
+    
+    const year = currentDate.getFullYear(); // 1900
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // 01
+    const day = currentDate.getDate().toString().padStart(2, '0'); // 01
+    const hours = currentDate.getHours().toString().padStart(2, '0'); // 00
+    const minutes = currentDate.getMinutes().toString().padStart(2, '0'); // 00
+
+
+    setStartTime(`${hours}:${minutes}`);
+    setEndTime(`${hours}:${minutes}`);
+    setDate(`${year}-${month}-${day}`);
+  }, []);
 
   const handleCreate = (e) => {
     e.preventDefault();
@@ -76,8 +92,8 @@ function CreateActivity() {
         <main className="h-full">
           <ActivityForm 
             handleSubmit={handleCreate}
-            setTitle={setTitle}
-            setDescription={setDescription}
+            title={title} setTitle={setTitle}
+            description={description} setDescription={setDescription}
             activityType={activityType} setActivityType={setActivityType}
             startTime={startTime} setStartTime={setStartTime}
             endTime={endTime} setEndTime={setEndTime}
@@ -85,6 +101,7 @@ function CreateActivity() {
             duration={duration} setDuration={setDuration}
             barometer={barometer} setBarometer={setBarometer}
             formErrors={formErrors}
+            submitButtonText="Create"
           />
         </main>
       </div>
