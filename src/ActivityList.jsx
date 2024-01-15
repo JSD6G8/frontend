@@ -36,6 +36,12 @@ function ActivityList() {
     getData();
   }, []);
 
+  const sortedActivities = activities.sort(
+    (a, b) => b.activityId - a.activityId,
+  );
+
+  console.log(sortedActivities);
+
   return (
     <Layout>
       <div className="mt-3 justify-around lg:flex lg:flex-wrap">
@@ -51,7 +57,7 @@ function ActivityList() {
           <MainCard />
         </div>
 
-        {activities.map((activity) => {
+        {sortedActivities.map((activity) => {
           switch (filterType) {
             case "All":
               return <ListedCard key={activity.id} activities={activity} />;
