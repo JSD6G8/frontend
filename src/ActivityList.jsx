@@ -7,6 +7,7 @@ import SelectorButton from "./components/SelectorButton";
 
 function ActivityList() {
   const [activities, setActivities] = useState([]);
+  const [reload, setReload] = useState(false);
 
   const choicesData = [
     "All",
@@ -34,7 +35,7 @@ function ActivityList() {
       }
     };
     getData();
-  }, []);
+  }, [filterType, reload]);
 
   const sortedActivities = activities.sort(
     (a, b) => b.activityId - a.activityId,
@@ -54,7 +55,14 @@ function ActivityList() {
         </div>
 
         <div className="pb-2 pl-4 pr-4">
-          <MainCard />
+          {activities.map((a) => {
+            return <MainCard 
+              key={a.activityId} 
+              activity={a} 
+              reload={reload} 
+              setReload={setReload} 
+            />
+          })}
         </div>
 
         {sortedActivities.slice(1).map((activity) => {
