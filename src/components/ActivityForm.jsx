@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import "./ActivityForm.css";
+import { useNavigate } from "react-router-dom";
 
 export default function ActivityForm({ 
   handleSubmit, 
@@ -15,6 +16,7 @@ export default function ActivityForm({
   formErrors,
   submitButtonText = "Create"
 }) {
+  const backToActivities = useNavigate();
 
   useEffect(() => {
     if (startTime && endTime && date) {
@@ -309,7 +311,10 @@ export default function ActivityForm({
       </div>
 
       <div className="flex justify-stretch gap-2 py-2 w-full lg:max-w-[30vw]">
-        <button className="btn flex-auto">Cancel</button>
+        <button 
+          className="btn flex-auto"
+          onClick={() => backToActivities("/activities")}
+          >Cancel</button>
         <button className="btn flex-auto btn-primary" type="submit">
           {submitButtonText}
         </button>
