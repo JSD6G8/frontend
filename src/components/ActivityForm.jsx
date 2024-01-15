@@ -1,8 +1,59 @@
-export default function ActivityForm({ handleCreate, }) {
+/* eslint-disable react/prop-types */
+import { useEffect } from "react";
+import "./ActivityForm.css";
+
+export default function ActivityForm({ 
+  handleSubmit, 
+  setTitle,
+  setDescription,
+  activityType, setActivityType,
+  startTime, setStartTime,
+  endTime, setEndTime,
+  date, setDate,
+  duration, setDuration,
+  barometer, setBarometer,
+  formErrors,
+}) {
+  
+  useEffect(() => {
+    const currentDate = new Date(); // string: "Fri Jan 12 2024 12:00:19 GMT+0700 (Indochina Time)"
+    
+    const year = currentDate.getFullYear(); // 1900
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // 01
+    const day = currentDate.getDate().toString().padStart(2, '0'); // 01
+    const hours = currentDate.getHours().toString().padStart(2, '0'); // 00
+    const minutes = currentDate.getMinutes().toString().padStart(2, '0'); // 00
+
+
+    setStartTime(`${hours}:${minutes}`);
+    setEndTime(`${hours}:${minutes}`);
+    setDate(`${year}-${month}-${day}`);
+  }, [setStartTime, setEndTime, setDate]);
+
+  useEffect(() => {
+    if (startTime && endTime && date) {
+      const start = new Date(date + 'T' + startTime).getTime();
+      let end = new Date(date + 'T' + endTime).getTime();
+            
+      if (start > end) {
+        end += 86400000; // add 1 day (in millisecond)
+      }
+      
+      const time = (end - start) / 1000 / 60;
+      const hour = Math.floor(time / 60);
+      const minute = time % 60;
+      
+      setDuration({
+        hour: hour,
+        minute: minute,
+      });
+    }
+  }, [startTime, endTime, date, setDuration]);
+
   return (
     <form
       className="flex flex-col justify-between h-full"
-      onSubmit={handleCreate}
+      onSubmit={handleSubmit}
     >
       <div>
         <h2 className="text-base lg:text-xl my-1">Activity Title</h2>
@@ -39,7 +90,7 @@ export default function ActivityForm({ handleCreate, }) {
               checked={activityType === "Running"}
               onChange={(e) => setActivityType(e.target.value)}
             />
-            <span className="material-symbols-outlined icon">sprint</span>
+            <span className="material-symbols-outlined form-icon">sprint</span>
             <span className="radio-label text-xs">Running</span>
           </label>
 
@@ -53,7 +104,7 @@ export default function ActivityForm({ handleCreate, }) {
               checked={activityType === "Cycling"}
               onChange={(e) => setActivityType(e.target.value)}
             />
-            <span className="material-symbols-outlined icon">
+            <span className="material-symbols-outlined form-icon">
               directions_bike
             </span>
             <span className="radio-label text-xs">Cycling</span>
@@ -69,7 +120,7 @@ export default function ActivityForm({ handleCreate, }) {
               checked={activityType === "Swimming"}
               onChange={(e) => setActivityType(e.target.value)}
             />
-            <span className="material-symbols-outlined icon">pool</span>
+            <span className="material-symbols-outlined form-icon">pool</span>
             <span className="radio-label text-xs">Swimming</span>
           </label>
 
@@ -83,7 +134,7 @@ export default function ActivityForm({ handleCreate, }) {
               checked={activityType === "Walking"}
               onChange={(e) => setActivityType(e.target.value)}
             />
-            <span className="material-symbols-outlined icon">
+            <span className="material-symbols-outlined form-icon">
               directions_walk
             </span>
             <span className="radio-label text-xs">Walking</span>
@@ -99,7 +150,7 @@ export default function ActivityForm({ handleCreate, }) {
               checked={activityType === "Hiking"}
               onChange={(e) => setActivityType(e.target.value)}
             />
-            <span className="material-symbols-outlined icon">hiking</span>
+            <span className="material-symbols-outlined form-icon">hiking</span>
             <span className="radio-label text-xs">Hiking</span>
           </label>
 
@@ -113,7 +164,7 @@ export default function ActivityForm({ handleCreate, }) {
               checked={activityType === "Other"}
               onChange={(e) => setActivityType(e.target.value)}
             />
-            <span className="material-symbols-outlined icon">timer</span>
+            <span className="material-symbols-outlined form-icon">timer</span>
             <span className="radio-label text-xs">Other</span>
           </label>
         </div>
@@ -197,7 +248,7 @@ export default function ActivityForm({ handleCreate, }) {
               checked={barometer === "1"}
               onChange={(e) => setBarometer(e.target.value)}
             />
-            <span className="material-symbols-outlined baro baro-one">
+            <span className="material-symbols-outlined form-baro baro-one">
               sentiment_very_dissatisfied
             </span>
             <span className="radio-label text-xs">Exhausted</span>
@@ -213,7 +264,7 @@ export default function ActivityForm({ handleCreate, }) {
               checked={barometer === "2"}
               onChange={(e) => setBarometer(e.target.value)}
             />
-            <span className="material-symbols-outlined baro baro-two">
+            <span className="material-symbols-outlined form-baro baro-two">
               sentiment_stressed
             </span>
             <span className="radio-label text-xs">Tired</span>
@@ -229,7 +280,7 @@ export default function ActivityForm({ handleCreate, }) {
               checked={barometer === "3"}
               onChange={(e) => setBarometer(e.target.value)}
             />
-            <span className="material-symbols-outlined baro baro-three">
+            <span className="material-symbols-outlined form-baro baro-three">
               sentiment_neutral
             </span>
             <span className="radio-label text-xs">Okay</span>
@@ -245,7 +296,7 @@ export default function ActivityForm({ handleCreate, }) {
               checked={barometer === "4"}
               onChange={(e) => setBarometer(e.target.value)}
             />
-            <span className="material-symbols-outlined baro baro-four">
+            <span className="material-symbols-outlined form-baro baro-four">
               sentiment_content
             </span>
             <span className="radio-label text-xs">Fresh</span>
@@ -261,7 +312,7 @@ export default function ActivityForm({ handleCreate, }) {
               checked={barometer === "5"}
               onChange={(e) => setBarometer(e.target.value)}
             />
-            <span className="material-symbols-outlined baro baro-five">
+            <span className="material-symbols-outlined form-baro baro-five">
               sentiment_very_satisfied
             </span>
             <span className="radio-label text-xs">Energized</span>
