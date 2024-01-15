@@ -54,7 +54,7 @@ function ActivityList() {
         <div>{filterType}</div>
 
         <div className="pb-2 pl-4 pr-4">
-          <MainCard />
+          <MainCard activity={activities[1]}/>
         </div>
 
         {activities.map((a) => {
