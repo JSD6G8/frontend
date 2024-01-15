@@ -2,7 +2,6 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import validateForm from "./form-validation";
 import ActivityForm from "./components/ActivityForm";
 import Layout from "./Layout";
 
@@ -10,7 +9,8 @@ import Layout from "./Layout";
 // TODO: Baro colour
 // TODO: Add warning if duration > 5 hours
 
-function CreateActivity() {
+
+function EditActivity() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [activityType, setActivityType] = useState("Running"); // "Running", "Cycling", "Swimming", "Walking", "Hiking", "Other"
@@ -27,10 +27,24 @@ function CreateActivity() {
   });
 
   const navigate = useNavigate();
+  
+
+  const validateForm = () => {
+    let errors = {};
+    let isValid = true;
+
+    if (startTime === endTime) {
+      errors.time = "Start and End can't be equal."
+      isValid = false;
+    }
+
+    setFormErrors(errors);
+    return isValid;
+  };
 
   const handleCreate = (e) => {
     e.preventDefault();
-    if (validateForm(startTime, endTime, setFormErrors)) {
+    if (validateForm()) {
       alert(
           `Title: ${title || activityType}\n` +
           `Description: ${description}\n` +
@@ -92,4 +106,4 @@ function CreateActivity() {
   );
 }
 
-export default CreateActivity;
+export default EditActivity;
