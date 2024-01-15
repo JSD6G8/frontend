@@ -1,5 +1,5 @@
 .form-icon,
-.baro {
+.form-baro {
     font-variation-settings:
     'FILL' 0,
     'wght' 400,
@@ -12,7 +12,7 @@
 
 .form-icon:hover,
 .radio-label:hover,
-.baro:hover {
+.form-baro:hover {
     cursor: pointer;
 }
 
@@ -20,7 +20,7 @@ input:checked ~ .form-icon {
     color: oklch(var(--bc));
 }
 
-input:checked ~ .baro {
+input:checked ~ .form-baro {
     color: oklch(var(--bc));
 }
 
