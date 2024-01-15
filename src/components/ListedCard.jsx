@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./ListedCard.css";
 
 // TODO Add another card styling for lg or md screen size
-// TODO Use conditional to display or hidden hour and minute (with 's' when value > 1)
 
 // --------------------------------------------------//
 
@@ -62,11 +61,11 @@ function ListedCard({ activities }) {
   return (
     <>
       {/* base card */}
-      <div className="flex flex-row h-1/4 m-3 shadow-xl rounded-l-xl rounded-r-xl lg:h-60 lg:flex-col lg:w-60">
+      <div className="m-3 flex h-1/4 flex-row rounded-l-xl rounded-r-xl shadow-xl lg:h-60 lg:w-60 lg:flex-col">
         {/* barometer color */}
         <div
           id="activities-baro"
-          className={`${moodColor} w-32 rounded-l-xl flex flex-col justify-evenly lg:w-full lg:h-60 lg:rounded-t-xl lg:rounded-b-none`}
+          className={`${moodColor} flex w-32 flex-col justify-evenly rounded-l-xl lg:h-60 lg:w-full lg:rounded-b-none lg:rounded-t-xl`}
         >
           <span
             className="material-symbols-outlined self-center"
@@ -76,28 +75,40 @@ function ListedCard({ activities }) {
           </span>
         </div>
         {/* brief activity info */}
-        <div className=" bg-base-100 flex-grow flex flex-col justify-evenly rounded-r-xl lg:h-64 lg:rounded-b-xl">
+        <div className=" flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100 lg:h-64 lg:rounded-b-xl">
           <div
             id="summary-description"
-            className="mt-4 mb-2 mx-4 lg:mt-1 lg:mb-0"
+            className="mx-4 mb-2 mt-4 lg:mb-0 lg:mt-1"
           >
             <div>
-              <h1 className="font-extrabold text-xl">{activities.title}</h1>
+              <h1 className="text-xl font-extrabold">{activities.title}</h1>
             </div>
-            <div>
-              <p className="font-light text-sm">
-                {activities.duration.hour} Hour {activities.duration.minute}{" "}
-                Minute
-              </p>
+            <div className="text-sm font-light">
+              <div className="inline">
+                {activities.duration.hour || ""}{" "}
+                {!activities.duration.hour
+                  ? ""
+                  : activities.duration.hour === 1
+                    ? "hour "
+                    : "hours "}
+              </div>
+              <div className=" inline">
+                {activities.duration.minute || ""}{" "}
+                {!activities.duration.minute
+                  ? ""
+                  : activities.duration.minute === 1
+                    ? "min"
+                    : "mins"}
+              </div>
             </div>
           </div>
           <div
             id="brief-dateAndTime"
-            className="flex justify-evenly w-32 mb-1 self-end lg:self-start lg:mx-2"
+            className="mb-1 flex w-32 justify-evenly self-end lg:mx-2 lg:self-start"
           >
-            <p className="font-normal text-xs">{activities.date}</p>
-            <p className="font-thin text-slate-600 text-xs italic">at</p>
-            <p className="font-normal text-xs">{activities.startTime}</p>
+            <p className="text-xs font-normal">{activities.date}</p>
+            <p className="text-xs font-thin italic text-slate-600">at</p>
+            <p className="text-xs font-normal">{activities.startTime}</p>
           </div>
         </div>
       </div>
