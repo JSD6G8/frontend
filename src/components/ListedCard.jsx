@@ -54,6 +54,15 @@ function ListedCard({ activities }) {
     eachSymbol();
   }, []);
 
+  const shortenedDetail = (original, maxChars) => {
+    const shortened =
+      original.length <= maxChars
+        ? original
+        : original.slice(0, maxChars) + "...";
+
+    return <h1 className="text-lg font-bold">{shortened}</h1>;
+  };
+
   return (
     <>
       {/* base card */}
@@ -76,9 +85,7 @@ function ListedCard({ activities }) {
             id="summary-description"
             className="mx-4 mb-2 mt-4 lg:mx-3 lg:mb-0 lg:mt-1"
           >
-            <div>
-              <h1 className={`text-xl font-extrabold`}>{activities.title}</h1>
-            </div>
+            <div>{shortenedDetail(activities.title, 20)}</div>
             <div className="text-sm font-light">
               <div className="inline">
                 {activities.duration.hour || ""}{" "}
