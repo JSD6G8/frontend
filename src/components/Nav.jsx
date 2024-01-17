@@ -21,7 +21,7 @@ function NavGuest() {
 function NavLoggedInMobile() {
   return (
     <nav>
-      <div className="navbar bg-white lg:hidden">
+      <div className="navbar bg-white drop-shadow-md lg:hidden">
         <div className="navbar-start">
           <div className="dropdown">
             <div
@@ -101,7 +101,7 @@ function NavLoggedInMobile() {
           </div>
         </div>
       </div>
-      <div className=" bg-white drop-shadow-md lg:hidden">
+      {/* <div className=" bg-white drop-shadow-md lg:hidden">
         <form className="flex items-center p-4">
           <label className="sr-only">Search</label>
           <div className="relative w-full">
@@ -124,7 +124,7 @@ function NavLoggedInMobile() {
             />
           </div>
         </form>
-      </div>
+      </div> */}
     </nav>
   );
 }
@@ -156,7 +156,7 @@ function NavLoggedInDesktop() {
           </div>
         </div>
         <div className="navbar-end">
-          <div className="w-80">
+          {/* <div className="w-80">
             <form className="flex items-center">
               <label className="sr-only">Search</label>
               <div className="relative w-full">
@@ -183,7 +183,7 @@ function NavLoggedInDesktop() {
                 />
               </div>
             </form>
-          </div>
+          </div> */}
           <div className="dropdown dropdown-end mx-3">
             <div
               tabIndex={0}
