@@ -65,7 +65,7 @@ function ActivityList() {
           })}
         </div>
 
-        {sortedActivities.map((activity) => {
+        {sortedActivities.slice(1).map((activity) => {
           switch (filterType) {
             case "All":
               return <ListedCard key={activity.id} activities={activity} />;
