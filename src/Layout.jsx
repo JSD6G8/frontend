@@ -15,11 +15,11 @@ function Layout({ children }) {
   return (
     <div>
       <div className={isLoggedIn ? "hidden" : ""}>
-        <NavGuest />
+        <NavGuest isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       </div>
       <div className={isLoggedIn ? "" : "hidden"}>
-        <NavLoggedInMobile />
-        <NavLoggedInDesktop />
+        <NavLoggedInMobile isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+        <NavLoggedInDesktop isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       </div>
       {children}
     </div>

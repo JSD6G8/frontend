@@ -2,7 +2,21 @@ import Layout from "../Layout";
 import Footer from "./Footer";
 import "./Nav.css";
 
-function NavGuest() {
+function TempLoginToggle({ isLoggedIn, setIsLoggedIn }) {
+  return (
+    <label className="label flex cursor-pointer flex-row gap-1">
+      <span className="label-text">Log-in Toggle</span>
+      <input 
+        type="checkbox"
+        className="toggle"
+        checked={isLoggedIn} 
+        onChange={() => setIsLoggedIn(!isLoggedIn) }
+      />
+    </label>
+  );
+}
+
+function NavGuest({ isLoggedIn, setIsLoggedIn }) {
   return (
     <nav>
       <div className="navbar bg-white drop-shadow-md">
@@ -10,6 +24,7 @@ function NavGuest() {
           <a className="btn btn-ghost mx-3 text-xl">LogLife</a>
         </div>
         <div className="navbar-end">
+          <TempLoginToggle isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
           <button className="btn btn-ghost mx-3 text-base">Login</button>
           <a className="btn btn-primary mx-3 text-base text-white">Sign Up</a>
         </div>
@@ -18,7 +33,7 @@ function NavGuest() {
   );
 }
 
-function NavLoggedInMobile() {
+function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
   return (
     <nav>
       <div className="navbar bg-white drop-shadow-md lg:hidden">
@@ -70,6 +85,7 @@ function NavLoggedInMobile() {
           <a className="btn btn-ghost text-xl">LogLife</a>
         </div>
         <div className="navbar-end">
+          <TempLoginToggle isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
           <div className="dropdown dropdown-end mx-3">
             <div
               tabIndex={0}
@@ -129,7 +145,7 @@ function NavLoggedInMobile() {
   );
 }
 
-function NavLoggedInDesktop() {
+function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
   return (
     <nav>
       <div className="navbar bg-white drop-shadow-md max-lg:hidden">
@@ -184,6 +200,7 @@ function NavLoggedInDesktop() {
               </div>
             </form>
           </div> */}
+          <TempLoginToggle isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
           <div className="dropdown dropdown-end mx-3">
             <div
               tabIndex={0}
