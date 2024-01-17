@@ -4,6 +4,7 @@ import Layout from "./Layout";
 import ListedCard from "./components/ListedCard";
 import MainCard from "./components/MainCard";
 import SelectorButton from "./components/SelectorButton";
+import SortButton from "./components/SortButton";
 
 function ActivityList() {
   const [activities, setActivities] = useState([]);
@@ -64,6 +65,10 @@ function ActivityList() {
             );
           })}
         </div>
+
+        <SortButton />
+
+        <SortButton />
 
         {sortedActivities.slice(1).map((activity) => {
           switch (filterType) {
