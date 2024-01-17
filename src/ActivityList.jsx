@@ -66,10 +66,6 @@ function ActivityList() {
           })}
         </div>
 
-        <SortButton />
-
-        <SortButton />
-
         {sortedActivities.slice(1).map((activity) => {
           switch (filterType) {
             case "All":
