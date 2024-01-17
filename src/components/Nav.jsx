@@ -67,7 +67,7 @@ function NavLoggedInMobile() {
           </div>
         </div>
         <div className="navbar-center">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost text-xl">LogLife</a>
         </div>
         <div className="navbar-end">
           <div className="dropdown dropdown-end mx-3">
@@ -134,7 +134,7 @@ function NavLoggedInDesktop() {
     <nav>
       <div className="navbar bg-white drop-shadow-md max-lg:hidden">
         <div className="navbar-start">
-          <a className="m-3 text-xl">daisyUI</a>
+          <a className="m-3 text-xl">LogLife</a>
           <div>
             <ul className="menu menu-horizontal">
               <li>

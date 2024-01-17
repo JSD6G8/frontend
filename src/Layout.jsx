@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
-import Navbar from "./Navbar";
+import { NavGuest, NavLoggedInMobile, NavLoggedInDesktop } from "./components/Nav";
 
 function Layout({ children }) {
     return (
         <div>
-            <Navbar />
+            <NavLoggedInMobile />
+            <NavLoggedInDesktop />
             {children}
         </div>
     );
