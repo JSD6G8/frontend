@@ -53,7 +53,7 @@ function ActivityList() {
           />
         </div>
 
-        <div className="pb-2 pl-4 pr-4">
+        {/* <div className="pb-2 pl-4 pr-4">
           {activities.map((a) => {
             return (
               <MainCard
@@ -64,7 +64,7 @@ function ActivityList() {
               />
             );
           })}
-        </div>
+        </div> */}
 
         {sortedActivities.slice(1).map((activity) => {
           switch (filterType) {
