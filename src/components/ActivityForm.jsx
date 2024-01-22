@@ -3,6 +3,31 @@ import "./ActivityForm.css";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
+function ActivityTypeLabel({
+  activityType,
+  setActivityType,
+  type,
+  icon,
+  isRequired = false,
+}) {
+  return (
+    <label className="flex flex-col items-center">
+      <input
+        className="radio hidden"
+        {...(isRequired && { required: true })}
+        type="radio"
+        name="activityType"
+        value={type}
+        aria-label={type}
+        checked={activityType === type}
+        onChange={(e) => setActivityType(e.target.value)}
+      />
+      <span className="material-symbols-outlined form-icon">{icon}</span>
+      <span className="radio-label text-xs">{type}</span>
+    </label>
+  );
+}
+
 export default function ActivityForm({
   handleSubmit,
   title,
@@ -82,94 +107,43 @@ export default function ActivityForm({
         <h2 className="my-1 text-base lg:text-xl">Activity Type</h2>
 
         <div className="flex max-w-full flex-wrap justify-around lg:max-w-[30vw]">
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              required
-              type="radio"
-              name="activityType"
-              value="Running"
-              aria-label="Running"
-              checked={activityType === "Running"}
-              onChange={(e) => setActivityType(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-icon">sprint</span>
-            <span className="radio-label text-xs">Running</span>
-          </label>
-
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              type="radio"
-              name="activityType"
-              value="Cycling"
-              aria-label="Cycling"
-              checked={activityType === "Cycling"}
-              onChange={(e) => setActivityType(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-icon">
-              directions_bike
-            </span>
-            <span className="radio-label text-xs">Cycling</span>
-          </label>
-
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              type="radio"
-              name="activityType"
-              value="Swimming"
-              aria-label="Swimming"
-              checked={activityType === "Swimming"}
-              onChange={(e) => setActivityType(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-icon">pool</span>
-            <span className="radio-label text-xs">Swimming</span>
-          </label>
-
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              type="radio"
-              name="activityType"
-              value="Walking"
-              aria-label="Walking"
-              checked={activityType === "Walking"}
-              onChange={(e) => setActivityType(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-icon">
-              directions_walk
-            </span>
-            <span className="radio-label text-xs">Walking</span>
-          </label>
-
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              type="radio"
-              name="activityType"
-              value="Hiking"
-              aria-label="Hiking"
-              checked={activityType === "Hiking"}
-              onChange={(e) => setActivityType(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-icon">hiking</span>
-            <span className="radio-label text-xs">Hiking</span>
-          </label>
-
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              type="radio"
-              name="activityType"
-              value="Other"
-              aria-label="Other "
-              checked={activityType === "Other"}
-              onChange={(e) => setActivityType(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-icon">timer</span>
-            <span className="radio-label text-xs">Other</span>
-          </label>
+          <ActivityTypeLabel
+            activityType={activityType}
+            setActivityType={setActivityType}
+            type="Running"
+            icon="sprint"
+            isRequired={true}
+          />
+          <ActivityTypeLabel
+            activityType={activityType}
+            setActivityType={setActivityType}
+            type="Cycling"
+            icon="directions_bike"
+          />
+          <ActivityTypeLabel
+            activityType={activityType}
+            setActivityType={setActivityType}
+            type="Swimming"
+            icon="pool"
+          />
+          <ActivityTypeLabel
+            activityType={activityType}
+            setActivityType={setActivityType}
+            type="Walking"
+            icon="directions_walk"
+          />
+          <ActivityTypeLabel
+            activityType={activityType}
+            setActivityType={setActivityType}
+            type="Hiking"
+            icon="hiking"
+          />
+          <ActivityTypeLabel
+            activityType={activityType}
+            setActivityType={setActivityType}
+            type="Other"
+            icon="self_improvement"
+          />
         </div>
       </div>
 
@@ -210,7 +184,7 @@ export default function ActivityForm({
         </div>
       </div>
 
-      <div className="flex gap-2 max-w-full items-center justify-around lg:max-w-[30vw]">
+      <div className="flex max-w-full items-center justify-around gap-2 lg:max-w-[30vw]">
         <div className="flex gap-1">
           <h2 className="my-1 text-base lg:text-xl">Date:</h2>
           <input
