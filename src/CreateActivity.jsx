@@ -85,10 +85,6 @@ function CreateActivity() {
   return (
     <Layout>
       <div className="container px-2 lg:px-4 h-[80svh] flex flex-col justify-between mx-auto">
-        <header>
-          <h1 className="text-lg lg:text-3xl">Create Activity</h1>
-        </header>
-
         <main className="h-full">
           <ActivityForm 
             handleSubmit={handleCreate}
