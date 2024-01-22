@@ -8,13 +8,12 @@ function ActivityTypeLabel({
   setActivityType,
   type,
   icon,
-  isRequired = false,
 }) {
   return (
     <label className="flex flex-col items-center">
       <input
         className="peer hidden"
-        {...(isRequired && { required: true })}
+        required
         type="radio"
         name="activityType"
         value={type}
@@ -114,7 +113,6 @@ export default function ActivityForm({
             setActivityType={setActivityType}
             type="Running"
             icon="sprint"
-            isRequired={true}
           />
           <ActivityTypeLabel
             activityType={activityType}
@@ -315,7 +313,6 @@ ActivityTypeLabel.propTypes = {
   setActivityType: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
-  isRequired: PropTypes.bool,
 };
 
 ActivityForm.propTypes = {
