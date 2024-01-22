@@ -3,34 +3,42 @@ import "./ActivityForm.css";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
-export default function ActivityForm({ 
-  handleSubmit, 
-  title, setTitle,
-  description, setDescription,
-  activityType, setActivityType,
-  startTime, setStartTime,
-  endTime, setEndTime,
-  date, setDate,
-  duration, setDuration,
-  barometer, setBarometer,
+export default function ActivityForm({
+  handleSubmit,
+  title,
+  setTitle,
+  description,
+  setDescription,
+  activityType,
+  setActivityType,
+  startTime,
+  setStartTime,
+  endTime,
+  setEndTime,
+  date,
+  setDate,
+  duration,
+  setDuration,
+  barometer,
+  setBarometer,
   formErrors,
-  submitButtonText = "Create"
+  submitButtonText = "Create",
 }) {
   const backToActivities = useNavigate();
 
   useEffect(() => {
     if (startTime && endTime && date) {
-      const start = new Date(date + 'T' + startTime).getTime();
-      let end = new Date(date + 'T' + endTime).getTime();
-            
+      const start = new Date(date + "T" + startTime).getTime();
+      let end = new Date(date + "T" + endTime).getTime();
+
       if (start > end) {
         end += 86400000; // add 1 day (in millisecond)
       }
-      
+
       const time = (end - start) / 1000 / 60;
       const hour = Math.floor(time / 60);
       const minute = time % 60;
-      
+
       setDuration({
         hour: hour,
         minute: minute,
@@ -38,15 +46,20 @@ export default function ActivityForm({
     }
   }, [startTime, endTime, date, setDuration]);
 
+  const formatDuration = (value, singular, plural) => {
+    if (!value) return '';
+    return value === 1 ? `${value} ${singular}` : `${value} ${plural}`;
+  }
+
   return (
     <form
-      className="flex flex-col justify-between h-full"
+      className="flex h-full flex-col justify-between"
       onSubmit={handleSubmit}
     >
       <div>
-        <h2 className="text-base lg:text-xl my-1">Activity Title</h2>
+        <h2 className="my-1 text-base lg:text-xl">Activity Title</h2>
         <input
-          className="input input-bordered text-sm w-full lg:w-[30vw]"
+          className="input input-bordered w-full text-sm lg:w-[30vw]"
           type="text"
           placeholder={activityType + " (default)"}
           value={title}
@@ -56,9 +69,9 @@ export default function ActivityForm({
       </div>
 
       <div>
-        <h2 className="text-base lg:text-xl my-1">Description</h2>
+        <h2 className="my-1 text-base lg:text-xl">Description</h2>
         <textarea
-          className="textarea textarea-bordered text-sn resize-none w-full lg:w-[30vw]"
+          className="text-sn textarea textarea-bordered w-full resize-none lg:w-[30vw]"
           placeholder="Notes for anything (optional)"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -66,9 +79,9 @@ export default function ActivityForm({
       </div>
 
       <div>
-        <h2 className="text-base lg:text-xl my-1">Activity Type</h2>
+        <h2 className="my-1 text-base lg:text-xl">Activity Type</h2>
 
-        <div className="flex flex-wrap justify-around max-w-full lg:max-w-[30vw]">
+        <div className="flex max-w-full flex-wrap justify-around lg:max-w-[30vw]">
           <label className="flex flex-col items-center">
             <input
               className="radio hidden"
@@ -161,9 +174,9 @@ export default function ActivityForm({
       </div>
 
       <div>
-        <div className="flex justify-around items-center max-w-full lg:max-w-[30vw]">
+        <div className="flex max-w-full items-center justify-around lg:max-w-[30vw]">
           <div className="flex flex-col items-center">
-            <h2 className="text-base lg:text-xl my-1">Start time</h2>
+            <h2 className="my-1 text-base lg:text-xl">Start time</h2>
             <input
               className="rounded border-2"
               type="time"
@@ -182,7 +195,7 @@ export default function ActivityForm({
           </div>
 
           <div className="flex flex-col items-center">
-            <h2 className="text-base lg:text-xl my-1">End time</h2>
+            <h2 className="my-1 text-base lg:text-xl">End time</h2>
             <input
               className="rounded border-2"
               type="time"
@@ -198,7 +211,7 @@ export default function ActivityForm({
       </div>
 
       <div className="flex gap-2">
-        <h2 className="text-base lg:text-xl my-1">Date:</h2>
+        <h2 className="my-1 text-base lg:text-xl">Date:</h2>
         <input
           className="rounded border-2"
           type="date"
@@ -210,23 +223,17 @@ export default function ActivityForm({
           }}
         />
       </div>
-      <div className="flex gap-2 items-end">
+      <div className="flex items-end gap-2">
         <h2 className="text-base lg:text-xl">Duration:</h2>
         <span className="">
-          {duration.hour || ""}
-          {!duration.hour ? "" : duration.hour === 1 ? " hour " : " hours "}
-          {duration.minute || ""}
-          {!duration.minute
-            ? ""
-            : duration.minute === 1
-            ? " minute"
-            : " minutes"}
+          {formatDuration(duration.hour, "hour", "hours")}{" "}
+          {formatDuration(duration.minute, "minute", "minutes")}
         </span>
       </div>
 
       <div>
-        <h2 className="text-base lg:text-xl my-1">How did you feel?</h2>
-        <div className="flex flex-wrap justify-around max-w-full lg:max-w-[30vw]">
+        <h2 className="my-1 text-base lg:text-xl">How did you feel?</h2>
+        <div className="flex max-w-full flex-wrap justify-around lg:max-w-[30vw]">
           <label className="flex flex-col items-center">
             <input
               className="radio hidden"
@@ -310,12 +317,14 @@ export default function ActivityForm({
         </div>
       </div>
 
-      <div className="flex justify-stretch gap-2 py-2 w-full lg:max-w-[30vw]">
-        <button 
+      <div className="flex w-full justify-stretch gap-2 py-2 lg:max-w-[30vw]">
+        <button
           className="btn flex-auto"
           onClick={() => backToActivities("/activities")}
-          >Cancel</button>
-        <button className="btn flex-auto btn-primary" type="submit">
+        >
+          Cancel
+        </button>
+        <button className="btn btn-primary flex-auto" type="submit">
           {submitButtonText}
         </button>
       </div>
