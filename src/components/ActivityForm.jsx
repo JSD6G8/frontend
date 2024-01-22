@@ -250,7 +250,7 @@ export default function ActivityForm({
             <span className="material-symbols-outlined form-baro baro-one">
               sentiment_very_dissatisfied
             </span>
-            <span className="radio-label text-xs">Exhausted</span>
+            <span className="radio-label text-xs">Very Weak</span>
           </label>
 
           <label className="flex flex-col items-center">
@@ -266,7 +266,7 @@ export default function ActivityForm({
             <span className="material-symbols-outlined form-baro baro-two">
               sentiment_stressed
             </span>
-            <span className="radio-label text-xs">Tired</span>
+            <span className="radio-label text-xs">Weak</span>
           </label>
 
           <label className="flex flex-col items-center">
@@ -282,7 +282,7 @@ export default function ActivityForm({
             <span className="material-symbols-outlined form-baro baro-three">
               sentiment_neutral
             </span>
-            <span className="radio-label text-xs">Okay</span>
+            <span className="radio-label text-xs">Normal</span>
           </label>
 
           <label className="flex flex-col items-center">
@@ -298,7 +298,7 @@ export default function ActivityForm({
             <span className="material-symbols-outlined form-baro baro-four">
               sentiment_content
             </span>
-            <span className="radio-label text-xs">Fresh</span>
+            <span className="radio-label text-xs">Strong</span>
           </label>
 
           <label className="flex flex-col items-center">
@@ -314,7 +314,7 @@ export default function ActivityForm({
             <span className="material-symbols-outlined form-baro baro-five">
               sentiment_very_satisfied
             </span>
-            <span className="radio-label text-xs">Energized</span>
+            <span className="radio-label text-xs">Very Strong</span>
           </label>
         </div>
       </div>
