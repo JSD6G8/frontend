@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import "./ActivityForm.css";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export default function ActivityForm({ 
   handleSubmit, 
@@ -322,3 +322,25 @@ export default function ActivityForm({
     </form>
   );
 }
+
+ActivityForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  setTitle: PropTypes.func.isRequired,
+  description: PropTypes.string.isRequired,
+  setDescription: PropTypes.func.isRequired,
+  activityType: PropTypes.string.isRequired,
+  setActivityType: PropTypes.func.isRequired,
+  startTime: PropTypes.string.isRequired,
+  setStartTime: PropTypes.func.isRequired,
+  endTime: PropTypes.string.isRequired,
+  setEndTime: PropTypes.func.isRequired,
+  date: PropTypes.string.isRequired,
+  setDate: PropTypes.func.isRequired,
+  duration: PropTypes.object.isRequired,
+  setDuration: PropTypes.func.isRequired,
+  barometer: PropTypes.string.isRequired,
+  setBarometer: PropTypes.func.isRequired,
+  formErrors: PropTypes.object.isRequired,
+  submitButtonText: PropTypes.string,
+};
