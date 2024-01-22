@@ -308,6 +308,14 @@ export default function ActivityForm({
   );
 }
 
+ActivityTypeLabel.propTypes = {
+  activityType: PropTypes.string.isRequired,
+  setActivityType: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  isRequired: PropTypes.bool,
+};
+
 ActivityForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
