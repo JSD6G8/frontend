@@ -13,7 +13,7 @@ function ActivityTypeLabel({
   return (
     <label className="flex flex-col items-center">
       <input
-        className="radio hidden"
+        className="peer hidden"
         {...(isRequired && { required: true })}
         type="radio"
         name="activityType"
@@ -22,7 +22,9 @@ function ActivityTypeLabel({
         checked={activityType === type}
         onChange={(e) => setActivityType(e.target.value)}
       />
-      <span className="material-symbols-outlined form-icon">{icon}</span>
+      <span className="material-symbols-outlined form-icon peer-checked:text-base-content">
+        {icon}
+      </span>
       <span className="radio-label text-xs">{type}</span>
     </label>
   );

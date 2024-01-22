@@ -16,10 +16,6 @@
     cursor: pointer;
 }
 
-input:checked ~ .form-icon {
-    color: oklch(var(--bc));
-}
-
 input:checked ~ .form-baro {
     color: oklch(var(--bc));
 }
