@@ -75,6 +75,14 @@ export default function ActivityForm({
   submitButtonText = "Create",
 }) {
   const backToActivities = useNavigate();
+  const barometerColor = {
+    1: "bg-info",
+    2: "bg-success",
+    3: "bg-warning",
+    4: "bg-error",
+    5: "bg-power",
+  };
+  const barometerColorClass = barometerColor[barometer];
 
   useEffect(() => {
     if (startTime && endTime && date) {
@@ -270,6 +278,7 @@ export default function ActivityForm({
             barometerValue="5"
           />
         </div>
+        <div className={`h-2 ${barometerColorClass}`}></div>
       </div>
 
       <div className="flex w-full justify-stretch gap-2 py-2 lg:max-w-[30vw]">
