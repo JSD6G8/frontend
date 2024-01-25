@@ -3,14 +3,9 @@ import "./ActivityForm.css";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function ActivityTypeLabel({
-  activityType,
-  setActivityType,
-  type,
-  icon,
-}) {
+function ActivityTypeLabel({ activityType, setActivityType, type, icon }) {
   return (
-    <label className="flex flex-col items-center">
+    <label className="flex cursor-pointer flex-col items-center rounded bg-base-200 p-2 has-[:checked]:bg-primary">
       <input
         className="peer hidden"
         required
@@ -21,10 +16,39 @@ function ActivityTypeLabel({
         checked={activityType === type}
         onChange={(e) => setActivityType(e.target.value)}
       />
-      <span className="material-symbols-outlined form-icon peer-checked:text-base-content">
+      <span className="material-symbols-outlined select-none text-7xl text-base-300 peer-checked:text-base-100">
         {icon}
       </span>
-      <span className="radio-label text-xs">{type}</span>
+      <span className="radio-label select-none peer-checked:text-base-100">
+        {type}
+      </span>
+    </label>
+  );
+}
+
+function BarometerLabel({
+  barometer,
+  setBarometer,
+  label,
+  barometerValue,
+  icon,
+}) {
+  return (
+    <label className="flex cursor-pointer flex-col items-center">
+      <input
+        className="peer radio hidden"
+        type="radio"
+        required
+        name="barometer"
+        aria-label={label}
+        value={barometerValue}
+        checked={barometer === barometerValue}
+        onChange={(e) => setBarometer(e.target.value)}
+      />
+      <span className="material-symbols-outlined select-none text-5xl text-base-200 peer-checked:text-base-content">
+        {icon}
+      </span>
+      <span className="radio-label select-none">{label}</span>
     </label>
   );
 }
@@ -107,7 +131,7 @@ export default function ActivityForm({
       <div>
         <h2 className="my-1 text-base lg:text-xl">Activity Type</h2>
 
-        <div className="flex max-w-full flex-wrap justify-around lg:max-w-[30vw]">
+        <div className="grid max-w-full grid-cols-3 justify-around gap-2 lg:max-w-[30vw]">
           <ActivityTypeLabel
             activityType={activityType}
             setActivityType={setActivityType}
@@ -142,7 +166,7 @@ export default function ActivityForm({
             activityType={activityType}
             setActivityType={setActivityType}
             type="Other"
-            icon="self_improvement"
+            icon="timer"
           />
         </div>
       </div>
@@ -210,86 +234,41 @@ export default function ActivityForm({
       <div>
         <h2 className="my-1 text-base lg:text-xl">How did you feel?</h2>
         <div className="flex max-w-full flex-wrap justify-around lg:max-w-[30vw]">
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              type="radio"
-              required
-              name="barometer"
-              aria-label="Exhausted"
-              value="1"
-              checked={barometer === "1"}
-              onChange={(e) => setBarometer(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-baro baro-one">
-              sentiment_very_dissatisfied
-            </span>
-            <span className="radio-label text-xs">Very Weak</span>
-          </label>
-
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              type="radio"
-              name="barometer"
-              aria-label="Tired"
-              value="2"
-              checked={barometer === "2"}
-              onChange={(e) => setBarometer(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-baro baro-two">
-              sentiment_stressed
-            </span>
-            <span className="radio-label text-xs">Weak</span>
-          </label>
-
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              type="radio"
-              name="barometer"
-              aria-label="Okay"
-              value="3"
-              checked={barometer === "3"}
-              onChange={(e) => setBarometer(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-baro baro-three">
-              sentiment_neutral
-            </span>
-            <span className="radio-label text-xs">Normal</span>
-          </label>
-
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              type="radio"
-              name="barometer"
-              aria-label="Fresh"
-              value="4"
-              checked={barometer === "4"}
-              onChange={(e) => setBarometer(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-baro baro-four">
-              sentiment_content
-            </span>
-            <span className="radio-label text-xs">Strong</span>
-          </label>
-
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              type="radio"
-              name="barometer"
-              aria-label="Energized"
-              value="5"
-              checked={barometer === "5"}
-              onChange={(e) => setBarometer(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-baro baro-five">
-              sentiment_very_satisfied
-            </span>
-            <span className="radio-label text-xs">Very Strong</span>
-          </label>
+          <BarometerLabel
+            barometer={barometer}
+            setBarometer={setBarometer}
+            icon="sentiment_very_dissatisfied"
+            label="Very Weak"
+            barometerValue="1"
+          />
+          <BarometerLabel
+            barometer={barometer}
+            setBarometer={setBarometer}
+            icon="sentiment_stressed"
+            label="Weak"
+            barometerValue="2"
+          />
+          <BarometerLabel
+            barometer={barometer}
+            setBarometer={setBarometer}
+            icon="sentiment_neutral"
+            label="Normal"
+            barometerValue="3"
+          />
+          <BarometerLabel
+            barometer={barometer}
+            setBarometer={setBarometer}
+            icon="sentiment_content"
+            label="Strong"
+            barometerValue="4"
+          />
+          <BarometerLabel
+            barometer={barometer}
+            setBarometer={setBarometer}
+            icon="sentiment_very_satisfied"
+            label="Very Strong"
+            barometerValue="5"
+          />
         </div>
       </div>
 
@@ -312,6 +291,14 @@ ActivityTypeLabel.propTypes = {
   activityType: PropTypes.string.isRequired,
   setActivityType: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+};
+
+BarometerLabel.propTypes = {
+  barometer: PropTypes.string.isRequired,
+  setBarometer: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+  barometerValue: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
 };
 
