@@ -114,7 +114,7 @@ export default function ActivityForm({
       className="flex h-full flex-col justify-between"
       onSubmit={handleSubmit}
     >
-      <div>
+      <fieldset>
         <h2 className="my-1 text-base lg:text-xl">Activity Title</h2>
         <input
           className="input input-bordered w-full text-sm lg:w-[30vw]"
@@ -124,9 +124,9 @@ export default function ActivityForm({
           aria-label="Activity Title"
           onChange={(e) => setTitle(e.target.value)}
         />
-      </div>
+      </fieldset>
 
-      <div>
+      <fieldset>
         <h2 className="my-1 text-base lg:text-xl">Description</h2>
         <textarea
           className="text-sn textarea textarea-bordered w-full resize-none lg:w-[30vw]"
@@ -134,9 +134,9 @@ export default function ActivityForm({
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
-      </div>
+      </fieldset>
 
-      <div>
+      <fieldset>
         <h2 className="my-1 text-base lg:text-xl">Activity Type</h2>
 
         <div className="grid max-w-full grid-cols-3 justify-around gap-2 lg:max-w-[30vw]">
@@ -177,9 +177,9 @@ export default function ActivityForm({
             icon="timer"
           />
         </div>
-      </div>
+      </fieldset>
 
-      <div className="flex max-w-full items-center justify-around gap-2 lg:max-w-[30vw]">
+      <fieldset className="flex max-w-full items-center justify-around gap-2 lg:max-w-[30vw]">
         <div className="flex gap-1">
           <h2 className="my-1 text-base lg:text-xl">Date:</h2>
           <input
@@ -200,48 +200,44 @@ export default function ActivityForm({
             {formatDuration(duration.minute, "min", "mins")}
           </span>
         </div>
-      </div>
+      </fieldset>
 
-      <div>
-        <div className="flex max-w-full items-center justify-around lg:max-w-[30vw]">
-          <div className="flex flex-col items-center">
-            <h2 className="my-1 text-base lg:text-xl">Start time</h2>
-            <input
-              className="rounded border-2"
-              type="time"
-              value={startTime}
-              required
-              aria-label="Start time"
-              onChange={(e) => {
-                setStartTime(e.target.value);
-              }}
-            />
-          </div>
-
-          <div className="flex flex-col items-center">
-            <span>to</span>
-            <span className="text-red-500">{formErrors.time}</span>
-          </div>
-
-          <div className="flex flex-col items-center">
-            <h2 className="my-1 text-base lg:text-xl">End time</h2>
-            <input
-              className="rounded border-2"
-              type="time"
-              value={endTime}
-              required
-              aria-label="End time"
-              onChange={(e) => {
-                setEndTime(e.target.value);
-              }}
-            />
-          </div>
+      <fieldset className="flex max-w-full items-center justify-around lg:max-w-[30vw]">
+        <div className="flex flex-col items-center">
+          <h2 className="my-1 text-base lg:text-xl">Start time</h2>
+          <input
+            className="rounded border-2"
+            type="time"
+            value={startTime}
+            required
+            aria-label="Start time"
+            onChange={(e) => {
+              setStartTime(e.target.value);
+            }}
+          />
         </div>
-      </div>
 
-      
+        <div className="flex flex-col items-center">
+          <span>to</span>
+          <span className="text-red-500">{formErrors.time}</span>
+        </div>
 
-      <div>
+        <div className="flex flex-col items-center">
+          <h2 className="my-1 text-base lg:text-xl">End time</h2>
+          <input
+            className="rounded border-2"
+            type="time"
+            value={endTime}
+            required
+            aria-label="End time"
+            onChange={(e) => {
+              setEndTime(e.target.value);
+            }}
+          />
+        </div>
+      </fieldset>
+
+      <fieldset>
         <div className="flex flex-row items-center">
           <h2 className="my-1 text-base lg:text-xl">How did you feel?</h2>
           <div
@@ -285,7 +281,7 @@ export default function ActivityForm({
             barometerValue="5"
           />
         </div>
-      </div>
+      </fieldset>
 
       <div className="flex w-full justify-stretch gap-2 py-2 lg:max-w-[30vw]">
         <button
