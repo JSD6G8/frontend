@@ -240,7 +240,10 @@ export default function ActivityForm({
       </div>
 
       <div>
-        <h2 className="my-1 text-base lg:text-xl">How did you feel?</h2>
+        <div className="flex flex-row items-center">
+          <h2 className="my-1 text-base lg:text-xl">How did you feel?</h2>
+          <div className={`mx-2 h-2 flex-auto rounded ${barometerColorClass}`}></div>
+        </div>
         <div className="flex max-w-full flex-wrap justify-around lg:max-w-[30vw]">
           <BarometerLabel
             barometer={barometer}
@@ -278,7 +281,6 @@ export default function ActivityForm({
             barometerValue="5"
           />
         </div>
-        <div className={`h-2 ${barometerColorClass}`}></div>
       </div>
 
       <div className="flex w-full justify-stretch gap-2 py-2 lg:max-w-[30vw]">
