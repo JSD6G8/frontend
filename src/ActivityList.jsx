@@ -44,7 +44,7 @@ function ActivityList() {
 
   return (
     <Layout>
-      <main className="container mx-auto mt-3 max-w-5xl md:flex md:flex-col md:items-center">
+      <main className="container mx-auto mt-3 px-2 py-2 max-w-5xl md:flex md:flex-col md:items-center md:rounded-xl md:mt-4 md:bg-white md:drop-shadow-md">
         <div className="mx-3 mb-5 flex max-md:overflow-scroll">
           <SelectorButton
             choicesData={choicesData}
@@ -66,7 +66,7 @@ function ActivityList() {
           })}
         </div> */}
 
-        <div className="md:grid md:grid-cols-2 md:gap-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="md:grid md:grid-cols-2 md:gap-2 md:place-items-center lg:grid-cols-3 xl:grid-cols-4">
           {sortedActivities.slice(1).map((activity) => {
             switch (filterType) {
               case "All":
