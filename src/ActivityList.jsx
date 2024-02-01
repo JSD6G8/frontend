@@ -44,8 +44,8 @@ function ActivityList() {
 
   return (
     <Layout>
-      <div className="mt-3 justify-around lg:flex lg:flex-wrap">
-        <div className="mx-3 mb-5 flex overflow-scroll">
+      <div className="mt-3 md:flex md:flex-wrap">
+        <div className="mx-3 mb-5 flex max-md:overflow-scroll">
           <SelectorButton
             choicesData={choicesData}
             selected={filterType}
