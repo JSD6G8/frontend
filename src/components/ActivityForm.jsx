@@ -290,7 +290,7 @@ export default function ActivityForm({
         >
           Cancel
         </button>
-        <button className="btn btn-primary flex-auto" type="submit">
+        <button className="btn btn-primary flex-auto text-base-100" type="submit">
           {submitButtonText}
         </button>
       </div>
