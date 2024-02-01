@@ -44,7 +44,7 @@ function ActivityList() {
 
   return (
     <Layout>
-      <main className="container mx-auto max-w-5xl mt-3 md:flex md:flex-col md:items-center">
+      <main className="container mx-auto mt-3 max-w-5xl md:flex md:flex-col md:items-center">
         <div className="mx-3 mb-5 flex max-md:overflow-scroll">
           <SelectorButton
             choicesData={choicesData}
@@ -66,9 +66,7 @@ function ActivityList() {
           })}
         </div> */}
 
-        <div 
-          className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-2"
-        >
+        <div className="md:grid md:grid-cols-2 md:gap-2 lg:grid-cols-3 xl:grid-cols-4">
           {sortedActivities.slice(1).map((activity) => {
             switch (filterType) {
               case "All":
@@ -105,9 +103,9 @@ function ActivityList() {
                 break;
             }
           })}
+          <AddActivityBtn />
         </div>
       </main>
-      <AddActivityBtn />
     </Layout>
   );
 }
@@ -115,9 +113,12 @@ function ActivityList() {
 function AddActivityBtn() {
   return (
     <>
-      <div className="fixed bottom-2 right-2 h-[5rem] w-[5rem]">
+      <div 
+        className="fixed bottom-2 right-2 xl:left-3/4 "
+      >
         <a href="/activities/create">
           <img
+            className="h-[5rem] w-[5rem] hover:scale-110 transition duration-300 ease-in-out"
             src="https://cdn-icons-png.flaticon.com/512/4601/4601618.png"
             alt="Add activity button"
           ></img>
