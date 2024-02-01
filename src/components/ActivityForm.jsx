@@ -179,6 +179,29 @@ export default function ActivityForm({
         </div>
       </div>
 
+      <div className="flex max-w-full items-center justify-around gap-2 lg:max-w-[30vw]">
+        <div className="flex gap-1">
+          <h2 className="my-1 text-base lg:text-xl">Date:</h2>
+          <input
+            className="rounded border-2"
+            type="date"
+            value={date}
+            required
+            aria-label="Date"
+            onChange={(e) => {
+              setDate(e.target.value);
+            }}
+          />
+        </div>
+        <div className="flex flex-auto gap-1">
+          <h2 className="text-base lg:text-xl">Duration:</h2>
+          <span>
+            {formatDuration(duration.hour, "hr", "hrs")}{" "}
+            {formatDuration(duration.minute, "min", "mins")}
+          </span>
+        </div>
+      </div>
+
       <div>
         <div className="flex max-w-full items-center justify-around lg:max-w-[30vw]">
           <div className="flex flex-col items-center">
@@ -216,28 +239,7 @@ export default function ActivityForm({
         </div>
       </div>
 
-      <div className="flex max-w-full items-center justify-around gap-2 lg:max-w-[30vw]">
-        <div className="flex gap-1">
-          <h2 className="my-1 text-base lg:text-xl">Date:</h2>
-          <input
-            className="rounded border-2"
-            type="date"
-            value={date}
-            required
-            aria-label="Date"
-            onChange={(e) => {
-              setDate(e.target.value);
-            }}
-          />
-        </div>
-        <div className="flex flex-auto gap-1">
-          <h2 className="text-base lg:text-xl">Duration:</h2>
-          <span>
-            {formatDuration(duration.hour, "hr", "hrs")}{" "}
-            {formatDuration(duration.minute, "min", "mins")}
-          </span>
-        </div>
-      </div>
+      
 
       <div>
         <div className="flex flex-row items-center">
