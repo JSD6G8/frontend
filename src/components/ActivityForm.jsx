@@ -111,11 +111,11 @@ export default function ActivityForm({
 
   return (
     <form
-      className="flex h-full flex-col justify-between"
+      className="flex h-full flex-col justify-between gap-4"
       onSubmit={handleSubmit}
     >
       <fieldset>
-        <h2 className="my-1 text-base lg:text-xl">Activity Title</h2>
+        <h2 className="text-base lg:text-xl">Activity Title</h2>
         <input
           className="input input-bordered w-full text-sm lg:w-[30vw]"
           type="text"
@@ -127,7 +127,7 @@ export default function ActivityForm({
       </fieldset>
 
       <fieldset>
-        <h2 className="my-1 text-base lg:text-xl">Description</h2>
+        <h2 className="text-base lg:text-xl">Description</h2>
         <textarea
           className="text-sn textarea textarea-bordered w-full resize-none lg:w-[30vw]"
           placeholder="Notes for anything (optional)"
@@ -137,7 +137,7 @@ export default function ActivityForm({
       </fieldset>
 
       <fieldset>
-        <h2 className="my-1 text-base lg:text-xl">Activity Type</h2>
+        <h2 className="text-base lg:text-xl">Activity Type</h2>
 
         <div className="grid max-w-full grid-cols-3 justify-around gap-2 lg:max-w-[30vw]">
           <ActivityTypeLabel
@@ -181,7 +181,7 @@ export default function ActivityForm({
 
       <fieldset className="flex max-w-full items-center justify-around gap-2 lg:max-w-[30vw]">
         <div className="flex gap-1">
-          <h2 className="my-1 text-base lg:text-xl">Date:</h2>
+          <h2 className="text-base lg:text-xl">Date:</h2>
           <input
             className="rounded border-2"
             type="date"
@@ -204,7 +204,7 @@ export default function ActivityForm({
 
       <fieldset className="flex max-w-full items-center justify-around lg:max-w-[30vw]">
         <div className="flex flex-col items-center">
-          <h2 className="my-1 text-base lg:text-xl">Start time</h2>
+          <h2 className="text-base lg:text-xl">Start time</h2>
           <input
             className="rounded border-2"
             type="time"
@@ -223,7 +223,7 @@ export default function ActivityForm({
         </div>
 
         <div className="flex flex-col items-center">
-          <h2 className="my-1 text-base lg:text-xl">End time</h2>
+          <h2 className="text-base lg:text-xl">End time</h2>
           <input
             className="rounded border-2"
             type="time"
@@ -239,7 +239,7 @@ export default function ActivityForm({
 
       <fieldset>
         <div className="flex flex-row items-center">
-          <h2 className="my-1 text-base lg:text-xl">How did you feel?</h2>
+          <h2 className="text-base lg:text-xl">How did you feel?</h2>
           <div
             className={`mx-2 h-2 flex-auto rounded ${barometerColorClass}`}
           ></div>
