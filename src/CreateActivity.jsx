@@ -31,13 +31,12 @@ function CreateActivity() {
   // Set initial date and time
   useEffect(() => {
     const currentDate = new Date(); // string: "Fri Jan 12 2024 12:00:19 GMT+0700 (Indochina Time)"
-    
-    const year = currentDate.getFullYear(); // 1900
-    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // 01
-    const day = currentDate.getDate().toString().padStart(2, '0'); // 01
-    const hours = currentDate.getHours().toString().padStart(2, '0'); // 00
-    const minutes = currentDate.getMinutes().toString().padStart(2, '0'); // 00
 
+    const year = currentDate.getFullYear(); // 1900
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, "0"); // 01
+    const day = currentDate.getDate().toString().padStart(2, "0"); // 01
+    const hours = currentDate.getHours().toString().padStart(2, "0"); // 00
+    const minutes = currentDate.getMinutes().toString().padStart(2, "0"); // 00
 
     setStartTime(`${hours}:${minutes}`);
     setEndTime(`${hours}:${minutes}`);
@@ -48,14 +47,14 @@ function CreateActivity() {
     e.preventDefault();
     if (validateForm(startTime, endTime, setFormErrors)) {
       alert(
-          `Title: ${title || activityType}\n` +
+        `Title: ${title || activityType}\n` +
           `Description: ${description}\n` +
           `Activity Type: ${activityType}\n` +
           `Start Time: ${startTime}\n` +
           `End Time: ${endTime}\n` +
           `Duration: ${duration.hour} hr ${duration.minute} min\n` +
           `Date: ${date}\n` +
-          `Barometer: ${barometer}\n`
+          `Barometer: ${barometer}\n`,
       );
 
       const postData = async () => {
@@ -71,12 +70,15 @@ function CreateActivity() {
           barometer: barometer,
         };
 
-        const response = await axios.post("https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities", postData);
-        
+        const response = await axios.post(
+          "https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities",
+          postData,
+        );
+
         if (response.status === 201) {
           navigate("/activities");
         }
-      }
+      };
 
       postData();
     }
@@ -84,23 +86,29 @@ function CreateActivity() {
 
   return (
     <Layout>
-      <div className="container px-2 lg:px-4 h-[80svh] flex flex-col justify-between mx-auto">
-        <main className="h-full">
-          <ActivityForm 
-            handleSubmit={handleCreate}
-            title={title} setTitle={setTitle}
-            description={description} setDescription={setDescription}
-            activityType={activityType} setActivityType={setActivityType}
-            startTime={startTime} setStartTime={setStartTime}
-            endTime={endTime} setEndTime={setEndTime}
-            date={date} setDate={setDate}
-            duration={duration} setDuration={setDuration}
-            barometer={barometer} setBarometer={setBarometer}
-            formErrors={formErrors}
-            submitButtonText="Create"
-          />
-        </main>
-      </div>
+      <main className="container mx-auto h-full px-2 lg:px-4 pt-2">
+        <ActivityForm
+          handleSubmit={handleCreate}
+          title={title}
+          setTitle={setTitle}
+          description={description}
+          setDescription={setDescription}
+          activityType={activityType}
+          setActivityType={setActivityType}
+          startTime={startTime}
+          setStartTime={setStartTime}
+          endTime={endTime}
+          setEndTime={setEndTime}
+          date={date}
+          setDate={setDate}
+          duration={duration}
+          setDuration={setDuration}
+          barometer={barometer}
+          setBarometer={setBarometer}
+          formErrors={formErrors}
+          submitButtonText="Create"
+        />
+      </main>
     </Layout>
   );
 }
