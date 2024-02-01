@@ -7,7 +7,6 @@ import ActivityForm from "./components/ActivityForm";
 import Layout from "./Layout";
 
 // TODO: add 10m increment/decrement buttons for start time and end time
-// TODO: Baro colour
 // TODO: Add warning if duration > 5 hours
 
 function CreateActivity() {
@@ -46,17 +45,6 @@ function CreateActivity() {
   const handleCreate = (e) => {
     e.preventDefault();
     if (validateForm(startTime, endTime, setFormErrors)) {
-      alert(
-        `Title: ${title || activityType}\n` +
-          `Description: ${description}\n` +
-          `Activity Type: ${activityType}\n` +
-          `Start Time: ${startTime}\n` +
-          `End Time: ${endTime}\n` +
-          `Duration: ${duration.hour} hr ${duration.minute} min\n` +
-          `Date: ${date}\n` +
-          `Barometer: ${barometer}\n`,
-      );
-
       const postData = async () => {
         const titleToAdd = title || activityType;
         const postData = {
