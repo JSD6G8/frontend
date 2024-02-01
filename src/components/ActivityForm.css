@@ -1,66 +1,7 @@
-.form-icon,
-.form-baro {
+.material-symbols-outlined {
     font-variation-settings:
     'FILL' 0,
     'wght' 400,
     'GRAD' 0,
     'opsz' 24;
-    
-    color: oklch(var(--b3));
-    user-select: none;
 }
-
-.form-icon:hover,
-.radio-label:hover,
-.form-baro:hover {
-    cursor: pointer;
-}
-
-input:checked ~ .form-baro {
-    color: oklch(var(--bc));
-}
-
-/* input:checked ~ .baro-one {
-    color: oklch(var(--in));
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 200,
-    'opsz' 24;
-}
-
-input:checked ~ .baro-two {
-    color: oklch(var(--su));
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 200,
-    'opsz' 24;
-}
-
-input:checked ~ .baro-three {
-    color: oklch(var(--wa));
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 200,
-    'opsz' 24;
-}
-
-input:checked ~ .baro-four {
-    color: oklch(var(--er));
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 200,
-    'opsz' 24;
-}
-
-input:checked ~ .baro-five {
-    @apply text-power;
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 200,
-    'opsz' 24;
-} */

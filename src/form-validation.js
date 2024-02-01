@@ -3,7 +3,7 @@ const validateForm = (startTime, endTime, setFormErrors) => {
   let isValid = true;
 
   if (startTime === endTime) {
-    errors.time = "Start and End can't be equal."
+    errors.time = "Start time and end time cannot be the same.";
     isValid = false;
   }
 

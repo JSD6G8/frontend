@@ -3,14 +3,9 @@ import "./ActivityForm.css";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function ActivityTypeLabel({
-  activityType,
-  setActivityType,
-  type,
-  icon,
-}) {
+function ActivityTypeLabel({ activityType, setActivityType, type, icon }) {
   return (
-    <label className="flex flex-col items-center">
+    <label className="group flex cursor-pointer flex-col items-center rounded bg-base-200 p-2 hover:bg-base-300 has-[:checked]:bg-primary">
       <input
         className="peer hidden"
         required
@@ -21,10 +16,39 @@ function ActivityTypeLabel({
         checked={activityType === type}
         onChange={(e) => setActivityType(e.target.value)}
       />
-      <span className="material-symbols-outlined form-icon peer-checked:text-base-content">
+      <span className="material-symbols-outlined select-none text-7xl text-base-300 group-hover:text-base-200 peer-checked:text-base-100">
         {icon}
       </span>
-      <span className="radio-label text-xs">{type}</span>
+      <span className="radio-label select-none peer-checked:text-base-100">
+        {type}
+      </span>
+    </label>
+  );
+}
+
+function BarometerLabel({
+  barometer,
+  setBarometer,
+  label,
+  barometerValue,
+  icon,
+}) {
+  return (
+    <label className="flex cursor-pointer flex-col items-center">
+      <input
+        className="peer radio hidden"
+        type="radio"
+        required
+        name="barometer"
+        aria-label={label}
+        value={barometerValue}
+        checked={barometer === barometerValue}
+        onChange={(e) => setBarometer(e.target.value)}
+      />
+      <span className="material-symbols-outlined select-none text-5xl text-base-200 peer-checked:text-base-content">
+        {icon}
+      </span>
+      <span className="radio-label select-none">{label}</span>
     </label>
   );
 }
@@ -51,6 +75,14 @@ export default function ActivityForm({
   submitButtonText = "Create",
 }) {
   const backToActivities = useNavigate();
+  const barometerColor = {
+    1: "bg-info",
+    2: "bg-success",
+    3: "bg-warning",
+    4: "bg-error",
+    5: "bg-power",
+  };
+  const barometerColorClass = barometerColor[barometer];
 
   useEffect(() => {
     if (startTime && endTime && date) {
@@ -79,35 +111,35 @@ export default function ActivityForm({
 
   return (
     <form
-      className="flex h-full flex-col justify-between"
+      className="flex h-full flex-col justify-between gap-4"
       onSubmit={handleSubmit}
     >
-      <div>
-        <h2 className="my-1 text-base lg:text-xl">Activity Title</h2>
+      <fieldset>
+        <h2 className="text-base lg:text-xl">Activity Title</h2>
         <input
-          className="input input-bordered w-full text-sm lg:w-[30vw]"
+          className="input input-bordered w-full text-sm"
           type="text"
           placeholder={activityType + " (default)"}
           value={title}
           aria-label="Activity Title"
           onChange={(e) => setTitle(e.target.value)}
         />
-      </div>
+      </fieldset>
 
-      <div>
-        <h2 className="my-1 text-base lg:text-xl">Description</h2>
+      <fieldset>
+        <h2 className="text-base lg:text-xl">Description</h2>
         <textarea
-          className="text-sn textarea textarea-bordered w-full resize-none lg:w-[30vw]"
+          className="text-sn textarea textarea-bordered w-full resize-none"
           placeholder="Notes for anything (optional)"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
-      </div>
+      </fieldset>
 
-      <div>
-        <h2 className="my-1 text-base lg:text-xl">Activity Type</h2>
+      <fieldset>
+        <h2 className="text-base lg:text-xl">Activity Type</h2>
 
-        <div className="flex max-w-full flex-wrap justify-around lg:max-w-[30vw]">
+        <div className="grid max-w-full grid-cols-3 justify-around gap-2">
           <ActivityTypeLabel
             activityType={activityType}
             setActivityType={setActivityType}
@@ -142,165 +174,120 @@ export default function ActivityForm({
             activityType={activityType}
             setActivityType={setActivityType}
             type="Other"
-            icon="self_improvement"
+            icon="timer"
           />
         </div>
-      </div>
+      </fieldset>
 
-      <div>
-        <div className="flex max-w-full items-center justify-around lg:max-w-[30vw]">
-          <div className="flex flex-col items-center">
-            <h2 className="my-1 text-base lg:text-xl">Start time</h2>
-            <input
-              className="rounded border-2"
-              type="time"
-              value={startTime}
-              required
-              aria-label="Start time"
-              onChange={(e) => {
-                setStartTime(e.target.value);
-              }}
-            />
-          </div>
+      <fieldset className="flex max-w-full items-center gap-2">
+        <h2 className="text-base lg:text-xl">Date:</h2>
+        <input
+          className="rounded border-2"
+          type="date"
+          value={date}
+          required
+          aria-label="Date"
+          onChange={(e) => {
+            setDate(e.target.value);
+          }}
+        />
+      </fieldset>
 
-          <div className="flex flex-col items-center">
-            <span>to</span>
-            <span className="text-red-500">{formErrors.time}</span>
-          </div>
-
-          <div className="flex flex-col items-center">
-            <h2 className="my-1 text-base lg:text-xl">End time</h2>
-            <input
-              className="rounded border-2"
-              type="time"
-              value={endTime}
-              required
-              aria-label="End time"
-              onChange={(e) => {
-                setEndTime(e.target.value);
-              }}
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="flex max-w-full items-center justify-around gap-2 lg:max-w-[30vw]">
-        <div className="flex gap-1">
-          <h2 className="my-1 text-base lg:text-xl">Date:</h2>
+      <fieldset className="flex max-w-full flex-col justify-around">
+        <div className="flex flex-row items-center gap-2">
+          <h2 className="text-base lg:text-xl">From:</h2>
           <input
             className="rounded border-2"
-            type="date"
-            value={date}
+            type="time"
+            value={startTime}
             required
-            aria-label="Date"
+            aria-label="Start time"
             onChange={(e) => {
-              setDate(e.target.value);
+              setStartTime(e.target.value);
+            }}
+          />
+          <span>to:</span>
+          <input
+            className="rounded border-2"
+            type="time"
+            value={endTime}
+            required
+            aria-label="End time"
+            onChange={(e) => {
+              setEndTime(e.target.value);
             }}
           />
         </div>
-        <div className="flex flex-auto gap-1">
-          <h2 className="text-base lg:text-xl">Duration:</h2>
-          <span>
-            {formatDuration(duration.hour, "hr", "hrs")}{" "}
-            {formatDuration(duration.minute, "min", "mins")}
-          </span>
+        <span className="text-red-500">
+          {duration.hour === 0 && duration.minute === 0 ? formErrors.time : ""}
+        </span>
+      </fieldset>
+
+      <fieldset className="flex gap-1">
+        <h2 className="text-base lg:text-xl">Duration:</h2>
+        <span>
+          {formatDuration(duration.hour, "hour", "hours")}{" "}
+          {formatDuration(duration.minute, "minute", "minutes")}
+        </span>
+      </fieldset>
+
+      <fieldset>
+        <div className="flex flex-row items-center">
+          <h2 className="text-base lg:text-xl">How did you feel?</h2>
+          <div
+            className={`mx-2 h-2 flex-auto rounded ${barometerColorClass}`}
+          ></div>
         </div>
-      </div>
-
-      <div>
-        <h2 className="my-1 text-base lg:text-xl">How did you feel?</h2>
-        <div className="flex max-w-full flex-wrap justify-around lg:max-w-[30vw]">
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              type="radio"
-              required
-              name="barometer"
-              aria-label="Exhausted"
-              value="1"
-              checked={barometer === "1"}
-              onChange={(e) => setBarometer(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-baro baro-one">
-              sentiment_very_dissatisfied
-            </span>
-            <span className="radio-label text-xs">Very Weak</span>
-          </label>
-
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              type="radio"
-              name="barometer"
-              aria-label="Tired"
-              value="2"
-              checked={barometer === "2"}
-              onChange={(e) => setBarometer(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-baro baro-two">
-              sentiment_stressed
-            </span>
-            <span className="radio-label text-xs">Weak</span>
-          </label>
-
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              type="radio"
-              name="barometer"
-              aria-label="Okay"
-              value="3"
-              checked={barometer === "3"}
-              onChange={(e) => setBarometer(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-baro baro-three">
-              sentiment_neutral
-            </span>
-            <span className="radio-label text-xs">Normal</span>
-          </label>
-
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              type="radio"
-              name="barometer"
-              aria-label="Fresh"
-              value="4"
-              checked={barometer === "4"}
-              onChange={(e) => setBarometer(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-baro baro-four">
-              sentiment_content
-            </span>
-            <span className="radio-label text-xs">Strong</span>
-          </label>
-
-          <label className="flex flex-col items-center">
-            <input
-              className="radio hidden"
-              type="radio"
-              name="barometer"
-              aria-label="Energized"
-              value="5"
-              checked={barometer === "5"}
-              onChange={(e) => setBarometer(e.target.value)}
-            />
-            <span className="material-symbols-outlined form-baro baro-five">
-              sentiment_very_satisfied
-            </span>
-            <span className="radio-label text-xs">Very Strong</span>
-          </label>
+        <div className="flex max-w-full flex-wrap justify-around">
+          <BarometerLabel
+            barometer={barometer}
+            setBarometer={setBarometer}
+            icon="sentiment_very_dissatisfied"
+            label="Very Weak"
+            barometerValue="1"
+          />
+          <BarometerLabel
+            barometer={barometer}
+            setBarometer={setBarometer}
+            icon="sentiment_stressed"
+            label="Weak"
+            barometerValue="2"
+          />
+          <BarometerLabel
+            barometer={barometer}
+            setBarometer={setBarometer}
+            icon="sentiment_neutral"
+            label="Normal"
+            barometerValue="3"
+          />
+          <BarometerLabel
+            barometer={barometer}
+            setBarometer={setBarometer}
+            icon="sentiment_content"
+            label="Strong"
+            barometerValue="4"
+          />
+          <BarometerLabel
+            barometer={barometer}
+            setBarometer={setBarometer}
+            icon="sentiment_very_satisfied"
+            label="Very Strong"
+            barometerValue="5"
+          />
         </div>
-      </div>
+      </fieldset>
 
-      <div className="flex w-full justify-stretch gap-2 py-2 lg:max-w-[30vw]">
+      <div className="flex w-full justify-stretch gap-2 py-2">
         <button
           className="btn flex-auto"
           onClick={() => backToActivities("/activities")}
         >
           Cancel
         </button>
-        <button className="btn btn-primary flex-auto" type="submit">
+        <button
+          className="btn btn-primary flex-auto text-base-100"
+          type="submit"
+        >
           {submitButtonText}
         </button>
       </div>
@@ -312,6 +299,14 @@ ActivityTypeLabel.propTypes = {
   activityType: PropTypes.string.isRequired,
   setActivityType: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+};
+
+BarometerLabel.propTypes = {
+  barometer: PropTypes.string.isRequired,
+  setBarometer: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+  barometerValue: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
 };
 
