@@ -202,9 +202,9 @@ export default function ActivityForm({
         </div>
       </fieldset>
 
-      <fieldset className="flex max-w-full items-center justify-around lg:max-w-[30vw]">
-        <div className="flex flex-col items-center">
-          <h2 className="text-base lg:text-xl">Start time</h2>
+      <fieldset className="flex flex-col max-w-full justify-around lg:max-w-[30vw]">
+        <div className="flex flex-row gap-2 items-center">
+          <h2 className="text-base lg:text-xl">From:</h2>
           <input
             className="rounded border-2"
             type="time"
@@ -215,15 +215,7 @@ export default function ActivityForm({
               setStartTime(e.target.value);
             }}
           />
-        </div>
-
-        <div className="flex flex-col items-center">
-          <span>to</span>
-          <span className="text-red-500">{formErrors.time}</span>
-        </div>
-
-        <div className="flex flex-col items-center">
-          <h2 className="text-base lg:text-xl">End time</h2>
+          <span>to:</span>
           <input
             className="rounded border-2"
             type="time"
@@ -234,6 +226,7 @@ export default function ActivityForm({
               setEndTime(e.target.value);
             }}
           />
+          <span className="text-red-500">{formErrors.time}</span>
         </div>
       </fieldset>
 
