@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 function ActivityTypeLabel({ activityType, setActivityType, type, icon }) {
   return (
-    <label className="flex cursor-pointer flex-col items-center rounded bg-base-200 p-2 has-[:checked]:bg-primary">
+    <label className="group flex cursor-pointer flex-col items-center rounded bg-base-200 p-2 hover:bg-base-300 has-[:checked]:bg-primary">
       <input
         className="peer hidden"
         required
@@ -16,7 +16,7 @@ function ActivityTypeLabel({ activityType, setActivityType, type, icon }) {
         checked={activityType === type}
         onChange={(e) => setActivityType(e.target.value)}
       />
-      <span className="material-symbols-outlined select-none text-7xl text-base-300 peer-checked:text-base-100">
+      <span className="material-symbols-outlined select-none text-7xl text-base-300 group-hover:text-base-200 peer-checked:text-base-100">
         {icon}
       </span>
       <span className="radio-label select-none peer-checked:text-base-100">
@@ -242,7 +242,9 @@ export default function ActivityForm({
       <div>
         <div className="flex flex-row items-center">
           <h2 className="my-1 text-base lg:text-xl">How did you feel?</h2>
-          <div className={`mx-2 h-2 flex-auto rounded ${barometerColorClass}`}></div>
+          <div
+            className={`mx-2 h-2 flex-auto rounded ${barometerColorClass}`}
+          ></div>
         </div>
         <div className="flex max-w-full flex-wrap justify-around lg:max-w-[30vw]">
           <BarometerLabel
@@ -290,7 +292,10 @@ export default function ActivityForm({
         >
           Cancel
         </button>
-        <button className="btn btn-primary flex-auto text-base-100" type="submit">
+        <button
+          className="btn btn-primary flex-auto text-base-100"
+          type="submit"
+        >
           {submitButtonText}
         </button>
       </div>
