@@ -117,7 +117,7 @@ export default function ActivityForm({
       <fieldset>
         <h2 className="text-base lg:text-xl">Activity Title</h2>
         <input
-          className="input input-bordered w-full text-sm lg:w-[30vw]"
+          className="input input-bordered w-full text-sm"
           type="text"
           placeholder={activityType + " (default)"}
           value={title}
@@ -129,7 +129,7 @@ export default function ActivityForm({
       <fieldset>
         <h2 className="text-base lg:text-xl">Description</h2>
         <textarea
-          className="text-sn textarea textarea-bordered w-full resize-none lg:w-[30vw]"
+          className="text-sn textarea textarea-bordered w-full resize-none"
           placeholder="Notes for anything (optional)"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -139,7 +139,7 @@ export default function ActivityForm({
       <fieldset>
         <h2 className="text-base lg:text-xl">Activity Type</h2>
 
-        <div className="grid max-w-full grid-cols-3 justify-around gap-2 lg:max-w-[30vw]">
+        <div className="grid max-w-full grid-cols-3 justify-around gap-2">
           <ActivityTypeLabel
             activityType={activityType}
             setActivityType={setActivityType}
@@ -179,30 +179,21 @@ export default function ActivityForm({
         </div>
       </fieldset>
 
-      <fieldset className="flex max-w-full items-center justify-around gap-2 lg:max-w-[30vw]">
-        <div className="flex gap-1">
-          <h2 className="text-base lg:text-xl">Date:</h2>
-          <input
-            className="rounded border-2"
-            type="date"
-            value={date}
-            required
-            aria-label="Date"
-            onChange={(e) => {
-              setDate(e.target.value);
-            }}
-          />
-        </div>
-        <div className="flex flex-auto gap-1">
-          <h2 className="text-base lg:text-xl">Duration:</h2>
-          <span>
-            {formatDuration(duration.hour, "hr", "hrs")}{" "}
-            {formatDuration(duration.minute, "min", "mins")}
-          </span>
-        </div>
+      <fieldset className="flex max-w-full items-center gap-2">
+        <h2 className="text-base lg:text-xl">Date:</h2>
+        <input
+          className="rounded border-2"
+          type="date"
+          value={date}
+          required
+          aria-label="Date"
+          onChange={(e) => {
+            setDate(e.target.value);
+          }}
+        />
       </fieldset>
 
-      <fieldset className="flex max-w-full flex-col justify-around lg:max-w-[30vw]">
+      <fieldset className="flex max-w-full flex-col justify-around">
         <div className="flex flex-row items-center gap-2">
           <h2 className="text-base lg:text-xl">From:</h2>
           <input
@@ -227,7 +218,17 @@ export default function ActivityForm({
             }}
           />
         </div>
-        <span className="text-red-500">{(duration.hour === 0 && duration.minute === 0) ? formErrors.time : ""}</span>
+        <span className="text-red-500">
+          {duration.hour === 0 && duration.minute === 0 ? formErrors.time : ""}
+        </span>
+      </fieldset>
+
+      <fieldset className="flex gap-1">
+        <h2 className="text-base lg:text-xl">Duration:</h2>
+        <span>
+          {formatDuration(duration.hour, "hour", "hours")}{" "}
+          {formatDuration(duration.minute, "minute", "minutes")}
+        </span>
       </fieldset>
 
       <fieldset>
@@ -237,7 +238,7 @@ export default function ActivityForm({
             className={`mx-2 h-2 flex-auto rounded ${barometerColorClass}`}
           ></div>
         </div>
-        <div className="flex max-w-full flex-wrap justify-around lg:max-w-[30vw]">
+        <div className="flex max-w-full flex-wrap justify-around">
           <BarometerLabel
             barometer={barometer}
             setBarometer={setBarometer}
@@ -276,7 +277,7 @@ export default function ActivityForm({
         </div>
       </fieldset>
 
-      <div className="flex w-full justify-stretch gap-2 py-2 lg:max-w-[30vw]">
+      <div className="flex w-full justify-stretch gap-2 py-2">
         <button
           className="btn flex-auto"
           onClick={() => backToActivities("/activities")}

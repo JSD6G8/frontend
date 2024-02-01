@@ -74,7 +74,7 @@ function CreateActivity() {
 
   return (
     <Layout>
-      <main className="container mx-auto h-full px-2 lg:px-4 pt-2">
+      <main className="container max-w-lg mx-auto h-full px-2 lg:px-4 pt-2">
         <ActivityForm
           handleSubmit={handleCreate}
           title={title}
