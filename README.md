@@ -1,6 +1,6 @@
 # LogLife : The activities tracking application
 
-### Fronend stacks
+### Frontend stacks
 
 - React framework
 - Tailwind CSS
