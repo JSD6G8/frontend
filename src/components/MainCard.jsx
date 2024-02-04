@@ -133,19 +133,23 @@ function MainCard({ activity, reload, setReload }) {
             delete
           </button>
 
-          <dialog id="delete_activity" className="modal">
+          <dialog
+            id="delete_activity"
+            className="modal modal-bottom sm:modal-middle"
+          >
             <div className="modal-box">
-              <h3 className="text-lg font-bold">Confirm to delete?</h3>
-              <p className="py-4">This deletion can't be undone!</p>
+              <h3 className="text-2xl font-bold ">Delete activity</h3>
+              <p className="py-4 text-lg">
+                Permanently delete this activity? This cannot be undone.
+              </p>
               <div className="modal-action">
                 <form method="dialog">
-                  {/* if there is a button in form, it will close the modal */}
-                  <button className="btn mr-3">Close</button>
+                  <button className="btn mr-3">Cancel</button>
                   <button
-                    className="btn bg-red-500 text-white"
+                    className="btn bg-red-700 text-white"
                     onClick={() => handleDelete(activity._id)}
                   >
-                    Confirm
+                    Delete
                   </button>
                 </form>
               </div>
