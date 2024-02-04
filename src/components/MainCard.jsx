@@ -126,10 +126,31 @@ function MainCard({ activity, reload, setReload }) {
           </a>
           <button
             className="material-symbols-outlined btn btn-sm ml-2 bg-red-700 text-white"
-            onClick={() => handleDelete(activity._id)}
+            onClick={() =>
+              document.getElementById("delete_activity").showModal()
+            }
           >
             delete
           </button>
+
+          <dialog id="delete_activity" className="modal">
+            <div className="modal-box">
+              <h3 className="text-lg font-bold">Confirm to delete?</h3>
+              <p className="py-4">This deletion can't be undone!</p>
+              <div className="modal-action">
+                <form method="dialog">
+                  {/* if there is a button in form, it will close the modal */}
+                  <button className="btn mr-3">Close</button>
+                  <button
+                    className="btn bg-red-500 text-white"
+                    onClick={() => handleDelete(activity._id)}
+                  >
+                    Confirm
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
         </article>
       </section>
     </main>
