@@ -36,10 +36,7 @@ function EditActivity() {
 
   useEffect(() => {
     const getDataById = async (id) => {
-      const response = await axios.get(
-        `https://jsd6-loglife-backend.onrender.com/activities/${id}`,
-      );
-
+      const response = await axios.get(`https://jsd6-loglife-backend.onrender.com/activities/${id}`);
       if (response.status === 200) {
         const data = { ...response.data };
         setTitle(data.title);
@@ -63,6 +60,8 @@ function EditActivity() {
       const putData = async () => {
         const titleToAdd = title || activityType;
         const putData = {
+          //  Temporary fix USER ID
+          userId: "65b8c301581f2faab26d412d",
           title: titleToAdd,
           description: description,
           type: activityType,
@@ -73,12 +72,7 @@ function EditActivity() {
           barometer: barometer,
         };
 
-        const response = await axios.put(
-          `https://jsd6-loglife-backend.onrender.com/activities/${activityId}`,
-          putData,
-        );
-
-        // console.log(response);
+        const response = await axios.put(`https://jsd6-loglife-backend.onrender.com/activities/${activityId}`, putData);
 
         if (response.status === 200) {
           navigate("/activities");

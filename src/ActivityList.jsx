@@ -28,9 +28,7 @@ function ActivityList() {
   useEffect(() => {
     const userId = "65b8c301581f2faab26d412d"; //?? How'd we import the userId after the authenticatio?
     const getData = async () => {
-      const response = await axios.get(
-        `https://jsd6-loglife-backend.onrender.com/activities/user/${userId}`,
-      );
+      const response = await axios.get(`https://jsd6-loglife-backend.onrender.com/activities/user/${userId}`);
 
       if (response.status === 200 && response.data) {
         setActivities([...response.data]);
