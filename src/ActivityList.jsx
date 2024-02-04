@@ -26,26 +26,21 @@ function ActivityList() {
   }
 
   useEffect(() => {
+    const userId = "65b8c301581f2faab26d412d"; //?? How'd we import the userId after the authenticatio?
     const getData = async () => {
-      const response = await axios.get(
-        // "https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities",
-        "https://jsd6-loglife-backend.onrender.com/activities/user/65b8c301581f2faab26d412d",
-      );
+      const response = await axios.get(`https://jsd6-loglife-backend.onrender.com/activities/user/${userId}`);
 
       if (response.status === 200 && response.data) {
         setActivities([...response.data]);
       }
     };
     getData();
+    console.log(activities);
   }, [filterType, reload]);
-
-  const sortedActivities = activities.sort(
-    (a, b) => b.activityId - a.activityId,
-  );
 
   return (
     <Layout>
-      <main className="container mx-auto mt-3 px-2 py-2 max-w-5xl md:flex md:flex-col md:items-center md:rounded-xl md:mt-4 md:bg-white md:drop-shadow-md">
+      <main className="container mx-auto mt-3 max-w-5xl px-2 py-2 md:mt-4 md:flex md:flex-col md:items-center md:rounded-xl md:bg-white md:drop-shadow-md">
         <div className="mx-3 mb-5 flex max-md:overflow-scroll">
           <SelectorButton
             choicesData={choicesData}
@@ -54,52 +49,67 @@ function ActivityList() {
           />
         </div>
 
-        {/* <div className="pb-2 pl-4 pr-4">
-          {activities.map((a) => {
-            return (
-              <MainCard
-                key={a.activityId}
-                activity={a}
-                reload={reload}
-                setReload={setReload}
-              />
-            );
-          })}
-        </div> */}
+        <div className="pb-2 pl-4 pr-4">
+          {
+            activities.map((a) => {
+              return (
+                <MainCard
+                  key={a._id}
+                  activity={a}
+                  reload={reload}
+                  setReload={setReload}
+                />
+              );
+            })[0]
+          }
+        </div>
 
-        <div className="md:grid md:grid-cols-2 md:gap-2 md:place-items-center lg:grid-cols-3 xl:grid-cols-4">
-          {sortedActivities.slice(1).map((activity) => {
+        <div className="md:grid md:grid-cols-2 md:place-items-center md:gap-2 lg:grid-cols-3 xl:grid-cols-4">
+          {/* If the sorted data already sent from GET, change this to activities.slice(1)... */}
+          {activities.slice(1).map((activity) => {
             switch (filterType) {
               case "All":
-                return <ListedCard key={activity.id} activities={activity} />;
+                return <ListedCard key={activity._id} activities={activity} />;
               case "Running":
                 if (activity.type === "Running") {
-                  return <ListedCard key={activity.id} activities={activity} />;
+                  return (
+                    <ListedCard key={activity._id} activities={activity} />
+                  );
                 }
                 break;
               case "Cycling":
                 if (activity.type === "Cycling") {
-                  return <ListedCard key={activity.id} activities={activity} />;
+                  return (
+                    <ListedCard key={activity._id} activities={activity} />
+                  );
                 }
                 break;
               case "Swimming":
                 if (activity.type === "Swimming") {
-                  return <ListedCard key={activity.id} activities={activity} />;
+                  return (
+                    <ListedCard key={activity._id} activities={activity} />
+                  );
                 }
                 break;
               case "Hiking":
                 if (activity.type === "Hiking") {
-                  return <ListedCard key={activity.id} activities={activity} />;
+                  return (
+                    <ListedCard key={activity._id} activities={activity} />
+                  );
                 }
                 break;
               case "Walking":
                 if (activity.type === "Walking") {
-                  return <ListedCard key={activity.id} activities={activity} />;
+                  return (
+                    <ListedCard key={activity._id} activities={activity} />
+                  );
                 }
                 break;
               case "Other":
                 if (activity.type === "Other") {
-                  return <ListedCard key={activity.id} activities={activity} />;
+                  return (
+                    <ListedCard key={activity._id} activities={activity} />
+                  );
                 }
                 break;
             }
@@ -114,12 +124,10 @@ function ActivityList() {
 function AddActivityBtn() {
   return (
     <>
-      <div 
-        className="fixed bottom-2 right-2 xl:left-3/4 "
-      >
+      <div className="fixed bottom-2 right-2 xl:left-3/4 ">
         <a href="/activities/create">
           <img
-            className="h-[5rem] w-[5rem] hover:scale-110 transition duration-300 ease-in-out"
+            className="h-[5rem] w-[5rem] transition duration-300 ease-in-out hover:scale-110"
             src="https://cdn-icons-png.flaticon.com/512/4601/4601618.png"
             alt="Add activity button"
           ></img>
