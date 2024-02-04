@@ -36,7 +36,7 @@
   @font-face {
     font-family: Geist;
     font-weight: 700;
-    src: url(/public/fonts/Geist-Bold.woff2) format("woff2");
+    src: url(/fonts/Geist-Bold.woff2) format("woff2");
   }
   @font-face {
     font-family: Geist;
