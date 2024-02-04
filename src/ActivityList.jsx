@@ -28,7 +28,8 @@ function ActivityList() {
   useEffect(() => {
     const getData = async () => {
       const response = await axios.get(
-        "https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities",
+        // "https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities",
+        "https://jsd6-loglife-backend.onrender.com/activities/user/65b8c301581f2faab26d412d",
       );
 
       if (response.status === 200 && response.data) {
