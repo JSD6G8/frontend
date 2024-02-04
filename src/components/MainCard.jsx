@@ -73,18 +73,18 @@ function MainCard({ activity, reload, setReload }) {
     <main
       className={`${moodColor} m-3 flex flex-col gap-3 rounded-2xl p-4 shadow-2xl`}
     >
-      <section className="flex justify-between rounded-t-lg border-b-2 border-slate-300 pb-2">
+      <section className="flex justify-between rounded-t-lg border-b-2 border-white pb-2">
         <article className="flex">
-          <div className="flex h-10 w-10 flex-col  justify-evenly rounded-full bg-slate-100 drop-shadow-2xl">
+          <div className="flex h-10 w-10 flex-none flex-col justify-evenly rounded-full bg-slate-100 drop-shadow-2xl">
             <span className="material-symbols-outlined self-center">
               {activitySymbol}
             </span>
           </div>
-          <h1 className="mx-3 self-center text-xl  font-extrabold text-[#ffffff] drop-shadow-2xl">
+          <h1 className="mx-3 self-center text-xl  font-extrabold text-slate-800 drop-shadow-2xl">
             {activity.title}
           </h1>
         </article>
-        <span className="self-center text-xl font-bold text-base-100 drop-shadow-2xl">
+        <span className="self-center text-xl font-bold text-slate-800 drop-shadow-2xl">
           {activity.duration.hour || ""}
           {!activity.duration.hour
             ? ""
@@ -101,24 +101,31 @@ function MainCard({ activity, reload, setReload }) {
       </section>
 
       <section>
-        <p className=" text-md font-medium tracking-wide text-[#ffffff] drop-shadow-2xl">
+        <p className=" text-lg font-medium tracking-wide text-slate-800 drop-shadow-2xl">
           {activity.description || "It was a good experience isn't it? 😺"}
         </p>
       </section>
 
-      <section className="flex items-center justify-between border-t-2 border-slate-300 p-2 pb-0">
-        <span className="font-mono text-sm text-[#ffffff] drop-shadow-2xl">
-          {activity.date} | {activity.startTime} - {activity.endTime}
-        </span>
-        <article className="flex gap-2">
+      <section className="flex items-center justify-between border-t-2 border-white pb-0 pt-2">
+        <div className="flex flex-col">
+          <span className=" text-md font-bold text-slate-800 drop-shadow-2xl">
+            {activity.date}
+          </span>
+          <span className=" text-sm font-light text-slate-800 drop-shadow-2xl">
+            {activity.startTime} - {activity.endTime}
+          </span>
+        </div>
+
+        <article className="ml-1 flex gap-1">
           <a
-            className="material-symbols-outlined text-neutral"
+            className="material-symbols-outlined btn btn-sm
+             rounded-md border bg-yellow-600 text-white"
             href={`/activities/edit?id=${activity._id}`}
           >
             edit
           </a>
           <button
-            className="material-symbols-outlined text-base-100 hover:bg-slate-200"
+            className="material-symbols-outlined btn btn-sm ml-2 bg-red-700 text-white"
             onClick={() => handleDelete(activity._id)}
           >
             delete

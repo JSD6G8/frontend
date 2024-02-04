@@ -80,7 +80,7 @@ function ListedCard({ activities }) {
           </span>
         </div>
         {/* brief activity info */}
-        <div className=" flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100 md:mt-2 md:h-64 md:rounded-b-xl">
+        <div className=" flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100  md:h-64 md:rounded-b-xl">
           <div
             id="summary-description"
             className="mx-4 mb-2 mt-4 md:mx-3 md:mb-0 md:mt-1"
@@ -115,7 +115,7 @@ function ListedCard({ activities }) {
               <p className="text-xs font-normal">{activities.startTime}</p>
             </div>
             <div className="mx-3 mb-3 mt-1 flex self-end max-md:hidden">
-              <button className="material-symbols-outlined btn btn-sm mx-1 bg-yellow-500 text-white">
+              <button className="material-symbols-outlined btn btn-sm mx-1 bg-yellow-600 text-white">
                 edit
               </button>
               <button className="material-symbols-outlined btn btn-sm bg-red-700 text-white">
