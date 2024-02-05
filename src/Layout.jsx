@@ -5,6 +5,7 @@ import {
   NavLoggedInDesktop,
 } from "./components/Nav";
 import { useState } from "react";
+import Footer from "./components/Footer";
 
 // TODO: Add dev login toggle
 // TODO: Make nav fixed position
@@ -22,6 +23,7 @@ function Layout({ children }) {
         <NavLoggedInDesktop isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       </div>
       {children}
+      <Footer />
     </div>
   );
 }
