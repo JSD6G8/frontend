@@ -1,16 +1,15 @@
-# JSD6 Group 8 Project
+# LogLife : The activities tracking application
+
+### Frontend stacks
 
 - React framework
-- Tailwind CSS with daisyUI
+- Tailwind CSS
+- daisyUI
 
-vercel link: https://frontend-jsd6-group-8.vercel.app/
+### Frontend deployment site
 
-mockapi url: https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities
-- GET
-  -  axios.get("https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities")
-- GET (by id)
-  -  axios.get(`https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities/${id}`)
-- POST (create)
-- PUT (update by id)
-- DELETE (delete by id)
+> <https://frontend-jsd6-group-8.vercel.app/>
 
+### Read the APIs endpoints documentation here
+
+> <https://github.com/JSD6G8/backend/blob/main/README.md>
