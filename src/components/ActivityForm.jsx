@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import "./ActivityForm.css";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import formatDuration from "../utils/formatDuration";
 
 function ActivityTypeLabel({ activityType, setActivityType, type, icon }) {
   return (
@@ -104,11 +105,6 @@ export default function ActivityForm({
       });
     }
   }, [startTime, endTime, date, setDuration]);
-
-  const formatDuration = (value, singular, plural) => {
-    if (!value) return "";
-    return value === 1 ? `${value} ${singular}` : `${value} ${plural}`;
-  };
 
   return (
     <form
