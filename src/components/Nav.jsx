@@ -21,7 +21,9 @@ function NavGuest({ isLoggedIn, setIsLoggedIn }) {
     <nav>
       <div className="navbar bg-white drop-shadow-md">
         <div className="navbar-start">
-          <img src="public/logo_black.svg" alt="LogLife logo" />
+          <a href="/">
+            <img src="/logo_black.svg" alt="LogLife logo" />
+          </a>
         </div>
         <div className="navbar-end">
           <TempLoginToggle
@@ -85,7 +87,9 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
           </div>
         </div>
         <div className="navbar-center">
-          <img src="public/logo_black.svg" alt="LogLife logo" />
+          <a href="/">
+            <img src="/logo_black.svg" alt="LogLife logo" />
+          </a>
         </div>
         <div className="navbar-end">
           <TempLoginToggle
@@ -132,7 +136,9 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
     <nav>
       <div className="navbar bg-white drop-shadow-md max-lg:hidden">
         <div className="navbar-start">
-          <img src="public/logo_black.svg" alt="LogLife logo" />
+          <a href="/">
+            <img src="/logo_black.svg" alt="LogLife logo" />
+          </a>
           <div>
             <ul className="menu menu-horizontal">
               <li>
