@@ -77,7 +77,7 @@ function Login() {
                                 />
                             </label>
                         </div>
-                        <div className="my-5">
+                        <div className="my-8">
                             <label className="block text-black">Password
                                 <input
                                     type="password"

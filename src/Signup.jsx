@@ -52,8 +52,8 @@ function Signup() {
 
         if (!formData.password.trim()) {
             newErrors.password = 'Password is required';
-        } else if (formData.password.length < 4) {
-            newErrors.password = 'Password must be more than 4 characters long';
+        } else if (formData.password.length < 8) {
+            newErrors.password = 'Password must be more than 8 characters long';
         } else if (!specialChars.test(formData.password)) {
             newErrors.password = 'Password must have special character ._-@%$#!';
         }
@@ -100,101 +100,108 @@ function Signup() {
 
     return (
         <Layout>
-                <div className="bg-white mx-auto my-10 shadow-md rounded-xl w-10/12 max-w-lg">
-                    <div className="p-8">
-                        <h1 className="font-medium text-2xl mt-3 text-center">Sign up</h1>
-                        <form className="mt-6" onSubmit={handleSubmit}>
-                            <div className="md:flex">
-                                <div className="md:w-1/2 md:mr-3">
-                                    <label>First Name <span className="text-red-500">*</span>
-                                        <input
-                                            type="text"
-                                            name="first_name"
-                                            id="first_name"
-                                            value={formData.first_name}
-                                            onChange={handleChange}
-                                            className="input bg-gray-100 rounded-sm px-4 py-3 mt-3 w-full"
-                                            placeholder="First Name"
-                                        />
-                                        {errors.first_name && (
-                                            <p className="text-red-500 text-xs mt-1">{errors.first_name}</p>
-                                        )}
-                                    </label>
-                                </div>
-                                <div className="my-5 md:my-0 md:w-1/2 md:ml-3">
-                                    <label>Last Name <span className="text-red-500">*</span>
-                                        <input
-                                            type="text"
-                                            name="last_name"
-                                            id="last_name"
-                                            value={formData.last_name}
-                                            onChange={handleChange}
-                                            className="bg-gray-100 input px-4 py-3 mt-3 w-full text-sm"
-                                            placeholder="Last Name"
-                                        />
-                                        {errors.last_name && (
-                                            <p className="text-red-500 text-xs mt-1">{errors.last_name}</p>
-                                        )}
-                                    </label>
-                                </div>
-                            </div>
-                            <div className="my-5">
-                                <label>Email Address <span className="text-red-500">*</span>
-                                    <input
-                                        type="text"
-                                        name="email"
-                                        id="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        className="input bg-gray-100 px-4 py-3 mt-3 w-full"
-                                        placeholder="Email Address"
-                                    />
-                                    {errors.email && (
-                                        <p className="text-red-500 text-xs mt-1">{errors.email}</p>
-                                    )}
-                                </label>
-                            </div>
-                            <div className="my-5 mt-2">
-                                <label>Password <span className="text-red-500">*</span>
-                                    <input
-                                        type="password"
-                                        name="password"
-                                        id="password"
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        className="input bg-gray-100 px-4 py-3 mt-3 w-full"
-                                        placeholder="Password"
-                                    />
-                                    {errors.password && (
-                                        <p className="text-red-500 text-xs mt-1">{errors.password}</p>
-                                    )}
-                                </label>
-                            </div>
-                            <div className="my-5">
-                                <label>Confirm Password <span className="text-red-500">*</span>
-                                    <input
-                                        type="password"
-                                        name="confirm_password"
-                                        id="confirm_password"
-                                        value={formData.confirm_password}
-                                        onChange={handleChange}
-                                        className="input bg-gray-100 px-4 py-3 mt-3 w-full"
-                                        placeholder="Confirm Password"
-                                    />
-                                    {errors.confirm_password && (
-                                        <p className="text-red-500 text-xs mt-1">{errors.confirm_password}</p>
-                                    )}
-                                </label>
-                            </div>
-                            <div className="my-10">
-                                <button type="submit" className="block text-center text-white bg-primary my-2 py-[14.5px] duration-300 rounded-lg hover:bg-secondary w-full">
-                                    Sign up
-                                </button>
-                            </div>
-                        </form>
+            <div className="bg-white mx-auto my-10 shadow-md rounded-xl w-10/12 max-w-lg">
+                <div className="p-8">
+                    <h1 className="font-medium text-2xl mt-3 text-center">Sign up</h1>
+                    <form className="mt-6" onSubmit={handleSubmit}>
+                        <div className="my-8" >
+                            <label>First Name
+                                <input
+                                    type="text"
+                                    name="first_name"
+                                    id="first_name"
+                                    value={formData.first_name}
+                                    onChange={handleChange}
+                                    className="input bg-gray-100 rounded-sm px-4 py-3 mt-3 w-full"
+                                    placeholder="First Name"
+                                />
+                                {errors.first_name && (
+                                    <p className="text-red-500 text-xs mt-1">{errors.first_name}</p>
+                                )}
+                            </label>
+                        </div>
+                        <div className="my-8">
+                            <label>Last Name
+                                <input
+                                    type="text"
+                                    name="last_name"
+                                    id="last_name"
+                                    value={formData.last_name}
+                                    onChange={handleChange}
+                                    className="bg-gray-100 input px-4 py-3 mt-3 w-full text-sm"
+                                    placeholder="Last Name"
+                                />
+                                {errors.last_name && (
+                                    <p className="text-red-500 text-xs mt-1">{errors.last_name}</p>
+                                )}
+                            </label>
+                        </div>
+                        <div className="my-8">
+                            <label>Email Address
+                                <input
+                                    type="text"
+                                    name="email"
+                                    id="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    className="input bg-gray-100 px-4 py-3 mt-3 w-full"
+                                    placeholder="Email Address"
+                                />
+                                {errors.email && (
+                                    <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                                )}
+                            </label>
+                        </div>
+                        <div className="my-8">
+                            <label>Password
+                                <input
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    className="input bg-gray-100 px-4 py-3 mt-3 w-full"
+                                    placeholder="Password"
+                                />
+                                {errors.password && (
+                                    <p className="text-red-500 text-xs mt-1">{errors.password}</p>
+                                )}
+                            </label>
+                            <p className="text-sm text-gray-400 font-light mt-2">Password must:</p>
+                            <div className="pl-10 text-sm">
+                                <ul className="list-disc text-gray-400 font-light">
+                                    <li>Be more than 8 characters</li>
+                                    <li>Must have special character ._-@%$#!</li>
+                                </ul>
 
-                        {/* Social Sign up*/}
-                        {/* <div className="my-4 mt-10 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
+                            </div>
+
+                        </div>
+                        <div className="my-8">
+                            <label>Confirm Password
+                                <input
+                                    type="password"
+                                    name="confirm_password"
+                                    id="confirm_password"
+                                    value={formData.confirm_password}
+                                    onChange={handleChange}
+                                    className="input bg-gray-100 px-4 py-3 mt-3 w-full"
+                                    placeholder="Confirm Password"
+                                />
+                                {errors.confirm_password && (
+                                    <p className="text-red-500 text-xs mt-1">{errors.confirm_password}</p>
+                                )}
+                            </label>
+                        </div>
+                        <div className="my-10">
+                            <button type="submit" className="block text-center text-white bg-primary my-2 py-[14.5px] duration-300 rounded-lg hover:bg-secondary w-full">
+                                Sign up
+                            </button>
+                        </div>
+                    </form>
+
+                    {/* Social Sign up*/}
+                    {/* <div className="my-4 mt-10 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
                             <p className="md:mx-2 text-sm font-light text-gray-400">
                                 Sign up With Social
                             </p>
@@ -215,9 +222,9 @@ function Signup() {
                         </div> */}
 
 
-                        <p className="mt-10 text-sm text-center font-light text-gray-400">Do you have an account?  <a href="/login" className="text-black font-medium hover:underline decoration-black">Login here</a></p>
-                    </div>
+                    <p className="mt-10 text-sm text-center font-light text-gray-400">Do you have an account?  <a href="/login" className="text-black font-medium hover:underline decoration-black">Login here</a></p>
                 </div>
+            </div>
         </Layout>
     )
 }
