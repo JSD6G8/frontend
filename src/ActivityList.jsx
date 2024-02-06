@@ -28,7 +28,9 @@ function ActivityList() {
   useEffect(() => {
     const userId = "65b8c301581f2faab26d412d"; //?? How'd we import the userId after the authenticatio?
     const getData = async () => {
-      const response = await axios.get(`https://jsd6-loglife-backend.onrender.com/activities/user/${userId}`);
+      const response = await axios.get(
+        `https://jsd6-loglife-backend.onrender.com/activities/user/${userId}`,
+      );
 
       if (response.status === 200 && response.data) {
         setActivities([...response.data]);
@@ -40,33 +42,24 @@ function ActivityList() {
 
   return (
     <Layout>
-      <main className="container mx-auto mt-3 max-w-5xl px-2 py-2 md:mt-4 md:flex md:flex-col md:items-center md:rounded-xl md:bg-white md:drop-shadow-md">
-        <div className="mx-3 mb-5 flex max-md:overflow-scroll">
-          <SelectorButton
-            choicesData={choicesData}
-            selected={filterType}
-            setResult={filterTypeUpdate}
-          />
-        </div>
-
-        <div className="pb-2 pl-4 pr-4">
-          {
-            activities.map((a) => {
-              return (
-                <MainCard
-                  key={a._id}
-                  activity={a}
-                  reload={reload}
-                  setReload={setReload}
-                />
-              );
-            })[0]
-          }
+      <main className="container mx-auto mt-3 max-w-5xl px-2  md:mt-4 md:flex md:flex-col md:items-center md:rounded-xl md:bg-white md:drop-shadow-md">
+        <h1 className="mx-3 my-2 text-4xl font-extrabold">Activities</h1>
+        <div className="flex justify-around">
+          <div className="mx-3 flex max-md:overflow-scroll">
+            <SelectorButton
+              choicesData={choicesData}
+              selected={filterType}
+              setResult={filterTypeUpdate}
+            />
+          </div>
+          <div className="flex-shrink-0">
+            <SortButton />
+          </div>
         </div>
 
         <div className="md:grid md:grid-cols-2 md:place-items-center md:gap-2 lg:grid-cols-3 xl:grid-cols-4">
           {/* If the sorted data already sent from GET, change this to activities.slice(1)... */}
-          {activities.slice(1).map((activity) => {
+          {activities.map((activity) => {
             switch (filterType) {
               case "All":
                 return <ListedCard key={activity._id} activities={activity} />;

@@ -2,13 +2,13 @@ import React from "react";
 
 const SortButton = () => {
   return (
-    <div className="dropdown dropdown-hover m-3">
+    <div className="dropdown dropdown-end dropdown-hover mr-3 mt-1">
       <div
         tabIndex={0}
         role="button"
         className="btn btn-active btn-sm m-1 hover:btn-outline hover:bg-zinc-600 hover:text-white"
       >
-        Sort by:
+        Sort by
       </div>
       <ul
         tabIndex={0}
