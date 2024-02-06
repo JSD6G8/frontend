@@ -66,11 +66,11 @@ function ListedCard({ activities }) {
   return (
     <>
       {/* base card */}
-      <div className="m-3 flex h-1/4 flex-row rounded-l-xl rounded-r-xl shadow-xl md:h-60 md:w-60 md:flex-col">
+      <div className="m-3 flex h-1/4 flex-row rounded-l-xl rounded-r-xl shadow-xl md:mt-4 md:h-max md:w-60 md:flex-col">
         {/* barometer color */}
         <div
           id="activities-baro"
-          className={`${moodColor} flex w-32 flex-col justify-evenly rounded-l-xl md:h-60 md:w-full md:rounded-b-none md:rounded-t-xl`}
+          className={`${moodColor} flex w-32 flex-col justify-evenly rounded-l-xl md:h-36 md:w-full md:rounded-b-none md:rounded-t-xl`}
         >
           <span
             className="material-symbols-outlined self-center"
@@ -80,10 +80,10 @@ function ListedCard({ activities }) {
           </span>
         </div>
         {/* brief activity info */}
-        <div className=" flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100 md:mt-2 md:h-64 md:rounded-b-xl">
+        <div className="flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100  md:rounded-b-xl md:rounded-t-none">
           <div
             id="summary-description"
-            className="mx-4 mb-2 mt-4 md:mx-3 md:mb-0 md:mt-1"
+            className="mx-4 mb-2 mt-4 md:mx-3 md:mb-1 md:mt-4"
           >
             <div>{shortenedDetail(activities.title, 20)}</div>
             <div className="text-sm font-light">
@@ -114,13 +114,8 @@ function ListedCard({ activities }) {
               <p className="text-xs font-thin italic text-slate-600">at</p>
               <p className="text-xs font-normal">{activities.startTime}</p>
             </div>
-            <div className="mx-3 mb-3 mt-1 flex self-end max-md:hidden">
-              <button className="material-symbols-outlined btn btn-sm mx-1 bg-yellow-500 text-white">
-                edit
-              </button>
-              <button className="material-symbols-outlined btn btn-sm bg-red-700 text-white">
-                delete
-              </button>
+            <div className="mx-3 mb-3 flex h-9 w-9 items-center justify-center self-end rounded-full bg-slate-300 max-md:hidden">
+              <span className="material-symbols-outlined text-black">edit</span>
             </div>
           </div>
         </div>
