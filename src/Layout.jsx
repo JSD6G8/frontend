@@ -14,7 +14,7 @@ function Layout({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
-    <div>
+    <>
       <div className={isLoggedIn ? "hidden" : ""}>
         <NavGuest isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       </div>
@@ -24,7 +24,7 @@ function Layout({ children }) {
       </div>
       {children}
       <Footer />
-    </div>
+    </>
   );
 }
 
