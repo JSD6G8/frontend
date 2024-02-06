@@ -70,7 +70,7 @@ function ListedCard({ activities }) {
         {/* barometer color */}
         <div
           id="activities-baro"
-          className={`${moodColor} flex w-32 flex-col justify-evenly rounded-l-xl md:h-36 md:w-full md:rounded-b-none md:rounded-t-xl`}
+          className={`${moodColor} flex w-32 flex-col justify-evenly rounded-l-xl md:h-32 md:w-full md:rounded-b-none md:rounded-t-xl`}
         >
           <span
             className="material-symbols-outlined self-center"
@@ -85,7 +85,7 @@ function ListedCard({ activities }) {
             id="summary-description"
             className="mx-4 mb-2 mt-4 md:mx-3 md:mb-1 md:mt-4"
           >
-            <div>{shortenedDetail(activities.title, 20)}</div>
+            <div>{shortenedDetail(activities.title, 16)}</div>
             <div className="text-sm font-light">
               <div className="inline">
                 {activities.duration.hour || ""}{" "}
