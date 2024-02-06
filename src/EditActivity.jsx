@@ -7,8 +7,6 @@ import Layout from "./Layout";
 import ActivityForm from "./components/ActivityForm";
 import validateForm from "./form-validation";
 
-// TODO: remove default activityId after integration
-
 function EditActivity() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -85,13 +83,10 @@ function EditActivity() {
 
   return (
     <Layout>
-      <div className="container mx-auto flex h-[80svh] flex-col justify-between px-2 lg:px-4">
-        <header>
-          <h1 className="text-lg lg:text-3xl">Edit Activity</h1>
-        </header>
-
+      <div className="container mx-auto max-w-lg px-2 py-2 md:mt-4 md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
         <main className="h-full">
           <ActivityForm
+            formHeading="Edit Activity"
             handleSubmit={handleEdit}
             title={title}
             setTitle={setTitle}
