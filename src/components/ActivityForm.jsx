@@ -208,7 +208,7 @@ export default function ActivityForm({
               setStartTime(e.target.value);
             }}
           />
-          <span>to:</span>
+          <span className="text-base md:text-xl">to:</span>
           <input
             className="rounded border-2"
             type="time"
@@ -227,7 +227,7 @@ export default function ActivityForm({
 
       <fieldset className="flex gap-1">
         <h2 className="text-base md:text-xl">Duration:</h2>
-        <span>
+        <span className="text-base md:text-xl">
           {formatDuration(duration.hour, "hour", "hours")}{" "}
           {formatDuration(duration.minute, "minute", "minutes")}
         </span>
