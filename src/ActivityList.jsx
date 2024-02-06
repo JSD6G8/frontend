@@ -62,46 +62,66 @@ function ActivityList() {
           {activities.map((activity) => {
             switch (filterType) {
               case "All":
-                return <ListedCard key={activity._id} activities={activity} />;
+                return (
+                  <ListedCard key={activity.activityId} activities={activity} />
+                );
               case "Running":
                 if (activity.type === "Running") {
                   return (
-                    <ListedCard key={activity._id} activities={activity} />
+                    <ListedCard
+                      key={activity.activityId}
+                      activities={activity}
+                    />
                   );
                 }
                 break;
               case "Cycling":
                 if (activity.type === "Cycling") {
                   return (
-                    <ListedCard key={activity._id} activities={activity} />
+                    <ListedCard
+                      key={activity.activityId}
+                      activities={activity}
+                    />
                   );
                 }
                 break;
               case "Swimming":
                 if (activity.type === "Swimming") {
                   return (
-                    <ListedCard key={activity._id} activities={activity} />
+                    <ListedCard
+                      key={activity.activityId}
+                      activities={activity}
+                    />
                   );
                 }
                 break;
               case "Hiking":
                 if (activity.type === "Hiking") {
                   return (
-                    <ListedCard key={activity._id} activities={activity} />
+                    <ListedCard
+                      key={activity.activityId}
+                      activities={activity}
+                    />
                   );
                 }
                 break;
               case "Walking":
                 if (activity.type === "Walking") {
                   return (
-                    <ListedCard key={activity._id} activities={activity} />
+                    <ListedCard
+                      key={activity.activityId}
+                      activities={activity}
+                    />
                   );
                 }
                 break;
               case "Other":
                 if (activity.type === "Other") {
                   return (
-                    <ListedCard key={activity._id} activities={activity} />
+                    <ListedCard
+                      key={activity.activityId}
+                      activities={activity}
+                    />
                   );
                 }
                 break;
