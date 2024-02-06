@@ -7,8 +7,6 @@ import Layout from "./Layout";
 import ActivityForm from "./components/ActivityForm";
 import validateForm from "./form-validation";
 
-// TODO: remove default activityId after integration
-
 function EditActivity() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -36,10 +34,7 @@ function EditActivity() {
 
   useEffect(() => {
     const getDataById = async (id) => {
-      const response = await axios.get(
-        `https://jsd6-loglife-backend.onrender.com/activities/${id}`,
-      );
-
+      const response = await axios.get(`https://jsd6-loglife-backend.onrender.com/activities/${id}`);
       if (response.status === 200) {
         const data = { ...response.data };
         setTitle(data.title);
@@ -63,6 +58,8 @@ function EditActivity() {
       const putData = async () => {
         const titleToAdd = title || activityType;
         const putData = {
+          //  Temporary fix USER ID
+          userId: "65b8c301581f2faab26d412d",
           title: titleToAdd,
           description: description,
           type: activityType,
@@ -73,12 +70,7 @@ function EditActivity() {
           barometer: barometer,
         };
 
-        const response = await axios.put(
-          `https://jsd6-loglife-backend.onrender.com/activities/${activityId}`,
-          putData,
-        );
-
-        // console.log(response);
+        const response = await axios.put(`https://jsd6-loglife-backend.onrender.com/activities/${activityId}`, putData);
 
         if (response.status === 200) {
           navigate("/activities");
@@ -91,13 +83,10 @@ function EditActivity() {
 
   return (
     <Layout>
-      <div className="container mx-auto flex h-[80svh] flex-col justify-between px-2 lg:px-4">
-        <header>
-          <h1 className="text-lg lg:text-3xl">Edit Activity</h1>
-        </header>
-
+      <div className="container mx-auto max-w-lg px-2 py-2 md:mt-4 md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
         <main className="h-full">
           <ActivityForm
+            formHeading="Edit Activity"
             handleSubmit={handleEdit}
             title={title}
             setTitle={setTitle}

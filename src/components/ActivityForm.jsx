@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import "./ActivityForm.css";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import formatDuration from "../utils/formatDuration";
 
 function ActivityTypeLabel({ activityType, setActivityType, type, icon }) {
   return (
@@ -54,6 +55,7 @@ function BarometerLabel({
 }
 
 export default function ActivityForm({
+  formHeading = "Create Activity",
   handleSubmit,
   title,
   setTitle,
@@ -104,18 +106,14 @@ export default function ActivityForm({
     }
   }, [startTime, endTime, date, setDuration]);
 
-  const formatDuration = (value, singular, plural) => {
-    if (!value) return "";
-    return value === 1 ? `${value} ${singular}` : `${value} ${plural}`;
-  };
-
   return (
     <form
       className="flex h-full flex-col justify-between gap-4"
       onSubmit={handleSubmit}
     >
+      <h1 className="text-2xl md:text-3xl">{formHeading}</h1>
       <fieldset>
-        <h2 className="text-base lg:text-xl">Activity Title</h2>
+        <h2 className="text-base md:text-xl">Activity Title</h2>
         <input
           className="input input-bordered w-full text-sm"
           type="text"
@@ -127,7 +125,7 @@ export default function ActivityForm({
       </fieldset>
 
       <fieldset>
-        <h2 className="text-base lg:text-xl">Description</h2>
+        <h2 className="text-base md:text-xl">Description</h2>
         <textarea
           className="text-sn textarea textarea-bordered w-full resize-none"
           placeholder="Notes for anything (optional)"
@@ -137,7 +135,7 @@ export default function ActivityForm({
       </fieldset>
 
       <fieldset>
-        <h2 className="text-base lg:text-xl">Activity Type</h2>
+        <h2 className="text-base md:text-xl">Activity Type</h2>
 
         <div className="grid max-w-full grid-cols-3 justify-around gap-2">
           <ActivityTypeLabel
@@ -180,7 +178,7 @@ export default function ActivityForm({
       </fieldset>
 
       <fieldset className="flex max-w-full items-center gap-2">
-        <h2 className="text-base lg:text-xl">Date:</h2>
+        <h2 className="text-base md:text-xl">Date:</h2>
         <input
           className="rounded border-2"
           type="date"
@@ -195,7 +193,7 @@ export default function ActivityForm({
 
       <fieldset className="flex max-w-full flex-col justify-around">
         <div className="flex flex-row items-center gap-2">
-          <h2 className="text-base lg:text-xl">From:</h2>
+          <h2 className="text-base md:text-xl">From:</h2>
           <input
             className="rounded border-2"
             type="time"
@@ -206,7 +204,7 @@ export default function ActivityForm({
               setStartTime(e.target.value);
             }}
           />
-          <span>to:</span>
+          <span className="text-base md:text-xl">to:</span>
           <input
             className="rounded border-2"
             type="time"
@@ -224,8 +222,8 @@ export default function ActivityForm({
       </fieldset>
 
       <fieldset className="flex gap-1">
-        <h2 className="text-base lg:text-xl">Duration:</h2>
-        <span>
+        <h2 className="text-base md:text-xl">Duration:</h2>
+        <span className="text-base md:text-xl">
           {formatDuration(duration.hour, "hour", "hours")}{" "}
           {formatDuration(duration.minute, "minute", "minutes")}
         </span>
@@ -233,7 +231,7 @@ export default function ActivityForm({
 
       <fieldset>
         <div className="flex flex-row items-center">
-          <h2 className="text-base lg:text-xl">How did you feel?</h2>
+          <h2 className="text-base md:text-xl">How did you feel?</h2>
           <div
             className={`mx-2 h-2 flex-auto rounded ${barometerColorClass}`}
           ></div>
@@ -311,6 +309,7 @@ BarometerLabel.propTypes = {
 };
 
 ActivityForm.propTypes = {
+  formHeading: PropTypes.string,
   handleSubmit: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   setTitle: PropTypes.func.isRequired,

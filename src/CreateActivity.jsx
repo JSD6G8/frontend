@@ -48,6 +48,7 @@ function CreateActivity() {
       const postData = async () => {
         const titleToAdd = title || activityType;
         const postData = {
+          userId :"65b8c301581f2faab26d412d",
           title: titleToAdd,
           description: description,
           type: activityType,
@@ -59,7 +60,8 @@ function CreateActivity() {
         };
 
         const response = await axios.post(
-          "https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities",
+          // "https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities",
+          "https://jsd6-loglife-backend.onrender.com/activities/",
           postData,
         );
 
@@ -74,8 +76,9 @@ function CreateActivity() {
 
   return (
     <Layout>
-      <main className="container mx-auto h-full max-w-lg px-2 py-2 lg:px-4 md:rounded-xl md:mt-4 md:bg-white md:drop-shadow-md">
+      <main className="container mx-auto max-w-lg px-2 py-2 md:mt-4 md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
         <ActivityForm
+          formHeading="Create Activity"
           handleSubmit={handleCreate}
           title={title}
           setTitle={setTitle}
