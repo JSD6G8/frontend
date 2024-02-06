@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { Icon } from 'react-icons-kit';
+import { eyeOff } from 'react-icons-kit/feather/eyeOff';
+import { eye } from 'react-icons-kit/feather/eye';
 
 import Layout from "./Layout";
 
@@ -19,6 +22,8 @@ function Signup() {
     });
 
     const [errors, setErrors] = useState({});
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,6 +31,14 @@ function Signup() {
             ...formData,
             [name]: value,
         });
+    };
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const toggleConfirmPasswordVisibility = () => {
+        setShowConfirmPassword(!showConfirmPassword);
     };
 
     const handleSubmit = async (e) => {
@@ -154,15 +167,31 @@ function Signup() {
                         </div>
                         <div className="my-8">
                             <label>Password
-                                <input
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    value={formData.password}
-                                    onChange={handleChange}
-                                    className="input bg-gray-100 px-4 py-3 mt-3 w-full"
-                                    placeholder="Password"
-                                />
+                                <div className="relative">
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        name="password"
+                                        id="password"
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                        className="input bg-gray-100 px-4 py-3 mt-3 w-full"
+                                        placeholder="Password"
+                                    />
+                                    <span
+                                        className="absolute top-2.5 right-0 mt-3 mr-4 cursor-pointer"
+                                        onClick={togglePasswordVisibility}
+                                    >
+                                        {showPassword ? (
+                                            <div style={{ color: '#9ca3af' }}>
+                                                <Icon icon={eye} size={20} />
+                                            </div>
+                                        ) : (
+                                            <div style={{ color: '#9ca3af' }}>
+                                                <Icon icon={eyeOff} size={20} />
+                                            </div>
+                                        )}
+                                    </span>
+                                </div>
                                 {errors.password && (
                                     <p className="text-red-500 text-xs mt-1">{errors.password}</p>
                                 )}
@@ -179,20 +208,38 @@ function Signup() {
                         </div>
                         <div className="my-8">
                             <label>Confirm Password
-                                <input
-                                    type="password"
-                                    name="confirm_password"
-                                    id="confirm_password"
-                                    value={formData.confirm_password}
-                                    onChange={handleChange}
-                                    className="input bg-gray-100 px-4 py-3 mt-3 w-full"
-                                    placeholder="Confirm Password"
-                                />
+                                <div className="relative">
+                                    <input
+                                        type={showConfirmPassword ? "text" : "password"}
+                                        name="confirm_password"
+                                        id="confirm_password"
+                                        value={formData.confirm_password}
+                                        onChange={handleChange}
+                                        className="input bg-gray-100 px-4 py-3 mt-3 w-full"
+                                        placeholder="Confirm Password"
+                                    />
+                                    <span
+                                        className="absolute top-2.5 right-0 mt-3 mr-4 cursor-pointer"
+                                        onClick={toggleConfirmPasswordVisibility}
+                                    >
+                                        {showConfirmPassword ? (
+                                            <div style={{ color: '#9ca3af' }}>
+                                                <Icon icon={eye} size={20} />
+                                            </div>
+                                        ) : (
+                                            <div style={{ color: '#9ca3af' }}>
+                                                <Icon icon={eyeOff} size={20} />
+                                            </div>
+                                        )}
+                                    </span>
+                                </div>
                                 {errors.confirm_password && (
                                     <p className="text-red-500 text-xs mt-1">{errors.confirm_password}</p>
                                 )}
                             </label>
                         </div>
+
+
                         <div className="my-10">
                             <button type="submit" className="block text-center text-white bg-primary my-2 py-[14.5px] duration-300 rounded-lg hover:bg-secondary w-full">
                                 Sign up
@@ -209,7 +256,7 @@ function Signup() {
                         <div className=" mt-7">
                             <a href="#" className="flex items-center justify-center space-x-2 text-gray-600 my-2 py-3 bg-gray-100 hover:bg-gray-200 rounded-lg">
                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 48 48">
-                                    <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path><path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"></path><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
+                                    <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path><path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path><path fill="#4CAF50" d="M24,44c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"></path><path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
                                 </svg>
                                 <span>Sign up with Google</span>
                             </a>
@@ -224,11 +271,9 @@ function Signup() {
 
                     <p className="mt-10 text-sm text-center font-light text-gray-400">Do you have an account?  <a href="/login" className="text-black font-medium hover:underline decoration-black">Login here</a></p>
                 </div>
-            </div>
-        </Layout>
+            </div >
+        </Layout >
     )
 }
 
-
 export default Signup;
-
