@@ -1,6 +1,7 @@
 import Layout from "../Layout";
 import Footer from "./Footer";
 import "./Nav.css";
+import { AddButton } from "./AddButton";
 
 function TempLoginToggle({ isLoggedIn, setIsLoggedIn }) {
   return (
@@ -63,13 +64,13 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
               className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-white p-2 shadow"
             >
               <li>
-                <a className="py-5 text-base">
+                <a className="py-5 text-base" href="/activities">
                   <i className="fa-solid fa-person-running fa-xl"></i>
                   Activities
                 </a>
               </li>
               <li>
-                <a className="py-5 text-base">
+                <a className="py-5 text-base" href="/dashboard">
                   <i className="fa-solid fa-chart-column fa-lg"></i>Dashboard
                 </a>
               </li>
@@ -86,6 +87,7 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
         </div>
         <div className="navbar-end">
           <TempLoginToggle isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          <AddButton />
           <div className="dropdown dropdown-end mx-3">
             <div
               tabIndex={0}
@@ -201,6 +203,7 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
             </form>
           </div> */}
           <TempLoginToggle isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          <AddButton />
           <div className="dropdown dropdown-end mx-3">
             <div
               tabIndex={0}
