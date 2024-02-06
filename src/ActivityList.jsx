@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Layout from "./Layout";
 import ListedCard from "./components/ListedCard";
-import MainCard from "./components/MainCard";
 import SelectorButton from "./components/SelectorButton";
 import SortButton from "./components/SortButton";
 
@@ -42,23 +41,25 @@ function ActivityList() {
 
   return (
     <Layout>
-      <main className="container mx-auto mt-3 max-w-5xl px-2  md:mt-4 md:flex md:flex-col md:items-center md:rounded-xl md:bg-white md:drop-shadow-md">
-        <h1 className="mx-3 my-2 text-4xl font-extrabold">Activities</h1>
-        <div className="flex justify-around">
-          <div className="mx-3 flex max-md:overflow-scroll">
-            <SelectorButton
-              choicesData={choicesData}
-              selected={filterType}
-              setResult={filterTypeUpdate}
-            />
+      <main className="container mx-auto mb-3 mt-3 max-w-5xl px-2 xl:container md:mb-6 md:mt-6 md:flex md:flex-col md:items-center md:rounded-xl md:bg-white md:p-5 md:drop-shadow-md xl:mx-auto">
+        <div className="flex-col max-md:w-full md:mb-5 md:self-stretch md:px-20">
+          <div className="mb-5 mt-5 text-5xl font-semibold max-md:mx-3 md:text-left">
+            Activities
           </div>
-          <div className="flex-shrink-0">
-            <SortButton />
+          <div className="flex justify-around md:justify-between">
+            <div className="flex max-md:mx-3 max-md:overflow-scroll">
+              <SelectorButton
+                choicesData={choicesData}
+                selected={filterType}
+                setResult={filterTypeUpdate}
+              />
+            </div>
+            <div className="flex-shrink-0">
+              <SortButton />
+            </div>
           </div>
         </div>
-
-        <div className="md:grid md:grid-cols-2 md:place-items-center md:gap-2 lg:grid-cols-3 xl:grid-cols-4">
-          {/* If the sorted data already sent from GET, change this to activities.slice(1)... */}
+        <div className="md:grid md:grid-cols-2 md:place-items-center md:gap-x-3 md:gap-y-3 lg:grid-cols-3 lg:gap-x-3 xl:grid-cols-5 xl:gap-x-4">
           {activities.map((activity) => {
             switch (filterType) {
               case "All":
@@ -127,26 +128,9 @@ function ActivityList() {
                 break;
             }
           })}
-          <AddActivityBtn />
         </div>
       </main>
     </Layout>
-  );
-}
-
-function AddActivityBtn() {
-  return (
-    <>
-      <div className="fixed bottom-2 right-2 xl:left-3/4 ">
-        <a href="/activities/create">
-          <img
-            className="h-[5rem] w-[5rem] transition duration-300 ease-in-out hover:scale-110"
-            src="https://cdn-icons-png.flaticon.com/512/4601/4601618.png"
-            alt="Add activity button"
-          ></img>
-        </a>
-      </div>
-    </>
   );
 }
 
