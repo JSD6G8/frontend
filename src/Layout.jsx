@@ -14,7 +14,7 @@ function Layout({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
-    <div>
+    <>
       <div className={`${isLoggedIn ? "hidden" : ""} sticky top-0 z-10 w-full`}>
         <NavGuest isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       </div>
