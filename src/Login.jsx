@@ -99,7 +99,7 @@ function Login() {
                                         placeholder="Password"
                                     />
                                     <span
-                                        className="absolute top-2.5 right-0 mt-3 mr-4 cursor-pointer"
+                                        className="absolute top-3 right-0 mt-3 mr-4 cursor-pointer"
                                         onClick={togglePasswordVisibility}
                                     >
                                         {showPassword ? (
@@ -114,8 +114,6 @@ function Login() {
                                     </span>
                                 </div>
                             </label>
-
-
 
                             <div className="flex justify-end mt-2 text-xs text-gray-600">
                                 <a href="#">Forget Password?</a>
@@ -146,7 +144,6 @@ function Login() {
                             <span className="text-sm">Login with Facebook</span>
                         </a>
                     </div> */}
-
 
                     <p className="mt-10 text-sm text-center font-light text-gray-400">Don't have an account?  <a href="/signup" className="text-black font-medium hover:underline decoration-black">Sign Up here</a></p>
                 </div>

@@ -178,7 +178,7 @@ function Signup() {
                                         placeholder="Password"
                                     />
                                     <span
-                                        className="absolute top-2.5 right-0 mt-3 mr-4 cursor-pointer"
+                                        className="absolute top-3 right-0 mt-3 mr-4 cursor-pointer"
                                         onClick={togglePasswordVisibility}
                                     >
                                         {showPassword ? (
@@ -202,9 +202,7 @@ function Signup() {
                                     <li>Be more than 8 characters</li>
                                     <li>Must have special character ._-@%$#!</li>
                                 </ul>
-
                             </div>
-
                         </div>
                         <div className="my-8">
                             <label>Confirm Password
@@ -219,7 +217,7 @@ function Signup() {
                                         placeholder="Confirm Password"
                                     />
                                     <span
-                                        className="absolute top-2.5 right-0 mt-3 mr-4 cursor-pointer"
+                                        className="absolute top-3 right-0 mt-3 mr-4 cursor-pointer"
                                         onClick={toggleConfirmPasswordVisibility}
                                     >
                                         {showConfirmPassword ? (
@@ -267,7 +265,6 @@ function Signup() {
                                 <span>Sign up with Facebook</span>
                             </a>
                         </div> */}
-
 
                     <p className="mt-10 text-sm text-center font-light text-gray-400">Do you have an account?  <a href="/login" className="text-black font-medium hover:underline decoration-black">Login here</a></p>
                 </div>
