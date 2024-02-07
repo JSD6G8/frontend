@@ -5,6 +5,7 @@ import "./index.css";
 
 import Layout from "./Layout.jsx";
 import ActivityList from "./ActivityList.jsx";
+import ActivitiesDetails from "./ActivityDetails.jsx";
 import CreateActivity from "./CreateActivity.jsx";
 import EditActivity from "./EditActivity.jsx";
 import Nav from "./components/Nav.jsx";
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/activities",
     element: <ActivityList />,
+  },
+  {
+    path: "/activities/:id",
+    element: <ActivitiesDetails />,
   },
   {
     path: "/activities/create",
