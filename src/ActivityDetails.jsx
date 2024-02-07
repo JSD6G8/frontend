@@ -10,6 +10,24 @@ function ActivitiesDetails() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const barometerColor = {
+    1: "bg-info",
+    2: "bg-success",
+    3: "bg-warning",
+    4: "bg-error",
+    5: "bg-power",
+  };
+  const barometerColorClass = barometerColor[activity?.barometer];
+  const barometerImage = {
+    1: '/baro_1.png',
+    2: '/baro_2.png',
+    3: '/baro_3.png',
+    4: '/baro_4.png',
+    5: '/baro_5.png',
+  }
+  const barometerImageURL = barometerImage[activity?.barometer];
+
+
   useEffect(() => {
     const getDataById = async (id) => {
       const response = await axios.get(
@@ -29,12 +47,15 @@ function ActivitiesDetails() {
 
   return (
     <Layout>
-      <main className="container mx-auto flex max-w-lg flex-col items-center px-2 py-2 md:mt-4 md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
+      <main className="container mx-auto flex max-w-lg flex-col items-center">
         {loading ? (
           <span className="loading loading-spinner text-primary"></span>
         ) : (
           <>
-            <h1>Activities Details</h1>
+            <div className={`flex items-center justify-center w-full ${barometerColorClass}`}>
+              <h1 className="flex-auto text-center text-5xl text-white font-semibold">{activity.type.toUpperCase()}</h1>
+              <img className="mr-4 size-24" src={barometerImageURL} alt="barometer" />
+            </div>
             <h2>{activity.title}</h2>
             <p>{activity.description}</p>
             <p>{activity.type}</p>
