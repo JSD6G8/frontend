@@ -12,22 +12,41 @@ function ActivitiesDetails() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const barometerColor = {
+  const barometerColors = {
     1: "bg-info",
     2: "bg-success",
     3: "bg-warning",
     4: "bg-error",
     5: "bg-power",
   };
-  const barometerColorClass = barometerColor[activity?.barometer];
-  const barometerImage = {
+  const barometerColorClass = barometerColors[activity?.barometer];
+
+  const barometerImages = {
     1: "/baro_1.png",
     2: "/baro_2.png",
     3: "/baro_3.png",
     4: "/baro_4.png",
     5: "/baro_5.png",
   };
-  const barometerImageURL = barometerImage[activity?.barometer];
+  const barometerImageURL = barometerImages[activity?.barometer];
+
+  const barometerIcons = {
+    1: "sentiment_very_dissatisfied",
+    2: "sentiment_stressed",
+    3: "sentiment_neutral",
+    4: "sentiment_content",
+    5: "sentiment_very_satisfied",
+  };
+  const barometerIconMaterial = barometerIcons[activity?.barometer];
+
+  const barometerTexts = {
+    1: "Very Weak",
+    2: "Weak",
+    3: "Normal",
+    4: "Strong",
+    5: "Very Strong",
+  };
+
   const materialIconStyle = {
     fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24",
   };
@@ -40,7 +59,9 @@ function ActivitiesDetails() {
     Other: "timer",
   };
 
-  const dt = DateTime.fromISO(activity?.date).toLocaleString(DateTime.DATE_HUGE);
+  const dt = DateTime.fromISO(activity?.date).toLocaleString(
+    DateTime.DATE_HUGE,
+  );
 
   useEffect(() => {
     const getDataById = async (id) => {
@@ -131,11 +152,52 @@ function ActivitiesDetails() {
                     {activity.startTime} - {activity.endTime}
                   </p>
                   <p className="font-light">
-                    {formatDuration(activity.duration.hour, "hour", "hours")}{" "}{formatDuration(activity.duration.minute, "minute", "minutes")}
+                    {formatDuration(activity.duration.hour, "hour", "hours")}{" "}
+                    {formatDuration(
+                      activity.duration.minute,
+                      "minute",
+                      "minutes",
+                    )}
                   </p>
                 </div>
               </div>
               <div className="my-2 h-0.5 bg-base-200"></div>
+              <div className="flex flex-row items-center gap-2">
+                <div className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-base-200">
+                  <span
+                    className="material-symbols-outlined"
+                    style={materialIconStyle}
+                  >
+                    {barometerIconMaterial}
+                  </span>
+                </div>
+                <p className="font-light">
+                  Feeling: {barometerTexts[activity.barometer]}
+                </p>
+              </div>
+              <div className="my-2 h-0.5 bg-base-200"></div>
+              {/* add delete and edit button */}
+              <div className="flex justify-center gap-2 my-4">
+                <button className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-info shadow-md bg-white">
+                  <span
+                    className="material-symbols-outlined"
+                    style={materialIconStyle}
+                  >
+                    delete
+                  </span>
+                </button>
+                <button
+                  className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power shadow-md bg-white"
+                  onClick={() => navigate(`/activities/edit/${activityId}`)}
+                >
+                  <span
+                    className="material-symbols-outlined"
+                    style={materialIconStyle}
+                  >
+                    edit
+                  </span>
+                </button>
+              </div>
             </div>
           </>
         )}
