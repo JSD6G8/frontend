@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom"
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { Icon } from 'react-icons-kit';
+import { eyeOff } from 'react-icons-kit/feather/eyeOff';
+import { eye } from 'react-icons-kit/feather/eye';
+
 
 import Layout from "./Layout";
 
@@ -10,11 +14,16 @@ function Login() {
     const MySwal = withReactContent(Swal);
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({});
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
         setInputs(values => ({ ...values, [name]: value }))
+    };
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
     };
 
     const handleSubmit = (event) => {
@@ -77,18 +86,35 @@ function Login() {
                                 />
                             </label>
                         </div>
-                        <div className="my-5">
+                        <div className="my-8">
                             <label className="block text-black">Password
-                                <input
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    value={inputs.password}
-                                    onChange={handleChange}
-                                    className="input rounded-sm px-4 py-3 mt-3 bg-gray-100 w-full"
-                                    placeholder="Password"
-                                />
+                                <div className="relative">
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        name="password"
+                                        id="password"
+                                        value={inputs.password}
+                                        onChange={handleChange}
+                                        className="input rounded-sm px-4 py-3 mt-3 bg-gray-100 w-full"
+                                        placeholder="Password"
+                                    />
+                                    <span
+                                        className="absolute top-3 right-0 mt-3 mr-4 cursor-pointer"
+                                        onClick={togglePasswordVisibility}
+                                    >
+                                        {showPassword ? (
+                                            <div style={{ color: '#9ca3af' }}>
+                                                <Icon icon={eye} size={20} />
+                                            </div>
+                                        ) : (
+                                            <div style={{ color: '#9ca3af' }}>
+                                                <Icon icon={eyeOff} size={20} />
+                                            </div>
+                                        )}
+                                    </span>
+                                </div>
                             </label>
+
                             <div className="flex justify-end mt-2 text-xs text-gray-600">
                                 <a href="#">Forget Password?</a>
                             </div>
@@ -98,7 +124,7 @@ function Login() {
                         </button>
                     </form>
 
-                     {/*Login With Social */}
+                    {/*Login With Social */}
                     {/* <div className="my-4 mt-10 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
                         <p className="md:mx-2 text-sm font-light text-gray-400">
                             Login With Social
@@ -118,7 +144,6 @@ function Login() {
                             <span className="text-sm">Login with Facebook</span>
                         </a>
                     </div> */}
-
 
                     <p className="mt-10 text-sm text-center font-light text-gray-400">Don't have an account?  <a href="/signup" className="text-black font-medium hover:underline decoration-black">Sign Up here</a></p>
                 </div>
