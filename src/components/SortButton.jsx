@@ -6,22 +6,19 @@ const SortButton = () => {
       <div
         tabIndex={0}
         role="button"
-        className="btn btn-active btn-sm m-1 hover:btn-outline hover:bg-zinc-600 hover:text-white"
+        className="btn btn-outline btn-info btn-sm m-1 "
       >
         Sort by
       </div>
       <ul
         tabIndex={0}
-        className="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
+        className="menu dropdown-content z-[1] w-52 rounded-box bg-info p-2 text-white shadow"
       >
         <li>
-          <a>Date</a>
+          <a>Latest to Oldest</a>
         </li>
         <li>
-          <a>Time</a>
-        </li>
-        <li>
-          <a>Duration</a>
+          <a>Oldest to Latest</a>
         </li>
       </ul>
     </div>
