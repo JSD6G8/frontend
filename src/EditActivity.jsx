@@ -67,7 +67,7 @@ function EditActivity() {
         const response = await axios.put(`https://jsd6-loglife-backend.onrender.com/activities/${activityId}`, putData);
 
         if (response.status === 200) {
-          navigate(-1);
+          navigate(`activities/${activityId}`);
         }
       };
 
