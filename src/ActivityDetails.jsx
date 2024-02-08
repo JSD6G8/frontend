@@ -73,18 +73,27 @@ function ActivitiesDetails() {
         setActivity(data);
         setLoading(false);
       } else {
-        navigate("/activities");
+        navigate(-1);
       }
     };
 
     getDataById(activityId);
   }, [activityId, navigate]);
 
+  const handleDelete = async () => {
+    const response = await axios.delete(
+      `https://jsd6-loglife-backend.onrender.com/activities/${activityId}`,
+    );
+    if (response.status === 200) {
+      navigate("/activities");
+    }
+  };
+
   return (
     <Layout>
       <main className="container mx-auto flex max-w-lg flex-col items-center">
         {loading ? (
-          <span className="loading loading-spinner text-primary mt-10"></span>
+          <span className="loading loading-spinner mt-10 text-primary"></span>
         ) : (
           <>
             <div
@@ -94,7 +103,7 @@ function ActivitiesDetails() {
                 {activity.type.toUpperCase()}
               </h1>
               <img
-                className="size-24"
+                className="ml-2 mt-2 size-24"
                 src={barometerImageURL}
                 alt="barometer"
               />
@@ -177,8 +186,13 @@ function ActivitiesDetails() {
               </div>
               <div className="my-2 h-0.5 bg-base-200"></div>
               {/* add delete and edit button */}
-              <div className="flex justify-center gap-2 my-4">
-                <button className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-info shadow-md bg-white">
+              <div className="my-4 flex justify-center gap-2">
+                <button
+                  className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-info bg-white shadow-md"
+                  onClick={() =>
+                    document.getElementById("delete_modal").showModal()
+                  }
+                >
                   <span
                     className="material-symbols-outlined"
                     style={materialIconStyle}
@@ -187,7 +201,7 @@ function ActivitiesDetails() {
                   </span>
                 </button>
                 <button
-                  className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power shadow-md bg-white"
+                  className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
                   onClick={() => navigate(`/activities/edit/${activityId}`)}
                 >
                   <span
@@ -199,6 +213,28 @@ function ActivitiesDetails() {
                 </button>
               </div>
             </div>
+            <dialog
+              id="delete_modal"
+              className="modal modal-bottom sm:modal-middle"
+            >
+              <div className="modal-box">
+                <h3 className="text-lg font-bold">Delete Activity</h3>
+                <p className="py-4">
+                  Are you sure you want to delete this activity?
+                  <br />
+                  This cannot be undone.
+                </p>
+                <div className="modal-action">
+                  <form method="dialog">
+                    {/* if there is a button in form, it will close the modal */}
+                    <button className="btn mr-2">Cancel</button>
+                    <button className="btn btn-info text-white" onClick={handleDelete}>
+                      Delete
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </dialog>
           </>
         )}
       </main>
