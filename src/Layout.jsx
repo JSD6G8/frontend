@@ -15,10 +15,10 @@ function Layout({ children }) {
 
   return (
     <>
-      <div className={isLoggedIn ? "hidden" : ""}>
+      <div className={`${isLoggedIn ? "hidden" : ""} sticky top-0 z-10 w-full`}>
         <NavGuest isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       </div>
-      <div className={isLoggedIn ? "" : "hidden"}>
+      <div className={`${isLoggedIn ? "" : "hidden"} sticky top-0 z-10 w-full`}>
         <NavLoggedInMobile isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <NavLoggedInDesktop isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       </div>

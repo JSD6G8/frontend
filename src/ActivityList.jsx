@@ -4,6 +4,7 @@ import Layout from "./Layout";
 import ListedCard from "./components/ListedCard";
 import SelectorButton from "./components/SelectorButton";
 import SortButton from "./components/SortButton";
+import AddActivityBtn from "./components/AddButton";
 
 function ActivityList() {
   const [activities, setActivities] = useState([]);
