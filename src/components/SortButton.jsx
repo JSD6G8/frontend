@@ -1,27 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 
-const SortButton = () => {
+const SortButton = ({ selected, setResult }) => {
+  const [selectedOrder, setSelectedOrder] = useState(selected);
+
+  function handleClick(value) {
+    setSelectedOrder(value);
+    setResult(value);
+    const elem = document.activeElement;
+    if (elem) {
+      elem?.blur();
+    }
+  }
+
   return (
-    <div className="dropdown dropdown-end dropdown-hover mr-3 mt-1">
+    <div className="dropdown dropdown-end mr-3 mt-1 md:mr-0">
       <div
         tabIndex={0}
         role="button"
-        className="btn btn-active btn-sm m-1 hover:btn-outline hover:bg-zinc-600 hover:text-white"
+        className="btn btn-outline btn-info btn-sm m-1 "
       >
         Sort by
       </div>
       <ul
         tabIndex={0}
-        className="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
+        className="menu dropdown-content z-[1] w-52 rounded-box bg-info p-2 text-white shadow"
       >
         <li>
-          <a>Date</a>
+          <button
+            onClick={() => {
+              handleClick("date-desc");
+            }}
+          >
+            Latest to Oldest
+          </button>
         </li>
         <li>
-          <a>Time</a>
-        </li>
-        <li>
-          <a>Duration</a>
+          <button
+            onClick={() => {
+              handleClick("date-asc");
+            }}
+          >
+            Oldest to Latest
+          </button>
         </li>
       </ul>
     </div>

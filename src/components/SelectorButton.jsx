@@ -10,13 +10,13 @@ const SelectorButton = ({ selected, choicesData, setResult }) => {
 
   const buttonGroup = choicesData.map((data) => (
     <button
-      className={`join-item btn-sm hover:bg-zinc-600 hover:text-white ${
-        data === selected ? "btn btn-outline btn-active" : "btn btn-active"
+      className={`join-item btn-sm ${
+        data === selected
+          ? "btn btn-accent text-neutral"
+          : "hover:text btn btn-outline btn-accent"
       }`}
       onClick={() => {
         handleClick(data);
-        console.log(`${data} Clicked`);
-        // Test for commit
       }}
       key={data}
     >
