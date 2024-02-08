@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import formatDuration from "./utils/formatDuration";
 
 import Layout from "./Layout";
 
@@ -19,14 +20,24 @@ function ActivitiesDetails() {
   };
   const barometerColorClass = barometerColor[activity?.barometer];
   const barometerImage = {
-    1: '/baro_1.png',
-    2: '/baro_2.png',
-    3: '/baro_3.png',
-    4: '/baro_4.png',
-    5: '/baro_5.png',
-  }
+    1: "/baro_1.png",
+    2: "/baro_2.png",
+    3: "/baro_3.png",
+    4: "/baro_4.png",
+    5: "/baro_5.png",
+  };
   const barometerImageURL = barometerImage[activity?.barometer];
-
+  const materialIconStyle = {
+    fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24",
+  };
+  const materialIcon = {
+    Running: "sprint",
+    Cycling: "directions_bike",
+    Swimming: "pool",
+    Walking: "directions_walk",
+    Hiking: "hiking",
+    Other: "timer",
+  };
 
   useEffect(() => {
     const getDataById = async (id) => {
@@ -52,19 +63,77 @@ function ActivitiesDetails() {
           <span className="loading loading-spinner text-primary"></span>
         ) : (
           <>
-            <div className={`flex items-center justify-center w-full ${barometerColorClass}`}>
-              <h1 className="flex-auto text-center text-5xl text-white font-semibold">{activity.type.toUpperCase()}</h1>
-              <img className="mr-4 size-24" src={barometerImageURL} alt="barometer" />
+            <div
+              className={`flex w-full items-center justify-center ${barometerColorClass}`}
+            >
+              <h1 className="text-center text-5xl font-semibold text-white">
+                {activity.type.toUpperCase()}
+              </h1>
+              <img
+                className="size-24"
+                src={barometerImageURL}
+                alt="barometer"
+              />
             </div>
-            <h2>{activity.title}</h2>
-            <p>{activity.description}</p>
-            <p>{activity.type}</p>
-            <p>{activity.startTime}</p>
-            <p>{activity.endTime}</p>
-            <p>{activity.date}</p>
-            <p>{activity.duration.hour}</p>
-            <p>{activity.duration.minute}</p>
-            <p>{activity.barometer}</p>
+            <div className="w-full p-2">
+              <div className="flex flex-row items-center gap-2">
+                <div className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-base-200">
+                  <span
+                    className="material-symbols-outlined"
+                    style={materialIconStyle}
+                  >
+                    {materialIcon[activity.type]}
+                  </span>
+                </div>
+                <h2 className="text-lg font-bold">{activity.title}</h2>
+              </div>
+              <div className="my-2 h-0.5 bg-base-200"></div>
+              <div className="flex flex-row items-center gap-2">
+                <div className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-base-200">
+                  <span
+                    className="material-symbols-outlined"
+                    style={materialIconStyle}
+                  >
+                    description
+                  </span>
+                </div>
+                <p className="font-light">
+                  {activity.description || "It was good effort!"}
+                </p>
+              </div>
+              <div className="my-2 h-0.5 bg-base-200"></div>
+              <div className="flex flex-row items-center gap-2">
+                <div className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-base-200">
+                  <span
+                    className="material-symbols-outlined"
+                    style={materialIconStyle}
+                  >
+                    date_range
+                  </span>
+                </div>
+                <p className="font-light">{activity.date}</p>
+              </div>
+              <div className="my-2 h-0.5 bg-base-200"></div>
+              <div className="flex flex-row items-center gap-2">
+                <div className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-base-200">
+                  <span
+                    className="material-symbols-outlined"
+                    style={materialIconStyle}
+                  >
+                    schedule
+                  </span>
+                </div>
+                <div>
+                  <p className="font-light">
+                    {activity.startTime} - {activity.endTime}
+                  </p>
+                  <p className="font-light">
+                    {formatDuration(activity.duration.hour, "hour", "hours")}{" "}{formatDuration(activity.duration.minute, "minute", "minutes")}
+                  </p>
+                </div>
+              </div>
+              <div className="my-2 h-0.5 bg-base-200"></div>
+            </div>
           </>
         )}
       </main>
