@@ -6,6 +6,10 @@ const SortButton = ({ selected, setResult }) => {
   function handleClick(value) {
     setSelectedOrder(value);
     setResult(value);
+    const elem = document.activeElement;
+    if (elem) {
+      elem?.blur();
+    }
   }
 
   return (
