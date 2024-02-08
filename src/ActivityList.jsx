@@ -41,6 +41,7 @@ function ActivityList() {
 
         if (response.status === 200 && response.data) {
           setActivities([...response.data]);
+          setReload(true);
         }
       } catch (error) {
         console.error("Error fetching activities:", error);
@@ -69,76 +70,87 @@ function ActivityList() {
             </div>
           </div>
         </div>
-        <div className="md:grid md:grid-cols-2 md:place-items-center md:gap-x-3 md:gap-y-3 lg:grid-cols-3 lg:gap-x-3 xl:grid-cols-5 xl:gap-x-4">
-          {activities.map((activity) => {
-            switch (filterType) {
-              case "All":
-                return (
-                  <ListedCard key={activity.activityId} activities={activity} />
-                );
-              case "Running":
-                if (activity.type === "Running") {
+        {reload ? (
+          <div className="md:grid md:grid-cols-2 md:place-items-center md:gap-x-3 md:gap-y-3 lg:grid-cols-3 lg:gap-x-3 xl:grid-cols-5 xl:gap-x-4">
+            {activities.map((activity) => {
+              switch (filterType) {
+                case "All":
                   return (
                     <ListedCard
                       key={activity.activityId}
                       activities={activity}
                     />
                   );
-                }
-                break;
-              case "Cycling":
-                if (activity.type === "Cycling") {
-                  return (
-                    <ListedCard
-                      key={activity.activityId}
-                      activities={activity}
-                    />
-                  );
-                }
-                break;
-              case "Swimming":
-                if (activity.type === "Swimming") {
-                  return (
-                    <ListedCard
-                      key={activity.activityId}
-                      activities={activity}
-                    />
-                  );
-                }
-                break;
-              case "Hiking":
-                if (activity.type === "Hiking") {
-                  return (
-                    <ListedCard
-                      key={activity.activityId}
-                      activities={activity}
-                    />
-                  );
-                }
-                break;
-              case "Walking":
-                if (activity.type === "Walking") {
-                  return (
-                    <ListedCard
-                      key={activity.activityId}
-                      activities={activity}
-                    />
-                  );
-                }
-                break;
-              case "Other":
-                if (activity.type === "Other") {
-                  return (
-                    <ListedCard
-                      key={activity.activityId}
-                      activities={activity}
-                    />
-                  );
-                }
-                break;
-            }
-          })}
-        </div>
+                case "Running":
+                  if (activity.type === "Running") {
+                    return (
+                      <ListedCard
+                        key={activity.activityId}
+                        activities={activity}
+                      />
+                    );
+                  }
+                  break;
+                case "Cycling":
+                  if (activity.type === "Cycling") {
+                    return (
+                      <ListedCard
+                        key={activity.activityId}
+                        activities={activity}
+                      />
+                    );
+                  }
+                  break;
+                case "Swimming":
+                  if (activity.type === "Swimming") {
+                    return (
+                      <ListedCard
+                        key={activity.activityId}
+                        activities={activity}
+                      />
+                    );
+                  }
+                  break;
+                case "Hiking":
+                  if (activity.type === "Hiking") {
+                    return (
+                      <ListedCard
+                        key={activity.activityId}
+                        activities={activity}
+                      />
+                    );
+                  }
+                  break;
+                case "Walking":
+                  if (activity.type === "Walking") {
+                    return (
+                      <ListedCard
+                        key={activity.activityId}
+                        activities={activity}
+                      />
+                    );
+                  }
+                  break;
+                case "Other":
+                  if (activity.type === "Other") {
+                    return (
+                      <ListedCard
+                        key={activity.activityId}
+                        activities={activity}
+                      />
+                    );
+                  }
+                  break;
+              }
+            })}
+          </div>
+        ) : (
+          <>
+            <div className="container mx-auto px-3 max-md:mt-3 md:h-screen">
+              <div className="skeleton h-screen w-full "></div>
+            </div>
+          </>
+        )}
       </main>
     </Layout>
   );
