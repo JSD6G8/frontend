@@ -7,7 +7,7 @@ import { DateTime } from "luxon";
 import Layout from "./Layout";
 
 function ActivitiesDetails() {
-  const activityId = useParams().activityId;
+  const { activityId } = useParams();
   const [activity, setActivity] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
