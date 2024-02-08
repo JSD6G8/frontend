@@ -22,22 +22,22 @@ const SortButton = ({ selected, setResult }) => {
         className="menu dropdown-content z-[1] w-52 rounded-box bg-info p-2 text-white shadow"
       >
         <li>
-          <a
+          <button
             onClick={() => {
               handleClick("date-desc");
             }}
           >
             Latest to Oldest
-          </a>
+          </button>
         </li>
         <li>
-          <a
+          <button
             onClick={() => {
               handleClick("date-asc");
             }}
           >
             Oldest to Latest
-          </a>
+          </button>
         </li>
       </ul>
     </div>
