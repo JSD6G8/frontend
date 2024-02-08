@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
-const SortButton = () => {
+const SortButton = ({ selected, setResult }) => {
+  const [selectedOrder, setSelectedOrder] = useState(selected);
+
+  function handleClick(value) {
+    setSelectedOrder(value);
+    setResult(value);
+  }
+
   return (
     <div className="dropdown dropdown-end mr-3 mt-1 md:mr-0">
       <div
@@ -15,10 +22,22 @@ const SortButton = () => {
         className="menu dropdown-content z-[1] w-52 rounded-box bg-info p-2 text-white shadow"
       >
         <li>
-          <a>Latest to Oldest</a>
+          <a
+            onClick={() => {
+              handleClick("date-desc");
+            }}
+          >
+            Latest to Oldest
+          </a>
         </li>
         <li>
-          <a>Oldest to Latest</a>
+          <a
+            onClick={() => {
+              handleClick("date-asc");
+            }}
+          >
+            Oldest to Latest
+          </a>
         </li>
       </ul>
     </div>

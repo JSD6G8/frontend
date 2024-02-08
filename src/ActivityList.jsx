@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Layout from "./Layout";
-import AddActivityBtn from "./components/AddButton";
 import ListedCard from "./components/ListedCard";
 import SelectorButton from "./components/SelectorButton";
 import SortButton from "./components/SortButton";
@@ -21,17 +20,23 @@ function ActivityList() {
   ];
   const [filterType, setFilterType] = useState(choicesData[0]);
 
+  const [orderType, setOrderType] = useState("");
+
   function filterTypeUpdate(value) {
     setFilterType(value);
   }
 
+  function filterOrderUpdate(value) {
+    setOrderType(value);
+  }
+
   useEffect(() => {
-    const userId = "65b8c301581f2faab26d412d"; //?? How'd we import the userId after the authenticatio?
+    const userId = "65b8c301581f2faab26d412d"; //?? How'd we import the userId after the authentication?
     const getData = async () => {
       try {
         let typeQuery = filterType === "All" ? "" : filterType;
         const response = await axios.get(
-          `https://jsd6-loglife-backend.onrender.com/activities/user/${userId}?type=${typeQuery}`,
+          `https://jsd6-loglife-backend.onrender.com/activities/user/${userId}?type=${typeQuery}&sort=${orderType}`,
         );
 
         if (response.status === 200 && response.data) {
@@ -42,7 +47,7 @@ function ActivityList() {
       }
     };
     getData();
-  }, [filterType, reload]);
+  }, [filterType, orderType, reload]);
 
   return (
     <Layout>
@@ -60,7 +65,7 @@ function ActivityList() {
               />
             </div>
             <div className="flex-shrink-0">
-              <SortButton />
+              <SortButton selected={orderType} setResult={filterOrderUpdate} />
             </div>
           </div>
         </div>
