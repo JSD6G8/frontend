@@ -27,16 +27,20 @@ function ActivityList() {
   useEffect(() => {
     const userId = "65b8c301581f2faab26d412d"; //?? How'd we import the userId after the authenticatio?
     const getData = async () => {
-      const response = await axios.get(
-        `https://jsd6-loglife-backend.onrender.com/activities/user/${userId}`,
-      );
+      try {
+        let typeQuery = filterType === "All" ? "" : filterType;
+        const response = await axios.get(
+          `https://jsd6-loglife-backend.onrender.com/activities/user/${userId}?type=${typeQuery}`,
+        );
 
-      if (response.status === 200 && response.data) {
-        setActivities([...response.data]);
+        if (response.status === 200 && response.data) {
+          setActivities([...response.data]);
+        }
+      } catch (error) {
+        console.error("Error fetching activities:", error);
       }
     };
     getData();
-    console.log(activities);
   }, [filterType, reload]);
 
   return (
