@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Layout from "./Layout";
 import ActivityForm from "./components/ActivityForm";
@@ -23,14 +23,8 @@ function EditActivity() {
     time: "",
   });
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const activityId = searchParams.get("id");
-
-  // console.log(activityId);
-
+  const activityId = useParams().activityId;
   const navigate = useNavigate();
-
-  // console.log(searchParams);
 
   useEffect(() => {
     const getDataById = async (id) => {
@@ -45,7 +39,7 @@ function EditActivity() {
         setDate(data.date);
         setBarometer(data.barometer);
       } else {
-        navigate("/activities");
+        navigate(-1);
       }
     };
 
@@ -73,7 +67,7 @@ function EditActivity() {
         const response = await axios.put(`https://jsd6-loglife-backend.onrender.com/activities/${activityId}`, putData);
 
         if (response.status === 200) {
-          navigate("/activities");
+          navigate(`activities/${activityId}`);
         }
       };
 

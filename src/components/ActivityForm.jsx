@@ -76,7 +76,7 @@ export default function ActivityForm({
   formErrors,
   submitButtonText = "Create",
 }) {
-  const backToActivities = useNavigate();
+  const navigate = useNavigate();
   const barometerColor = {
     1: "bg-info",
     2: "bg-success",
@@ -278,7 +278,7 @@ export default function ActivityForm({
       <div className="flex w-full justify-stretch gap-2 py-2">
         <button
           className="btn flex-auto"
-          onClick={() => backToActivities("/activities")}
+          onClick={() => navigate(-1)}
         >
           Cancel
         </button>
