@@ -39,7 +39,7 @@ function EditActivity() {
         setDate(data.date);
         setBarometer(data.barometer);
       } else {
-        navigate("/activities");
+        navigate(-1);
       }
     };
 
@@ -67,7 +67,7 @@ function EditActivity() {
         const response = await axios.put(`https://jsd6-loglife-backend.onrender.com/activities/${activityId}`, putData);
 
         if (response.status === 200) {
-          navigate("/activities");
+          navigate(-1);
         }
       };
 
