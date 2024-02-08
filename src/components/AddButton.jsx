@@ -1,7 +1,7 @@
 function AddActivityBtn() {
   return (
     <>
-      <div className="fixed bottom-2 right-2 xl:left-3/4 ">
+      <div className="fixed bottom-2 right-2 xl:left-3/4 md:hidden">
         <a href="/activities/create">
           <img
             className="h-[5rem] w-[5rem] transition duration-300 ease-in-out hover:scale-110"
