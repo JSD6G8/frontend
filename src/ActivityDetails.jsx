@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import formatDuration from "./utils/formatDuration";
+import { DateTime } from "luxon";
 
 import Layout from "./Layout";
 
@@ -38,6 +39,8 @@ function ActivitiesDetails() {
     Hiking: "hiking",
     Other: "timer",
   };
+
+  const dt = DateTime.fromISO(activity?.date).toLocaleString(DateTime.DATE_HUGE);
 
   useEffect(() => {
     const getDataById = async (id) => {
@@ -111,7 +114,7 @@ function ActivitiesDetails() {
                     date_range
                   </span>
                 </div>
-                <p className="font-light">{activity.date}</p>
+                <p className="font-light">{dt}</p>
               </div>
               <div className="my-2 h-0.5 bg-base-200"></div>
               <div className="flex flex-row items-center gap-2">
