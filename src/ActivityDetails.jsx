@@ -7,7 +7,7 @@ import { DateTime } from "luxon";
 import Layout from "./Layout";
 
 function ActivitiesDetails() {
-  const activityId = useParams().id;
+  const activityId = useParams().activityId;
   const [activity, setActivity] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -84,7 +84,7 @@ function ActivitiesDetails() {
     <Layout>
       <main className="container mx-auto flex max-w-lg flex-col items-center">
         {loading ? (
-          <span className="loading loading-spinner text-primary"></span>
+          <span className="loading loading-spinner text-primary mt-10"></span>
         ) : (
           <>
             <div

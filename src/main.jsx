@@ -37,7 +37,7 @@ const router = createBrowserRouter([
     element: <ActivityList />,
   },
   {
-    path: "/activities/:id",
+    path: "/activities/:activityId",
     element: <ActivitiesDetails />,
   },
   {
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
     element: <CreateActivity />,
   },
   {
-    path: "/activities/edit",
+    path: "/activities/edit/:activityId",
     element: <EditActivity />,
   },
   {
