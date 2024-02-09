@@ -48,6 +48,7 @@ function CreateActivity() {
       const postData = async () => {
         const titleToAdd = title || activityType;
         const postData = {
+          // Temporary fix USER ID
           userId :"65b8c301581f2faab26d412d",
           title: titleToAdd,
           description: description,
@@ -60,7 +61,6 @@ function CreateActivity() {
         };
 
         const response = await axios.post(
-          // "https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities",
           "https://jsd6-loglife-backend.onrender.com/activities/",
           postData,
         );
