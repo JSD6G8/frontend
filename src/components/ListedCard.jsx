@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ListedCard.css";
 
 // ?? recieve props from activity database
@@ -6,6 +7,7 @@ function ListedCard({ activities }) {
   const [moodColor, setMoodColor] = useState();
   const [activitySymbol, setActivitySymbol] = useState();
 
+  const navigate = useNavigate();
   // ?? render card once with conditional for color and symbol
   useEffect(() => {
     const eachColor = () => {
@@ -63,10 +65,15 @@ function ListedCard({ activities }) {
     return <h1 className="text-lg font-bold">{shortened}</h1>;
   };
 
+  const handleShowDetails = (id) => {
+    navigate(`/activities/${id}`);
+  };
+
   return (
     <>
       {/* base card */}
-      <div className="m-3 flex h-1/4 flex-row rounded-l-xl rounded-r-xl shadow-xl md:mt-4 md:h-max md:w-60 md:flex-col">
+      <div className="m-3 flex h-1/4 flex-row rounded-l-xl rounded-r-xl shadow-xl md:mt-4 md:h-max md:w-60 md:flex-col"
+        onClick={() => handleShowDetails(activities.activityId)}>
         {/* barometer color */}
         <div
           id="activities-baro"

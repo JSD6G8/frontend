@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import "./ActivityForm.css";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import formatDuration from "../utils/formatDuration";
 
 function ActivityTypeLabel({ activityType, setActivityType, type, icon }) {
   return (
@@ -75,7 +76,7 @@ export default function ActivityForm({
   formErrors,
   submitButtonText = "Create",
 }) {
-  const backToActivities = useNavigate();
+  const navigate = useNavigate();
   const barometerColor = {
     1: "bg-info",
     2: "bg-success",
@@ -104,11 +105,6 @@ export default function ActivityForm({
       });
     }
   }, [startTime, endTime, date, setDuration]);
-
-  const formatDuration = (value, singular, plural) => {
-    if (!value) return "";
-    return value === 1 ? `${value} ${singular}` : `${value} ${plural}`;
-  };
 
   return (
     <form
@@ -282,7 +278,10 @@ export default function ActivityForm({
       <div className="flex w-full justify-stretch gap-2 py-2">
         <button
           className="btn flex-auto"
-          onClick={() => backToActivities("/activities")}
+          onClick={(e) => {
+            e.preventDefault();
+            navigate(-1)}
+          }
         >
           Cancel
         </button>
