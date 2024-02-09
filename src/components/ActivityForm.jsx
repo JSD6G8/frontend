@@ -278,6 +278,7 @@ export default function ActivityForm({
       <div className="flex w-full justify-stretch gap-2 py-2">
         <button
           className="btn flex-auto"
+          type="button"
           onClick={(e) => {
             e.preventDefault();
             navigate(-1)}
