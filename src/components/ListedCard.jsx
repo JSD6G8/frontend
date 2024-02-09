@@ -56,14 +56,14 @@ function ListedCard({ activities }) {
     eachSymbol();
   }, []);
 
-  const shortenedDetail = (original, maxChars) => {
-    const shortened =
-      original.length <= maxChars
-        ? original
-        : original.slice(0, maxChars) + "...";
+  // const shortenedDetail = (original, maxChars) => {
+  //   const shortened =
+  //     original.length <= maxChars
+  //       ? original
+  //       : original.slice(0, maxChars) + "...";
 
-    return <h1 className="text-lg font-bold">{shortened}</h1>;
-  };
+  //   return <h1 className="text-lg font-bold">{shortened}</h1>;
+  // };
 
   const handleShowDetails = (id) => {
     navigate(`/activities/${id}`);
@@ -72,47 +72,55 @@ function ListedCard({ activities }) {
   return (
     <>
       {/* base card */}
-      <div className="m-3 flex h-1/4 flex-row rounded-l-xl rounded-r-xl shadow-xl md:mt-4 md:h-max md:w-60 md:flex-col"
-        onClick={() => handleShowDetails(activities.activityId)}>
+      <div
+        className="m-3 flex h-full flex-row rounded-l-xl rounded-r-xl shadow-xl md:mt-4 md:h-72 md:w-60 md:flex-col"
+        onClick={() => handleShowDetails(activities.activityId)}
+      >
         {/* barometer color */}
         <div
           id="activities-baro"
-          className={`${moodColor} flex w-32 flex-col justify-evenly rounded-l-xl md:h-32 md:w-full md:rounded-b-none md:rounded-t-xl`}
+          className={`${moodColor} flex w-32 flex-shrink-0 flex-col justify-evenly rounded-l-xl md:h-32 md:w-full md:rounded-b-none md:rounded-t-xl`}
         >
           <span
             className="material-symbols-outlined self-center"
-            style={{ fontSize: "65px" }}
+            style={{ fontSize: "55px" }}
           >
             {activitySymbol}
           </span>
         </div>
         {/* brief activity info */}
-        <div className="flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100  md:rounded-b-xl md:rounded-t-none">
-          <div
-            id="summary-description"
-            className="mx-4 mb-2 mt-4 md:mx-3 md:mb-1 md:mt-4"
-          >
-            <div>{shortenedDetail(activities.title, 16)}</div>
-            <div className="text-sm font-light">
-              <div className="inline">
-                {activities.duration.hour || ""}{" "}
-                {!activities.duration.hour
-                  ? ""
-                  : activities.duration.hour === 1
-                    ? "hour "
-                    : "hours "}
-              </div>
-              <div className=" inline">
-                {activities.duration.minute || ""}{" "}
-                {!activities.duration.minute
-                  ? ""
-                  : activities.duration.minute === 1
-                    ? "min"
-                    : "mins"}
+        <div className="flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100 md:rounded-b-xl md:rounded-t-none">
+          <div className="flex-0 flex flex-row justify-between">
+            <div
+              id="summary-description"
+              className="mx-4 mb-2 mt-4 md:mx-3 md:mb-1 md:mt-4 md:flex-grow"
+            >
+              <div>{activities.title}</div>
+              <div className="text-sm font-light">
+                <div className="inline">
+                  {activities.duration.hour || ""}{" "}
+                  {!activities.duration.hour
+                    ? ""
+                    : activities.duration.hour === 1
+                      ? "hour "
+                      : "hours "}
+                </div>
+                <div className=" inline">
+                  {activities.duration.minute || ""}{" "}
+                  {!activities.duration.minute
+                    ? ""
+                    : activities.duration.minute === 1
+                      ? "min"
+                      : "mins"}
+                </div>
               </div>
             </div>
+            <span className="material-symbols-outlined mt-2 w-12 flex-grow-0 self-center md:mt-8">
+              arrow_forward_ios
+            </span>
           </div>
-          <div className="flex flex-col justify-between">
+
+          <div className="mb-1 mr-2 flex flex-col justify-between">
             <div
               id="brief-dateAndTime"
               className="mb-1 flex w-32 justify-evenly self-end md:mx-2 md:mt-2 md:self-start"
