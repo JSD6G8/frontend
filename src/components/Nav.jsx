@@ -112,10 +112,7 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
               className="avatar btn btn-circle btn-ghost"
             >
               <div className="w-10 rounded-full">
-                <img
-                  alt="profile"
-                  src="https://sv1.picz.in.th/images/2023/11/17/d0YHXAz.jpeg"
-                />
+                <img alt="profile" src="http://placekitten.com/200/300" />
               </div>
             </div>
             <ul
