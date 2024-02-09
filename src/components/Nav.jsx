@@ -1,7 +1,7 @@
 import Layout from "../Layout";
+import { AddButton } from "./AddButton";
 import Footer from "./Footer";
 import "./Nav.css";
-import { AddButton } from "./AddButton";
 
 function TempLoginToggle({ isLoggedIn, setIsLoggedIn }) {
   return (
@@ -31,8 +31,15 @@ function NavGuest({ isLoggedIn, setIsLoggedIn }) {
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
           />
-          <button className="btn btn-ghost mx-3 text-base">Login</button>
-          <a className="btn btn-primary mx-3 text-base text-white">Sign Up</a>
+          <a href="/login" className="btn btn-ghost mx-3 text-base">
+            Login
+          </a>
+          <a
+            href="/signup"
+            className="btn btn-primary mx-3 text-base text-white"
+          >
+            Sign Up
+          </a>
         </div>
       </div>
     </nav>
@@ -93,7 +100,10 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
           </a>
         </div>
         <div className="navbar-end">
-          <TempLoginToggle isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          <TempLoginToggle
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
+          />
           <AddButton />
           <div className="dropdown dropdown-end mx-3">
             <div
@@ -159,7 +169,10 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
           </div>
         </div>
         <div className="navbar-end">
-          <TempLoginToggle isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          <TempLoginToggle
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
+          />
           <AddButton />
           <div className="dropdown dropdown-end mx-3">
             <div
@@ -168,10 +181,7 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
               className="avatar btn btn-circle btn-ghost"
             >
               <div className="w-10 rounded-full">
-                <img
-                  alt="profile"
-                  src="https://sv1.picz.in.th/images/2023/11/17/d0YHXAz.jpeg"
-                />
+                <img alt="profile" src="http://placekitten.com/200/300" />
               </div>
             </div>
             <ul
@@ -215,5 +225,5 @@ function Nav() {
   );
 }
 
-export { NavGuest, NavLoggedInMobile, NavLoggedInDesktop };
+export { NavGuest, NavLoggedInDesktop, NavLoggedInMobile };
 export default Nav;
