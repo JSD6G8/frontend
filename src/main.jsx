@@ -5,10 +5,12 @@ import "./index.css";
 
 import Layout from "./Layout.jsx";
 import ActivityList from "./ActivityList.jsx";
+import ActivitiesDetails from "./ActivityDetails.jsx";
 import CreateActivity from "./CreateActivity.jsx";
 import EditActivity from "./EditActivity.jsx";
 import Nav from "./components/Nav.jsx";
 import Login from "./Login.jsx";
+import Signup from "./Signup.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ListedCard from "./components/ListedCard.jsx";
@@ -24,7 +26,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/signup",
-    element: <Layout>Mock Sign Up</Layout>,
+    element: <Signup/>,
   },
   {
     path: "/settings",
@@ -35,11 +37,15 @@ const router = createBrowserRouter([
     element: <ActivityList />,
   },
   {
+    path: "/activities/:activityId",
+    element: <ActivitiesDetails />,
+  },
+  {
     path: "/activities/create",
     element: <CreateActivity />,
   },
   {
-    path: "/activities/edit",
+    path: "/activities/edit/:activityId",
     element: <EditActivity />,
   },
   {
