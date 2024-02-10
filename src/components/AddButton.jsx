@@ -16,7 +16,7 @@ function AddActivityBtn() {
 
 export function AddButton() {
   return (
-    <div className="btn h-12 bg-[#004AAD] px-2 text-[1rem] font-medium tracking-wide text-white hover:bg-[#1357B8] md:px-[6px] md:py-[1px]">
+    <div className="place-content-center-2 btn h-12 bg-[#004AAD] text-[1rem] tracking-wide text-white max-md:btn-square hover:bg-[#1357B8] md:px-[6px] md:py-[1px]">
       <a href="/activities/create">
         <div className="flex">
           <span className="material-symbols-outlined text-4xl font-bold md:self-center">
