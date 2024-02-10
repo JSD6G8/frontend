@@ -51,7 +51,7 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
     <nav>
       <div className="navbar bg-white drop-shadow-md lg:hidden">
         <div className="navbar-start">
-          <div className="dropdown">
+          <div className="dropdown font-medium">
             <div
               tabIndex={0}
               role="button"
@@ -87,12 +87,12 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
                 </a>
               </li>
               <li className="sm:hidden">
-                <a className="py-5 text-base" href="/">
+                <a className="py-5 text-base" href="#">
                   <i className="fa-solid fa-gear fa-lg"></i>Settings
                 </a>
               </li>
               <li className="sm:hidden">
-                <a className="py-5 text-base text-info" href="/">
+                <a className="py-5 text-base text-info" href="#">
                   <i className="fa-solid fa-right-to-bracket fa-lg text-info"></i>
                   Logout
                 </a>
@@ -136,12 +136,12 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
               className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-white p-2 shadow"
             >
               <li>
-                <a className="py-5 text-base">
+                <a className="py-5 text-base" href="#">
                   <i className="fa-solid fa-gear fa-lg"></i>Settings
                 </a>
               </li>
               <li>
-                <a className="py-5 text-base text-info">
+                <a className="py-5 text-base text-info" href="#">
                   <i className="fa-solid fa-right-to-bracket fa-lg text-info"></i>
                   Logout
                 </a>
@@ -163,7 +163,7 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
             <img src="/logo_black.svg" alt="LogLife logo" />
           </a>
           <div>
-            <ul className="menu menu-horizontal">
+            <ul className="menu menu-horizontal font-medium">
               <li>
                 <a href="/activities" className="text-base">
                   Activity List
@@ -188,7 +188,7 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
             setIsLoggedIn={setIsLoggedIn}
           />
           <AddButton />
-          <div className="dropdown dropdown-end mx-3 mt-1">
+          <div className="dropdown dropdown-end mx-3 mt-1 font-medium">
             <div
               tabIndex={0}
               role="button"
