@@ -75,6 +75,22 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
               tabIndex={0}
               className="menu dropdown-content menu-sm mt-3 w-52 rounded-box bg-white p-2 shadow "
             >
+              <div className="mb-2 flex h-10 place-content-baseline sm:hidden">
+                <div className="avatar">
+                  <div className="w-10 rounded-full">
+                    <img
+                      className="self-center"
+                      alt="profile"
+                      src="http://placekitten.com/200/300"
+                    />
+                  </div>
+                </div>
+                {/* retrieve name from express w/ response.data.user.first_name */}
+                <p className="ml-2 place-self-center text-lg font-bold">
+                  Hello, Daniel!
+                </p>
+              </div>
+              <hr />
               <li>
                 <a className="py-5 text-base" href="/activities">
                   <i className="fa-solid fa-person-running fa-xl"></i>
@@ -135,6 +151,11 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
               tabIndex={0}
               className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-white p-2 shadow"
             >
+              {/* retrieve name from express w/ response.data.user.first_name*/}
+              <p className="my-2 ml-2 place-self-start text-lg font-bold">
+                👋🏼 Hello, Daniel!
+              </p>
+              <hr />
               <li>
                 <a className="py-5 text-base" href="#">
                   <i className="fa-solid fa-gear fa-lg"></i>Settings
@@ -206,6 +227,11 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
               tabIndex={0}
               className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-white p-2 shadow"
             >
+              {/* retrieve name from express w/response.data.user.first_name */}
+              <p className="my-2 ml-2 place-self-start text-lg font-bold">
+                👋🏼 Hello, Daniel!
+              </p>
+              <hr />
               <li>
                 <a className="py-5 text-base">
                   <i className="fa-solid fa-gear fa-lg"></i>Settings
