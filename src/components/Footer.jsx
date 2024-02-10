@@ -1,10 +1,10 @@
 function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="footer footer-center mt-auto bg-white p-4 text-primary-content">
+    <footer className="footer footer-center mx-3 bg-white p-4 text-primary-content">
       <aside>
         <div className="flex">
-          <div className="mx-3 border-r-2 border-black pr-3">
+          <div className="mx-3 border-r-2 border-slate-600 pr-3">
             <svg
               width={110}
               height={32}
@@ -294,8 +294,20 @@ function Footer() {
           </div>
         </div>
 
-        <p className="font-bold">JSD6 : Group 8</p>
-        <p>Copyleft (ↄ) {year} - No Rights Reserved</p>
+        <p className="mx-1 font-bold">JSD6 : Group 8</p>
+        <div className="flex">
+          <svg
+            className="mr-1"
+            width="20px"
+            height="20px"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path fill="none" d="M0 0h24v24H0z" />
+            <path d="M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm0-5c2.76 0 5-2.24 5-5a5.002 5.002 0 00-9.288-2.572l1.715 1.028A2.997 2.997 0 0112 9c1.658 0 3 1.342 3 3s-1.342 3-3 3a2.998 2.998 0 01-2.574-1.457l-1.714 1.03A5.001 5.001 0 0012 17z" />
+          </svg>
+          <p> {year} - No Rights Reserved</p>
+        </div>
       </aside>
     </footer>
   );

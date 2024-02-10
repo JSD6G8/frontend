@@ -22,7 +22,7 @@ function NavGuest({ isLoggedIn, setIsLoggedIn }) {
     <nav>
       <div className="navbar bg-white drop-shadow-md">
         <div className="navbar-start">
-          <a href="/">
+          <a href="/" className="ml-3">
             <img src="/logo_black.svg" alt="LogLife logo" />
           </a>
         </div>
@@ -36,7 +36,7 @@ function NavGuest({ isLoggedIn, setIsLoggedIn }) {
           </a>
           <a
             href="/signup"
-            className="btn btn-primary mx-3 text-base text-white"
+            className="btn btn-primary mr-3 text-base text-white hover:bg-[#1357B8]"
           >
             Sign Up
           </a>
