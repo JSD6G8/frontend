@@ -61,13 +61,14 @@ function ListedCard({ activities }) {
     navigate(`/activities/${id}`);
   };
 
+  const handleEdit = (id) => {
+    navigate(`/activities/edit/${id}`);
+  };
+
   return (
     <>
       {/* base card */}
-      <div
-        className="mb-2 flex flex-row rounded-l-xl rounded-r-xl shadow-xl max-md:w-[600px] max-sm:w-[350px] md:h-72 md:w-60 md:flex-col"
-        onClick={() => handleShowDetails(activities.activityId)}
-      >
+      <div className="mb-2 flex flex-row rounded-l-xl rounded-r-xl shadow-xl max-md:w-[600px] max-sm:w-[350px] md:h-72 md:w-60 md:flex-col">
         {/* barometer color */}
         <div
           id="activities-baro"
@@ -81,8 +82,11 @@ function ListedCard({ activities }) {
           </span>
         </div>
         {/* brief activity info */}
-        <div className="flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100 max-sm:w-12 md:rounded-b-xl md:rounded-t-none">
-          <div className="flex-0 flex flex-row justify-between">
+        <div className="flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100 max-sm:w-12 md:rounded-b-xl md:rounded-t-none ">
+          <div
+            className="flex-0 flex flex-row justify-between "
+            onClick={() => handleShowDetails(activities.activityId)}
+          >
             <div
               id="summary-description"
               className="mx-4 mb-2 mt-4 w-48 max-sm:w-36 md:mx-3 md:mb-1 md:mt-4 md:flex-grow"
@@ -113,9 +117,12 @@ function ListedCard({ activities }) {
               <p className="text-xs font-thin italic text-slate-600">at</p>
               <p className="text-xs font-normal">{activities.startTime}</p>
             </div>
-            <div className="mx-3 mb-3 flex h-9 w-9 items-center justify-center self-end rounded-full bg-slate-300 max-md:hidden">
+            <button
+              onClick={() => handleEdit(activities.activityId)}
+              className="z-10 mx-3 mb-3 flex h-9 w-9 items-center justify-center self-end rounded-full bg-slate-300 max-md:hidden"
+            >
               <span className="material-symbols-outlined text-black">edit</span>
-            </div>
+            </button>
           </div>
         </div>
       </div>
