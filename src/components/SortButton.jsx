@@ -13,13 +13,13 @@ const SortButton = ({ selected, setResult }) => {
   }
 
   return (
-    <div className="dropdown dropdown-end mr-3 mt-1 md:mr-0">
+    <div className="dropdown dropdown-end place-self-center pl-3">
       <div
         tabIndex={0}
         role="button"
-        className="btn btn-outline btn-info btn-sm m-1 "
+        className="btn btn-outline btn-info btn-sm"
       >
-        Sort by
+        Sort
       </div>
       <ul
         tabIndex={0}
