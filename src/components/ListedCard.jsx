@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import formatDuration from "../utils/formatDuration";
 import "./ListedCard.css";
 
 // ?? recieve props from activity database
@@ -91,20 +92,10 @@ function ListedCard({ activities }) {
               </p>
               <div className="text-sm font-light">
                 <div className="inline">
-                  {activities.duration.hour || ""}{" "}
-                  {!activities.duration.hour
-                    ? ""
-                    : activities.duration.hour === 1
-                      ? "hour "
-                      : "hours "}
-                </div>
+                  {formatDuration(activities.duration.hour, "hour", "hours")}
+                </div>{" "}
                 <div className=" inline">
-                  {activities.duration.minute || ""}{" "}
-                  {!activities.duration.minute
-                    ? ""
-                    : activities.duration.minute === 1
-                      ? "min"
-                      : "mins"}
+                  {formatDuration(activities.duration.minute, "min", "mins")}
                 </div>
               </div>
             </div>
