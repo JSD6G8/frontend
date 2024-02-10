@@ -16,14 +16,14 @@ function AddActivityBtn() {
 
 export function AddButton() {
   return (
-    <div className="btn bg-[#004AAD] px-2 text-[1rem] font-medium tracking-wide text-white hover:bg-[#1357B8] md:px-[6px] md:py-[1px]">
+    <div className="btn h-12 bg-[#004AAD] px-2 text-[1rem] font-medium tracking-wide text-white hover:bg-[#1357B8] md:px-[6px] md:py-[1px]">
       <a href="/activities/create">
         <div className="flex">
           <span className="material-symbols-outlined text-4xl font-bold md:self-center">
             add
           </span>
           <p className="hidden self-center text-xl font-semibold md:inline-block md:p-2">
-            Activity
+            Add Activity
           </p>
         </div>
       </a>
