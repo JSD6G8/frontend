@@ -1,7 +1,7 @@
 function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="footer footer-center mx-3 bg-white p-4 text-primary-content">
+    <footer className="footer footer-center bg-white p-4 text-primary-content">
       <aside>
         <div className="flex">
           <div className="mx-3 border-r-2 border-slate-600 pr-3">
