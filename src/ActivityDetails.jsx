@@ -65,9 +65,13 @@ function ActivitiesDetails() {
 
   useEffect(() => {
     const getDataById = async (id) => {
+      // const response = await axios.get(
+      //   `https://jsd6-loglife-backend.onrender.com/activities/${id}`,
+      // );
       const response = await axios.get(
-        `https://jsd6-loglife-backend.onrender.com/activities/${id}`,
+        `http://127.0.0.1:3000/activities/${id}`,
       );
+      
       if (response.status === 200) {
         const data = { ...response.data };
         setActivity(data);
@@ -89,9 +93,25 @@ function ActivitiesDetails() {
     }
   };
 
+  const uploadImage = async (e) => {
+    const input = document.getElementById("imageInput");
+    const file = input.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    // const response = await axios.post(
+    //   `https://jsd6-loglife-backend.onrender.com/activities/${activityId}/image`,
+    //   formData,
+    // );
+    const response = await axios.post(
+      `http://127.0.0.1:3000/activities/${activityId}/image`,
+      formData,
+    );
+    document.getElementById("upload_image_modal").close();
+  }
+
   return (
     <Layout>
-      <main className="container mx-auto flex max-w-2xl flex-col items-center md:flex-row md:bg-white md:mt-auto md:mb-auto md:rounded-2xl md:shadow-xl">
+      <main className="container mx-auto flex max-w-2xl flex-col items-center md:mb-auto md:mt-auto md:flex-row md:rounded-2xl md:bg-white md:shadow-xl">
         {loading ? (
           <span className="loading loading-spinner mt-10 text-primary"></span>
         ) : (
@@ -99,7 +119,7 @@ function ActivitiesDetails() {
             <div
               className={`flex w-full items-center justify-center md:h-full md:flex-1 md:flex-col-reverse md:rounded-l-2xl ${barometerColorClass}`}
             >
-              <h1 className="flex-auto text-center text-5xl font-semibold text-white md:flex-none md:px-2 md:-translate-y-10">
+              <h1 className="flex-auto text-center text-5xl font-semibold text-white md:flex-none md:-translate-y-10 md:px-2">
                 {activity.type.toUpperCase()}
               </h1>
               <img
@@ -185,34 +205,50 @@ function ActivitiesDetails() {
                 </p>
               </div>
               <div className="my-2 h-0.5 bg-base-200"></div>
-              {/* add delete and edit button */}
-              <div className="my-4 flex justify-center gap-2">
+
+              <div className="my-4 flex justify-between">
                 <button
-                  className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-info bg-white shadow-md"
+                  className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
                   onClick={() =>
-                    document.getElementById("delete_modal").showModal()
+                    document.getElementById("upload_image_modal").showModal()
                   }
                 >
                   <span
                     className="material-symbols-outlined"
                     style={materialIconStyle}
                   >
-                    delete
+                    add_photo_alternate
                   </span>
                 </button>
-                <button
-                  className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
-                  onClick={() => navigate(`/activities/edit/${activityId}`)}
-                >
-                  <span
-                    className="material-symbols-outlined"
-                    style={materialIconStyle}
+                <div className="flex justify-end gap-2">
+                  <button
+                    className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-info bg-white shadow-md"
+                    onClick={() =>
+                      document.getElementById("delete_modal").showModal()
+                    }
                   >
-                    edit
-                  </span>
-                </button>
+                    <span
+                      className="material-symbols-outlined"
+                      style={materialIconStyle}
+                    >
+                      delete
+                    </span>
+                  </button>
+                  <button
+                    className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
+                    onClick={() => navigate(`/activities/edit/${activityId}`)}
+                  >
+                    <span
+                      className="material-symbols-outlined"
+                      style={materialIconStyle}
+                    >
+                      edit
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
+
             <dialog
               id="delete_modal"
               className="modal modal-bottom sm:modal-middle"
@@ -234,6 +270,45 @@ function ActivitiesDetails() {
                     >
                       Delete
                     </button>
+                  </form>
+                </div>
+              </div>
+            </dialog>
+
+            <dialog
+              id="upload_image_modal"
+              className="modal modal-bottom sm:modal-middle"
+            >
+              <div className="modal-box">
+                <h3 className="text-base font-bold">Upload New Image</h3>
+                <div className="my-2 flex justify-between">
+                  <input
+                    className="file-input file-input-bordered w-full max-w-xs"
+                    id="imageInput"
+                    type="file"
+                    accept="image/*;capture=camera"
+                    aria-label="Upload Image"
+                  />
+                  <button
+                    className="btn btn-primary text-white"
+                    onClick={() => {
+                      uploadImage();
+                    }}
+                  >
+                    Upload
+                  </button>
+                </div>
+                { activity.image && (<button
+                  className="btn border-info bg-inherit font-light"
+                  onClick={() =>
+                    document.getElementById("upload_image_modal").close()
+                  }
+                >
+                  Remove Current Image
+                </button>)}
+                <div className="modal-action">
+                  <form method="dialog">
+                    <button className="btn">Close</button>
                   </form>
                 </div>
               </div>
