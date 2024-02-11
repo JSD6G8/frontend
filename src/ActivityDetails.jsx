@@ -66,13 +66,9 @@ function ActivitiesDetails() {
 
   useEffect(() => {
     const getDataById = async (id) => {
-      // const response = await axios.get(
-      //   `https://jsd6-loglife-backend.onrender.com/activities/${id}`,
-      // );
       const response = await axios.get(
-        `http://127.0.0.1:3000/activities/${id}`,
+        `https://jsd6-loglife-backend.onrender.com/activities/${id}`,
       );
-      
       if (response.status === 200) {
         const data = { ...response.data };
         setActivity(data);
@@ -80,7 +76,6 @@ function ActivitiesDetails() {
       } else {
         navigate(-1);
       }
-      console.log(activity);
     };
 
     getDataById(activityId);
@@ -95,25 +90,34 @@ function ActivitiesDetails() {
     }
   };
 
-  const uploadImage = async (e) => {
-    const input = document.getElementById("imageInput");
+  const handleUploadImage = async (modal, inputId) => {
+    const input = document.getElementById(inputId);
     const file = input.files[0];
     if (!file) {
       return;
     }
     const formData = new FormData();
     formData.append("image", file);
-    // const response = await axios.post(
-    //   `https://jsd6-loglife-backend.onrender.com/activities/${activityId}/image`,
-    //   formData,
-    // );
     const response = await axios.post(
-      `http://127.0.0.1:3000/activities/${activityId}/image`,
+      `https://jsd6-loglife-backend.onrender.com/activities/${activityId}/image`,
       formData,
     );
-    setReload(!reload);
-    document.getElementById("upload_image_modal").close();
-  }
+    if (response.status === 201) {
+      setReload(!reload);
+    }
+    document.getElementById(modal).close();
+  };
+
+  const handleDeleteImage = async (modal) => {
+    const publicId = activity.image.publicId;
+    const response = await axios.delete(
+      `https://jsd6-loglife-backend.onrender.com/activities/${activityId}/image/${publicId}`
+    );
+    if (response.status === 200) {
+      setReload(!reload);
+    }
+    document.getElementById(modal).close();
+  };
 
   return (
     <Layout>
@@ -135,6 +139,28 @@ function ActivitiesDetails() {
               />
             </div>
             <div className="w-full p-2">
+              {activity.image && (
+                <div>
+                  <img
+                    className="max-h-96 w-full object-cover pb-2 md:rounded-tr-2xl"
+                    src={activity.image.url}
+                    alt="activity"
+                  />
+                  <button
+                    className="absolute flex min-h-12 min-w-12 -translate-y-16 translate-x-2 items-center justify-center rounded-full border-2 border-warning bg-white shadow-lg"
+                    onClick={() =>
+                      document.getElementById("change_image_modal").showModal()
+                    }
+                  >
+                    <span
+                      className="material-symbols-outlined"
+                      style={materialIconStyle}
+                    >
+                      image
+                    </span>
+                  </button>
+                </div>
+              )}
               <div className="flex flex-row items-center gap-2">
                 <div className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-base-200">
                   <span
@@ -213,19 +239,28 @@ function ActivitiesDetails() {
               <div className="my-2 h-0.5 bg-base-200"></div>
 
               <div className="my-4 flex justify-between">
-                <button
-                  className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
-                  onClick={() =>
-                    document.getElementById("upload_image_modal").showModal()
-                  }
-                >
-                  <span
-                    className="material-symbols-outlined"
-                    style={materialIconStyle}
-                  >
-                    add_photo_alternate
-                  </span>
-                </button>
+                {activity.image ? (
+                  <div className="h-2 w-2"></div>
+                ) : (
+                  <>
+                    <button
+                      className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
+                      onClick={() =>
+                        document
+                          .getElementById("upload_image_modal")
+                          .showModal()
+                      }
+                    >
+                      <span
+                        className="material-symbols-outlined"
+                        style={materialIconStyle}
+                      >
+                        add_photo_alternate
+                      </span>
+                    </button>
+                  </>
+                )}
+
                 <div className="flex justify-end gap-2">
                   <button
                     className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-info bg-white shadow-md"
@@ -287,32 +322,66 @@ function ActivitiesDetails() {
             >
               <div className="modal-box">
                 <h3 className="text-base font-bold">Upload New Image</h3>
-                <div className="my-2 flex justify-between">
+                <div className="my-2">
                   <input
-                    className="file-input file-input-bordered w-full max-w-xs"
-                    id="imageInput"
+                    className="file-input file-input-bordered w-full"
+                    id="imageUploadInput"
                     type="file"
                     accept="image/*"
                     capture="camera"
                     aria-label="Upload Image"
                   />
-                  <button
-                    className="btn btn-primary text-white"
-                    onClick={() => {
-                      uploadImage();
-                    }}
-                  >
-                    Upload
-                  </button>
                 </div>
-                { activity.image && (<button
-                  className="btn border-info bg-inherit font-light"
-                  onClick={() =>
-                    document.getElementById("upload_image_modal").close()
-                  }
+                <button
+                  className="btn btn-primary text-white"
+                  onClick={() => {
+                    handleUploadImage("upload_image_modal", "imageUploadInput");
+                  }}
                 >
-                  Remove Current Image
-                </button>)}
+                  Upload
+                </button>
+                <div className="modal-action">
+                  <form method="dialog">
+                    <button className="btn">Close</button>
+                  </form>
+                </div>
+              </div>
+            </dialog>
+
+            <dialog
+              id="change_image_modal"
+              className="modal modal-bottom sm:modal-middle"
+            >
+              <div className="modal-box">
+                <h3 className="text-base font-bold">Change Image</h3>
+                <div className="mt-2">
+                  <input
+                    className="file-input file-input-bordered w-full"
+                    id="imageChangeInput"
+                    type="file"
+                    accept="image/*"
+                    capture="camera"
+                    aria-label="Change Image"
+                  />
+                </div>
+                <button
+                  className="btn btn-primary mt-2 text-white"
+                  onClick={() => {
+                    handleUploadImage("change_image_modal", "imageChangeInput");
+                  }}
+                >
+                  Change
+                </button>
+                <div className="divider"></div>
+                <h3 className="text-base font-bold">Remove Image</h3>
+                <button
+                  className="btn btn-info mt-2 text-white"
+                  onClick={() => {
+                    handleDeleteImage("change_image_modal");
+                  }}
+                >
+                  Remove
+                </button>
                 <div className="modal-action">
                   <form method="dialog">
                     <button className="btn">Close</button>
