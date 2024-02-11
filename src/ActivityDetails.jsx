@@ -91,19 +91,19 @@ function ActivitiesDetails() {
 
   return (
     <Layout>
-      <main className="container mx-auto flex max-w-lg flex-col items-center">
+      <main className="container mx-auto flex max-w-2xl flex-col items-center md:flex-row md:bg-white md:mt-auto md:mb-auto md:rounded-2xl md:shadow-xl">
         {loading ? (
           <span className="loading loading-spinner mt-10 text-primary"></span>
         ) : (
           <>
             <div
-              className={`flex w-full items-center justify-center ${barometerColorClass}`}
+              className={`flex w-full items-center justify-center md:h-full md:flex-1 md:flex-col-reverse md:rounded-l-2xl ${barometerColorClass}`}
             >
-              <h1 className="text-center text-5xl font-semibold text-white">
+              <h1 className="flex-auto text-center text-5xl font-semibold text-white md:flex-none md:px-2 md:-translate-y-10">
                 {activity.type.toUpperCase()}
               </h1>
               <img
-                className="ml-2 mt-2 size-24"
+                className="ml-2 mt-2 size-24 md:size-32 md:-translate-y-10"
                 src={barometerImageURL}
                 alt="barometer"
               />
@@ -228,7 +228,10 @@ function ActivitiesDetails() {
                   <form method="dialog">
                     {/* if there is a button in form, it will close the modal */}
                     <button className="btn mr-2">Cancel</button>
-                    <button className="btn btn-info text-white" onClick={handleDelete}>
+                    <button
+                      className="btn btn-info text-white"
+                      onClick={handleDelete}
+                    >
                       Delete
                     </button>
                   </form>
