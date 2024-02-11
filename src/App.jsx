@@ -1,10 +1,11 @@
 import Layout from "./Layout";
+import LandingPage from "./components/LandingPage";
 
 function App() {
 
   return (
     <Layout>
-      <h1>Landing Page in App.jsx</h1>
+      <LandingPage/>
     </Layout>
   )
 }
