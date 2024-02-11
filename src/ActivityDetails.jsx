@@ -10,6 +10,7 @@ function ActivitiesDetails() {
   const { activityId } = useParams();
   const [activity, setActivity] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [reload, setReload] = useState(false);
   const navigate = useNavigate();
 
   const barometerColors = {
@@ -79,10 +80,11 @@ function ActivitiesDetails() {
       } else {
         navigate(-1);
       }
+      console.log(activity);
     };
 
     getDataById(activityId);
-  }, [activityId, navigate]);
+  }, [reload]);
 
   const handleDelete = async () => {
     const response = await axios.delete(
@@ -96,6 +98,9 @@ function ActivitiesDetails() {
   const uploadImage = async (e) => {
     const input = document.getElementById("imageInput");
     const file = input.files[0];
+    if (!file) {
+      return;
+    }
     const formData = new FormData();
     formData.append("image", file);
     // const response = await axios.post(
@@ -106,6 +111,7 @@ function ActivitiesDetails() {
       `http://127.0.0.1:3000/activities/${activityId}/image`,
       formData,
     );
+    setReload(!reload);
     document.getElementById("upload_image_modal").close();
   }
 
@@ -286,7 +292,8 @@ function ActivitiesDetails() {
                     className="file-input file-input-bordered w-full max-w-xs"
                     id="imageInput"
                     type="file"
-                    accept="image/*;capture=camera"
+                    accept="image/*"
+                    capture="camera"
                     aria-label="Upload Image"
                   />
                   <button
