@@ -121,7 +121,7 @@ function ActivitiesDetails() {
 
   return (
     <Layout>
-      <main className="container mx-auto flex max-w-2xl flex-col items-center max-md:h-screen md:mb-auto md:mt-auto md:flex-row md:rounded-2xl md:bg-white md:shadow-xl">
+      <main className="container mx-auto flex max-w-2xl flex-col items-center max-md:h-fit md:mb-auto md:mt-auto md:flex-row md:rounded-2xl md:bg-white md:shadow-xl">
         {loading ? (
           <span className="loading loading-spinner mt-10 text-primary"></span>
         ) : (
@@ -142,7 +142,7 @@ function ActivitiesDetails() {
               {activity.image && (
                 <div>
                   <img
-                    className="max-h-96 w-full object-cover pb-2 md:rounded-tr-2xl"
+                    className="max:md:max-h-56 max-h-64 w-full object-cover pb-2 max-sm:max-h-44 md:rounded-tr-2xl"
                     src={activity.image.url}
                     alt="activity"
                   />
@@ -238,7 +238,7 @@ function ActivitiesDetails() {
               </div>
               <div className="my-2 h-0.5 bg-base-200"></div>
 
-              <div className="my-4 flex justify-between">
+              <div className="flex justify-between py-4">
                 <button
                   className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-primary bg-white shadow-md"
                   onClick={() => navigate("/activities")}
