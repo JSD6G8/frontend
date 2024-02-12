@@ -95,13 +95,13 @@ function ActivityList() {
             next={fetchMoreData}
             hasMore={hasmore}
             loader={
-              <div className="mt-1 flex justify-center">
+              <div className="mt-1 flex justify-center md:mt-4">
                 <p className="loading loading-ring loading-lg"></p>
               </div>
             }
             endMessage={
-              <p className="mt-2 text-center text-lg font-semibold">
-                🎉 All logs loaded! 🎉
+              <p className="text-md mt-2 text-center font-semibold md:mt-4">
+                🎉 All activities have been loaded! 🎉
               </p>
             }
           >

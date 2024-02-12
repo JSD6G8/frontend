@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import formatDuration from "./utils/formatDuration";
 import { DateTime } from "luxon";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import formatDuration from "./utils/formatDuration";
 
 import Layout from "./Layout";
 
@@ -111,7 +111,7 @@ function ActivitiesDetails() {
   const handleDeleteImage = async (modal) => {
     const publicId = activity.image.publicId;
     const response = await axios.delete(
-      `https://jsd6-loglife-backend.onrender.com/activities/${activityId}/image/${publicId}`
+      `https://jsd6-loglife-backend.onrender.com/activities/${activityId}/image/${publicId}`,
     );
     if (response.status === 200) {
       setReload(!reload);
@@ -121,7 +121,7 @@ function ActivitiesDetails() {
 
   return (
     <Layout>
-      <main className="container mx-auto flex max-w-2xl flex-col items-center md:mb-auto md:mt-auto md:flex-row md:rounded-2xl md:bg-white md:shadow-xl">
+      <main className="container mx-auto flex max-w-2xl flex-col items-center max-md:h-screen md:mb-auto md:mt-auto md:flex-row md:rounded-2xl md:bg-white md:shadow-xl">
         {loading ? (
           <span className="loading loading-spinner mt-10 text-primary"></span>
         ) : (
@@ -239,29 +239,52 @@ function ActivitiesDetails() {
               <div className="my-2 h-0.5 bg-base-200"></div>
 
               <div className="my-4 flex justify-between">
-                {activity.image ? (
-                  <div className="h-2 w-2"></div>
-                ) : (
-                  <>
-                    <button
-                      className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
-                      onClick={() =>
-                        document
-                          .getElementById("upload_image_modal")
-                          .showModal()
-                      }
-                    >
-                      <span
-                        className="material-symbols-outlined"
-                        style={materialIconStyle}
-                      >
-                        add_photo_alternate
-                      </span>
-                    </button>
-                  </>
-                )}
+                <button
+                  className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-primary bg-white shadow-md"
+                  onClick={() => navigate("/activities")}
+                >
+                  <span
+                    className="material-symbols-outlined"
+                    style={materialIconStyle}
+                  >
+                    arrow_back
+                  </span>
+                </button>
 
                 <div className="flex justify-end gap-2">
+                  {activity.image ? (
+                    <div className="h-2 w-2"></div>
+                  ) : (
+                    <>
+                      <button
+                        className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
+                        onClick={() =>
+                          document
+                            .getElementById("upload_image_modal")
+                            .showModal()
+                        }
+                      >
+                        <span
+                          className="material-symbols-outlined"
+                          style={materialIconStyle}
+                        >
+                          add_photo_alternate
+                        </span>
+                      </button>
+                    </>
+                  )}
+
+                  <button
+                    className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
+                    onClick={() => navigate(`/activities/edit/${activityId}`)}
+                  >
+                    <span
+                      className="material-symbols-outlined"
+                      style={materialIconStyle}
+                    >
+                      edit
+                    </span>
+                  </button>
                   <button
                     className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-info bg-white shadow-md"
                     onClick={() =>
@@ -273,17 +296,6 @@ function ActivitiesDetails() {
                       style={materialIconStyle}
                     >
                       delete
-                    </span>
-                  </button>
-                  <button
-                    className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
-                    onClick={() => navigate(`/activities/edit/${activityId}`)}
-                  >
-                    <span
-                      className="material-symbols-outlined"
-                      style={materialIconStyle}
-                    >
-                      edit
                     </span>
                   </button>
                 </div>
@@ -364,6 +376,7 @@ function ActivitiesDetails() {
                     aria-label="Change Image"
                   />
                 </div>
+
                 <button
                   className="btn btn-primary mt-2 text-white"
                   onClick={() => {
