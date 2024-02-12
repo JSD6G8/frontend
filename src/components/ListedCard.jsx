@@ -89,7 +89,7 @@ function ListedCard({ activities }) {
           >
             <div
               id="summary-description"
-              className="mx-4 mb-2 mt-4 w-48 max-sm:w-36 md:mx-3 md:mb-1 md:mt-4 md:flex-grow"
+              className="mx-4 mb-2 mt-4 w-44 max-sm:w-36 md:mx-3 md:mb-1 md:mt-4 md:flex-grow"
             >
               <p className="truncate text-lg font-bold max-sm:text-base">
                 {activities.title}
@@ -119,9 +119,9 @@ function ListedCard({ activities }) {
             </div>
             <button
               onClick={() => handleEdit(activities.activityId)}
-              className="z-10 mx-3 mb-3 flex h-9 w-9 items-center justify-center self-end rounded-full bg-slate-300 max-md:hidden"
+              className="z-10 mx-3 mb-3 flex h-9 w-9 items-center justify-center self-end rounded-full bg-primary hover:bg-[#1357B8]  max-md:hidden"
             >
-              <span className="material-symbols-outlined text-black">edit</span>
+              <span className="material-symbols-outlined text-white">edit</span>
             </button>
           </div>
         </div>

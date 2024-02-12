@@ -22,7 +22,7 @@ function NavGuest({ isLoggedIn, setIsLoggedIn }) {
     <nav>
       <div className="navbar bg-white drop-shadow-md">
         <div className="navbar-start">
-          <a href="/">
+          <a href="/" className="ml-3">
             <img src="/logo_black.svg" alt="LogLife logo" />
           </a>
         </div>
@@ -36,7 +36,7 @@ function NavGuest({ isLoggedIn, setIsLoggedIn }) {
           </a>
           <a
             href="/signup"
-            className="btn btn-primary mx-3 text-base text-white"
+            className="btn btn-primary mr-3 text-base text-white hover:bg-[#1357B8]"
           >
             Sign Up
           </a>
@@ -51,7 +51,7 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
     <nav>
       <div className="navbar bg-white drop-shadow-md lg:hidden">
         <div className="navbar-start">
-          <div className="dropdown">
+          <div className="dropdown font-medium">
             <div
               tabIndex={0}
               role="button"
@@ -75,6 +75,22 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
               tabIndex={0}
               className="menu dropdown-content menu-sm mt-3 w-52 rounded-box bg-white p-2 shadow "
             >
+              <div className="mb-2 flex h-10 place-content-baseline sm:hidden">
+                <div className="avatar">
+                  <div className="w-10 rounded-full">
+                    <img
+                      className="self-center"
+                      alt="profile"
+                      src="http://placekitten.com/200/300"
+                    />
+                  </div>
+                </div>
+                {/* retrieve name from express w/ response.data.user.first_name */}
+                <p className="ml-2 place-self-center text-lg font-bold">
+                  Hello, Daniel!
+                </p>
+              </div>
+              <hr />
               <li>
                 <a className="py-5 text-base" href="/activities">
                   <i className="fa-solid fa-person-running fa-xl"></i>
@@ -86,6 +102,18 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
                   <i className="fa-solid fa-chart-column fa-lg"></i>Dashboard
                 </a>
               </li>
+              <li className="sm:hidden">
+                <a className="py-5 text-base" href="#">
+                  <i className="fa-solid fa-gear fa-lg"></i>Settings
+                </a>
+              </li>
+              <li className="sm:hidden">
+                <a className="py-5 text-base text-info" href="#">
+                  <i className="fa-solid fa-right-to-bracket fa-lg text-info"></i>
+                  Logout
+                </a>
+              </li>
+              <hr />
               <li>
                 <a className="py-5 text-base">
                   <i className="fa-solid fa-user-group"></i>About Us
@@ -105,28 +133,38 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
             setIsLoggedIn={setIsLoggedIn}
           />
           <AddButton />
-          <div className="dropdown dropdown-end mx-3">
+          <div className="dropdown dropdown-end mx-3 mt-1 max-sm:hidden">
             <div
               tabIndex={0}
               role="button"
-              className="avatar btn btn-circle btn-ghost"
+              className="avatar btn btn-circle btn-ghost btn-md"
             >
               <div className="w-10 rounded-full">
-                <img alt="profile" src="http://placekitten.com/200/300" />
+                <img
+                  className="self-center"
+                  alt="profile"
+                  src="http://placekitten.com/200/300"
+                />
               </div>
             </div>
             <ul
               tabIndex={0}
               className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-white p-2 shadow"
             >
+              {/* retrieve name from express w/ response.data.user.first_name*/}
+              <p className="my-2 ml-2 place-self-start text-lg font-bold">
+                👋🏼 Hello, Daniel!
+              </p>
+              <hr />
               <li>
-                <a className="py-5 text-base">
+                <a className="py-5 text-base" href="#">
                   <i className="fa-solid fa-gear fa-lg"></i>Settings
                 </a>
               </li>
               <li>
-                <a className="py-5 text-base">
-                  <i className="fa-solid fa-right-to-bracket fa-lg"></i>Logout
+                <a className="py-5 text-base text-info" href="#">
+                  <i className="fa-solid fa-right-to-bracket fa-lg text-info"></i>
+                  Logout
                 </a>
               </li>
             </ul>
@@ -142,11 +180,11 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
     <nav>
       <div className="navbar bg-white drop-shadow-md max-lg:hidden">
         <div className="navbar-start">
-          <a href="/">
+          <a href="/" className="ml-3">
             <img src="/logo_black.svg" alt="LogLife logo" />
           </a>
           <div>
-            <ul className="menu menu-horizontal">
+            <ul className="menu menu-horizontal font-medium">
               <li>
                 <a href="/activities" className="text-base">
                   Activity List
@@ -171,28 +209,38 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
             setIsLoggedIn={setIsLoggedIn}
           />
           <AddButton />
-          <div className="dropdown dropdown-end mx-3">
+          <div className="dropdown dropdown-end mx-3 mt-1 font-medium">
             <div
               tabIndex={0}
               role="button"
-              className="avatar btn btn-circle btn-ghost"
+              className="avatar btn btn-circle btn-ghost btn-md"
             >
               <div className="w-10 rounded-full">
-                <img alt="profile" src="http://placekitten.com/200/300" />
+                <img
+                  className="self-center"
+                  alt="profile"
+                  src="http://placekitten.com/200/300"
+                />
               </div>
             </div>
             <ul
               tabIndex={0}
               className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-white p-2 shadow"
             >
+              {/* retrieve name from express w/response.data.user.first_name */}
+              <p className="my-2 ml-2 place-self-start text-lg font-bold">
+                👋🏼 Hello, Daniel!
+              </p>
+              <hr />
               <li>
                 <a className="py-5 text-base">
                   <i className="fa-solid fa-gear fa-lg"></i>Settings
                 </a>
               </li>
               <li>
-                <a className="py-5 text-base">
-                  <i className="fa-solid fa-right-to-bracket fa-lg"></i>Logout
+                <a className="py-5 text-base text-info">
+                  <i className="fa-solid fa-right-to-bracket fa-lg text-info"></i>
+                  Logout
                 </a>
               </li>
             </ul>
