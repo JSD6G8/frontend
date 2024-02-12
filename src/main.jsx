@@ -11,6 +11,9 @@ import EditActivity from "./EditActivity.jsx";
 import Nav from "./components/Nav.jsx";
 import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
+import ForgetPassword from "./ForgetPassword.jsx";
+import OTPInput from "./OTPInput.jsx";
+import ResetPassword from "./ResetPassword.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ListedCard from "./components/ListedCard.jsx";
@@ -55,6 +58,18 @@ const router = createBrowserRouter([
   {
     path: '/nav',
     element: <Nav/>,
+  },
+  {
+    path: '/forget-password',
+    element: <ForgetPassword/>,
+  },
+  {
+    path: '/email-verification',
+    element: <OTPInput/>,
+  },
+  {
+    path: '/reset-password',
+    element: <ResetPassword/>,
   },
 ]);
 
