@@ -115,7 +115,7 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
               </li>
               <hr />
               <li>
-                <a className="py-5 text-base">
+                <a className="py-5 text-base" href="/aboutus">
                   <i className="fa-solid fa-user-group"></i>About Us
                 </a>
               </li>
