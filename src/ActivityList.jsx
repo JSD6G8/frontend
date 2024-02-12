@@ -11,6 +11,7 @@ function ActivityList() {
   const [reload, setReload] = useState(false);
   const [hasmore, setHasMore] = useState(true);
   const [skip, setSkip] = useState(10);
+  const [take, setTake] = useState(10);
 
   const choicesData = [
     "All",
@@ -28,6 +29,7 @@ function ActivityList() {
 
   function filterTypeUpdate(value) {
     setFilterType(value);
+    setSkip(10);
   }
 
   function filterOrderUpdate(value) {
@@ -40,7 +42,7 @@ function ActivityList() {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `https://jsd6-loglife-backend.onrender.com/activities/user/${userId}?type=${typeQuery}&sort=${orderType}&take=10`,
+          `https://jsd6-loglife-backend.onrender.com/activities/user/${userId}?type=${typeQuery}&sort=${orderType}&take=${take}`,
         );
 
         if (response.status === 200 && response.data) {
@@ -55,7 +57,6 @@ function ActivityList() {
   }, [filterType, orderType, reload]);
 
   const fetchMoreData = () => {
-    // !! bug: when chosen activity filter and go back to All, still not working properly
     axios
       .get(
         `https://jsd6-loglife-backend.onrender.com/activities/user/${userId}?type=${typeQuery}&sort=${orderType}&skip=${skip}&take=5`,
@@ -67,6 +68,7 @@ function ActivityList() {
       .catch((err) => console.log(err));
 
     setSkip((prevSkip) => prevSkip + 5);
+    setTake((prevTake) => prevTake + skip);
   };
 
   return (
@@ -103,7 +105,7 @@ function ActivityList() {
               </p>
             }
           >
-            <div className="flex flex-col max-md:mt-3 md:h-48">
+            <div className="flex flex-col max-md:mt-3">
               <div className="flex-auto self-center md:grid md:grid-cols-2 md:place-items-center md:gap-x-3 md:gap-y-3 lg:grid-cols-3 lg:gap-x-3 xl:grid-cols-4 xl:gap-x-4">
                 {activities.map((activity) => {
                   switch (filterType) {
