@@ -16,9 +16,9 @@ function Signup() {
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',
-        email: '',
+        emailAddress: '',
         password: '',
-        confirm_password: '',
+        // confirm_password: '',
     });
 
     const [errors, setErrors] = useState({});
@@ -55,12 +55,12 @@ function Signup() {
             newErrors.last_name = 'Last Name is required';
         }
 
-        if (!formData.email.trim()) {
-            newErrors.email = 'Email is required';
-        } else if (formData.email.includes(" ")) {
-            newErrors.email = 'Invalid Email';
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formData.email)) {
-            newErrors.email = 'Invalid email address';
+        if (!formData.emailAddress.trim()) {
+            newErrors.emailAddress = 'Email is required';
+        } else if (formData.emailAddress.includes(" ")) {
+            newErrors.emailAddress = 'Invalid Email';
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formData.emailAddress)) {
+            newErrors.emailAddress = 'Invalid email address';
         }
 
         if (!formData.password.trim()) {
@@ -71,16 +71,16 @@ function Signup() {
             newErrors.password = 'Password must have special character ._-@%$#!';
         }
 
-        if (formData.password !== formData.confirm_password) {
-            newErrors.confirm_password = 'Passwords do not match';
-        }
+        // if (formData.password !== formData.confirm_password) {
+        //     newErrors.confirm_password = 'Passwords do not match';
+        // }
 
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
             try {
                 const response = await axios.post(
-                    'https://659cbd33633f9aee7907e27c.mockapi.io/kiki/user',
+                    'https://jsd6-loglife-backend.onrender.com/signup',
                     formData
                 );
 
@@ -153,15 +153,15 @@ function Signup() {
                             <label>Email Address
                                 <input
                                     type="text"
-                                    name="email"
-                                    id="email"
-                                    value={formData.email}
+                                    name="emailAddress"
+                                    id="emailAddress"
+                                    value={formData.emailAddress}
                                     onChange={handleChange}
                                     className="input bg-gray-100 px-4 py-3 mt-3 w-full"
                                     placeholder="Email Address"
                                 />
-                                {errors.email && (
-                                    <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                                {errors.emailAddress && (
+                                    <p className="text-red-500 text-xs mt-1">{errors.emailAddress}</p>
                                 )}
                             </label>
                         </div>
@@ -204,7 +204,7 @@ function Signup() {
                                 </ul>
                             </div>
                         </div>
-                        <div className="my-8">
+                        {/* <div className="my-8">
                             <label>Confirm Password
                                 <div className="relative">
                                     <input
@@ -234,8 +234,8 @@ function Signup() {
                                 {errors.confirm_password && (
                                     <p className="text-red-500 text-xs mt-1">{errors.confirm_password}</p>
                                 )}
-                            </label>
-                        </div>
+                            </label> */}
+                        {/* </div> */}
 
 
                         <div className="my-10">
