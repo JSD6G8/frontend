@@ -239,23 +239,28 @@ function ActivitiesDetails() {
               <div className="my-2 h-0.5 bg-base-200"></div>
 
               <div className="flex justify-between py-4">
-                <button
-                  className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-primary bg-white shadow-md"
-                  onClick={() => navigate("/activities")}
-                >
-                  <span
-                    className="material-symbols-outlined"
-                    style={materialIconStyle}
+                <div className="tooltip tooltip-secondary" data-tip="Back">
+                  <button
+                    className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-primary bg-white shadow-md"
+                    onClick={() => navigate("/activities")}
                   >
-                    arrow_back
-                  </span>
-                </button>
+                    <span
+                      className="material-symbols-outlined"
+                      style={materialIconStyle}
+                    >
+                      arrow_back
+                    </span>
+                  </button>
+                </div>
 
                 <div className="flex justify-end gap-2">
                   {activity.image ? (
                     <div className="h-2 w-2"></div>
                   ) : (
-                    <>
+                    <div
+                      className="tooltip tooltip-success"
+                      data-tip="Add Photo"
+                    >
                       <button
                         className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
                         onClick={() =>
@@ -271,33 +276,43 @@ function ActivitiesDetails() {
                           add_photo_alternate
                         </span>
                       </button>
-                    </>
+                    </div>
                   )}
+                  <div
+                    className="tooltip tooltip-success"
+                    data-tip="Edit Activity"
+                  >
+                    <button
+                      className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
+                      onClick={() => navigate(`/activities/edit/${activityId}`)}
+                    >
+                      <span
+                        className="material-symbols-outlined"
+                        style={materialIconStyle}
+                      >
+                        edit
+                      </span>
+                    </button>
+                  </div>
 
-                  <button
-                    className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
-                    onClick={() => navigate(`/activities/edit/${activityId}`)}
+                  <div
+                    className="tooltip tooltip-info"
+                    data-tip="Delete Activity"
                   >
-                    <span
-                      className="material-symbols-outlined"
-                      style={materialIconStyle}
+                    <button
+                      className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-info bg-white shadow-md"
+                      onClick={() =>
+                        document.getElementById("delete_modal").showModal()
+                      }
                     >
-                      edit
-                    </span>
-                  </button>
-                  <button
-                    className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-info bg-white shadow-md"
-                    onClick={() =>
-                      document.getElementById("delete_modal").showModal()
-                    }
-                  >
-                    <span
-                      className="material-symbols-outlined"
-                      style={materialIconStyle}
-                    >
-                      delete
-                    </span>
-                  </button>
+                      <span
+                        className="material-symbols-outlined"
+                        style={materialIconStyle}
+                      >
+                        delete
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
