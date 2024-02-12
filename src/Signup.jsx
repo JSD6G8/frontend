@@ -234,8 +234,8 @@ function Signup() {
                                 {errors.confirm_password && (
                                     <p className="text-red-500 text-xs mt-1">{errors.confirm_password}</p>
                                 )}
-                            </label> */}
-                        {/* </div> */}
+                            </label>
+                        </div> */}
 
 
                         <div className="my-10">

@@ -50,21 +50,28 @@ function Login() {
                 console.log(result)
                 if (result.status === 'ok') {
                     MySwal.fire({
-                        text: 'Logged in successfully!',
                         icon: 'success',
+                        text: 'Logged in successfully!',
                         confirmButtonColor: '#6587E8',
                     }).then(() => {
                         navigate('/activities')
                     })
                 } else {
                     MySwal.fire({
-                        text: 'Failed to logged in .Please try again.',
                         icon: 'error',
+                        text: 'Invalid email or password.',
                         confirmButtonColor: '#6587E8',
                     })
                 }
             })
-            .catch(error => console.log('error', error));
+            .catch(error => {
+                console.log('error', error);
+                MySwal.fire({
+                    icon: 'error',
+                    text: 'An unexpected error occurred. Please try again later.',
+                    confirmButtonColor: '#6587E8'
+                });
+            });
         console.log(inputs);
     }
     return (
