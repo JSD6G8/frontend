@@ -33,7 +33,7 @@ function Login() {
         myHeaders.append("Content-Type", "application/json");
 
         var raw = JSON.stringify({
-            "username": inputs.username,
+            "emailAddress": inputs.username,
             "password": inputs.password
         });
 
@@ -44,21 +44,21 @@ function Login() {
             redirect: 'follow'
         };
 
-        fetch("https://www.melivecode.com/api/login", requestOptions)
+        fetch("https://jsd6-loglife-backend.onrender.com/login", requestOptions)
             .then(response => response.json())
             .then(result => {
                 console.log(result)
                 if (result.status === 'ok') {
                     MySwal.fire({
-                        html: <i>{result.message}</i>,
+                        text: 'Logged in successfully!',
                         icon: 'success',
                         confirmButtonColor: '#6587E8',
-                    }).then((value) => {
+                    }).then(() => {
                         navigate('/activities')
                     })
                 } else {
                     MySwal.fire({
-                        html: <i>{result.message}</i>,
+                        text: 'Failed to logged in .Please try again.',
                         icon: 'error',
                         confirmButtonColor: '#6587E8',
                     })
