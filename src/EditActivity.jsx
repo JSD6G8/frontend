@@ -28,7 +28,9 @@ function EditActivity() {
 
   useEffect(() => {
     const getDataById = async (id) => {
-      const response = await axios.get(`https://jsd6-loglife-backend.onrender.com/activities/${id}`);
+      const response = await axios.get(
+        `https://jsd6-loglife-backend.onrender.com/activities/${id}`,
+      );
       if (response.status === 200) {
         const data = { ...response.data };
         setTitle(data.title);
@@ -64,7 +66,10 @@ function EditActivity() {
           barometer: barometer,
         };
 
-        const response = await axios.put(`https://jsd6-loglife-backend.onrender.com/activities/${activityId}`, putData);
+        const response = await axios.put(
+          `https://jsd6-loglife-backend.onrender.com/activities/${activityId}`,
+          putData,
+        );
 
         if (response.status === 200) {
           navigate(`/activities/${activityId}`);
@@ -77,7 +82,7 @@ function EditActivity() {
 
   return (
     <Layout>
-      <div className="container mx-auto max-w-lg px-2 py-2 md:mt-4 md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
+      <div className="container mx-auto max-w-lg px-2 py-2 md:my-4 md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
         <main className="h-full">
           <ActivityForm
             formHeading="Edit Activity"

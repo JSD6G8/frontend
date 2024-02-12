@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import "./ActivityForm.css";
-import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import formatDuration from "../utils/formatDuration";
+import "./ActivityForm.css";
 
 function ActivityTypeLabel({ activityType, setActivityType, type, icon }) {
   return (
@@ -108,12 +108,12 @@ export default function ActivityForm({
 
   return (
     <form
-      className="flex h-full flex-col justify-between gap-4"
+      className="mx-3 my-3 flex h-full flex-col justify-between gap-4"
       onSubmit={handleSubmit}
     >
-      <h1 className="text-2xl md:text-3xl">{formHeading}</h1>
+      <h1 className="text-5xl font-semibold">{formHeading}</h1>
       <fieldset>
-        <h2 className="text-base md:text-xl">Activity Title</h2>
+        <h2 className="text-base font-medium md:text-xl">Activity Title</h2>
         <input
           className="input input-bordered w-full text-sm"
           type="text"
@@ -125,7 +125,7 @@ export default function ActivityForm({
       </fieldset>
 
       <fieldset>
-        <h2 className="text-base md:text-xl">Description</h2>
+        <h2 className="text-base font-medium md:text-xl">Description</h2>
         <textarea
           className="text-sn textarea textarea-bordered w-full resize-none"
           placeholder="Notes for anything (optional)"
@@ -135,7 +135,7 @@ export default function ActivityForm({
       </fieldset>
 
       <fieldset>
-        <h2 className="text-base md:text-xl">Activity Type</h2>
+        <h2 className="text-base font-medium md:text-xl">Activity Type</h2>
 
         <div className="grid max-w-full grid-cols-3 justify-around gap-2">
           <ActivityTypeLabel
@@ -178,7 +178,7 @@ export default function ActivityForm({
       </fieldset>
 
       <fieldset className="flex max-w-full items-center gap-2">
-        <h2 className="text-base md:text-xl">Date:</h2>
+        <h2 className="text-base font-medium md:text-xl">Date:</h2>
         <input
           className="rounded border-2"
           type="date"
@@ -193,7 +193,7 @@ export default function ActivityForm({
 
       <fieldset className="flex max-w-full flex-col justify-around">
         <div className="flex flex-row items-center gap-2">
-          <h2 className="text-base md:text-xl">From:</h2>
+          <h2 className="text-base font-medium md:text-xl">From:</h2>
           <input
             className="rounded border-2"
             type="time"
@@ -204,7 +204,8 @@ export default function ActivityForm({
               setStartTime(e.target.value);
             }}
           />
-          <span className="text-base md:text-xl">to:</span>
+          <span>{"->"}</span>
+          <span className="text-base font-medium md:text-xl">To:</span>
           <input
             className="rounded border-2"
             type="time"
@@ -222,7 +223,7 @@ export default function ActivityForm({
       </fieldset>
 
       <fieldset className="flex gap-1">
-        <h2 className="text-base md:text-xl">Duration:</h2>
+        <h2 className="text-base font-medium md:text-xl">Duration:</h2>
         <span className="text-base md:text-xl">
           {formatDuration(duration.hour, "hour", "hours")}{" "}
           {formatDuration(duration.minute, "minute", "minutes")}
@@ -231,12 +232,14 @@ export default function ActivityForm({
 
       <fieldset>
         <div className="flex flex-row items-center">
-          <h2 className="text-base md:text-xl">How did you feel?</h2>
+          <h2 className="text-base font-medium md:text-xl">
+            How did you feel?
+          </h2>
           <div
             className={`mx-2 h-2 flex-auto rounded ${barometerColorClass}`}
           ></div>
         </div>
-        <div className="flex max-w-full flex-wrap justify-around">
+        <div className="mt-3 flex max-w-full flex-wrap justify-around">
           <BarometerLabel
             barometer={barometer}
             setBarometer={setBarometer}
@@ -275,14 +278,14 @@ export default function ActivityForm({
         </div>
       </fieldset>
 
-      <div className="flex w-full justify-stretch gap-2 py-2">
+      <div className="mb-3 flex w-full justify-stretch gap-5 pb-3 ">
         <button
-          className="btn flex-auto"
+          className="btn flex-auto hover:btn-info"
           type="button"
           onClick={(e) => {
             e.preventDefault();
-            navigate(-1)}
-          }
+            navigate(-1);
+          }}
         >
           Cancel
         </button>
