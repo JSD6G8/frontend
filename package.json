@@ -16,6 +16,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons-kit": "^2.0.0",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^6.21.1",
     "sweetalert2": "^11.10.3",
     "sweetalert2-react-content": "^5.0.7"
