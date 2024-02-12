@@ -280,7 +280,7 @@ export default function ActivityForm({
 
       <div className="mb-3 flex w-full justify-stretch gap-5 pb-3 ">
         <button
-          className="btn flex-auto hover:btn-info"
+          className="btn flex-auto hover:btn-info hover:text-white"
           type="button"
           onClick={(e) => {
             e.preventDefault();
@@ -290,7 +290,7 @@ export default function ActivityForm({
           Cancel
         </button>
         <button
-          className="btn btn-primary flex-auto text-base-100"
+          className="btn btn-primary flex-auto text-base-100 hover:bg-[#1357B8]"
           type="submit"
         >
           {submitButtonText}
