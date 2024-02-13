@@ -90,7 +90,7 @@ function NavLoggedInMobile() {
                 </a>
               </li>
               <li className="sm:hidden">
-                <a className="py-5 text-base text-info" href="#">
+                <a className="py-5 text-base text-info" href="/logout">
                   <i className="fa-solid fa-right-to-bracket fa-lg text-info"></i>
                   Logout
                 </a>
@@ -140,7 +140,7 @@ function NavLoggedInMobile() {
                 </a>
               </li>
               <li>
-                <a className="py-5 text-base text-info" href="#">
+                <a className="py-5 text-base text-info" href="/logout">
                   <i className="fa-solid fa-right-to-bracket fa-lg text-info"></i>
                   Logout
                 </a>
@@ -212,7 +212,7 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
                 </a>
               </li>
               <li>
-                <a className="py-5 text-base text-info">
+                <a className="py-5 text-base text-info" href="/logout">
                   <i className="fa-solid fa-right-to-bracket fa-lg text-info"></i>
                   Logout
                 </a>
@@ -237,7 +237,7 @@ function Nav() {
       <br />
 
       {/* when login in desktop */}
-      <NavLoggedInDesktop />
+      <NavLoggedInDesktop  />
 
       <Footer />
     </Layout>

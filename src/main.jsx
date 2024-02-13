@@ -13,9 +13,9 @@ import ActivityList from "./ActivityList.jsx";
 import ActivitiesDetails from "./ActivityDetails.jsx";
 import CreateActivity from "./CreateActivity.jsx";
 import EditActivity from "./EditActivity.jsx";
-import Nav from "./components/Nav.jsx";
 import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
+import Logout from "./Logout.jsx";
 import ForgetPassword from "./ForgetPassword.jsx";
 import OTPInput from "./OTPInput.jsx";
 import ResetPassword from "./ResetPassword.jsx";
@@ -93,14 +93,42 @@ const Routes = () => {
     {
       path: "/",
       element: <App />,
+    },
+    {
+      path: "/about-us",
+      element: <Layout>Mock About Us</Layout>,
     }
   ];
 
   const routesForNotAuthenticatedOnly = [
     {
+      path: "/",
+      element: <App />
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <Signup />,
+    },
+    {
+      path: "/forget-password",
+      element: <ForgetPassword />,
+    },
+    {
+      path: "/email-verification",
+      element: <OTPInput />,
+    },
+    {
+      path: "/reset-password",
+      element: <ResetPassword />,
+    },
+    {
       path: "/test-login-api",
       element: <TestLoginAPI />,
-    }
+    },
   ];
 
   const routesForAuthenticatedOnly = [
@@ -108,6 +136,30 @@ const Routes = () => {
       path: "/",
       element: <ProtectedRoute />, // Wrap the entire app in a protected route
       children: [
+        {
+          path: "/activities",
+          element: <ActivityList />,
+        },
+        {
+          path: "/activities/:activityId",
+          element: <ActivitiesDetails />,
+        },
+        {
+          path: "/activities/create",
+          element: <CreateActivity />,
+        },
+        {
+          path: "/activities/edit/:activityId",
+          element: <EditActivity />,
+        },
+        {
+          path: "/dashboard",
+          element: <Layout>Mock Dashboard</Layout>,
+        },
+        {
+          path: "/logout",
+          element: <Logout />,
+        },
         {
           path: "/test-logout-api",
           element: <TestLogoutAPI />,
