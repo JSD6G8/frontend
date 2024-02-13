@@ -12,7 +12,6 @@ function Logout() {
       const response = await axios.post("http://127.0.0.1:3000/logout", null, {
         withCredentials: true,
       });
-      console.log(response);
       if (response.status === 200) {
         setUser(null);
         navigate("/", { replace: true });

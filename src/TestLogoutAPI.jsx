@@ -29,7 +29,6 @@ const TestLogoutAPI = () => {
     <Layout>
         <button onClick={handleLogout}>Logout</button>
         <button onClick={handleRequestToken}>Request Token</button>
-        <p>user: {user}</p>
     </Layout>
   );
 };

@@ -9,7 +9,7 @@ import {
 import { useAuth } from "./providers/authProvider";
 
 function Layout({ children }) {
-  const {user, setUser} = useAuth();
+  const {user} = useAuth();
 
   return (
     <>

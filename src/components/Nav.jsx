@@ -2,6 +2,8 @@ import Layout from "../Layout";
 import { AddButton } from "./AddButton";
 import Footer from "./Footer";
 import "./Nav.css";
+import { useAuth } from "../providers/authProvider";
+import { useEffect } from "react";
 
 function NavGuest() {
   return (
@@ -29,6 +31,8 @@ function NavGuest() {
 }
 
 function NavLoggedInMobile() {
+  const { user } = useAuth();
+
   return (
     <nav>
       <div className="navbar bg-white drop-shadow-md lg:hidden">
@@ -69,7 +73,7 @@ function NavLoggedInMobile() {
                 </div>
                 {/* retrieve name from express w/ response.data.user.first_name */}
                 <p className="ml-2 place-self-center text-lg font-bold">
-                  Hello, Daniel!
+                  Hello, {user.first_name}!
                 </p>
               </div>
               <hr />
@@ -131,7 +135,7 @@ function NavLoggedInMobile() {
             >
               {/* retrieve name from express w/ response.data.user.first_name*/}
               <p className="my-2 ml-2 place-self-start text-lg font-bold">
-                👋🏼 Hello, Daniel!
+                👋🏼 Hello, {user.first_name}!
               </p>
               <hr />
               <li>
@@ -153,7 +157,9 @@ function NavLoggedInMobile() {
   );
 }
 
-function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
+function NavLoggedInDesktop() {
+  const { user } = useAuth();
+
   return (
     <nav>
       <div className="navbar bg-white drop-shadow-md max-lg:hidden">
@@ -203,7 +209,7 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
             >
               {/* retrieve name from express w/response.data.user.first_name */}
               <p className="my-2 ml-2 place-self-start text-lg font-bold">
-                👋🏼 Hello, Daniel!
+                👋🏼 Hello, {user.first_name}!
               </p>
               <hr />
               <li>
@@ -226,6 +232,7 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
 }
 
 function Nav() {
+
   return (
     <Layout>
       {/* when new user come */}
@@ -237,7 +244,7 @@ function Nav() {
       <br />
 
       {/* when login in desktop */}
-      <NavLoggedInDesktop  />
+      <NavLoggedInDesktop />
 
       <Footer />
     </Layout>

@@ -16,7 +16,7 @@ const TestLoginAPI = () => {
     });
     console.log(response);
     if (response.status === 200) {
-      setUser(response.data.user.userId);
+      setUser(response.data.user);
       navigate("/test-logout-api", { replace: true });
     }
   };

@@ -50,11 +50,11 @@ function Login() {
           text: "Logged in successfully!",
           confirmButtonColor: "#6587E8",
         }).then(() => {
-          setUser(response.data.user.userId);
+          setUser(response.data.user);
           navigate("/activities", { replace: true });
         });
       } else {
-        MySwal.fire({
+        await MySwal.fire({
           icon: "error",
           text: "Invalid email or password.",
           confirmButtonColor: "#6587E8",
