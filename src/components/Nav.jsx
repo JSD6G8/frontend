@@ -3,21 +3,7 @@ import { AddButton } from "./AddButton";
 import Footer from "./Footer";
 import "./Nav.css";
 
-function TempLoginToggle({ isLoggedIn, setIsLoggedIn }) {
-  return (
-    <label className="label flex cursor-pointer flex-row gap-1">
-      <span className="label-text">Log-in Toggle</span>
-      <input
-        type="checkbox"
-        className="toggle"
-        checked={isLoggedIn}
-        onChange={() => setIsLoggedIn(!isLoggedIn)}
-      />
-    </label>
-  );
-}
-
-function NavGuest({ isLoggedIn, setIsLoggedIn }) {
+function NavGuest() {
   return (
     <nav>
       <div className="navbar bg-white drop-shadow-md">
@@ -27,10 +13,6 @@ function NavGuest({ isLoggedIn, setIsLoggedIn }) {
           </a>
         </div>
         <div className="navbar-end">
-          <TempLoginToggle
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
-          />
           <a href="/login" className="btn btn-ghost mx-3 text-base">
             Login
           </a>
@@ -46,7 +28,7 @@ function NavGuest({ isLoggedIn, setIsLoggedIn }) {
   );
 }
 
-function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
+function NavLoggedInMobile() {
   return (
     <nav>
       <div className="navbar bg-white drop-shadow-md lg:hidden">
@@ -128,10 +110,6 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
           </a>
         </div>
         <div className="navbar-end">
-          <TempLoginToggle
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
-          />
           <AddButton />
           <div className="dropdown dropdown-end mx-3 mt-1 max-sm:hidden">
             <div
@@ -204,10 +182,6 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
           </div>
         </div>
         <div className="navbar-end">
-          <TempLoginToggle
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
-          />
           <AddButton />
           <div className="dropdown dropdown-end mx-3 mt-1 font-medium">
             <div

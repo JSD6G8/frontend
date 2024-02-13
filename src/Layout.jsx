@@ -6,24 +6,19 @@ import {
   NavLoggedInDesktop,
   NavLoggedInMobile,
 } from "./components/Nav";
+import { useAuth } from "./providers/authProvider";
 
 function Layout({ children }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const {user, setUser} = useAuth();
 
   return (
     <>
-      <div className={`${isLoggedIn ? "hidden" : ""} sticky top-0 z-10 w-full`}>
-        <NavGuest isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <div className={`${user ? "hidden" : ""} sticky top-0 z-10 w-full`}>
+        <NavGuest/>
       </div>
-      <div className={`${isLoggedIn ? "" : "hidden"} sticky top-0 z-10 w-full`}>
-        <NavLoggedInMobile
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-        />
-        <NavLoggedInDesktop
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-        />
+      <div className={`${user ? "" : "hidden"} sticky top-0 z-10 w-full`}>
+        <NavLoggedInMobile/>
+        <NavLoggedInDesktop/>
       </div>
       {children}
       <Footer />
