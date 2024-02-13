@@ -31,7 +31,7 @@ function EditActivity() {
   useEffect(() => {
     const getDataById = async (id) => {
       const response = await axios.get(
-        `http://127.0.0.1:3000/activities/${id}`, 
+        `https://jsd6-loglife-backend.onrender.com/activities/${id}`, 
         {
           withCredentials: true,
         }
@@ -71,7 +71,7 @@ function EditActivity() {
         };
 
         const response = await axios.put(
-          `http://127.0.0.1:3000/activities/${activityId}`,
+          `https://jsd6-loglife-backend.onrender.com/activities/${activityId}`,
           putData,
           {
             withCredentials: true,

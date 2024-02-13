@@ -10,7 +10,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:3000/token", {
+        const response = await axios.get("https://jsd6-loglife-backend.onrender.com/token", {
           withCredentials: true,
         });
         if (response.status === 200) {

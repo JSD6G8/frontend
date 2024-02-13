@@ -125,10 +125,6 @@ const Routes = () => {
       path: "/reset-password",
       element: <ResetPassword />,
     },
-    {
-      path: "/test-login-api",
-      element: <TestLoginAPI />,
-    },
   ];
 
   const routesForAuthenticatedOnly = [
@@ -160,10 +156,6 @@ const Routes = () => {
           path: "/logout",
           element: <Logout />,
         },
-        {
-          path: "/test-logout-api",
-          element: <TestLogoutAPI />,
-        }
       ],
     }
   ];

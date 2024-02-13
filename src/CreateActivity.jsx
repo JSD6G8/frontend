@@ -62,7 +62,7 @@ function CreateActivity() {
         };
 
         const response = await axios.post(
-          "http://127.0.0.1:3000/activities/",
+          "https://jsd6-loglife-backend.onrender.com/activities/",
           postData,
           {
             withCredentials: true,

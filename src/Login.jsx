@@ -37,7 +37,7 @@ function Login() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:3000/login",
+        "https://jsd6-loglife-backend.onrender.com/login",
         requestBody,
         {
           withCredentials: true,
