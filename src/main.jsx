@@ -20,9 +20,6 @@ import ForgetPassword from "./ForgetPassword.jsx";
 import OTPInput from "./OTPInput.jsx";
 import ResetPassword from "./ResetPassword.jsx";
 
-import TestLoginAPI from "./TestLoginAPI.jsx";
-import TestLogoutAPI from "./TestLogoutAPI.jsx";
-
 // const router = createBrowserRouter([
 //   {
 //     path: "/",
