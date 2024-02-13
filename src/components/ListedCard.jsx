@@ -75,16 +75,16 @@ function ListedCard({ activities }) {
           className={`${moodColor} flex w-32 flex-shrink-0 flex-col justify-evenly rounded-l-xl max-sm:w-1/4 md:h-32 md:w-full md:rounded-b-none md:rounded-t-xl`}
         >
           <span
-            className="material-symbols-outlined self-center"
-            style={{ fontSize: "55px" }}
+            className="material-symbols-outlined select-none self-center"
+            style={{ fontSize: "50px" }}
           >
             {activitySymbol}
           </span>
         </div>
         {/* brief activity info */}
-        <div className="flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100 max-sm:w-12 md:rounded-b-xl md:rounded-t-none ">
+        <div className="flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100 max-sm:w-12 md:rounded-b-xl md:rounded-t-none">
           <div
-            className="flex-0 flex flex-row justify-between "
+            className="flex-0 flex flex-row justify-between hover:cursor-pointer"
             onClick={() => handleShowDetails(activities.activityId)}
           >
             <div
@@ -103,7 +103,7 @@ function ListedCard({ activities }) {
                 </div>
               </div>
             </div>
-            <span className="material-symbols-outlined mt-2 w-12 flex-grow-0 self-center md:mt-8">
+            <span className="material-symbols-outlined mt-2 w-12 flex-grow-0 select-none self-center md:mt-8">
               arrow_forward_ios
             </span>
           </div>
@@ -111,7 +111,7 @@ function ListedCard({ activities }) {
           <div className="mb-1 mr-2 flex flex-col justify-between">
             <div
               id="brief-dateAndTime"
-              className="mb-1 flex w-32 justify-evenly self-end md:mx-2 md:mt-2 md:self-start"
+              className="mb-1 flex w-32 select-none justify-evenly self-end md:mx-2 md:mt-2 md:self-start"
             >
               <p className="text-xs font-normal">{activities.date}</p>
               <p className="text-xs font-thin italic text-slate-600">at</p>
