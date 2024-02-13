@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "./providers/authProvider";
 
 import Layout from "./Layout";
 import ActivityForm from "./components/ActivityForm";
@@ -24,12 +25,16 @@ function EditActivity() {
   });
 
   const activityId = useParams().activityId;
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     const getDataById = async (id) => {
       const response = await axios.get(
-        `https://jsd6-loglife-backend.onrender.com/activities/${id}`,
+        `http://127.0.0.1:3000/activities/${id}`, 
+        {
+          withCredentials: true,
+        }
       );
       if (response.status === 200) {
         const data = { ...response.data };
@@ -54,8 +59,7 @@ function EditActivity() {
       const putData = async () => {
         const titleToAdd = title || activityType;
         const putData = {
-          //  Temporary fix USER ID
-          userId: "65b8c301581f2faab26d412d",
+          userId: user.userId,
           title: titleToAdd,
           description: description,
           type: activityType,
@@ -67,8 +71,11 @@ function EditActivity() {
         };
 
         const response = await axios.put(
-          `https://jsd6-loglife-backend.onrender.com/activities/${activityId}`,
+          `http://127.0.0.1:3000/activities/${activityId}`,
           putData,
+          {
+            withCredentials: true,
+          }
         );
 
         if (response.status === 200) {
