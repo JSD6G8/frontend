@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import {
+  TbSortAscendingLetters,
+  TbSortDescendingLetters,
+} from "react-icons/tb";
 
 const SortButton = ({ selected, setResult }) => {
   const [selectedOrder, setSelectedOrder] = useState(selected);
@@ -31,6 +35,7 @@ const SortButton = ({ selected, setResult }) => {
               handleClick("date-desc");
             }}
           >
+            <TbSortAscendingLetters className="size-6" />
             Latest to Oldest
           </button>
         </li>
@@ -40,6 +45,7 @@ const SortButton = ({ selected, setResult }) => {
               handleClick("date-asc");
             }}
           >
+            <TbSortDescendingLetters className="size-6" />
             Oldest to Latest
           </button>
         </li>

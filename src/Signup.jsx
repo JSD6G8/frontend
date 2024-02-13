@@ -242,6 +242,7 @@ function Signup() {
                                 )}
                             </label>
                         </div>
+
                         <div className="my-10">
                             <button type="submit" className="block text-center text-white bg-primary my-2 py-[14.5px] duration-300 rounded-lg hover:bg-secondary w-full">
                                 Sign up
