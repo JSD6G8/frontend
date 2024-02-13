@@ -76,63 +76,64 @@ function Login() {
     }
     return (
         <Layout>
-            <div className="bg-white mx-auto my-20 shadow-md rounded-xl w-10/12 max-w-lg">
-                <div className="p-8">
-                    <h1 className="font-medium text-2xl mt-3 text-center">Login</h1>
-                    <form className="mt-6" onSubmit={handleSubmit} >
-                        <div>
-                            <label className="block text-black">Email Address
-                                <input
-                                    type="text"
-                                    name="username"
-                                    id="email"
-                                    value={inputs.username}
-                                    onChange={handleChange}
-                                    className="input bg-gray-100 rounded-sm px-4 py-3 mt-3 w-full"
-                                    placeholder="Email Address"
-                                />
-                            </label>
-                        </div>
-                        <div className="my-8">
-                            <label className="block text-black">Password
-                                <div className="relative">
+            <div className="h-screen">
+                <div className="bg-white mx-auto my-20 shadow-md rounded-xl w-10/12 max-w-lg">
+                    <div className="p-8">
+                        <h1 className="font-medium text-2xl mt-3 text-center">Login</h1>
+                        <form className="mt-6" onSubmit={handleSubmit} >
+                            <div>
+                                <label className="block text-black">Email Address
                                     <input
-                                        type={showPassword ? "text" : "password"}
-                                        name="password"
-                                        id="password"
-                                        value={inputs.password}
+                                        type="text"
+                                        name="username"
+                                        id="email"
+                                        value={inputs.username}
                                         onChange={handleChange}
-                                        className="input rounded-sm px-4 py-3 mt-3 bg-gray-100 w-full"
-                                        placeholder="Password"
+                                        className="input bg-gray-100 rounded-sm px-4 py-3 mt-3 w-full"
+                                        placeholder="Email Address"
                                     />
-                                    <span
-                                        className="absolute top-3 right-0 mt-3 mr-4 cursor-pointer"
-                                        onClick={togglePasswordVisibility}
-                                    >
-                                        {showPassword ? (
-                                            <div style={{ color: '#9ca3af' }}>
-                                                <Icon icon={eye} size={20} />
-                                            </div>
-                                        ) : (
-                                            <div style={{ color: '#9ca3af' }}>
-                                                <Icon icon={eyeOff} size={20} />
-                                            </div>
-                                        )}
-                                    </span>
-                                </div>
-                            </label>
-
-                            <div className="flex justify-end mt-2 text-xs text-gray-600">
-                                <a href="#">Forget Password?</a>
+                                </label>
                             </div>
-                        </div>
-                        <button className="block text-center text-white bg-primary my-2 py-[14.5px] duration-300 rounded-lg hover:bg-secondary w-full">
-                            Login
-                        </button>
-                    </form>
+                            <div className="my-8">
+                                <label className="block text-black">Password
+                                    <div className="relative">
+                                        <input
+                                            type={showPassword ? "text" : "password"}
+                                            name="password"
+                                            id="password"
+                                            value={inputs.password}
+                                            onChange={handleChange}
+                                            className="input rounded-sm px-4 py-3 mt-3 bg-gray-100 w-full"
+                                            placeholder="Password"
+                                        />
+                                        <span
+                                            className="absolute top-3 right-0 mt-3 mr-4 cursor-pointer"
+                                            onClick={togglePasswordVisibility}
+                                        >
+                                            {showPassword ? (
+                                                <div style={{ color: '#9ca3af' }}>
+                                                    <Icon icon={eye} size={20} />
+                                                </div>
+                                            ) : (
+                                                <div style={{ color: '#9ca3af' }}>
+                                                    <Icon icon={eyeOff} size={20} />
+                                                </div>
+                                            )}
+                                        </span>
+                                    </div>
+                                </label>
 
-                    {/*Login With Social */}
-                    {/* <div className="my-4 mt-10 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
+                                <div className="flex justify-end mt-2 text-xs text-gray-600 hover:underline">
+                                    <a href="/forget-password">Forget Password?</a>
+                                </div>
+                            </div>
+                            <button className="block text-center text-white bg-primary my-2 py-[14.5px] duration-300 rounded-lg hover:bg-secondary w-full">
+                                Login
+                            </button>
+                        </form>
+
+                        {/*Login With Social */}
+                        {/* <div className="my-4 mt-10 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
                         <p className="md:mx-2 text-sm font-light text-gray-400">
                             Login With Social
                         </p>
@@ -152,9 +153,11 @@ function Login() {
                         </a>
                     </div> */}
 
-                    <p className="mt-10 text-sm text-center font-light text-gray-400">Don't have an account?  <a href="/signup" className="text-black font-medium hover:underline decoration-black">Sign Up here</a></p>
+                        <p className="mt-10 text-sm text-center font-light text-gray-400">Don't have an account?  <a href="/signup" className="text-black font-medium hover:underline decoration-black">Sign Up here</a></p>
+                    </div>
                 </div>
             </div>
+
         </Layout>
     );
 }

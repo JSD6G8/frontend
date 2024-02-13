@@ -18,10 +18,10 @@ function Signup() {
         last_name: '',
         emailAddress: '',
         password: '',
-        // confirm_password: '',
     });
 
     const [errors, setErrors] = useState({});
+    const [confirm_password, setConfirm_password] = useState({});
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -71,9 +71,9 @@ function Signup() {
             newErrors.password = 'Password must have special character ._-@%$#!';
         }
 
-        // if (formData.password !== formData.confirm_password) {
-        //     newErrors.confirm_password = 'Passwords do not match';
-        // }
+        if (formData.password !== confirm_password.confirm_password) {
+            newErrors.confirm_password = 'Passwords do not match';
+        }
 
         setErrors(newErrors);
 
@@ -204,15 +204,21 @@ function Signup() {
                                 </ul>
                             </div>
                         </div>
-                        {/* <div className="my-8">
+                        <div className="my-8">
                             <label>Confirm Password
                                 <div className="relative">
                                     <input
                                         type={showConfirmPassword ? "text" : "password"}
                                         name="confirm_password"
                                         id="confirm_password"
-                                        value={formData.confirm_password}
-                                        onChange={handleChange}
+                                        value={confirm_password.confirm_password}
+                                        onChange={(e) => {
+                                            const { name, value } = e.target;
+                                            setConfirm_password({
+                                                ...confirm_password,
+                                                [name]: value,
+                                            });
+                                        }}
                                         className="input bg-gray-100 px-4 py-3 mt-3 w-full"
                                         placeholder="Confirm Password"
                                     />
@@ -235,8 +241,7 @@ function Signup() {
                                     <p className="text-red-500 text-xs mt-1">{errors.confirm_password}</p>
                                 )}
                             </label>
-                        </div> */}
-
+                        </div>
 
                         <div className="my-10">
                             <button type="submit" className="block text-center text-white bg-primary my-2 py-[14.5px] duration-300 rounded-lg hover:bg-secondary w-full">
@@ -268,7 +273,7 @@ function Signup() {
 
                     <p className="mt-10 text-sm text-center font-light text-gray-400">Do you have an account?  <a href="/login" className="text-black font-medium hover:underline decoration-black">Login here</a></p>
                 </div>
-            </div >
+            </div>
         </Layout >
     )
 }
