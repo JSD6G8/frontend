@@ -121,7 +121,7 @@ function ActivitiesDetails() {
 
   return (
     <Layout>
-      <main className="container mx-auto flex max-w-2xl flex-col items-center max-md:h-fit md:mb-auto md:mt-auto md:flex-row md:rounded-2xl md:bg-white md:shadow-xl">
+      <main className="container mx-auto flex max-w-2xl flex-col items-center max-md:h-fit md:mt-auto md:flex-row md:rounded-2xl md:bg-white md:shadow-xl">
         {loading ? (
           <span className="loading loading-spinner mt-10 text-primary"></span>
         ) : (
