@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./providers/authProvider";
 
 import validateForm from "./form-validation";
 import ActivityForm from "./components/ActivityForm";
@@ -25,6 +26,7 @@ function CreateActivity() {
     time: "",
   });
 
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   // Set initial date and time
@@ -48,8 +50,7 @@ function CreateActivity() {
       const postData = async () => {
         const titleToAdd = title || activityType;
         const postData = {
-          // Temporary fix USER ID
-          userId :"65b8c301581f2faab26d412d",
+          userId : user.userId,
           title: titleToAdd,
           description: description,
           type: activityType,
@@ -61,8 +62,11 @@ function CreateActivity() {
         };
 
         const response = await axios.post(
-          "https://jsd6-loglife-backend.onrender.com/activities/",
+          "http://127.0.0.1:3000/activities/",
           postData,
+          {
+            withCredentials: true,
+          }
         );
 
         if (response.status === 201) {
