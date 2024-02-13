@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import Layout from "../Layout";
 import { AddButton } from "./AddButton";
 import Footer from "./Footer";
@@ -18,6 +19,7 @@ function TempLoginToggle({ isLoggedIn, setIsLoggedIn }) {
 }
 
 function NavGuest({ isLoggedIn, setIsLoggedIn }) {
+  let location = useLocation();
   return (
     <nav>
       <div className="navbar bg-white drop-shadow-md">
@@ -25,7 +27,22 @@ function NavGuest({ isLoggedIn, setIsLoggedIn }) {
           <a href="/" className="ml-3">
             <img src="/logo_black.svg" alt="LogLife logo" />
           </a>
+          <ul className="menu menu-horizontal font-medium">
+            <li>
+              <a
+                href="/aboutus"
+                className={`${
+                  location.pathname === "/aboutus"
+                    ? "bg-base-200 text-base"
+                    : "text-base"
+                }`}
+              >
+                About Us
+              </a>
+            </li>
+          </ul>
         </div>
+
         <div className="navbar-end">
           <TempLoginToggle
             isLoggedIn={isLoggedIn}
@@ -176,6 +193,7 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
 }
 
 function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
+  let location = useLocation();
   return (
     <nav>
       <div className="navbar bg-white drop-shadow-md max-lg:hidden">
@@ -184,19 +202,40 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
             <img src="/logo_black.svg" alt="LogLife logo" />
           </a>
           <div>
-            <ul className="menu menu-horizontal font-medium">
+            <ul className="menu menu-horizontal space-x-2 font-medium">
               <li>
-                <a href="/activities" className="text-base">
+                <a
+                  href="/activities"
+                  className={`${
+                    location.pathname === "/activities"
+                      ? "bg-base-200 text-base"
+                      : "text-base"
+                  }`}
+                >
                   Activity List
                 </a>
               </li>
               <li>
-                <a href="/dashboard" className="text-base">
+                <a
+                  href="/dashboard"
+                  className={`${
+                    location.pathname === "/dashboard"
+                      ? "bg-base-200 text-base"
+                      : "text-base"
+                  }`}
+                >
                   Dashboard
                 </a>
               </li>
               <li>
-                <a href="#" className="text-base">
+                <a
+                  href="/aboutus"
+                  className={`${
+                    location.pathname === "/aboutus"
+                      ? "bg-base-200 text-base"
+                      : "text-base"
+                  }`}
+                >
                   About Us
                 </a>
               </li>
