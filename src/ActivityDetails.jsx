@@ -67,7 +67,10 @@ function ActivitiesDetails() {
   useEffect(() => {
     const getDataById = async (id) => {
       const response = await axios.get(
-        `https://jsd6-loglife-backend.onrender.com/activities/${id}`,
+        `http://127.0.0.1:3000/activities/${id}`,
+        {
+          withCredentials: true,
+        },
       );
       if (response.status === 200) {
         const data = { ...response.data };
@@ -83,7 +86,10 @@ function ActivitiesDetails() {
 
   const handleDelete = async () => {
     const response = await axios.delete(
-      `https://jsd6-loglife-backend.onrender.com/activities/${activityId}`,
+      `http://127.0.0.1:3000/activities/${activityId}`,
+      {
+        withCredentials: true,
+      },
     );
     if (response.status === 200) {
       navigate("/activities");
@@ -99,8 +105,11 @@ function ActivitiesDetails() {
     const formData = new FormData();
     formData.append("image", file);
     const response = await axios.post(
-      `https://jsd6-loglife-backend.onrender.com/activities/${activityId}/image`,
+      `http://127.0.0.1:3000/activities/${activityId}/image`,
       formData,
+      {
+        withCredentials: true,
+      },
     );
     if (response.status === 201) {
       setReload(!reload);
@@ -111,7 +120,10 @@ function ActivitiesDetails() {
   const handleDeleteImage = async (modal) => {
     const publicId = activity.image.publicId;
     const response = await axios.delete(
-      `https://jsd6-loglife-backend.onrender.com/activities/${activityId}/image/${publicId}`,
+      `http://127.0.0.1:3000/activities/${activityId}/image/${publicId}`,
+      {
+        withCredentials: true,
+      },
     );
     if (response.status === 200) {
       setReload(!reload);
