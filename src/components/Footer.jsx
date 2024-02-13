@@ -182,7 +182,7 @@ function Footer() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clipath="url(#clip0_271_282)">
+              <g clipPath="url(#clip0_271_282)">
                 <path
                   d="M35.25 12.3125H39.1875V13.625H35.25V12.3125Z"
                   fill="#1A1A1A"
