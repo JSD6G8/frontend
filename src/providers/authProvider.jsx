@@ -1,26 +1,18 @@
 import axios from "axios";
-import { 
-  createContext, 
-  useContext, 
-  useState, 
-  useEffect, 
-  useMemo } 
-from "react";
+import { createContext, useContext, useState, useEffect, useMemo } from "react";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-    
-    useEffect(() => {
-      const getUser = async () => {
-        try {
-          const response = await axios.get("http://127.0.0.1:3000/token", 
-          {
-            withCredentials: true,
-          }
-        );
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:3000/token", {
+          withCredentials: true,
+        });
         if (response.status === 200) {
           setUser(response.data.user);
         } else {
@@ -31,15 +23,12 @@ const AuthProvider = ({ children }) => {
       } finally {
         setLoading(false);
       }
-    }
-    
+    };
+
     getUser();
   }, []);
 
-  const contextValue = useMemo(
-    () => ({ user, setUser }), 
-    [user]
-  );
+  const contextValue = useMemo(() => ({ user, setUser }), [user]);
 
   return (
     <AuthContext.Provider value={contextValue}>

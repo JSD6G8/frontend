@@ -73,7 +73,7 @@ function NavLoggedInMobile() {
                 </div>
                 {/* retrieve name from express w/ response.data.user.first_name */}
                 <p className="ml-2 place-self-center text-lg font-bold">
-                  Hello, {user.first_name}!
+                  Hello, {user?.first_name}!
                 </p>
               </div>
               <hr />
@@ -135,7 +135,7 @@ function NavLoggedInMobile() {
             >
               {/* retrieve name from express w/ response.data.user.first_name*/}
               <p className="my-2 ml-2 place-self-start text-lg font-bold">
-                👋🏼 Hello, {user.first_name}!
+                👋🏼 Hello, {user?.first_name}!
               </p>
               <hr />
               <li>
@@ -209,7 +209,7 @@ function NavLoggedInDesktop() {
             >
               {/* retrieve name from express w/response.data.user.first_name */}
               <p className="my-2 ml-2 place-self-start text-lg font-bold">
-                👋🏼 Hello, {user.first_name}!
+                👋🏼 Hello, {user?.first_name}!
               </p>
               <hr />
               <li>
