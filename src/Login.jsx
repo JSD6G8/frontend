@@ -43,16 +43,9 @@ function Login() {
           withCredentials: true,
         },
       );
-      console.log(response);
       if (response.status === 200) {
-        MySwal.fire({
-          icon: "success",
-          text: "Logged in successfully!",
-          confirmButtonColor: "#6587E8",
-        }).then(() => {
-          setUser(response.data.user);
-          navigate("/activities", { replace: true });
-        });
+        setUser(response.data.user);
+        navigate("/activities", { replace: true });
       } else {
         await MySwal.fire({
           icon: "error",
