@@ -197,7 +197,6 @@ function Signup() {
                             <div className="pl-10 text-sm">
                                 <ul className="list-disc text-gray-400 font-light">
                                     <li>Be more than 8 characters</li>
-                                    <li>Must have special character ._-@%$#!</li>
                                 </ul>
                             </div>
                         </div>
