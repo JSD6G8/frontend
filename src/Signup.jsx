@@ -6,12 +6,14 @@ import withReactContent from 'sweetalert2-react-content';
 import { Icon } from 'react-icons-kit';
 import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye';
+import { useAuth } from './providers/authProvider';
 
 import Layout from "./Layout";
 
 function Signup() {
     const MySwal = withReactContent(Swal);
     const navigate = useNavigate();
+    const { setUser } = useAuth();
 
     const [formData, setFormData] = useState({
         first_name: '',
@@ -45,7 +47,6 @@ function Signup() {
         e.preventDefault();
 
         const newErrors = {};
-        const specialChars = /[._\-@%$#!]/;
 
         if (!formData.first_name.trim()) {
             newErrors.first_name = 'First Name is required';
@@ -67,8 +68,6 @@ function Signup() {
             newErrors.password = 'Password is required';
         } else if (formData.password.length < 8) {
             newErrors.password = 'Password must be more than 8 characters long';
-        } else if (!specialChars.test(formData.password)) {
-            newErrors.password = 'Password must have special character ._-@%$#!';
         }
 
         if (formData.password !== confirm_password.confirm_password) {
@@ -81,7 +80,10 @@ function Signup() {
             try {
                 const response = await axios.post(
                     'https://jsd6-loglife-backend.onrender.com/signup',
-                    formData
+                    formData,
+                    {
+                        withCredentials: true,
+                    }
                 );
 
                 if (response.status === 201) {
@@ -91,7 +93,8 @@ function Signup() {
                         text: 'User registered successfully!',
                         confirmButtonColor: '#6587E8',
                     }).then(() => {
-                        navigate('/login');
+                        setUser(response.data.user);
+                        navigate('/activities', { replace: true });
                     });
                 } else {
                     MySwal.fire({
@@ -200,7 +203,6 @@ function Signup() {
                             <div className="pl-10 text-sm">
                                 <ul className="list-disc text-gray-400 font-light">
                                     <li>Be more than 8 characters</li>
-                                    <li>Must have special character ._-@%$#!</li>
                                 </ul>
                             </div>
                         </div>
