@@ -180,7 +180,7 @@ export default function ActivityForm({
       <fieldset className="flex max-w-full items-center gap-2">
         <h2 className="text-base font-medium md:text-xl">Date:</h2>
         <input
-          className="rounded border-2"
+          className="rounded border-2 h-9 px-2"
           type="date"
           value={date}
           required
@@ -195,7 +195,7 @@ export default function ActivityForm({
         <div className="flex flex-row items-center gap-2">
           <h2 className="text-base font-medium md:text-xl">From:</h2>
           <input
-            className="rounded border-2"
+            className="rounded border-2 max-w-32 h-9 px-2"
             type="time"
             value={startTime}
             required
@@ -204,10 +204,10 @@ export default function ActivityForm({
               setStartTime(e.target.value);
             }}
           />
-          <span>{"->"}</span>
+          <span>{"→"}</span>
           <span className="text-base font-medium md:text-xl">To:</span>
           <input
-            className="rounded border-2"
+            className="rounded border-2 max-w-32 h-9 px-2"
             type="time"
             value={endTime}
             required
