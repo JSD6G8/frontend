@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./providers/authProvider";
 
-import validateForm from "./form-validation";
-import ActivityForm from "./components/ActivityForm";
 import Layout from "./Layout";
+import ActivityForm from "./components/ActivityForm";
+import validateForm from "./form-validation";
 
 // TODO: add 10m increment/decrement buttons for start time and end time
 // TODO: Add warning if duration > 5 hours
@@ -80,7 +80,7 @@ function CreateActivity() {
 
   return (
     <Layout>
-      <main className="container mx-auto max-w-lg px-2 py-2 md:mt-4 md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
+      <main className="container mx-auto max-w-lg px-2 py-2 md:my-4 md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
         <ActivityForm
           formHeading="Create Activity"
           handleSubmit={handleCreate}

@@ -2,89 +2,23 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthProvider from "./providers/authProvider";
 import { useAuth } from "./providers/authProvider";
 import { ProtectedRoute } from "./routes/ProtectedRoutes.jsx";
 
-import Layout from "./Layout.jsx";
-import ActivityList from "./ActivityList.jsx";
+import AboutUs from "./AboutUs.jsx";
 import ActivitiesDetails from "./ActivityDetails.jsx";
+import ActivityList from "./ActivityList.jsx";
 import CreateActivity from "./CreateActivity.jsx";
 import EditActivity from "./EditActivity.jsx";
+import Layout from "./Layout.jsx";
 import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
 import Logout from "./Logout.jsx";
 import ForgetPassword from "./ForgetPassword.jsx";
 import OTPInput from "./OTPInput.jsx";
 import ResetPassword from "./ResetPassword.jsx";
-
-import TestLoginAPI from "./TestLoginAPI.jsx";
-import TestLogoutAPI from "./TestLogoutAPI.jsx";
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//   },
-//   {
-//     path: "/login",
-//     element: <Login/>,
-//   },
-//   {
-//     path: "/signup",
-//     element: <Signup/>,
-//   },
-//   {
-//     path: "/settings",
-//     element: <Layout>Mock Settings</Layout>,
-//   },
-//   {
-//     path: "/activities",
-//     element: <ActivityList />,
-//   },
-//   {
-//     path: "/activities/:activityId",
-//     element: <ActivitiesDetails />,
-//   },
-//   {
-//     path: "/activities/create",
-//     element: <CreateActivity />,
-//   },
-//   {
-//     path: "/activities/edit/:activityId",
-//     element: <EditActivity />,
-//   },
-//   {
-//     path: "/dashboard",
-//     element: <Layout>Mock Dashboard</Layout>,
-//   },
-//   {
-//     path: '/nav',
-//     element: <Nav/>,
-//   },
-//   {
-//     path: '/forget-password',
-//     element: <ForgetPassword/>,
-//   },
-//   {
-//     path: '/email-verification',
-//     element: <OTPInput/>,
-//   },
-//   {
-//     path: '/reset-password',
-//     element: <ResetPassword/>,
-//   },
-//   {
-//     path: '/test-login-api',
-//     element: <TestLoginAPI/>,
-//   },
-//   {
-//     path: '/test-logout-api',
-//     element: <TestLogoutAPI/>,
-//   },
-// ]);
 
 const Routes = () => {
   const { user } = useAuth();
@@ -96,7 +30,7 @@ const Routes = () => {
     },
     {
       path: "/about-us",
-      element: <Layout>Mock About Us</Layout>,
+      element: <AboutUs />,
     }
   ];
 
