@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import formatDuration from "./utils/formatDuration";
 import { DateTime } from "luxon";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import formatDuration from "./utils/formatDuration";
 
 import Layout from "./Layout";
 
@@ -10,6 +10,7 @@ function ActivitiesDetails() {
   const { activityId } = useParams();
   const [activity, setActivity] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [reload, setReload] = useState(false);
   const navigate = useNavigate();
 
   const barometerColors = {
@@ -67,6 +68,9 @@ function ActivitiesDetails() {
     const getDataById = async (id) => {
       const response = await axios.get(
         `https://jsd6-loglife-backend.onrender.com/activities/${id}`,
+        {
+          withCredentials: true,
+        },
       );
       if (response.status === 200) {
         const data = { ...response.data };
@@ -78,20 +82,58 @@ function ActivitiesDetails() {
     };
 
     getDataById(activityId);
-  }, [activityId, navigate]);
+  }, [reload]);
 
   const handleDelete = async () => {
     const response = await axios.delete(
       `https://jsd6-loglife-backend.onrender.com/activities/${activityId}`,
+      {
+        withCredentials: true,
+      },
     );
     if (response.status === 200) {
       navigate("/activities");
     }
   };
 
+  const handleUploadImage = async (modal, inputId) => {
+    const input = document.getElementById(inputId);
+    const file = input.files[0];
+    if (!file) {
+      return;
+    }
+    const formData = new FormData();
+    formData.append("image", file);
+    const response = await axios.post(
+      `https://jsd6-loglife-backend.onrender.com/activities/${activityId}/image`,
+      formData,
+      {
+        withCredentials: true,
+      },
+    );
+    if (response.status === 201) {
+      setReload(!reload);
+    }
+    document.getElementById(modal).close();
+  };
+
+  const handleDeleteImage = async (modal) => {
+    const publicId = activity.image.publicId;
+    const response = await axios.delete(
+      `https://jsd6-loglife-backend.onrender.com/activities/${activityId}/image/${publicId}`,
+      {
+        withCredentials: true,
+      },
+    );
+    if (response.status === 200) {
+      setReload(!reload);
+    }
+    document.getElementById(modal).close();
+  };
+
   return (
     <Layout>
-      <main className="container mx-auto flex max-w-2xl flex-col items-center md:flex-row md:bg-white md:mt-auto md:mb-auto md:rounded-2xl md:shadow-xl">
+      <main className="container mx-auto flex max-w-2xl flex-col items-center max-md:h-fit md:mt-auto md:flex-row md:rounded-2xl md:bg-white md:shadow-xl">
         {loading ? (
           <span className="loading loading-spinner mt-10 text-primary"></span>
         ) : (
@@ -99,7 +141,7 @@ function ActivitiesDetails() {
             <div
               className={`flex w-full items-center justify-center md:h-full md:flex-1 md:flex-col-reverse md:rounded-l-2xl ${barometerColorClass}`}
             >
-              <h1 className="flex-auto text-center text-5xl font-semibold text-white md:flex-none md:px-2 md:-translate-y-10">
+              <h1 className="flex-auto text-center text-5xl font-semibold text-white md:flex-none md:-translate-y-10 md:px-2">
                 {activity.type.toUpperCase()}
               </h1>
               <img
@@ -109,6 +151,28 @@ function ActivitiesDetails() {
               />
             </div>
             <div className="w-full p-2">
+              {activity.image && (
+                <div>
+                  <img
+                    className="max:md:max-h-56 max-h-64 w-full object-cover pb-2 max-sm:max-h-44 md:rounded-tr-2xl"
+                    src={activity.image.url}
+                    alt="activity"
+                  />
+                  <button
+                    className="absolute flex min-h-12 min-w-12 -translate-y-16 translate-x-2 items-center justify-center rounded-full border-2 border-warning bg-white shadow-lg"
+                    onClick={() =>
+                      document.getElementById("change_image_modal").showModal()
+                    }
+                  >
+                    <span
+                      className="material-symbols-outlined"
+                      style={materialIconStyle}
+                    >
+                      image
+                    </span>
+                  </button>
+                </div>
+              )}
               <div className="flex flex-row items-center gap-2">
                 <div className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-base-200">
                   <span
@@ -185,34 +249,86 @@ function ActivitiesDetails() {
                 </p>
               </div>
               <div className="my-2 h-0.5 bg-base-200"></div>
-              {/* add delete and edit button */}
-              <div className="my-4 flex justify-center gap-2">
-                <button
-                  className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-info bg-white shadow-md"
-                  onClick={() =>
-                    document.getElementById("delete_modal").showModal()
-                  }
-                >
-                  <span
-                    className="material-symbols-outlined"
-                    style={materialIconStyle}
+
+              <div className="flex justify-between py-4">
+                <div className="tooltip tooltip-secondary" data-tip="Back">
+                  <button
+                    className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-primary bg-white shadow-md"
+                    onClick={() => navigate("/activities")}
                   >
-                    delete
-                  </span>
-                </button>
-                <button
-                  className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
-                  onClick={() => navigate(`/activities/edit/${activityId}`)}
-                >
-                  <span
-                    className="material-symbols-outlined"
-                    style={materialIconStyle}
+                    <span
+                      className="material-symbols-outlined"
+                      style={materialIconStyle}
+                    >
+                      arrow_back
+                    </span>
+                  </button>
+                </div>
+
+                <div className="flex justify-end gap-2">
+                  {activity.image ? (
+                    <div className="h-2 w-2"></div>
+                  ) : (
+                    <div
+                      className="tooltip tooltip-success"
+                      data-tip="Add Photo"
+                    >
+                      <button
+                        className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
+                        onClick={() =>
+                          document
+                            .getElementById("upload_image_modal")
+                            .showModal()
+                        }
+                      >
+                        <span
+                          className="material-symbols-outlined"
+                          style={materialIconStyle}
+                        >
+                          add_photo_alternate
+                        </span>
+                      </button>
+                    </div>
+                  )}
+                  <div
+                    className="tooltip tooltip-success"
+                    data-tip="Edit Activity"
                   >
-                    edit
-                  </span>
-                </button>
+                    <button
+                      className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-power bg-white shadow-md"
+                      onClick={() => navigate(`/activities/edit/${activityId}`)}
+                    >
+                      <span
+                        className="material-symbols-outlined"
+                        style={materialIconStyle}
+                      >
+                        edit
+                      </span>
+                    </button>
+                  </div>
+
+                  <div
+                    className="tooltip tooltip-info"
+                    data-tip="Delete Activity"
+                  >
+                    <button
+                      className="flex min-h-12 min-w-12 items-center justify-center rounded-full border-2 border-info bg-white shadow-md"
+                      onClick={() =>
+                        document.getElementById("delete_modal").showModal()
+                      }
+                    >
+                      <span
+                        className="material-symbols-outlined"
+                        style={materialIconStyle}
+                      >
+                        delete
+                      </span>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
+
             <dialog
               id="delete_modal"
               className="modal modal-bottom sm:modal-middle"
@@ -234,6 +350,81 @@ function ActivitiesDetails() {
                     >
                       Delete
                     </button>
+                  </form>
+                </div>
+              </div>
+            </dialog>
+
+            <dialog
+              id="upload_image_modal"
+              className="modal modal-bottom sm:modal-middle"
+            >
+              <div className="modal-box">
+                <h3 className="text-base font-bold">Upload New Image</h3>
+                <div className="my-2">
+                  <input
+                    className="file-input file-input-bordered w-full"
+                    id="imageUploadInput"
+                    type="file"
+                    accept="image/*"
+                    capture="camera"
+                    aria-label="Upload Image"
+                  />
+                </div>
+                <button
+                  className="btn btn-primary text-white"
+                  onClick={() => {
+                    handleUploadImage("upload_image_modal", "imageUploadInput");
+                  }}
+                >
+                  Upload
+                </button>
+                <div className="modal-action">
+                  <form method="dialog">
+                    <button className="btn">Close</button>
+                  </form>
+                </div>
+              </div>
+            </dialog>
+
+            <dialog
+              id="change_image_modal"
+              className="modal modal-bottom sm:modal-middle"
+            >
+              <div className="modal-box">
+                <h3 className="text-base font-bold">Change Image</h3>
+                <div className="mt-2">
+                  <input
+                    className="file-input file-input-bordered w-full"
+                    id="imageChangeInput"
+                    type="file"
+                    accept="image/*"
+                    capture="camera"
+                    aria-label="Change Image"
+                  />
+                </div>
+
+                <button
+                  className="btn btn-primary mt-2 text-white"
+                  onClick={() => {
+                    handleUploadImage("change_image_modal", "imageChangeInput");
+                  }}
+                >
+                  Change
+                </button>
+                <div className="divider"></div>
+                <h3 className="text-base font-bold">Remove Image</h3>
+                <button
+                  className="btn btn-info mt-2 text-white"
+                  onClick={() => {
+                    handleDeleteImage("change_image_modal");
+                  }}
+                >
+                  Remove
+                </button>
+                <div className="modal-action">
+                  <form method="dialog">
+                    <button className="btn">Close</button>
                   </form>
                 </div>
               </div>
