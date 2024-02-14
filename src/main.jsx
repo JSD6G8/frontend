@@ -25,10 +25,6 @@ const Routes = () => {
 
   const routesForPublic = [
     {
-      path: "/",
-      element: <App />,
-    },
-    {
       path: "/aboutus",
       element: <AboutUs />,
     }
@@ -66,6 +62,10 @@ const Routes = () => {
       path: "/",
       element: <ProtectedRoute />, // Wrap the entire app in a protected route
       children: [
+        {
+          path: "/",
+          element: <ActivityList />,
+        },
         {
           path: "/activities",
           element: <ActivityList />,
