@@ -50,7 +50,7 @@ function CreateActivity() {
       const postData = async () => {
         const titleToAdd = title || activityType;
         const postData = {
-          userId : user.userId,
+          userId: user.userId,
           title: titleToAdd,
           description: description,
           type: activityType,
@@ -66,7 +66,7 @@ function CreateActivity() {
           postData,
           {
             withCredentials: true,
-          }
+          },
         );
 
         if (response.status === 201) {
@@ -80,7 +80,7 @@ function CreateActivity() {
 
   return (
     <Layout>
-      <main className="container mx-auto max-w-lg px-2 py-2 md:my-4 md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
+      <main className="container mx-auto px-2 py-2 md:my-4 md:max-w-lg md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
         <ActivityForm
           formHeading="Create Activity"
           handleSubmit={handleCreate}
