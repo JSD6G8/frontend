@@ -45,7 +45,6 @@ function Signup() {
         e.preventDefault();
 
         const newErrors = {};
-        const specialChars = /[._\-@%$#!]/;
 
         if (!formData.first_name.trim()) {
             newErrors.first_name = 'First Name is required';
@@ -67,8 +66,6 @@ function Signup() {
             newErrors.password = 'Password is required';
         } else if (formData.password.length < 8) {
             newErrors.password = 'Password must be more than 8 characters long';
-        } else if (!specialChars.test(formData.password)) {
-            newErrors.password = 'Password must have special character ._-@%$#!';
         }
 
         if (formData.password !== confirm_password.confirm_password) {
