@@ -29,7 +29,7 @@ const Routes = () => {
       element: <App />,
     },
     {
-      path: "/about-us",
+      path: "/aboutus",
       element: <AboutUs />,
     }
   ];
