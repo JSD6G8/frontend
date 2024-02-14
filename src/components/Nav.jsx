@@ -3,22 +3,9 @@ import Layout from "../Layout";
 import { AddButton } from "./AddButton";
 import Footer from "./Footer";
 import "./Nav.css";
+import { useAuth } from "../providers/authProvider";
 
-function TempLoginToggle({ isLoggedIn, setIsLoggedIn }) {
-  return (
-    <label className="label flex cursor-pointer flex-row gap-1">
-      <span className="label-text">Log-in Toggle</span>
-      <input
-        type="checkbox"
-        className="toggle"
-        checked={isLoggedIn}
-        onChange={() => setIsLoggedIn(!isLoggedIn)}
-      />
-    </label>
-  );
-}
-
-function NavGuest({ isLoggedIn, setIsLoggedIn }) {
+function NavGuest() {
   let location = useLocation();
   return (
     <nav>
@@ -44,10 +31,6 @@ function NavGuest({ isLoggedIn, setIsLoggedIn }) {
         </div>
 
         <div className="navbar-end">
-          <TempLoginToggle
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
-          />
           <a href="/login" className="btn btn-ghost mx-3 text-base">
             Login
           </a>
@@ -63,7 +46,9 @@ function NavGuest({ isLoggedIn, setIsLoggedIn }) {
   );
 }
 
-function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
+function NavLoggedInMobile() {
+  const { user } = useAuth();
+
   return (
     <nav>
       <div className="navbar bg-white drop-shadow-md lg:hidden">
@@ -104,7 +89,7 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
                 </div>
                 {/* retrieve name from express w/ response.data.user.first_name */}
                 <p className="ml-2 place-self-center text-lg font-bold">
-                  Hello, Daniel!
+                  Hello, {user?.first_name}!
                 </p>
               </div>
               <hr />
@@ -125,7 +110,7 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
                 </a>
               </li>
               <li className="sm:hidden">
-                <a className="py-5 text-base text-info" href="#">
+                <a className="py-5 text-base text-info" href="/logout">
                   <i className="fa-solid fa-right-to-bracket fa-lg text-info"></i>
                   Logout
                 </a>
@@ -145,10 +130,6 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
           </a>
         </div>
         <div className="navbar-end">
-          <TempLoginToggle
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
-          />
           <AddButton />
           <div className="dropdown dropdown-end mx-3 mt-1 max-sm:hidden">
             <div
@@ -170,7 +151,7 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
             >
               {/* retrieve name from express w/ response.data.user.first_name*/}
               <p className="my-2 ml-2 place-self-start text-lg font-bold">
-                👋🏼 Hello, Daniel!
+                👋🏼 Hello, {user?.first_name}!
               </p>
               <hr />
               <li>
@@ -179,7 +160,7 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
                 </a>
               </li>
               <li>
-                <a className="py-5 text-base text-info" href="#">
+                <a className="py-5 text-base text-info" href="/logout">
                   <i className="fa-solid fa-right-to-bracket fa-lg text-info"></i>
                   Logout
                 </a>
@@ -192,8 +173,10 @@ function NavLoggedInMobile({ isLoggedIn, setIsLoggedIn }) {
   );
 }
 
-function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
+function NavLoggedInDesktop() {
+  const { user } = useAuth();
   let location = useLocation();
+
   return (
     <nav>
       <div className="navbar bg-white drop-shadow-md max-lg:hidden">
@@ -243,10 +226,6 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
           </div>
         </div>
         <div className="navbar-end">
-          <TempLoginToggle
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
-          />
           <AddButton />
           <div className="dropdown dropdown-end mx-3 mt-1 font-medium">
             <div
@@ -268,7 +247,7 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
             >
               {/* retrieve name from express w/response.data.user.first_name */}
               <p className="my-2 ml-2 place-self-start text-lg font-bold">
-                👋🏼 Hello, Daniel!
+                👋🏼 Hello, {user?.first_name}!
               </p>
               <hr />
               <li>
@@ -277,7 +256,7 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
                 </a>
               </li>
               <li>
-                <a className="py-5 text-base text-info">
+                <a className="py-5 text-base text-info" href="/logout">
                   <i className="fa-solid fa-right-to-bracket fa-lg text-info"></i>
                   Logout
                 </a>
@@ -291,6 +270,7 @@ function NavLoggedInDesktop({ isLoggedIn, setIsLoggedIn }) {
 }
 
 function Nav() {
+
   return (
     <Layout>
       {/* when new user come */}
