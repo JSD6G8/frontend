@@ -6,12 +6,14 @@ import withReactContent from 'sweetalert2-react-content';
 import { Icon } from 'react-icons-kit';
 import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye';
+import { useAuth } from './providers/authProvider';
 
 import Layout from "./Layout";
 
 function Signup() {
     const MySwal = withReactContent(Swal);
     const navigate = useNavigate();
+    const { setUser } = useAuth();
 
     const [formData, setFormData] = useState({
         first_name: '',
@@ -78,7 +80,10 @@ function Signup() {
             try {
                 const response = await axios.post(
                     'https://jsd6-loglife-backend.onrender.com/signup',
-                    formData
+                    formData,
+                    {
+                        withCredentials: true,
+                    }
                 );
 
                 if (response.status === 201) {
@@ -88,7 +93,8 @@ function Signup() {
                         text: 'User registered successfully!',
                         confirmButtonColor: '#6587E8',
                     }).then(() => {
-                        navigate('/login');
+                        setUser(response.data.user);
+                        navigate('/activities', { replace: true });
                     });
                 } else {
                     MySwal.fire({
