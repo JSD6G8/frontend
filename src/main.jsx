@@ -3,12 +3,13 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 
-import Layout from "./Layout.jsx";
-import ActivityList from "./ActivityList.jsx";
+import AboutUs from "./AboutUs.jsx";
 import ActivitiesDetails from "./ActivityDetails.jsx";
+import ActivityList from "./ActivityList.jsx";
+import Nav from "./components/Nav.jsx";
 import CreateActivity from "./CreateActivity.jsx";
 import EditActivity from "./EditActivity.jsx";
-import Nav from "./components/Nav.jsx";
+import Layout from "./Layout.jsx";
 import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
 import ForgetPassword from "./ForgetPassword.jsx";
@@ -25,11 +26,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login/>,
+    element: <Login />,
   },
   {
     path: "/signup",
-    element: <Signup/>,
+    element: <Signup />,
   },
   {
     path: "/settings",
@@ -56,8 +57,12 @@ const router = createBrowserRouter([
     element: <Layout>Mock Dashboard</Layout>,
   },
   {
-    path: '/nav',
-    element: <Nav/>,
+    path: "/nav",
+    element: <Nav />,
+  },
+  {
+    path: "/aboutus",
+    element: <AboutUs />,
   },
   {
     path: '/forget-password',
@@ -76,5 +81,5 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
