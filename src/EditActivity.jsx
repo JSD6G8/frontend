@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "./providers/authProvider";
 
 import Layout from "./Layout";
 import ActivityForm from "./components/ActivityForm";
@@ -24,11 +25,17 @@ function EditActivity() {
   });
 
   const activityId = useParams().activityId;
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     const getDataById = async (id) => {
-      const response = await axios.get(`https://jsd6-loglife-backend.onrender.com/activities/${id}`);
+      const response = await axios.get(
+        `https://jsd6-loglife-backend.onrender.com/activities/${id}`, 
+        {
+          withCredentials: true,
+        }
+      );
       if (response.status === 200) {
         const data = { ...response.data };
         setTitle(data.title);
@@ -52,8 +59,7 @@ function EditActivity() {
       const putData = async () => {
         const titleToAdd = title || activityType;
         const putData = {
-          //  Temporary fix USER ID
-          userId: "65b8c301581f2faab26d412d",
+          userId: user.userId,
           title: titleToAdd,
           description: description,
           type: activityType,
@@ -64,7 +70,13 @@ function EditActivity() {
           barometer: barometer,
         };
 
-        const response = await axios.put(`https://jsd6-loglife-backend.onrender.com/activities/${activityId}`, putData);
+        const response = await axios.put(
+          `https://jsd6-loglife-backend.onrender.com/activities/${activityId}`,
+          putData,
+          {
+            withCredentials: true,
+          }
+        );
 
         if (response.status === 200) {
           navigate(`/activities/${activityId}`);
@@ -77,7 +89,7 @@ function EditActivity() {
 
   return (
     <Layout>
-      <div className="container mx-auto max-w-lg px-2 py-2 md:mt-4 md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
+      <div className="container mx-auto max-w-lg px-2 py-2 md:my-4 md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
         <main className="h-full">
           <ActivityForm
             formHeading="Edit Activity"

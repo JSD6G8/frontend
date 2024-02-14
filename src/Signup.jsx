@@ -6,22 +6,24 @@ import withReactContent from 'sweetalert2-react-content';
 import { Icon } from 'react-icons-kit';
 import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye';
+import { useAuth } from './providers/authProvider';
 
 import Layout from "./Layout";
 
 function Signup() {
     const MySwal = withReactContent(Swal);
     const navigate = useNavigate();
+    const { setUser } = useAuth();
 
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',
-        email: '',
+        emailAddress: '',
         password: '',
-        confirm_password: '',
     });
 
     const [errors, setErrors] = useState({});
+    const [confirm_password, setConfirm_password] = useState({});
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -45,7 +47,6 @@ function Signup() {
         e.preventDefault();
 
         const newErrors = {};
-        const specialChars = /[._\-@%$#!]/;
 
         if (!formData.first_name.trim()) {
             newErrors.first_name = 'First Name is required';
@@ -55,23 +56,21 @@ function Signup() {
             newErrors.last_name = 'Last Name is required';
         }
 
-        if (!formData.email.trim()) {
-            newErrors.email = 'Email is required';
-        } else if (formData.email.includes(" ")) {
-            newErrors.email = 'Invalid Email';
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formData.email)) {
-            newErrors.email = 'Invalid email address';
+        if (!formData.emailAddress.trim()) {
+            newErrors.emailAddress = 'Email is required';
+        } else if (formData.emailAddress.includes(" ")) {
+            newErrors.emailAddress = 'Invalid Email';
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formData.emailAddress)) {
+            newErrors.emailAddress = 'Invalid email address';
         }
 
         if (!formData.password.trim()) {
             newErrors.password = 'Password is required';
         } else if (formData.password.length < 8) {
             newErrors.password = 'Password must be more than 8 characters long';
-        } else if (!specialChars.test(formData.password)) {
-            newErrors.password = 'Password must have special character ._-@%$#!';
         }
 
-        if (formData.password !== formData.confirm_password) {
+        if (formData.password !== confirm_password.confirm_password) {
             newErrors.confirm_password = 'Passwords do not match';
         }
 
@@ -80,8 +79,11 @@ function Signup() {
         if (Object.keys(newErrors).length === 0) {
             try {
                 const response = await axios.post(
-                    'https://659cbd33633f9aee7907e27c.mockapi.io/kiki/user',
-                    formData
+                    'https://jsd6-loglife-backend.onrender.com/signup',
+                    formData,
+                    {
+                        withCredentials: true,
+                    }
                 );
 
                 if (response.status === 201) {
@@ -91,7 +93,8 @@ function Signup() {
                         text: 'User registered successfully!',
                         confirmButtonColor: '#6587E8',
                     }).then(() => {
-                        navigate('/login');
+                        setUser(response.data.user);
+                        navigate('/activities', { replace: true });
                     });
                 } else {
                     MySwal.fire({
@@ -153,15 +156,15 @@ function Signup() {
                             <label>Email Address
                                 <input
                                     type="text"
-                                    name="email"
-                                    id="email"
-                                    value={formData.email}
+                                    name="emailAddress"
+                                    id="emailAddress"
+                                    value={formData.emailAddress}
                                     onChange={handleChange}
                                     className="input bg-gray-100 px-4 py-3 mt-3 w-full"
                                     placeholder="Email Address"
                                 />
-                                {errors.email && (
-                                    <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                                {errors.emailAddress && (
+                                    <p className="text-red-500 text-xs mt-1">{errors.emailAddress}</p>
                                 )}
                             </label>
                         </div>
@@ -200,7 +203,6 @@ function Signup() {
                             <div className="pl-10 text-sm">
                                 <ul className="list-disc text-gray-400 font-light">
                                     <li>Be more than 8 characters</li>
-                                    <li>Must have special character ._-@%$#!</li>
                                 </ul>
                             </div>
                         </div>
@@ -211,8 +213,14 @@ function Signup() {
                                         type={showConfirmPassword ? "text" : "password"}
                                         name="confirm_password"
                                         id="confirm_password"
-                                        value={formData.confirm_password}
-                                        onChange={handleChange}
+                                        value={confirm_password.confirm_password}
+                                        onChange={(e) => {
+                                            const { name, value } = e.target;
+                                            setConfirm_password({
+                                                ...confirm_password,
+                                                [name]: value,
+                                            });
+                                        }}
                                         className="input bg-gray-100 px-4 py-3 mt-3 w-full"
                                         placeholder="Confirm Password"
                                     />
@@ -236,7 +244,6 @@ function Signup() {
                                 )}
                             </label>
                         </div>
-
 
                         <div className="my-10">
                             <button type="submit" className="block text-center text-white bg-primary my-2 py-[14.5px] duration-300 rounded-lg hover:bg-secondary w-full">
@@ -268,7 +275,7 @@ function Signup() {
 
                     <p className="mt-10 text-sm text-center font-light text-gray-400">Do you have an account?  <a href="/login" className="text-black font-medium hover:underline decoration-black">Login here</a></p>
                 </div>
-            </div >
+            </div>
         </Layout >
     )
 }

@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./providers/authProvider";
 
-import validateForm from "./form-validation";
-import ActivityForm from "./components/ActivityForm";
 import Layout from "./Layout";
+import ActivityForm from "./components/ActivityForm";
+import validateForm from "./form-validation";
 
 // TODO: add 10m increment/decrement buttons for start time and end time
 // TODO: Add warning if duration > 5 hours
@@ -25,6 +26,7 @@ function CreateActivity() {
     time: "",
   });
 
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   // Set initial date and time
@@ -48,7 +50,7 @@ function CreateActivity() {
       const postData = async () => {
         const titleToAdd = title || activityType;
         const postData = {
-          userId :"65b8c301581f2faab26d412d",
+          userId : user.userId,
           title: titleToAdd,
           description: description,
           type: activityType,
@@ -60,9 +62,11 @@ function CreateActivity() {
         };
 
         const response = await axios.post(
-          // "https://659e13f647ae28b0bd3525fe.mockapi.io/loglife/v1/activities",
           "https://jsd6-loglife-backend.onrender.com/activities/",
           postData,
+          {
+            withCredentials: true,
+          }
         );
 
         if (response.status === 201) {
@@ -76,7 +80,7 @@ function CreateActivity() {
 
   return (
     <Layout>
-      <main className="container mx-auto max-w-lg px-2 py-2 md:mt-4 md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
+      <main className="container mx-auto max-w-lg px-2 py-2 md:my-4 md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
         <ActivityForm
           formHeading="Create Activity"
           handleSubmit={handleCreate}
