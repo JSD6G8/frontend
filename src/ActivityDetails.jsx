@@ -68,6 +68,9 @@ function ActivitiesDetails() {
     const getDataById = async (id) => {
       const response = await axios.get(
         `https://jsd6-loglife-backend.onrender.com/activities/${id}`,
+        {
+          withCredentials: true,
+        },
       );
       if (response.status === 200) {
         const data = { ...response.data };
@@ -84,6 +87,9 @@ function ActivitiesDetails() {
   const handleDelete = async () => {
     const response = await axios.delete(
       `https://jsd6-loglife-backend.onrender.com/activities/${activityId}`,
+      {
+        withCredentials: true,
+      },
     );
     if (response.status === 200) {
       navigate("/activities");
@@ -101,6 +107,9 @@ function ActivitiesDetails() {
     const response = await axios.post(
       `https://jsd6-loglife-backend.onrender.com/activities/${activityId}/image`,
       formData,
+      {
+        withCredentials: true,
+      },
     );
     if (response.status === 201) {
       setReload(!reload);
@@ -112,6 +121,9 @@ function ActivitiesDetails() {
     const publicId = activity.image.publicId;
     const response = await axios.delete(
       `https://jsd6-loglife-backend.onrender.com/activities/${activityId}/image/${publicId}`,
+      {
+        withCredentials: true,
+      },
     );
     if (response.status === 200) {
       setReload(!reload);

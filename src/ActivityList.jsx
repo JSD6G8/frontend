@@ -5,6 +5,8 @@ import Layout from "./Layout";
 import ListedCard from "./components/ListedCard";
 import SelectorButton from "./components/SelectorButton";
 import SortButton from "./components/SortButton";
+import { useAuth } from "./providers/authProvider";
+import { useNavigate } from "react-router-dom";
 
 function ActivityList() {
   const [activities, setActivities] = useState([]);
@@ -12,6 +14,8 @@ function ActivityList() {
   const [hasmore, setHasMore] = useState(true);
   const [skip, setSkip] = useState(10);
   const [take, setTake] = useState(10);
+  const { user, setUser } = useAuth();
+  const navigate = useNavigate();
 
   const choicesData = [
     "All",
@@ -36,13 +40,13 @@ function ActivityList() {
     setOrderType(value);
   }
 
-  const userId = "65b8c301581f2faab26d412d"; //?? How'd we import the userId after the authentication?
-
   useEffect(() => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `https://jsd6-loglife-backend.onrender.com/activities/user/${userId}?type=${typeQuery}&sort=${orderType}&take=${take}`,
+          `https://jsd6-loglife-backend.onrender.com/activities/user/${user.userId}?type=${typeQuery}&sort=${orderType}&take=${take}`, {
+            withCredentials: true,
+          }
         );
 
         if (response.status === 200 && response.data) {
@@ -59,7 +63,9 @@ function ActivityList() {
   const fetchMoreData = () => {
     axios
       .get(
-        `https://jsd6-loglife-backend.onrender.com/activities/user/${userId}?type=${typeQuery}&sort=${orderType}&skip=${skip}&take=5`,
+        `https://jsd6-loglife-backend.onrender.com/activities/user/${user.userId}?type=${typeQuery}&sort=${orderType}&skip=${skip}&take=5`, {
+          withCredentials: true,
+        }
       )
       .then((res) => {
         setActivities((prevActivities) => [...prevActivities, ...res.data]);
