@@ -67,7 +67,7 @@ function ActivitiesDetails() {
   useEffect(() => {
     const getDataById = async (id) => {
       const response = await axios.get(
-        `https://jsd6-loglife-backend.onrender.com/activities/${id}`,
+        `https://jsd6-loglife-backend.onrender.com/v2/activities/${id}`,
         {
           withCredentials: true,
         },
@@ -86,7 +86,7 @@ function ActivitiesDetails() {
 
   const handleDelete = async () => {
     const response = await axios.delete(
-      `https://jsd6-loglife-backend.onrender.com/activities/${activityId}`,
+      `https://jsd6-loglife-backend.onrender.com/v2/activities/${activityId}`,
       {
         withCredentials: true,
       },
@@ -105,7 +105,7 @@ function ActivitiesDetails() {
     const formData = new FormData();
     formData.append("image", file);
     const response = await axios.post(
-      `https://jsd6-loglife-backend.onrender.com/activities/${activityId}/image`,
+      `https://jsd6-loglife-backend.onrender.com/v2/activities/${activityId}/image`,
       formData,
       {
         withCredentials: true,
@@ -120,7 +120,7 @@ function ActivitiesDetails() {
   const handleDeleteImage = async (modal) => {
     const publicId = activity.image.publicId;
     const response = await axios.delete(
-      `https://jsd6-loglife-backend.onrender.com/activities/${activityId}/image/${publicId}`,
+      `https://jsd6-loglife-backend.onrender.com/v2/activities/${activityId}/image/${publicId}`,
       {
         withCredentials: true,
       },

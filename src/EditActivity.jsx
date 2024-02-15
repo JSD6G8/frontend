@@ -25,13 +25,12 @@ function EditActivity() {
   });
 
   const activityId = useParams().activityId;
-  const { user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     const getDataById = async (id) => {
       const response = await axios.get(
-        `https://jsd6-loglife-backend.onrender.com/activities/${id}`,
+        `https://jsd6-loglife-backend.onrender.com/v2/activities/${id}`,
         {
           withCredentials: true,
         },
@@ -59,7 +58,6 @@ function EditActivity() {
       const putData = async () => {
         const titleToAdd = title || activityType;
         const putData = {
-          userId: user.userId,
           title: titleToAdd,
           description: description,
           type: activityType,
@@ -71,7 +69,7 @@ function EditActivity() {
         };
 
         const response = await axios.put(
-          `https://jsd6-loglife-backend.onrender.com/activities/${activityId}`,
+          `https://jsd6-loglife-backend.onrender.com/v2/activities/${activityId}`,
           putData,
           {
             withCredentials: true,
