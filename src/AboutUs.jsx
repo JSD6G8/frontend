@@ -5,31 +5,32 @@ import TeamMemberCard from "./components/TeamMemberCard";
 const teamProfile = [
   {
     id: 1,
-    pic: "http://placekitten.com/500/800",
+    pic: "https://img5.pic.in.th/file/secure-sv1/380543638_1301540627207233_4034796601921640776_n.jpeg",
     name: "KiKi",
-    shortBio: "Lorem ipsum dolor sit amet",
+    shortBio: "Sending my selfie to NASA, because I’m a star. ✨",
     longBio:
-      "Occaecat ullamco ex aliquip esse ea. Deserunt consequat magna do deserunt velit ullamco laborum non exercitation. Ullamco irure cupidatat excepteur excepteur incididunt commodo deserunt qui sunt. Officia esse esse duis Lorem ipsum ut irure deserunt quis laborum sunt veniam labore. Exercitation aliquip culpa ullamco dolor consequat nisi laboris et eu nulla cillum adipisicing.",
-    gitHub: "https://github.com/mmmmmob",
-    linkedIn: "https://linkedin.com/theppitak_m",
-    personalSite: "https://theppitak.me",
+      "Hello, world! I'm Kiki, a junior software developer with a passion for coding and an artistic flair. Beyond the lines of code, I incorporate creativity, integrating artistry into the world of software development. Excited to combine technological and artistic elements to produce unique and impactful solutions.",
+    gitHub: "https://github.com/kiki-ananyaluck",
+    linkedIn: "https://www.linkedin.com/in/kiki-ananyaluck/",
+    personalSite: "https://portfolio-kiki-ananyaluck.vercel.app/",
   },
   {
     id: 2,
-    pic: "http://placekitten.com/500/600",
+    pic: "https://res.cloudinary.com/dsqstrzt5/image/upload/c_crop,g_auto,h_1200,w_800/xxdosbszxusz29e3zbnl.jpg",
     name: "Pete",
-    shortBio: "Lorem ipsum dolor sit amet",
+    shortBio: "Full-stack Dabbler - Professional Procrastinator",
     longBio:
-      "Occaecat ullamco ex aliquip esse ea. Deserunt consequat magna do deserunt velit ullamco laborum non exercitation. Ullamco irure cupidatat excepteur excepteur incididunt commodo deserunt qui sunt. Officia esse esse duis Lorem ipsum ut irure deserunt quis laborum sunt veniam labore. Exercitation aliquip culpa ullamco dolor consequat nisi laboris et eu nulla cillum adipisicing.",
-    gitHub: "https://github.com/mmmmmob",
-    linkedIn: "https://linkedin.com/mmmmmob",
-    personalSite: "https://mmmmmob.me",
+      "Hey, I’m one of the coding ninjas of our team. Whether it's crafting pixel-perfect designs on the frontend or wrangling data in the backend, I'm your go-to person. Just doing my bit to keep the momentum rolling. Now, excuse me while I’m heading back to my coding den.",
+    gitHub: "https://github.com/PrutMongkol",
+    linkedIn: "https://www.linkedin.com/in/prut-mongkol/",
+    personalSite: "https://prutmongkol.dev/",
   },
   {
     id: 3,
     pic: "http://placekitten.com/500/600",
     name: "Mob",
-    shortBio: "Lorem ipsum dolor sit amet",
+    shortBio:
+      "Lorem ipsum dolor sit amet. Occaecat ullamco ex aliquip esse ea.",
     longBio:
       "Occaecat ullamco ex aliquip esse ea. Deserunt consequat magna do deserunt velit ullamco laborum non exercitation. Ullamco irure cupidatat excepteur excepteur incididunt commodo deserunt qui sunt. Officia esse esse duis Lorem ipsum ut irure deserunt quis laborum sunt veniam labore. Exercitation aliquip culpa ullamco dolor consequat nisi laboris et eu nulla cillum adipisicing.",
     gitHub: "https://github.com/mmmmmob",
@@ -40,7 +41,8 @@ const teamProfile = [
     id: 4,
     pic: "http://placekitten.com/500/600",
     name: "Earth",
-    shortBio: "Lorem ipsum dolor sit amet",
+    shortBio:
+      "Lorem ipsum dolor sit amet. Occaecat ullamco ex aliquip esse ea.",
     longBio:
       "Occaecat ullamco ex aliquip esse ea. Deserunt consequat magna do deserunt velit ullamco laborum non exercitation. Ullamco irure cupidatat excepteur excepteur incididunt commodo deserunt qui sunt. Officia esse esse duis Lorem ipsum ut irure deserunt quis laborum sunt veniam labore. Exercitation aliquip culpa ullamco dolor consequat nisi laboris et eu nulla cillum adipisicing.",
     gitHub: "https://github.com/mmmmmob",
@@ -51,7 +53,8 @@ const teamProfile = [
     id: 5,
     pic: "http://placekitten.com/500/600",
     name: "Vee",
-    shortBio: "Lorem ipsum dolor sit amet",
+    shortBio:
+      "Lorem ipsum dolor sit amet. Occaecat ullamco ex aliquip esse ea.",
     longBio:
       "Occaecat ullamco ex aliquip esse ea. Deserunt consequat magna do deserunt velit ullamco laborum non exercitation. Ullamco irure cupidatat excepteur excepteur incididunt commodo deserunt qui sunt. Officia esse esse duis Lorem ipsum ut irure deserunt quis laborum sunt veniam labore. Exercitation aliquip culpa ullamco dolor consequat nisi laboris et eu nulla cillum adipisicing.",
     gitHub: "https://github.com/mmmmmob",
