@@ -120,39 +120,7 @@ function Signup() {
                 <div className="p-8">
                     <h1 className="font-medium text-2xl mt-3 text-center">Sign up</h1>
                     <form className="mt-6" onSubmit={handleSubmit}>
-                        <div className="my-8" >
-                            <label>First Name
-                                <input
-                                    type="text"
-                                    name="first_name"
-                                    id="first_name"
-                                    value={formData.first_name}
-                                    onChange={handleChange}
-                                    className="input bg-gray-100 rounded-sm px-4 py-3 mt-3 w-full"
-                                    placeholder="First Name"
-                                />
-                                {errors.first_name && (
-                                    <p className="text-red-500 text-xs mt-1">{errors.first_name}</p>
-                                )}
-                            </label>
-                        </div>
-                        <div className="my-8">
-                            <label>Last Name
-                                <input
-                                    type="text"
-                                    name="last_name"
-                                    id="last_name"
-                                    value={formData.last_name}
-                                    onChange={handleChange}
-                                    className="bg-gray-100 input px-4 py-3 mt-3 w-full text-sm"
-                                    placeholder="Last Name"
-                                />
-                                {errors.last_name && (
-                                    <p className="text-red-500 text-xs mt-1">{errors.last_name}</p>
-                                )}
-                            </label>
-                        </div>
-                        <div className="my-8">
+                    <div className="my-8">
                             <label>Email Address
                                 <input
                                     type="text"
@@ -244,7 +212,40 @@ function Signup() {
                                 )}
                             </label>
                         </div>
-
+                        <div className="divider"></div>
+                        <div className="my-8" >
+                            <label>First Name
+                                <input
+                                    type="text"
+                                    name="first_name"
+                                    id="first_name"
+                                    value={formData.first_name}
+                                    onChange={handleChange}
+                                    className="input bg-gray-100 rounded-sm px-4 py-3 mt-3 w-full"
+                                    placeholder="First Name"
+                                />
+                                {errors.first_name && (
+                                    <p className="text-red-500 text-xs mt-1">{errors.first_name}</p>
+                                )}
+                            </label>
+                        </div>
+                        <div className="my-8">
+                            <label>Last Name
+                                <input
+                                    type="text"
+                                    name="last_name"
+                                    id="last_name"
+                                    value={formData.last_name}
+                                    onChange={handleChange}
+                                    className="bg-gray-100 input px-4 py-3 mt-3 w-full text-sm"
+                                    placeholder="Last Name"
+                                />
+                                {errors.last_name && (
+                                    <p className="text-red-500 text-xs mt-1">{errors.last_name}</p>
+                                )}
+                            </label>
+                        </div>
+                        <div className="divider"></div>
                         <div className="my-10">
                             <button type="submit" className="block text-center text-white bg-primary my-2 py-[14.5px] duration-300 rounded-lg hover:bg-secondary w-full">
                                 Sign up
