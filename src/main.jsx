@@ -102,11 +102,11 @@ const Routes = () => {
           element: <Settings />,
         },
         {
-          path: '/profile/edit/:Id',
+          path: "/profile/edit",
           element: <EditProfile />,
         },
         {
-          path: '/change-password',
+          path: "/change-password",
           element: <ChangePassword />,
         }
       ],
