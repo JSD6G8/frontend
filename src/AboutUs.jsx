@@ -29,10 +29,9 @@ const teamProfile = [
     id: 3,
     pic: "https://i.imgur.com/CweGb4W.jpeg",
     name: "Theppitak Maneepong (Mob)",
-    shortBio:
-      "Lorem ipsum dolor sit amet. Occaecat ullamco ex aliquip esse ea.",
+    shortBio: "A newcomer at the crossroad of tech and creativity",
     longBio:
-      "Occaecat ullamco ex aliquip esse ea. Deserunt consequat magna do deserunt velit ullamco laborum non exercitation. Ullamco irure cupidatat excepteur excepteur incididunt commodo deserunt qui sunt. Officia esse esse duis Lorem ipsum ut irure deserunt quis laborum sunt veniam labore. Exercitation aliquip culpa ullamco dolor consequat nisi laboris et eu nulla cillum adipisicing.",
+      "Former creative copywriter and project manager, now on my way to becoming a developer. On the right side of my brain lies the love of fun and goofy ways to communicate things, while on the left is the love to find ways to manage unmanageable problems into the perfect march.",
     gitHub: "https://github.com/mmmmmob",
     linkedIn: "https://www.linkedin.com/in/theppitak-m/",
     personalSite: "https://theppitak.me",
