@@ -308,7 +308,7 @@ function ActivitiesDetails() {
                   </div>
 
                   <div
-                    className="tooltip tooltip-info"
+                    className="md:tooltip md:tooltip-info"
                     data-tip="Delete Activity"
                   >
                     <button
