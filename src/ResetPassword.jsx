@@ -42,14 +42,11 @@ function ResetPassword() {
         e.preventDefault();
 
         const newErrors = {};
-        const specialChars = /[._\-@%$#!]/;
 
         if (!formData.password.trim()) {
             newErrors.password = 'Password is required';
         } else if (formData.password.length < 8) {
             newErrors.password = 'Password must be more than 8 characters long';
-        } else if (!specialChars.test(formData.password)) {
-            newErrors.password = 'Password must have special character ._-@%$#!';
         }
 
         if (formData.password !== confirm_password.confirm_password) {
@@ -61,7 +58,7 @@ function ResetPassword() {
         if (Object.keys(newErrors).length === 0) {
             try {
                 const response = await axios.patch(
-                    'https://659cbd33633f9aee7907e27c.mockapi.io/kiki/users',
+                    'https://jsd6-loglife-backend.onrender.com/resetpassword',
                     formData
                 );
                 if (response.status === 200) {
@@ -132,7 +129,6 @@ function ResetPassword() {
                                 <div className="pl-10 text-sm">
                                     <ul className="list-disc text-gray-400 font-light">
                                         <li>Be more than 8 characters</li>
-                                        <li>Must have special character ._-@%$#!</li>
                                     </ul>
                                 </div>
                             </div>

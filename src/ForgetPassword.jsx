@@ -4,9 +4,12 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 import Layout from "./Layout";
+import { useNavigate } from "react-router-dom"
 
 function ForgetPassword() {
     const MySwal = withReactContent(Swal);
+    const navigate = useNavigate();
+
     const [emailAddress, setEmailAddress] = useState({
         emailAddress: '',
     });
@@ -23,17 +26,23 @@ function ForgetPassword() {
         e.preventDefault();
         try {
             const response = await axios.post(
-                'https://659cbd33633f9aee7907e27c.mockapi.io/kiki/users',
-                emailAddress
+                'https://jsd6-loglife-backend.onrender.com/forgotpassword',
+                { emailAddress: emailAddress.emailAddress },
+                {
+                    withCredentials: true,
+                },
             );
-            if (response.status === 201) {
+            if (response.status === 200) {
                 console.log(`send ${emailAddress.emailAddress} successfully. status is ${response.status}`);
                 MySwal.fire({
                     icon: 'success',
                     text: 'Email sent successfully! Please check your email.',
                     confirmButtonColor: '#6587E8',
+                }).then(() => {
+                    navigate('/email-verification', { state: { email: emailAddress.emailAddress } });
                 })
             } else {
+                console.log(`send ${emailAddress.emailAddress} ไม่สำเร็จ. status is ${response.status}`);
                 MySwal.fire({
                     icon: 'error',
                     text: 'Invalid email address.',
@@ -41,7 +50,7 @@ function ForgetPassword() {
                 });
             }
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error:', error.response);
             MySwal.fire({
                 icon: 'error',
                 text: 'An unexpected error occurred. Please try again later.',
@@ -49,6 +58,7 @@ function ForgetPassword() {
             });
         }
     }
+
     return (
         <Layout>
             <div className="h-screen">

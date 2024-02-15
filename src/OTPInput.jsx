@@ -1,15 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 import Layout from "./Layout";
 
-function OTPInput() {
-
+function OTPInput({ email }) {
     const MySwal = withReactContent(Swal);
-    const navigate = useNavigate();
 
     const [OTPinput, setOTPinput] = useState(['', '', '', '']);
 
@@ -27,17 +24,15 @@ function OTPInput() {
         try {
             const otp = OTPinput.join('');
             const response = await axios.post(
-                'https://659cbd33633f9aee7907e27c.mockapi.io/kiki/users',
-                { OTP: otp }
+                'https://jsd6-loglife-backend.onrender.com/forgotpassword',
+                { user_otp: otp, emailAddress: email }
             );
-            if (response.status === 201) {
-                console.log(`send successfully. status is ${response.status}`);
+            console.error(response); 
+            if (response.status === 200) {
                 MySwal.fire({
                     icon: 'success',
                     text: 'Your email has been verified. You can reset password.',
                     confirmButtonColor: '#6587E8',
-                }).then(() => {
-                    navigate('/reset-password');
                 });
             } else {
                 MySwal.fire({
@@ -48,6 +43,7 @@ function OTPInput() {
             }
         } catch (error) {
             console.error('Error:', error);
+            console.log(email);
             MySwal.fire({
                 icon: 'error',
                 text: 'An unexpected error occurred. Please try again later.',
@@ -84,7 +80,6 @@ function OTPInput() {
                                 Verify Account
                             </button>
                         </form>
-                        <p className="mt-10 text-sm text-center font-light text-gray-400">Didn't receive code? <a href="/forget-password" target="_blank" className="text-black font-medium hover:underline">Resend</a></p>
                     </div>
                 </div>
             </div>
