@@ -105,7 +105,7 @@ function NavLoggedInMobile() {
                 </a>
               </li>
               <li className="sm:hidden">
-                <a className="py-5 text-base" href="#">
+                <a className="py-5 text-base" href="/settings">
                   <i className="fa-solid fa-gear fa-lg"></i>Settings
                 </a>
               </li>
@@ -251,7 +251,7 @@ function NavLoggedInDesktop() {
               </p>
               <hr />
               <li>
-                <a className="py-5 text-base">
+                <a className="py-5 text-base" href="/settings">
                   <i className="fa-solid fa-gear fa-lg"></i>Settings
                 </a>
               </li>
