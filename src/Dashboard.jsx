@@ -59,8 +59,12 @@ function Dashboard() {
   useEffect(() => {
     const getData = async () => {
       try {
+        axios.defaults.withCredentials = true
         const response = await axios.get(
-          `http://127.0.0.1:3001/data2`,
+          "https://jsd6-loglife-backend.onrender.com/activities/",{
+          // "http://localhost:3000/dashboard",{
+            withCredentials: true,
+          },          
         );
 
         if (response.status === 200 && response.data) {
@@ -144,8 +148,8 @@ function Dashboard() {
         yAxisWidth={32}
       />
     </Card>
-    </Layout>
+  </Layout>
   )
 }
 
-export default App
+export default Dashboard;
