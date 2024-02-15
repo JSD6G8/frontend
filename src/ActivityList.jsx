@@ -6,7 +6,6 @@ import ListedCard from "./components/ListedCard";
 import SelectorButton from "./components/SelectorButton";
 import SortButton from "./components/SortButton";
 import { useAuth } from "./providers/authProvider";
-import { useNavigate } from "react-router-dom";
 
 function ActivityList() {
   const [activities, setActivities] = useState([]);
@@ -14,8 +13,7 @@ function ActivityList() {
   const [hasmore, setHasMore] = useState(true);
   const [skip, setSkip] = useState(10);
   const [take, setTake] = useState(10);
-  const { user, setUser } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
 
   const choicesData = [
     "All",
@@ -44,7 +42,7 @@ function ActivityList() {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `https://jsd6-loglife-backend.onrender.com/activities/user/${user.userId}?type=${typeQuery}&sort=${orderType}&take=${take}`, {
+          `https://jsd6-loglife-backend.onrender.com/v2/activities/user/me?type=${typeQuery}&sort=${orderType}&take=${take}`, {
             withCredentials: true,
           }
         );
