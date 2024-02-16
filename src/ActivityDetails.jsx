@@ -367,7 +367,6 @@ function ActivitiesDetails() {
                     id="imageUploadInput"
                     type="file"
                     accept="image/*"
-                    capture="camera"
                     aria-label="Upload Image"
                   />
                 </div>
@@ -399,7 +398,6 @@ function ActivitiesDetails() {
                     id="imageChangeInput"
                     type="file"
                     accept="image/*"
-                    capture="camera"
                     aria-label="Change Image"
                   />
                 </div>
