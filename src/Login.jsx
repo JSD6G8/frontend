@@ -46,18 +46,11 @@ function Login() {
       if (response.status === 200) {
         setUser(response.data.user);
         navigate("/activities", { replace: true });
-      } else {
-        await MySwal.fire({
-          icon: "error",
-          text: "Invalid email or password.",
-          confirmButtonColor: "#6587E8",
-        });
       }
     } catch (error) {
-      console.log(error);
       MySwal.fire({
         icon: "error",
-        text: "An unexpected error occurred. Please try again later.",
+        text: error.response.data.message,
         confirmButtonColor: "#6587E8",
       });
     }
