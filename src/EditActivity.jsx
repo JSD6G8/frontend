@@ -25,16 +25,15 @@ function EditActivity() {
   });
 
   const activityId = useParams().activityId;
-  const { user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     const getDataById = async (id) => {
       const response = await axios.get(
-        `https://jsd6-loglife-backend.onrender.com/activities/${id}`, 
+        `https://jsd6-loglife-backend.onrender.com/v2/activities/${id}`,
         {
           withCredentials: true,
-        }
+        },
       );
       if (response.status === 200) {
         const data = { ...response.data };
@@ -59,7 +58,6 @@ function EditActivity() {
       const putData = async () => {
         const titleToAdd = title || activityType;
         const putData = {
-          userId: user.userId,
           title: titleToAdd,
           description: description,
           type: activityType,
@@ -71,11 +69,11 @@ function EditActivity() {
         };
 
         const response = await axios.put(
-          `https://jsd6-loglife-backend.onrender.com/activities/${activityId}`,
+          `https://jsd6-loglife-backend.onrender.com/v2/activities/${activityId}`,
           putData,
           {
             withCredentials: true,
-          }
+          },
         );
 
         if (response.status === 200) {
@@ -89,7 +87,7 @@ function EditActivity() {
 
   return (
     <Layout>
-      <div className="container mx-auto max-w-lg px-2 py-2 md:my-4 md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
+      <div className="container mx-auto px-2 py-2 md:my-4 md:max-w-lg md:rounded-xl md:bg-white md:drop-shadow-md lg:px-4">
         <main className="h-full">
           <ActivityForm
             formHeading="Edit Activity"

@@ -22,6 +22,8 @@ import ResetPassword from "./ResetPassword.jsx";
 import Settings from "./Settings.jsx";
 import EditProfile from "./EditProfile.jsx";
 import ChangePassword from "./ChangePassword.jsx";
+import Dashboard from "./Dashboard.jsx";
+
 
 const Routes = () => {
   const { user } = useAuth();
@@ -87,7 +89,7 @@ const Routes = () => {
         },
         {
           path: "/dashboard",
-          element: <Layout>Mock Dashboard</Layout>,
+          element: <Dashboard />,
         },
         {
           path: "/logout",

@@ -20,8 +20,8 @@ function NavGuest() {
                 href="/aboutus"
                 className={`${
                   location.pathname === "/aboutus"
-                    ? "bg-base-200 text-base"
-                    : "text-base"
+                    ? "bg-base-200 text-sm md:text-base"
+                    : "text-sm md:text-base"
                 }`}
               >
                 About Us
@@ -31,12 +31,12 @@ function NavGuest() {
         </div>
 
         <div className="navbar-end">
-          <a href="/login" className="btn btn-ghost mx-3 text-base">
+          <a href="/login" className="btn max-md:btn-sm btn-ghost mx-3 text-base">
             Login
           </a>
           <a
             href="/signup"
-            className="btn btn-primary mr-3 text-base text-white hover:bg-[#1357B8]"
+            className="btn max-md:btn-sm btn-primary mr-3 text-base text-white hover:bg-[#1357B8]"
           >
             Sign Up
           </a>
