@@ -51,7 +51,7 @@ const teamProfile = [
     id: 5,
     pic: "https://i.imgur.com/ANpVt2j.jpeg",
     name: "Vorapon Sirimahatham (Vee)",
-    shortBio: "AI-powered machine that turns coffee into code.",
+    shortBio: "AI-powered machine that turns coffee into code. ☕",
     longBio:
       "Seasoned in manufacturing IT and adept at cross-functional collaboration. Now delving into the exciting realm of coding.",
     gitHub: "#",
