@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -42,15 +42,12 @@ function ResetPassword() {
         e.preventDefault();
 
         const newErrors = {};
-        const specialChars = /[._\-@%$#!]/;
 
         if (!formData.password.trim()) {
             newErrors.password = 'Password is required';
         } else if (formData.password.length < 8) {
             newErrors.password = 'Password must be more than 8 characters long';
-        } else if (!specialChars.test(formData.password)) {
-            newErrors.password = 'Password must have special character ._-@%$#!';
-        }
+        } 
 
         if (formData.password !== confirm_password.confirm_password) {
             newErrors.confirm_password = 'Passwords do not match';
@@ -58,6 +55,7 @@ function ResetPassword() {
 
         setErrors(newErrors);
 
+        //ti's work only with API mock up 
         if (Object.keys(newErrors).length === 0) {
             try {
                 const response = await axios.patch(
@@ -132,7 +130,6 @@ function ResetPassword() {
                                 <div className="pl-10 text-sm">
                                     <ul className="list-disc text-gray-400 font-light">
                                         <li>Be more than 8 characters</li>
-                                        <li>Must have special character ._-@%$#!</li>
                                     </ul>
                                 </div>
                             </div>

@@ -16,8 +16,9 @@ function EditProfile() {
     const MySwal = withReactContent(Swal);
     const navigate = useNavigate();
 
-    const userId = 1;
 
+    //ti's work only with API mock up 
+    const userId = 1;
     useEffect(() => {
         axios.get(`https://65cad4afefec34d9ed86573b.mockapi.io/loglife/membership/${userId}`)
             .then(response => {
