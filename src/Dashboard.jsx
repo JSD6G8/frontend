@@ -108,7 +108,7 @@ function Dashboard() {
   console.log("run here outside useEffect");
   return (
     <Layout>
-      <Card className="mx-auto max-w-lg">
+      <Card className="mx-auto max-w-lg mt-4">
           <Title className="mb-3">Your progress</Title>
           <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content flex items-center justify-between">
             <span>270/870 mins &bull; 45%</span>
