@@ -6,7 +6,7 @@ const teamProfile = [
   {
     id: 1,
     pic: "https://img5.pic.in.th/file/secure-sv1/380543638_1301540627207233_4034796601921640776_n.jpeg",
-    name: "Ananyalusk Sreesang (KiKi)",
+    name: "Ananyalusk Sreesang (Kiki)",
     shortBio: "Sending my selfie to NASA, because I’m a star. ✨",
     longBio:
       "Hello, world! I'm Kiki, a junior software developer with a passion for coding and an artistic flair. Beyond the lines of code, I incorporate creativity, integrating artistry into the world of software development. Excited to combine technological and artistic elements to produce unique and impactful solutions.",
@@ -29,7 +29,7 @@ const teamProfile = [
     id: 3,
     pic: "https://i.imgur.com/CweGb4W.jpeg",
     name: "Theppitak Maneepong (Mob)",
-    shortBio: "A newcomer at the crossroad of tech and creativity",
+    shortBio: "A newcomer at the crossroad of tech and creativity.",
     longBio:
       "Former creative copywriter and project manager, now on my way to becoming a developer. On the right side of my brain lies the love of fun and goofy ways to communicate things, while on the left is the love to find ways to manage unmanageable problems into the perfect march.",
     gitHub: "https://github.com/mmmmmob",
@@ -49,15 +49,14 @@ const teamProfile = [
   },
   {
     id: 5,
-    pic: "http://placekitten.com/500/600",
+    pic: "https://i.imgur.com/ANpVt2j.jpeg",
     name: "Vorapon Sirimahatham (Vee)",
-    shortBio:
-      "Lorem ipsum dolor sit amet. Occaecat ullamco ex aliquip esse ea.",
+    shortBio: "AI-powered machine that turns coffee into code.",
     longBio:
-      "Occaecat ullamco ex aliquip esse ea. Deserunt consequat magna do deserunt velit ullamco laborum non exercitation. Ullamco irure cupidatat excepteur excepteur incididunt commodo deserunt qui sunt. Officia esse esse duis Lorem ipsum ut irure deserunt quis laborum sunt veniam labore. Exercitation aliquip culpa ullamco dolor consequat nisi laboris et eu nulla cillum adipisicing.",
-    gitHub: "https://github.com/vorapons",
-    linkedIn: "https://linkedin.com/mmmmmob",
-    personalSite: "https://mmmmmob.me",
+      "Seasoned in manufacturing IT and adept at cross-functional collaboration. Now delving into the exciting realm of coding.",
+    gitHub: "#",
+    linkedIn: "https://www.linkedin.com/in/vorapons/",
+    personalSite: "#",
   },
 ];
 
