@@ -180,7 +180,7 @@ export default function ActivityForm({
       <fieldset className="flex max-w-full items-center gap-2">
         <h2 className="text-base font-medium md:text-xl">Date:</h2>
         <input
-          className="rounded border-2 h-9 px-2"
+          className="h-9 rounded border-2 px-2"
           type="date"
           value={date}
           required
@@ -195,7 +195,7 @@ export default function ActivityForm({
         <div className="flex flex-row items-center gap-2">
           <h2 className="text-base font-medium md:text-xl">From:</h2>
           <input
-            className="rounded border-2 max-w-28 h-9 px-2"
+            className="h-9 max-w-28 rounded border-2 px-2"
             type="time"
             value={startTime}
             required
@@ -207,7 +207,7 @@ export default function ActivityForm({
           <span>{"→"}</span>
           <span className="text-base font-medium md:text-xl">To:</span>
           <input
-            className="rounded border-2 max-w-28 h-9 px-2"
+            className="h-9 max-w-28 rounded border-2 px-2"
             type="time"
             value={endTime}
             required
@@ -222,12 +222,24 @@ export default function ActivityForm({
         </span>
       </fieldset>
 
-      <fieldset className="flex gap-1">
-        <h2 className="text-base font-medium md:text-xl">Duration:</h2>
-        <span className="text-base md:text-xl">
-          {formatDuration(duration.hour, "hour", "hours")}{" "}
-          {formatDuration(duration.minute, "minute", "minutes")}
-        </span>
+      <fieldset>
+        <div className="flex gap-1">
+          <h2 className="text-base font-medium md:text-xl">Duration:</h2>
+          <span className="text-base md:text-xl">
+            {formatDuration(duration.hour, "hour", "hours")}{" "}
+            {formatDuration(duration.minute, "minute", "minutes")}
+          </span>
+        </div>
+        {duration.hour >= 8 ? (
+          <>
+            <span className="text-xl">🤔 </span>
+            <span className="text-orange-400">
+              Duration seems long. Are you sure it&apos;s correct?
+            </span>
+          </>
+        ) : (
+          ""
+        )}
       </fieldset>
 
       <fieldset>
