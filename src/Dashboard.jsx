@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Card, ProgressCircle, Legend, Title, BarChart } from "@tremor/react";
+import { Card, ProgressCircle, Legend, Title, BarChart,ProgressBar,LineChart } from "@tremor/react";
 import { DonutChart } from "@tremor/react";
 import React from "react";
 import Layout from "./Layout";
@@ -27,19 +27,15 @@ const dataForMonthlyChart = [
   { name: "January", minute: 90 },
   { name: "February", minute: 60 },
 ];
-const dataForMonthlyChart2 = [];
-// const valueFormatter = (number : number) =>
-//   `$ ${Intl.NumberFormat('us').format(number).toString()}`;
 
 const dataForActivityDonut = [
-  { name: "Running", minutes: 980 },
-  { name: "Cycling", minutes: 456 },
-  { name: "Swimming", minutes: 390 },
-  { name: "Hiking", minutes: 240 },
-  { name: "Walking", minutes: 190 },
+  { name: 'Running',  minutes: 200, },
+  { name: 'Cycling', minutes: 100, },
+  { name: 'Swimming', minutes: 30,},
+  { name: 'Hiking', minutes: 50, },
+  { name: 'Walking', minutes: 15, },
 ];
 
-// const [filterType, setFilterType] = useState(choicesData[0]);
 const choicesData = [
   "All",
   "Running",
@@ -48,6 +44,16 @@ const choicesData = [
   "Hiking",
   "Walking",
   "Other",
+];
+
+const chartdata = [
+  { Running: 5, },
+  { Running: 5, },
+  { Running: 20, },
+  { Running: 40, },
+  { Running: 60, },
+  { Running: 60, },
+  { Running: 100, },
 ];
 
 function prepareDataForMonthlyChart(data) {
@@ -103,69 +109,103 @@ function Dashboard() {
   return (
     <Layout>
       <Card className="mx-auto max-w-lg mt-4">
-        <h4 className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-          Sales
-        </h4>
-        <p className="text-tremor-metric font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
-          $71,465
-        </p>
-        {/* <p className="mt-4 flex items-center justify-between text-tremor-default text-tremor-content dark:text-dark-tremor-content">
-            <span>32% of annual target</span>
-            <span>$225,000</span>
-          </p> */}
-        {/* <ProgressBar value={32} className="mt-2" /> */}
-      </Card>
-      <Card className="mx-auto max-w-lg mt-4">
-        <div className="space-x-48">
-          <div className="flex items-center justify-start space-x-5">
-            <ProgressCircle value={75} size="md">
-              <span className="text-xs font-medium text-slate-700">75%</span>
-            </ProgressCircle>
-            <ProgressCircle value={75} size="md">
-              <span className="text-xs font-medium text-slate-700">75%</span>
-            </ProgressCircle>
-            <ProgressCircle value={40} size="md">
-              <span className="text-xs font-medium text-slate-700">40%</span>
-            </ProgressCircle>
-            {/* { <div>
-                <p className="text-tremor-default text-tremor-content-strong dark:text-dark-tremor-content-strong font-medium">
-                  340/450 (75%)
-                </p>
-                
-              </div> } */}
-          </div>
+          <Title className="mb-3">Your progress</Title>
+          <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content flex items-center justify-between">
+            <span>270/870 mins &bull; 45%</span>
+            <span>500mins more to be healthy</span>
+          </p>
+          <ProgressBar  className="mt-3"
+            value={45}
+            // label="45%"
+            color="teal"
+            showAnimation={true}
+            animationDuration = {2000}
+             />
+          
+        </Card>
+
+        <Card className="flex justify-between mx-auto mt-4 max-w-lg p-4" >
+            {/* <div className="flex justify-start space-x-7 items-center content-center"> */}
+            {/* <Title className="mb-3">This week</Title> */}
+            
+              <ProgressCircle value={100} size="sm" color="red" showAnimation={true}>
+                <span className="text-xs font-medium text-slate-700">S</span>
+              </ProgressCircle>
+              <ProgressCircle value={0} size="sm" color="yellow">
+                <span className="text-xs font-medium text-slate-300">M</span>
+              </ProgressCircle>
+              <ProgressCircle value={100} size="sm" color="pink">
+                <span className="text-xs font-medium text-slate-700">T</span>
+              </ProgressCircle>
+              <ProgressCircle value={0} size="sm" color="green">
+                <span className="text-xs font-medium text-slate-300">W</span>
+              </ProgressCircle>
+              <ProgressCircle value={100} size="sm" color="orange">
+                <span className="text-xs font-medium text-slate-700">T</span>
+              </ProgressCircle>
+              <ProgressCircle value={100} size="sm" color="blue">
+                <span className="text-xs font-medium text-slate-700">F</span>
+              </ProgressCircle>
+              <ProgressCircle value={100} size="sm" color="violet">
+                <span className="text-xs font-medium text-slate-700">S</span>
+              </ProgressCircle>
+          
+        </Card>
+        <Card className="mx-auto mt-4 max-w-lg">
+        <Title className="mb-3">Activities</Title>
+        <div className="flex mt-0">
+          <DonutChart
+            data={dataForActivityDonut}
+            category="minutes"
+            index="name"
+            // valueFormatter={valueFormatter}
+            yAxisWidth={30}
+            colors={['blue', 'cyan', 'indigo', 'violet', 'fuchsia']}
+            onValueChange={(v) => setValue(v)}
+          />
+          <Legend
+              categories={['Running', 'Cycling', 'Swimming', 'Hiking', 'Walking']}
+              colors={['blue', 'cyan', 'indigo', 'violet', 'fuchsia']}
+              className="max-w-xs mt-2"
+            />
         </div>
-      </Card>
-      <Card className="mx-auto max-w-lg mt-4">
-        <Title className="mb-4">Activities</Title>
-        <DonutChart
-          data={dataForActivityDonut}
-          category="minutes"
-          index="name"
-          // valueFormatter={valueFormatter}
-          colors={["blue", "cyan", "indigo", "violet", "fuchsia"]}
-          onValueChange={(v) => setValue(v)}
-        />
-        <Legend
-          categories={["Running", "Cycling", "Swimming", "Hiking", "Walking"]}
-          colors={["blue", "cyan", "indigo", "violet", "fuchsia"]}
-          className="max-w-xs"
-        />
-        {/* <CodeBlock source={JSON.stringify(value, null, 2)} variant="empty" className="mt-8" /> */}
-      </Card>
+    {/* <CodeBlock source={JSON.stringify(value, null, 2)} variant="empty" className="mt-8" /> */}
+    </Card>
       <Card className="mx-auto mt-4 max-w-lg">
-        <h3 className="text-lg font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
-          Activities
-        </h3>
-        <BarChart
-          className="mt-6"
-          data={dataForMonthlyChart3}
-          index="name"
-          categories={["minute"]}
-          colors={["blue"]}
-          yAxisWidth={32}
-        />
-      </Card>
+      <Title className="mb-0">Trend</Title>
+      <BarChart
+        className="mt-0"
+        data={dataForMonthlyChart}
+        // data={dataForMonthlyChart3}
+        index="name"
+        categories={['minute']}
+        colors={['blue']}
+        showAnimation={true}
+        animationDuration = {2000}
+      />
+    </Card>
+    <Card className="mx-auto mt-4 max-w-lg ">
+      <Title className="mb-0">Barometer</Title>
+      <span className="mt-0 text-3xl flex flex-row-reverse" >😁</span>
+      <LineChart
+        className="mt-0 mb-0 h-72"
+        data={chartdata}
+        index="date"
+        categories={['Running']}
+        colors={['blue']}
+        yAxisWidth={30}
+        showAnimation={true}
+        showYAxis={false}
+        maxValue={110}
+        showLegend={false}
+        showTooltip={false}
+        enableLegendSlider={false}
+        tickGap={100}
+        animationDuration = {2000}
+        // customTooltip={customTooltip}
+      />
+      <span className="mt-0 text-3xl" >😫</span>
+    </Card>
     </Layout>
   );
 }
