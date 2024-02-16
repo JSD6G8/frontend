@@ -19,7 +19,11 @@ import Logout from "./Logout.jsx";
 import ForgetPassword from "./ForgetPassword.jsx";
 import OTPInput from "./OTPInput.jsx";
 import ResetPassword from "./ResetPassword.jsx";
+import Settings from "./Settings.jsx";
+import EditProfile from "./EditProfile.jsx";
+import ChangePassword from "./ChangePassword.jsx";
 import Dashboard from "./Dashboard.jsx";
+
 
 const Routes = () => {
   const { user } = useAuth();
@@ -91,6 +95,22 @@ const Routes = () => {
           path: "/logout",
           element: <Logout />,
         },
+        {
+          path: "/aboutus",
+          element: <AboutUs />,
+        },
+        {
+          path: "/settings",
+          element: <Settings />,
+        },
+        {
+          path: "/profile/edit",
+          element: <EditProfile />,
+        },
+        {
+          path: "/change-password",
+          element: <ChangePassword />,
+        }
       ],
     }
   ];
