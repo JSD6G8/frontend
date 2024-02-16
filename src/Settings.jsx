@@ -14,7 +14,7 @@ function UserProfile() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get(`https://backend.loglife.prutmongkol.dev/users/me`,
+        axios.get(`https://api.loglife.guru/users/me`,
             {
                 withCredentials: true,
             })

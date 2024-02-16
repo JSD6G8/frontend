@@ -84,7 +84,7 @@ function Dashboard() {
       try {
         axios.defaults.withCredentials = true;
         const response = await axios.get(
-          "https://backend.loglife.prutmongkol.dev/dashboard",
+          "https://api.loglife.guru/dashboard",
           {
             // "http://localhost:3000/dashboard",{
             withCredentials: true,

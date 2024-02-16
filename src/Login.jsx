@@ -37,7 +37,7 @@ function Login() {
 
     try {
       const response = await axios.post(
-        "https://backend.loglife.prutmongkol.dev/login",
+        "https://api.loglife.guru/login",
         requestBody,
         {
           withCredentials: true,
@@ -62,7 +62,7 @@ function Login() {
       });
     }
 
-    // fetch("https://backend.loglife.prutmongkol.dev/login", requestOptions)
+    // fetch("https://api.loglife.guru/login", requestOptions)
     //     .then(response => response.json())
     //     .then(result => {
     //         console.log(result)
