@@ -42,7 +42,7 @@ function ActivityList() {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `https://jsd6-loglife-backend.onrender.com/v2/activities/user/me?type=${typeQuery}&sort=${orderType}&take=${take}`, {
+          `https://backend.loglife.prutmongkol.dev/v2/activities/user/me?type=${typeQuery}&sort=${orderType}&take=${take}`, {
             withCredentials: true,
           }
         );
@@ -61,7 +61,7 @@ function ActivityList() {
   const fetchMoreData = () => {
     axios
       .get(
-        `https://jsd6-loglife-backend.onrender.com/activities/user/${user.userId}?type=${typeQuery}&sort=${orderType}&skip=${skip}&take=5`, {
+        `https://backend.loglife.prutmongkol.dev/activities/user/${user.userId}?type=${typeQuery}&sort=${orderType}&skip=${skip}&take=5`, {
           withCredentials: true,
         }
       )

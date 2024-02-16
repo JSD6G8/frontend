@@ -84,7 +84,7 @@ function Dashboard() {
       try {
         axios.defaults.withCredentials = true;
         const response = await axios.get(
-          "https://jsd6-loglife-backend.onrender.com/dashboard",
+          "https://backend.loglife.prutmongkol.dev/dashboard",
           {
             // "http://localhost:3000/dashboard",{
             withCredentials: true,
