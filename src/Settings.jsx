@@ -14,7 +14,7 @@ function UserProfile() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get(`https://jsd6-loglife-backend.onrender.com/users/me`,
+        axios.get(`https://backend.loglife.prutmongkol.dev/users/me`,
             {
                 withCredentials: true,
             })

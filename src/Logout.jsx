@@ -9,7 +9,7 @@ function Logout() {
 
   useEffect(() => {
     const handleLogout = async () => {
-      const response = await axios.post("https://jsd6-loglife-backend.onrender.com/logout", null, {
+      const response = await axios.post("https://backend.loglife.prutmongkol.dev/logout", null, {
         withCredentials: true,
       });
       if (response.status === 200) {
