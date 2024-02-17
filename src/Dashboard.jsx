@@ -157,8 +157,9 @@ function Dashboard() {
         axios.defaults.withCredentials = true;
         const response = await axios.get(
           "https://api.loglife.guru/dashboard",
-       // "http://localhost:3000/dashboard",
-          { withCredentials: true, },
+          {
+            withCredentials: true,
+          },
         );
 
         if (response.status === 200 && response.data) {

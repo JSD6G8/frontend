@@ -125,9 +125,9 @@ const Routes = () => {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  // <React.StrictMode>
+  <React.StrictMode>
     <AuthProvider>
       <Routes />
     </AuthProvider>
-  // </React.StrictMode> 
+  </React.StrictMode> 
 );
