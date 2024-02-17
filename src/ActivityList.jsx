@@ -194,9 +194,12 @@ function ActivityList() {
               </div>
             </InfiniteScroll>
           ) : (
-            <div className="flex h-full flex-col justify-center self-center">
-              <p className="self-center text-center text-xl font-semibold">
-                Newcomer? Let's log your first activity! 👇🏼
+            <div className="m-5 flex h-full flex-col justify-center self-center">
+              <p className=" self-center text-center text-xl font-medium">
+                Newcomer?
+              </p>
+              <p className=" self-center text-center text-xl font-semibold">
+                Let's log your first activity! 👇🏼
               </p>
               <br></br>
               <div className="place-content-center-2 btn btn-primary h-12 w-56 self-center text-[1rem] tracking-wide  text-white hover:bg-[#1357B8] md:px-[6px] md:py-[1px]">
