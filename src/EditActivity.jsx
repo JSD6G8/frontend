@@ -30,7 +30,7 @@ function EditActivity() {
   useEffect(() => {
     const getDataById = async (id) => {
       const response = await axios.get(
-        `https://jsd6-loglife-backend.onrender.com/v2/activities/${id}`,
+        `https://api.loglife.guru/v2/activities/${id}`,
         {
           withCredentials: true,
         },
@@ -69,7 +69,7 @@ function EditActivity() {
         };
 
         const response = await axios.put(
-          `https://jsd6-loglife-backend.onrender.com/v2/activities/${activityId}`,
+          `https://api.loglife.guru/v2/activities/${activityId}`,
           putData,
           {
             withCredentials: true,
