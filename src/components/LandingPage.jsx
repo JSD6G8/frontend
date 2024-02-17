@@ -38,7 +38,7 @@ function LandingPage() {
                         </div>
                     </div>
                     <div className="flex-1">
-                        <img src="https://img2.pic.in.th/pic/phone.png" alt="phone" border="0" className="w-[200px] min-[1200px]:w-[300px] min-[1680px]:w-[400px] rotate-[17deg] mx-auto" />
+                        <img src="https://img2.pic.in.th/pic/activity-lista71b3c79d6062d9c.png" alt="phone" border="0" className="w-[200px] min-[1200px]:w-[300px] min-[1680px]:w-[400px] rotate-[17deg] mx-auto" />
                     </div>
                 </div>
 
@@ -46,7 +46,7 @@ function LandingPage() {
                 <div className="my-[90px] md:my-[150px] min-[1680px]:my-[200px] md:flex items-center">
                     <div className="hidden md:contents">
                         <div className="flex-1 min-[1200px]:bg-gray-200 py-[40px] rounded-xl md:mr-5">
-                            <img src="https://img2.pic.in.th/pic/Slice-7.png" alt="walk.png" border="0" className="m-auto w-[350px] min-[1680px]:w-[500px]" />
+                            <img src="https://img5.pic.in.th/file/secure-sv1/dashboard.jpeg" alt="dashboard" border="0" className="m-auto w-[350px] min-[1680px]:w-[500px]" />
                         </div>
                     </div>
                     <div className="flex-1 text-center md:ml-5">
@@ -61,7 +61,7 @@ function LandingPage() {
                     </div>
                     <div className="md:hidden">
                         <div className="flex-1 min-[1200px]:bg-gray-200 rounded-xl md:mr-5">
-                            <img src="https://img2.pic.in.th/pic/Slice-7.png" alt="walk.png" border="0" className="m-auto w-[350px] min-[1680px]:w-[500px]" />
+                            <img src="https://img5.pic.in.th/file/secure-sv1/dashboard.jpeg" alt="dashboard" border="0" className="m-auto w-[350px] min-[1680px]:w-[500px]" />
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@ function LandingPage() {
                 <div className="my-[90px] md:my-[150px] min-[1680px]:my-[200px] md:flex items-center">
                     <div className="flex-1 md:py-[0px] md:mr-5">
                         <h2 className="font-medium text-3xl lg:text-4xl my-10 md:hidden text-center">Challenge With Activities You Love</h2>
-                        <img src="https://img5.pic.in.th/file/secure-sv1/hiking.png" alt="walk.png" border="0" className="w-[500px] min-[1680px]:w-[600px] mx-auto" />
+                        <img src="https://img5.pic.in.th/file/secure-sv1/hiking.png" alt="hiking" border="0" className="w-[500px] min-[1680px]:w-[600px] mx-auto" />
                     </div>
                     <div className="flex-1 text-center md:ml-5">
                         <div>
@@ -93,7 +93,7 @@ function LandingPage() {
                         </div>
                     </div>
                     <div className="flex-1 md:py-[0px]">
-                        <img src="https://img5.pic.in.th/file/secure-sv1/cycling.png" alt="walk.png" border="0" className="w-[400px] min-[1680px]:w-[550px] mx-auto" />
+                        <img src="https://img5.pic.in.th/file/secure-sv1/cycling.png" alt="cycling" border="0" className="w-[400px] min-[1680px]:w-[550px] mx-auto" />
                     </div>
                     <div className="md:hidden text-center">
                         <p className="text-lg lg:text-2xl font-light my-10 lg:px-10">
@@ -105,7 +105,7 @@ function LandingPage() {
                 {/*running section */}
                 <div className="my-[90px] md:my-[150px] min-[1680px]:my-[200px] md:flex items-center">
                     <div className="flex-1 md:py-[0px] md:mr-5">
-                        <img src="https://img2.pic.in.th/pic/run.png" alt="walk.png" border="0" className="w-[250px] md:w-[300px] min-[1680px]:w-[400px] pl-[10px] md:pl-[0px] mx-auto" />
+                        <img src="https://img2.pic.in.th/pic/run.png" alt="running" border="0" className="w-[250px] md:w-[300px] min-[1680px]:w-[400px] pl-[10px] md:pl-[0px] mx-auto" />
                     </div>
                     <div className="flex-1 text-center md:ml-5">
                         <div>
@@ -128,11 +128,11 @@ function LandingPage() {
                         </div>
                     </div>
                     <div className="flex flex-wrap justify-center gap-4 lg:gap-10 min-[1680px]:px-[200px] py-5 md:py-10">
-                        <img src="https://img2.pic.in.th/pic/very-strong.png" alt="very-strong.png" border="0" className="w-[250px] min-[1200px]:w-[300px]" />
-                        <img src="https://img2.pic.in.th/pic/strong.png" alt="strong.png" border="0" className="w-[250px] min-[1200px]:w-[300px]" />
-                        <img src="https://img2.pic.in.th/pic/nomal.png" alt="normal.png" border="0" className="w-[250px] min-[1200px]:w-[300px]" />
-                        <img src="https://img5.pic.in.th/file/secure-sv1/weak.png" alt="weak.png" border="0" className="w-[250px] min-[1200px]:w-[300px]" />
-                        <img src="https://img5.pic.in.th/file/secure-sv1/very-weak.png" alt="very-weak.png" border="0" className="w-[250px] min-[1200px]:w-[300px]" />
+                        <img src="https://img2.pic.in.th/pic/very-strong402ae295e3eb011a.png" alt="very-strong.png" className="w-[250px] min-[1200px]:w-[300px]" />
+                        <img src="https://img5.pic.in.th/file/secure-sv1/strong.png" alt="strong.png" border="0" className="w-[250px] min-[1200px]:w-[300px]" />
+                        <img src="https://img5.pic.in.th/file/secure-sv1/normal.png" alt="normal.png" border="0" className="w-[250px] min-[1200px]:w-[300px]" />
+                        <img src="https://img2.pic.in.th/pic/weak.png" alt="weak.png" border="0" className="w-[250px] min-[1200px]:w-[300px]" />
+                        <img src="https://img2.pic.in.th/pic/very-weak.png" alt="very-weak.png" border="0" className="w-[250px] min-[1200px]:w-[300px]" />
                     </div>
                 </div>
 
@@ -149,7 +149,7 @@ function LandingPage() {
                                 <h3 className="font-medium text-3xl lg:text-4xl text-primary my-4 md:my-10 md:px-10 min-[1680px]:px-20">Step 1</h3>
                             </div>
                             <div className="md:flex-1">
-                                <img src="https://img2.pic.in.th/pic/Slice-8.png" alt="Slice-8.png" border="0" className="mx-auto my-5 md:my-0 md:px-10" />
+                                <img src="https://img2.pic.in.th/pic/Slice-8.png" alt="Step 1" border="0" className="mx-auto my-5 md:my-0 md:px-10" />
                             </div>
                             <div className="md:flex-1">
                                 <div className="hidden md:contents">
@@ -172,7 +172,7 @@ function LandingPage() {
                                 <h3 className="font-medium text-3xl lg:text-4xl text-primary my-4 md:my-10 md:px-10 min-[1680px]:px-20">Step 2</h3>
                             </div>
                             <div className="md:flex-1">
-                                <img src="https://img2.pic.in.th/pic/nav.png" alt="Slice-8.png" border="0" className="mx-auto my-7 md:my-0 md:px-10" />
+                                <img src="https://img2.pic.in.th/pic/416747713_1529620607581580_5709284898039613136_n.jpeg" alt="Step 2" border="0" className="mx-auto my-10 md:my-0 md:pr-[55px] md:pl-[40px] lg:pr-[100px] lg:pl-[70px] min-[1680px]:pr-[185px] min-[1680px]:pl-[160px]" />
                             </div>
                             <div className="md:flex-1">
                                 <div className="hidden md:contents">
@@ -193,7 +193,7 @@ function LandingPage() {
                                 <h3 className="font-medium text-3xl lg:text-4xl text-primary my-4 md:my-10 md:px-10 min-[1680px]:px-20">Step 3</h3>
                             </div>
                             <div className="md:flex-1">
-                                <img src="https://uppic.cloud/ib/wOkKQ65M0d.png" alt="Slice-8.png" border="0" className="mx-auto my-7 md:my-0 md:px-10" />
+                                <img src="https://uppic.cloud/ib/wOkKQ65M0d.png" alt="Step 3" border="0" className="mx-auto my-7 md:my-0 md:px-10" />
                             </div>
                             <div className="md:flex-1">
                                 <div className="hidden md:contents">
@@ -213,7 +213,7 @@ function LandingPage() {
                                 <h3 className="font-medium text-3xl lg:text-4xl text-primary my-4 md:my-10 md:px-10 min-[1680px]:px-20">Step 4</h3>
                             </div>
                             <div className="md:flex-1">
-                                <img src="https://uppic.cloud/ib/5a92uNWPPh.png" alt="Slice-8.png" border="0" className="mx-auto my-5 md:my-0 md:px-10" />
+                                <img src="https://uppic.cloud/ib/5a92uNWPPh.png" alt="Step 4" border="0" className="mx-auto my-5 md:my-0 md:px-10" />
                             </div>
                             <div className="md:flex-1">
                                 <div className="hidden md:contents">
@@ -234,7 +234,7 @@ function LandingPage() {
                                 <h3 className="font-medium text-3xl lg:text-4xl text-primary my-4 md:my-10 md:px-10 min-[1680px]:px-20">Step 5</h3>
                             </div>
                             <div className="md:flex-1">
-                                <img src="https://uppic.cloud/ib/isAqFLa961.png" alt="Slice-8.png" border="0" className="mx-auto my-5 md:my-0 md:px-10" />
+                                <img src="https://uppic.cloud/ib/isAqFLa961.png" alt="Step 5" border="0" className="mx-auto my-5 md:my-0 md:px-10" />
                             </div>
                             <div className="md:flex-1">
                                 <div className="hidden md:contents">
@@ -255,7 +255,7 @@ function LandingPage() {
                                 <h3 className="font-medium text-3xl lg:text-4xl text-primary my-4 md:my-10 md:px-10 min-[1680px]:px-20">Step 6</h3>
                             </div>
                             <div className="md:flex-1">
-                                <img src="https://uppic.cloud/ib/ohdZkZUnKP.png" alt="Slice-8.png" border="0" className="mx-auto my-7 md:my-0 md:px-10" />
+                                <img src="https://uppic.cloud/ib/ohdZkZUnKP.png" alt="Step 6g" border="0" className="mx-auto my-7 md:my-0 md:px-10" />
                             </div>
                             <div className="flex-1">
                                 <div className="hidden md:contents">
@@ -276,11 +276,11 @@ function LandingPage() {
                                 <h3 className="font-medium text-3xl lg:text-4xl text-primary my-4 md:my-10 md:px-10 min-[1680px]:px-20">Step 7</h3>
                             </div>
                             <div className="md:flex-1">
-                                <img src="https://uppic.cloud/ib/hmuTms9s14.png" alt="Slice-8.png" border="0" className="mx-auto my-8 md:my-0 md:px-10" />
+                                <img src="https://uppic.cloud/ib/hmuTms9s14.png" alt="Step 7" border="0" className="mx-auto my-8 md:my-0 md:px-10" />
                             </div>
                             <div className="md:flex-1">
                                 <div className="hidden md:contents">
-                                    <h3 className="font-medium text-3xl lg:text-4xl text-primary my-4 md:my-10 md:px-10 min-[1680px]:px-20">Step 6</h3>
+                                    <h3 className="font-medium text-3xl lg:text-4xl text-primary my-4 md:my-10 md:px-10 min-[1680px]:px-20">Step 7</h3>
                                 </div>
                                 <p className="text-lg lg:text-2xl font-light md:my-10 md:px-10 min-[1680px]:px-20">Choose the
                                     <span className="font-medium text-primary"> emotion </span> that reflects your post-activity feelings,
