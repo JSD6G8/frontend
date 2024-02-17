@@ -15,7 +15,7 @@ const TeamMemberCard = ({ member }) => {
             className="h-56 w-48 rounded-xl object-cover max-md:w-full"
           />
         </div>
-        <div className=" flex flex-col flex-wrap self-center px-2 py-4 max-md:py-2">
+        <div className=" flex w-full flex-col flex-wrap self-center px-2 py-4 max-md:py-2">
           <h1 className="pt-2 text-3xl font-bold max-md:text-2xl">
             {member.name}
           </h1>
