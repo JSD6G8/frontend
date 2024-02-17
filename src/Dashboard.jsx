@@ -100,14 +100,20 @@ function prepareDataForMonthlyChart(data) {
 //  call this function after get data from backend
 //  can set return data to State and use State at compponet to render
 function prepareDataForProgress(data){
-    let thisMonthMinutes = data["sum_minutes"]
+    let thisMonthMinutes = data["sum_minutes"] ? data["sum_minutes"] : 0;
     let daysInCurrentMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate();
     const minutesMontlyGoal = 30 * (daysInCurrentMonth > 0 ? daysInCurrentMonth : 1)
     const dataForProgress = {}
     dataForProgress["target"] = minutesMontlyGoal
     dataForProgress["actual"] = thisMonthMinutes
-    dataForProgress["percentage"] = Math.round( (thisMonthMinutes/minutesMontlyGoal)*100 )
-    dataForProgress["remain"] = minutesMontlyGoal - thisMonthMinutes
+    if ( thisMonthMinutes === 0 ) {
+      dataForProgress["percentage"] = 0
+    }
+    else {
+      dataForProgress["percentage"] = Math.round( (thisMonthMinutes/minutesMontlyGoal)*100 )
+    }
+    let remainMinute = minutesMontlyGoal - thisMonthMinutes
+    dataForProgress["remain"] = remainMinute > 0 ? remainMinute : 0  
   return dataForProgress;
 }
 
@@ -175,8 +181,8 @@ function Dashboard() {
         <Card className="mx-auto max-w-lg mt-4">
             <Title className="mb-3">Your Monthly Progress</Title>
             <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content flex items-center justify-between">
-              <span>{dataForProgress.actual}/{dataForProgress.target} mins &bull; {dataForProgress.percentage}%</span>
-              <span>{dataForProgress.remain}mins more to be healthy</span>
+              <span>{dataForProgress.actual} / {dataForProgress.target} mins &bull; {dataForProgress.percentage }%</span>
+              <span>{dataForProgress.remain} mins more to be healthy</span>
             </p>
             <ProgressBar  className="mt-3"
               value={dataForProgress.actual/dataForProgress.target*100}
