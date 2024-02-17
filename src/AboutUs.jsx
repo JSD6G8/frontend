@@ -6,7 +6,7 @@ const teamProfile = [
   {
     id: 1,
     pic: "https://img5.pic.in.th/file/secure-sv1/380543638_1301540627207233_4034796601921640776_n.jpeg",
-    name: "Ananyalusk Sreesang (Kiki)",
+    name: "Ananyaluck Sreesang (Kiki)",
     shortBio: "Sending my selfie to NASA, because I’m a star. ✨",
     longBio:
       "Hello, world! I'm Kiki, a junior software developer with a passion for coding and an artistic flair. Beyond the lines of code, I incorporate creativity, integrating artistry into the world of software development. Excited to combine technological and artistic elements to produce unique and impactful solutions.",
