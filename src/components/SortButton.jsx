@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  TbArrowsSort,
   TbSortAscendingLetters,
   TbSortDescendingLetters,
 } from "react-icons/tb";
@@ -23,7 +24,7 @@ const SortButton = ({ selected, setResult }) => {
         role="button"
         className="btn btn-outline btn-info btn-sm"
       >
-        Sort
+        <TbArrowsSort className="size-5" />
       </div>
       <ul
         tabIndex={0}

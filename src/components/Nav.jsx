@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
 import Layout from "../Layout";
+import { useAuth } from "../providers/authProvider";
 import { AddButton } from "./AddButton";
 import Footer from "./Footer";
 import "./Nav.css";
-import { useAuth } from "../providers/authProvider";
 
 function NavGuest() {
   let location = useLocation();
@@ -31,12 +31,15 @@ function NavGuest() {
         </div>
 
         <div className="navbar-end">
-          <a href="/login" className="btn max-md:btn-sm btn-ghost mx-3 text-base">
+          <a
+            href="/login"
+            className="btn btn-ghost mx-3 text-base max-md:btn-sm"
+          >
             Login
           </a>
           <a
             href="/signup"
-            className="btn max-md:btn-sm btn-primary mr-3 text-base text-white hover:bg-[#1357B8]"
+            className="btn btn-primary mr-3 text-base text-white max-md:btn-sm hover:bg-[#1357B8]"
           >
             Sign Up
           </a>
@@ -75,10 +78,10 @@ function NavLoggedInMobile() {
             </div>
             <ul
               tabIndex={0}
-              className="menu dropdown-content menu-sm mt-3 w-52 rounded-box bg-white p-2 shadow "
+              className="menu dropdown-content menu-sm mt-3 w-56 rounded-box bg-white p-2 shadow "
             >
-              <div className="mb-2 flex h-10 place-content-baseline sm:hidden">
-                <div className="avatar">
+              <div className="mb-2 mt-2 flex h-10 place-content-baseline sm:hidden">
+                <div className="avatar mr-2">
                   <div className="w-10 rounded-full">
                     <img
                       className="self-center"
@@ -88,7 +91,7 @@ function NavLoggedInMobile() {
                   </div>
                 </div>
                 {/* retrieve name from express w/ response.data.user.first_name */}
-                <p className="ml-2 place-self-center text-lg font-bold">
+                <p className="inline-block place-self-center self-center text-lg font-bold">
                   Hello, {user?.first_name}!
                 </p>
               </div>
@@ -270,7 +273,6 @@ function NavLoggedInDesktop() {
 }
 
 function Nav() {
-
   return (
     <Layout>
       {/* when new user come */}

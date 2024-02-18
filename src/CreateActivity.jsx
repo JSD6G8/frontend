@@ -59,7 +59,7 @@ function CreateActivity() {
         };
 
         const response = await axios.post(
-          "https://backend.loglife.prutmongkol.dev/v2/activities/",
+          "https://api.loglife.guru/v2/activities/",
           postData,
           {
             withCredentials: true,

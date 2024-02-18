@@ -1,260 +1,280 @@
-import React, { useState } from 'react';
+import axios from "axios";
+import React, { useState } from "react";
+import { Icon } from "react-icons-kit";
+import { eye } from "react-icons-kit/feather/eye";
+import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-import { Icon } from 'react-icons-kit';
-import { eyeOff } from 'react-icons-kit/feather/eyeOff';
-import { eye } from 'react-icons-kit/feather/eye';
-import { useAuth } from './providers/authProvider';
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import { useAuth } from "./providers/authProvider";
 
 import Layout from "./Layout";
 
 function Signup() {
-    const MySwal = withReactContent(Swal);
-    const navigate = useNavigate();
-    const { setUser } = useAuth();
+  const MySwal = withReactContent(Swal);
+  const navigate = useNavigate();
+  const { setUser } = useAuth();
 
-    const [formData, setFormData] = useState({
-        first_name: '',
-        last_name: '',
-        emailAddress: '',
-        password: '',
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    emailAddress: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({});
+  const [confirm_password, setConfirm_password] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
     });
+  };
 
-    const [errors, setErrors] = useState({});
-    const [confirm_password, setConfirm_password] = useState({});
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const newErrors = {};
+
+    if (!formData.first_name.trim()) {
+      newErrors.first_name = "First Name is required";
+    }
+
+    if (!formData.last_name.trim()) {
+      newErrors.last_name = "Last Name is required";
+    }
+
+    if (!formData.emailAddress.trim()) {
+      newErrors.emailAddress = "Email is required";
+    } else if (formData.emailAddress.includes(" ")) {
+      newErrors.emailAddress = "Invalid Email";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formData.emailAddress)
+    ) {
+      newErrors.emailAddress = "Invalid email address";
+    }
+
+    if (!formData.password.trim()) {
+      newErrors.password = "Password is required";
+    } else if (formData.password.length < 8) {
+      newErrors.password = "Password must be more than 8 characters long";
+    }
+
+    if (formData.password !== confirm_password.confirm_password) {
+      newErrors.confirm_password = "Passwords do not match";
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      try {
+        const response = await axios.post(
+          "https://api.loglife.guru/signup",
+          formData,
+          {
+            withCredentials: true,
+          },
+        );
+
+        if (response.status === 201) {
+          console.log(`registered successfully. status is ${response.status}`);
+          MySwal.fire({
+            icon: "success",
+            text: "User registered successfully!",
+            confirmButtonColor: "#6587E8",
+          }).then(() => {
+            setUser(response.data.user);
+            navigate("/activities", { replace: true });
+          });
+        } else {
+          MySwal.fire({
+            icon: "error",
+            text: "Failed to register user. Please try again.",
+            confirmButtonColor: "#6587E8",
+          });
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        MySwal.fire({
+          icon: "error",
+          text: "An unexpected error occurred. Please try again later.",
+          confirmButtonColor: "#6587E8",
         });
-    };
+      }
+    }
+  };
 
-    const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-    };
+  return (
+    <Layout>
+      <div className="mx-auto my-10 w-10/12 max-w-lg rounded-xl bg-white shadow-md">
+        <div className="p-8">
+          <h1 className="mt-3 text-center text-2xl font-medium">Sign up</h1>
+          <form className="mt-6" onSubmit={handleSubmit}>
+            <div className="my-8">
+              <label>
+                Email Address
+                <input
+                  type="text"
+                  name="emailAddress"
+                  id="emailAddress"
+                  value={formData.emailAddress}
+                  onChange={handleChange}
+                  className="input mt-3 w-full bg-gray-100 px-4 py-3"
+                  placeholder="Email Address"
+                />
+                {errors.emailAddress && (
+                  <p className="mt-1 text-xs text-red-500">
+                    {errors.emailAddress}
+                  </p>
+                )}
+              </label>
+            </div>
+            <div className="my-8">
+              <label>
+                Password
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="input mt-3 w-full bg-gray-100 px-4 py-3"
+                    placeholder="Password"
+                  />
+                  <span
+                    className="absolute right-0 top-3 mr-4 mt-3 cursor-pointer"
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPassword ? (
+                      <div style={{ color: "#9ca3af" }}>
+                        <Icon icon={eye} size={20} />
+                      </div>
+                    ) : (
+                      <div style={{ color: "#9ca3af" }}>
+                        <Icon icon={eyeOff} size={20} />
+                      </div>
+                    )}
+                  </span>
+                </div>
+                {errors.password && (
+                  <p className="mt-1 text-xs text-red-500">{errors.password}</p>
+                )}
+              </label>
+              <p className="mt-2 text-sm font-light text-gray-400">
+                Password must:
+              </p>
+              <div className="pl-10 text-sm">
+                <ul className="list-disc font-light text-gray-400">
+                  <li>Be more than 8 characters</li>
+                </ul>
+              </div>
+            </div>
+            <div className="my-8">
+              <label>
+                Confirm Password
+                <div className="relative">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    name="confirm_password"
+                    id="confirm_password"
+                    value={confirm_password.confirm_password}
+                    onChange={(e) => {
+                      const { name, value } = e.target;
+                      setConfirm_password({
+                        ...confirm_password,
+                        [name]: value,
+                      });
+                    }}
+                    className="input mt-3 w-full bg-gray-100 px-4 py-3"
+                    placeholder="Confirm Password"
+                  />
+                  <span
+                    className="absolute right-0 top-3 mr-4 mt-3 cursor-pointer"
+                    onClick={toggleConfirmPasswordVisibility}
+                  >
+                    {showConfirmPassword ? (
+                      <div style={{ color: "#9ca3af" }}>
+                        <Icon icon={eye} size={20} />
+                      </div>
+                    ) : (
+                      <div style={{ color: "#9ca3af" }}>
+                        <Icon icon={eyeOff} size={20} />
+                      </div>
+                    )}
+                  </span>
+                </div>
+                {errors.confirm_password && (
+                  <p className="mt-1 text-xs text-red-500">
+                    {errors.confirm_password}
+                  </p>
+                )}
+              </label>
+            </div>
+            <div className="divider"></div>
+            <div className="my-8">
+              <label>
+                First Name
+                <input
+                  type="text"
+                  name="first_name"
+                  id="first_name"
+                  value={formData.first_name}
+                  onChange={handleChange}
+                  className="input mt-3 w-full rounded-sm bg-gray-100 px-4 py-3"
+                  placeholder="First Name"
+                />
+                {errors.first_name && (
+                  <p className="mt-1 text-xs text-red-500">
+                    {errors.first_name}
+                  </p>
+                )}
+              </label>
+            </div>
+            <div className="my-8">
+              <label>
+                Last Name
+                <input
+                  type="text"
+                  name="last_name"
+                  id="last_name"
+                  value={formData.last_name}
+                  onChange={handleChange}
+                  className="input mt-3 w-full bg-gray-100 px-4 py-3 text-sm"
+                  placeholder="Last Name"
+                />
+                {errors.last_name && (
+                  <p className="mt-1 text-xs text-red-500">
+                    {errors.last_name}
+                  </p>
+                )}
+              </label>
+            </div>
+            <div className="divider"></div>
+            <div className="my-10">
+              <button
+                type="submit"
+                className="my-2 block w-full rounded-lg bg-primary py-[14.5px] text-center text-white duration-300 hover:bg-[#1357B8]"
+              >
+                Sign up
+              </button>
+            </div>
+          </form>
 
-    const toggleConfirmPasswordVisibility = () => {
-        setShowConfirmPassword(!showConfirmPassword);
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const newErrors = {};
-
-        if (!formData.first_name.trim()) {
-            newErrors.first_name = 'First Name is required';
-        }
-
-        if (!formData.last_name.trim()) {
-            newErrors.last_name = 'Last Name is required';
-        }
-
-        if (!formData.emailAddress.trim()) {
-            newErrors.emailAddress = 'Email is required';
-        } else if (formData.emailAddress.includes(" ")) {
-            newErrors.emailAddress = 'Invalid Email';
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formData.emailAddress)) {
-            newErrors.emailAddress = 'Invalid email address';
-        }
-
-        if (!formData.password.trim()) {
-            newErrors.password = 'Password is required';
-        } else if (formData.password.length < 8) {
-            newErrors.password = 'Password must be more than 8 characters long';
-        }
-
-        if (formData.password !== confirm_password.confirm_password) {
-            newErrors.confirm_password = 'Passwords do not match';
-        }
-
-        setErrors(newErrors);
-
-        if (Object.keys(newErrors).length === 0) {
-            try {
-                const response = await axios.post(
-                    'https://backend.loglife.prutmongkol.dev/signup',
-                    formData,
-                    {
-                        withCredentials: true,
-                    }
-                );
-
-                if (response.status === 201) {
-                    console.log(`registered successfully. status is ${response.status}`);
-                    MySwal.fire({
-                        icon: 'success',
-                        text: 'User registered successfully!',
-                        confirmButtonColor: '#6587E8',
-                    }).then(() => {
-                        setUser(response.data.user);
-                        navigate('/activities', { replace: true });
-                    });
-                } else {
-                    MySwal.fire({
-                        icon: 'error',
-                        text: 'Failed to register user. Please try again.',
-                        confirmButtonColor: '#6587E8',
-                    });
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                MySwal.fire({
-                    icon: 'error',
-                    text: 'An unexpected error occurred. Please try again later.',
-                    confirmButtonColor: '#6587E8',
-                });
-            }
-        }
-    };
-
-    return (
-        <Layout>
-            <div className="bg-white mx-auto my-10 shadow-md rounded-xl w-10/12 max-w-lg">
-                <div className="p-8">
-                    <h1 className="font-medium text-2xl mt-3 text-center">Sign up</h1>
-                    <form className="mt-6" onSubmit={handleSubmit}>
-                    <div className="my-8">
-                            <label>Email Address
-                                <input
-                                    type="text"
-                                    name="emailAddress"
-                                    id="emailAddress"
-                                    value={formData.emailAddress}
-                                    onChange={handleChange}
-                                    className="input bg-gray-100 px-4 py-3 mt-3 w-full"
-                                    placeholder="Email Address"
-                                />
-                                {errors.emailAddress && (
-                                    <p className="text-red-500 text-xs mt-1">{errors.emailAddress}</p>
-                                )}
-                            </label>
-                        </div>
-                        <div className="my-8">
-                            <label>Password
-                                <div className="relative">
-                                    <input
-                                        type={showPassword ? "text" : "password"}
-                                        name="password"
-                                        id="password"
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        className="input bg-gray-100 px-4 py-3 mt-3 w-full"
-                                        placeholder="Password"
-                                    />
-                                    <span
-                                        className="absolute top-3 right-0 mt-3 mr-4 cursor-pointer"
-                                        onClick={togglePasswordVisibility}
-                                    >
-                                        {showPassword ? (
-                                            <div style={{ color: '#9ca3af' }}>
-                                                <Icon icon={eye} size={20} />
-                                            </div>
-                                        ) : (
-                                            <div style={{ color: '#9ca3af' }}>
-                                                <Icon icon={eyeOff} size={20} />
-                                            </div>
-                                        )}
-                                    </span>
-                                </div>
-                                {errors.password && (
-                                    <p className="text-red-500 text-xs mt-1">{errors.password}</p>
-                                )}
-                            </label>
-                            <p className="text-sm text-gray-400 font-light mt-2">Password must:</p>
-                            <div className="pl-10 text-sm">
-                                <ul className="list-disc text-gray-400 font-light">
-                                    <li>Be more than 8 characters</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="my-8">
-                            <label>Confirm Password
-                                <div className="relative">
-                                    <input
-                                        type={showConfirmPassword ? "text" : "password"}
-                                        name="confirm_password"
-                                        id="confirm_password"
-                                        value={confirm_password.confirm_password}
-                                        onChange={(e) => {
-                                            const { name, value } = e.target;
-                                            setConfirm_password({
-                                                ...confirm_password,
-                                                [name]: value,
-                                            });
-                                        }}
-                                        className="input bg-gray-100 px-4 py-3 mt-3 w-full"
-                                        placeholder="Confirm Password"
-                                    />
-                                    <span
-                                        className="absolute top-3 right-0 mt-3 mr-4 cursor-pointer"
-                                        onClick={toggleConfirmPasswordVisibility}
-                                    >
-                                        {showConfirmPassword ? (
-                                            <div style={{ color: '#9ca3af' }}>
-                                                <Icon icon={eye} size={20} />
-                                            </div>
-                                        ) : (
-                                            <div style={{ color: '#9ca3af' }}>
-                                                <Icon icon={eyeOff} size={20} />
-                                            </div>
-                                        )}
-                                    </span>
-                                </div>
-                                {errors.confirm_password && (
-                                    <p className="text-red-500 text-xs mt-1">{errors.confirm_password}</p>
-                                )}
-                            </label>
-                        </div>
-                        <div className="divider"></div>
-                        <div className="my-8" >
-                            <label>First Name
-                                <input
-                                    type="text"
-                                    name="first_name"
-                                    id="first_name"
-                                    value={formData.first_name}
-                                    onChange={handleChange}
-                                    className="input bg-gray-100 rounded-sm px-4 py-3 mt-3 w-full"
-                                    placeholder="First Name"
-                                />
-                                {errors.first_name && (
-                                    <p className="text-red-500 text-xs mt-1">{errors.first_name}</p>
-                                )}
-                            </label>
-                        </div>
-                        <div className="my-8">
-                            <label>Last Name
-                                <input
-                                    type="text"
-                                    name="last_name"
-                                    id="last_name"
-                                    value={formData.last_name}
-                                    onChange={handleChange}
-                                    className="bg-gray-100 input px-4 py-3 mt-3 w-full text-sm"
-                                    placeholder="Last Name"
-                                />
-                                {errors.last_name && (
-                                    <p className="text-red-500 text-xs mt-1">{errors.last_name}</p>
-                                )}
-                            </label>
-                        </div>
-                        <div className="divider"></div>
-                        <div className="my-10">
-                            <button type="submit" className="block text-center text-white bg-primary my-2 py-[14.5px] duration-300 rounded-lg hover:bg-secondary w-full">
-                                Sign up
-                            </button>
-                        </div>
-                    </form>
-
-                    {/* Social Sign up*/}
-                    {/* <div className="my-4 mt-10 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
+          {/* Social Sign up*/}
+          {/* <div className="my-4 mt-10 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
                             <p className="md:mx-2 text-sm font-light text-gray-400">
                                 Sign up With Social
                             </p>
@@ -274,11 +294,19 @@ function Signup() {
                             </a>
                         </div> */}
 
-                    <p className="mt-10 text-sm text-center font-light text-gray-400">Do you have an account?  <a href="/login" className="text-black font-medium hover:underline decoration-black">Login here</a></p>
-                </div>
-            </div>
-        </Layout >
-    )
+          <p className="mt-10 text-center text-sm font-light text-gray-400">
+            Do you have an account?{" "}
+            <a
+              href="/login"
+              className="font-medium text-black decoration-black hover:underline"
+            >
+              Login here
+            </a>
+          </p>
+        </div>
+      </div>
+    </Layout>
+  );
 }
 
 export default Signup;

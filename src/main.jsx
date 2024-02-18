@@ -129,5 +129,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <AuthProvider>
       <Routes />
     </AuthProvider>
-  </React.StrictMode>
+  </React.StrictMode> 
 );
