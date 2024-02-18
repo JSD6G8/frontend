@@ -5,7 +5,6 @@ import Layout from "./Layout";
 import ListedCard from "./components/ListedCard";
 import SelectorButton from "./components/SelectorButton";
 import SortButton from "./components/SortButton";
-import { useAuth } from "./providers/authProvider";
 
 function ActivityList() {
   const [activities, setActivities] = useState([]);
@@ -14,7 +13,6 @@ function ActivityList() {
   const [hasmore, setHasMore] = useState(true);
   const [skip, setSkip] = useState(10);
   const [take, setTake] = useState(10);
-  const { user } = useAuth();
 
   const choicesData = [
     "All",
@@ -67,7 +65,7 @@ function ActivityList() {
   const fetchMoreData = () => {
     axios
       .get(
-        `https://api.loglife.guru/activities/user/${user.userId}?type=${typeQuery}&sort=${orderType}&skip=${skip}&take=5`,
+        `https://api.loglife.guru/v2/activities/user/me?type=${typeQuery}&sort=${orderType}&skip=${skip}&take=5`,
         {
           withCredentials: true,
         },
