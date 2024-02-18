@@ -6,7 +6,7 @@ import { IoLogoGithub } from "react-icons/io";
 
 const TeamMemberCard = ({ member }) => {
   return (
-    <div className="max-md:my-3 max-md:max-w-max">
+    <div className="mb-5 max-md:max-w-max">
       <div className="mx-3 my-3 flex justify-center rounded-xl bg-slate-300 px-3 py-4 shadow-xl max-md:my-0 max-md:flex-col max-md:py-3">
         <div className="h-56 w-48 flex-shrink-0 self-center px-3 max-md:w-full max-md:px-1 max-md:py-1">
           <img
