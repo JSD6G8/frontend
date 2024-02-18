@@ -45,7 +45,7 @@ const teamProfile = [
       "Hello, my name is Earth. I'm someone who is passionate about coding, enjoys creating cool things for people to use. I dream of coding smoothly like a waterfall, but for now, it's more like dripping water.",
     gitHub: "https://github.com/Totsapol-Piluk",
     linkedIn: "https://www.linkedin.com/in/totsapol-piluk",
-    personalSite: "#",
+    personalSite: "https://portfolio-azure-two-82.vercel.app/",
   },
   {
     id: 5,
@@ -54,7 +54,7 @@ const teamProfile = [
     shortBio: "AI-powered machine that turns coffee into code. ☕",
     longBio:
       "Seasoned in manufacturing IT and adept at cross-functional collaboration. Now delving into the exciting realm of coding.",
-    gitHub: "#",
+    gitHub: "https://github.com/vorapons",
     linkedIn: "https://www.linkedin.com/in/vorapons/",
     personalSite: "#",
   },
