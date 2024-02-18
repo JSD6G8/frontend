@@ -228,7 +228,7 @@ function Dashboard() {
               /> 
       </Card>
     
-      <Card className="mx-auto mt-4 max-w-lg ">
+      <Card className="mx-auto my-4 max-w-lg ">
               <Title className="mb-0">Your Feelings</Title>
               <span className="mt-0 text-3xl flex flex-row-reverse" >😁</span>
               <LineChart
