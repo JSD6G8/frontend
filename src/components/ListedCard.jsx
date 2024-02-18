@@ -103,7 +103,7 @@ function ListedCard({ activities }) {
                 </div>
               </div>
             </div>
-            <span className="material-symbols-outlined mt-2 flex-grow-0 select-none self-center md:mt-8 md:w-10">
+            <span className="material-symbols-outlined mt-2 flex-grow-0 select-none self-center max-sm:mr-3 md:mt-8 md:w-10 md:text-3xl">
               arrow_forward_ios
             </span>
           </div>
