@@ -82,12 +82,12 @@ function ActivityList() {
 
   return (
     <Layout>
-      <main className="container mx-auto mb-6 mt-6 xl:container md:flex md:flex-col md:items-center md:rounded-xl md:bg-white md:p-5 md:drop-shadow-md xl:mx-auto">
-        <div className="flex flex-col max-md:w-full max-sm:px-2 md:mb-5 md:self-stretch md:px-20">
-          <div className="mx-3 mb-3 text-5xl font-semibold md:mt-3 md:text-left">
+      <main className="container mx-auto xl:container max-md:p-5 md:my-3 md:h-max md:rounded-xl md:bg-white md:p-5 md:drop-shadow-md xl:mx-auto">
+        <div className="flex flex-col max-md:w-full md:mb-5">
+          <div className="text-5xl font-semibold max-sm:mb-2 md:my-5 md:text-left">
             Activities
           </div>
-          <div className="mx-3 flex justify-between">
+          <div className="flex justify-between">
             <div className="flex max-md:overflow-scroll">
               <SelectorButton
                 choicesData={choicesData}
@@ -116,7 +116,7 @@ function ActivityList() {
               }
             >
               <div className="flex flex-col max-md:mt-3">
-                <div className="flex-auto self-center md:grid md:grid-cols-2 md:place-items-center md:gap-x-3 md:gap-y-3 lg:grid-cols-3 lg:gap-x-3 xl:grid-cols-4 xl:gap-x-4">
+                <div className="flex-auto md:grid md:grid-cols-2  md:gap-x-3 md:gap-y-3 lg:grid-cols-3 lg:gap-x-3 xl:grid-cols-4 xl:gap-x-4">
                   {activities.map((activity) => {
                     switch (filterType) {
                       case "All":
@@ -192,8 +192,8 @@ function ActivityList() {
               </div>
             </InfiniteScroll>
           ) : (
-            <div className="m-5 flex h-full flex-col justify-center self-center">
-              <p className=" self-center text-center text-xl font-medium">
+            <div className="m-5 flex flex-col justify-center">
+              <p className="place-self-center text-center text-xl font-medium">
                 Newcomer?
               </p>
               <p className=" self-center text-center text-xl font-semibold">
