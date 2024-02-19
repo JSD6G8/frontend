@@ -82,7 +82,7 @@ function ActivityList() {
 
   return (
     <Layout>
-      <main className="container mx-auto xl:container max-md:p-5 md:my-3 md:rounded-xl md:bg-white md:p-5 md:drop-shadow-md xl:mx-auto">
+      <main className="container mx-auto xl:container max-md:p-5 md:my-3 md:h-full md:rounded-xl md:bg-white md:p-5 md:drop-shadow-md xl:mx-auto">
         <div className="flex flex-col max-md:w-full md:mb-5">
           <div className="text-5xl font-semibold max-sm:mb-2 md:my-5 md:text-left">
             Activities
@@ -192,8 +192,8 @@ function ActivityList() {
               </div>
             </InfiniteScroll>
           ) : (
-            <div className="m-5 flex h-full flex-col justify-center self-center">
-              <p className=" self-center text-center text-xl font-medium">
+            <div className="m-5 flex flex-col justify-center">
+              <p className="place-self-center text-center text-xl font-medium">
                 Newcomer?
               </p>
               <p className=" self-center text-center text-xl font-semibold">
