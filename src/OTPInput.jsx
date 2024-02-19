@@ -31,7 +31,6 @@ function OTPInput() {
                 { OTP: otp }
             );
             if (response.status === 201) {
-                console.log(`send successfully. status is ${response.status}`);
                 MySwal.fire({
                     icon: 'success',
                     text: 'Your email has been verified. You can reset password.',

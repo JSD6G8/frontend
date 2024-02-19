@@ -37,7 +37,7 @@ function EditProfile() {
     const saveProfile = () => {
         axios.put(`https://65cad4afefec34d9ed86573b.mockapi.io/loglife/membership/${userId}`, userData)
             .then(response => {
-                console.log('Success:', response.data);
+                // console.log('Success:', response.data);
                 MySwal.fire({
                     icon: 'success',
                     text: 'Edit profile successfully!',

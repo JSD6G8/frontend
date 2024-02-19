@@ -89,7 +89,6 @@ function Signup() {
         );
 
         if (response.status === 201) {
-          console.log(`registered successfully. status is ${response.status}`);
           MySwal.fire({
             icon: "success",
             text: "User registered successfully!",
