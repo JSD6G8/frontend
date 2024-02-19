@@ -27,7 +27,6 @@ function ForgetPassword() {
                 emailAddress
             );
             if (response.status === 201) {
-                console.log(`send ${emailAddress.emailAddress} successfully. status is ${response.status}`);
                 MySwal.fire({
                     icon: 'success',
                     text: 'Email sent successfully! Please check your email.',
