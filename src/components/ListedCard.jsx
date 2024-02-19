@@ -68,7 +68,7 @@ function ListedCard({ activities }) {
   return (
     <>
       {/* base card */}
-      <div className="mb-2 flex flex-row rounded-l-xl rounded-r-xl shadow-xl max-md:w-full max-sm:w-full md:flex-col">
+      <div className="mb-2 flex flex-row rounded-l-xl rounded-r-xl shadow-lg max-md:w-full max-sm:w-full md:flex-col">
         {/* barometer color */}
         <div
           id="activities-baro"

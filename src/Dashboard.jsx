@@ -223,7 +223,7 @@ function Dashboard() {
           </Card>
           <Card className="mx-auto mt-4 max-w-lg hover:bg-base-100">
             <Title>Day Logged This Week</Title>
-            <div className="mx-auto flex max-w-lg justify-between p-4">
+            <div className="mx-auto mt-2 flex max-w-lg justify-between">
               <WeeklyActiveDay data={dataForWeeklyActive} />
             </div>
           </Card>
@@ -268,7 +268,7 @@ function Dashboard() {
           </Card>
 
           <Card className="mx-auto my-4 max-w-lg hover:bg-base-100">
-            <Title className="mb-0">How're Your Feelings So Far?</Title>
+            <Title className="mb-0">How's Your Feeling So Far?</Title>
             <span className="mt-0 flex flex-row-reverse text-3xl">😁</span>
             <LineChart
               className="mb-0 mt-0 h-72"

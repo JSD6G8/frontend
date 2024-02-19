@@ -65,7 +65,7 @@ const AboutUs = () => {
     <Layout>
       <main className="mx-auto px-3 md:container md:my-3 md:rounded-lg md:bg-white md:shadow-lg">
         <div>
-          <p className="mt-6 px-4 text-5xl font-semibold">JSD6G8 Members</p>
+          <p className="mt-6 px-4 text-5xl font-semibold">About Us</p>
         </div>
         <div className="mt-5">
           {teamProfile.map((profile) => (
