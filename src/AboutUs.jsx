@@ -63,11 +63,11 @@ const teamProfile = [
 const AboutUs = () => {
   return (
     <Layout>
-      <main className="mx-auto md:container md:my-3 md:rounded-lg md:bg-white md:shadow-lg">
+      <main className="mx-auto px-3 md:container md:my-3 md:rounded-lg md:bg-white md:shadow-lg">
         <div>
-          <p className="mb-1 mt-5 px-4 text-4xl font-bold">JSD6G8 Members</p>
+          <p className="mt-6 px-4 text-5xl font-semibold">About Us</p>
         </div>
-        <div>
+        <div className="mt-5">
           {teamProfile.map((profile) => (
             <TeamMemberCard key={profile.id} member={profile} />
           ))}

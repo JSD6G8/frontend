@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useState } from "react";
+import { Icon } from "react-icons-kit";
+import { eye } from "react-icons-kit/feather/eye";
+import { eyeOff } from "react-icons-kit/feather/eyeOff";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { Icon } from "react-icons-kit";
-import { eyeOff } from "react-icons-kit/feather/eyeOff";
-import { eye } from "react-icons-kit/feather/eye";
 
 import Layout from "./Layout";
 import { useAuth } from "./providers/authProvider";
@@ -140,7 +140,7 @@ function Login() {
                   <a href="/forget-password">Forget Password?</a>
                 </div>
               </div>
-              <button className="my-2 block w-full rounded-lg bg-primary py-[14.5px] text-center text-white duration-300 hover:bg-secondary">
+              <button className="my-2 block w-full rounded-lg bg-primary py-[14.5px] text-center text-white duration-300 hover:bg-[#1357B8]">
                 Login
               </button>
             </form>

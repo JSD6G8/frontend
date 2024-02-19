@@ -68,7 +68,7 @@ function ListedCard({ activities }) {
   return (
     <>
       {/* base card */}
-      <div className="mb-2 flex flex-row rounded-l-xl rounded-r-xl shadow-xl max-md:w-[600px] max-sm:w-[350px] md:h-72 md:w-60 md:flex-col">
+      <div className="mb-2 flex flex-row rounded-l-xl rounded-r-xl shadow-lg max-md:w-full max-sm:w-full md:flex-col">
         {/* barometer color */}
         <div
           id="activities-baro"
@@ -82,19 +82,19 @@ function ListedCard({ activities }) {
           </span>
         </div>
         {/* brief activity info */}
-        <div className="flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100 max-sm:w-12 md:rounded-b-xl md:rounded-t-none">
+        <div className="flex flex-grow flex-col justify-evenly rounded-r-xl bg-base-100 max-sm:w-12 md:rounded-b-xl md:rounded-t-none md:px-3">
           <div
             className="flex-0 flex flex-row justify-between hover:cursor-pointer"
             onClick={() => handleShowDetails(activities.activityId)}
           >
             <div
               id="summary-description"
-              className="mx-4 mb-2 mt-4 w-44 max-sm:w-36 md:mx-3 md:mb-1 md:mt-4 md:flex-grow"
+              className="mb-2 mt-4 w-44 max-sm:mx-4 max-sm:w-36 md:mb-4 md:flex-grow md:px-2"
             >
-              <p className="truncate text-lg font-bold max-sm:text-base">
+              <p className="truncate text-xl font-bold max-sm:text-base">
                 {activities.title}
               </p>
-              <div className="text-sm font-light">
+              <div className="text-sm font-light md:text-lg">
                 <div className="inline">
                   {formatDuration(activities.duration.hour, "hour", "hours")}
                 </div>{" "}
@@ -103,19 +103,25 @@ function ListedCard({ activities }) {
                 </div>
               </div>
             </div>
-            <span className="material-symbols-outlined mt-2 w-12 flex-grow-0 select-none self-center md:mt-8">
+            <span className="material-symbols-outlined mt-2 flex-grow-0 select-none self-center max-sm:mr-3 md:mt-8 md:w-10 md:text-3xl">
               arrow_forward_ios
             </span>
           </div>
 
-          <div className="mb-1 mr-2 flex flex-col justify-between">
+          <div className="mb-1 flex flex-col justify-between max-sm:mr-2">
             <div
               id="brief-dateAndTime"
-              className="mb-1 flex w-32 select-none justify-evenly self-end md:mx-2 md:mt-2 md:self-start"
+              className="mb-1 flex w-32 select-none justify-evenly self-end md:mx-2 md:w-fit md:self-start"
             >
-              <p className="text-xs font-normal">{activities.date}</p>
-              <p className="text-xs font-thin italic text-slate-600">at</p>
-              <p className="text-xs font-normal">{activities.startTime}</p>
+              <p className="text-xs font-normal md:text-base">
+                {activities.date}
+              </p>
+              <p className="text-xs font-thin italic text-slate-600 md:mx-1 md:text-base">
+                at
+              </p>
+              <p className="text-xs font-normal md:text-base">
+                {activities.startTime}
+              </p>
             </div>
             <button
               onClick={() => handleEdit(activities.activityId)}
