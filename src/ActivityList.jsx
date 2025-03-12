@@ -41,7 +41,7 @@ function ActivityList() {
     const getData = async () => {
       try {
         const response = await axios.get(
-          `https://api.loglife.guru/v2/activities/user/me?type=${typeQuery}&sort=${orderType}&take=${take}`,
+          `https://jsd6-loglife-backend.onrender.com/v2/activities/user/me?type=${typeQuery}&sort=${orderType}&take=${take}`,
           {
             withCredentials: true,
           },
@@ -65,7 +65,7 @@ function ActivityList() {
   const fetchMoreData = () => {
     axios
       .get(
-        `https://api.loglife.guru/v2/activities/user/me?type=${typeQuery}&sort=${orderType}&skip=${skip}&take=5`,
+        `https://jsd6-loglife-backend.onrender.com/v2/activities/user/me?type=${typeQuery}&sort=${orderType}&skip=${skip}&take=5`,
         {
           withCredentials: true,
         },

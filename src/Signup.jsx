@@ -81,7 +81,7 @@ function Signup() {
     if (Object.keys(newErrors).length === 0) {
       try {
         const response = await axios.post(
-          "https://api.loglife.guru/signup",
+          "https://jsd6-loglife-backend.onrender.com/signup",
           formData,
           {
             withCredentials: true,

@@ -59,7 +59,7 @@ function CreateActivity() {
         };
 
         const response = await axios.post(
-          "https://api.loglife.guru/v2/activities/",
+          "https://jsd6-loglife-backend.onrender.com/v2/activities/",
           postData,
           {
             withCredentials: true,

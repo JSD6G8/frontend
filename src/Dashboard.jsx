@@ -177,7 +177,7 @@ function Dashboard() {
       try {
         // Step 1: Fetch data from the backend
         axios.defaults.withCredentials = true;
-        const response = await axios.get("https://api.loglife.guru/dashboard", {
+        const response = await axios.get("https://jsd6-loglife-backend.onrender.com/dashboard", {
           withCredentials: true,
         });
 
